@@ -67,7 +67,8 @@ export default function BottomTabBar() {
         right: 0,
         backgroundColor: 'white',
         borderTop: '1px solid #e2e2e2',
-        height: '80px'
+        height: '80px',
+        zIndex: 50
       }} />
     )
   }
@@ -79,7 +80,8 @@ export default function BottomTabBar() {
       left: 0,
       right: 0,
       backgroundColor: 'white',
-      borderTop: '1px solid #e2e2e2'
+      borderTop: '1px solid #e2e2e2',
+      zIndex: 50
     }}>
       <div style={{
         display: 'flex',
