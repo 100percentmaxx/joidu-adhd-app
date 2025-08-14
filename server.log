@@ -1,0 +1,428 @@
+
+> joidu@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3000
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 1078ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1668ms (530 modules)
+ GET / 200 in 1921ms
+ ✓ Compiled in 207ms (268 modules)
+ ✓ Compiled /kaihelp in 161ms (527 modules)
+ ✓ Compiled /kaihelp/sorted in 102ms (533 modules)
+ ✓ Compiled in 213ms (543 modules)
+ ✓ Compiled in 154ms (543 modules)
+ ✓ Compiled /kaihelp in 72ms (268 modules)
+ ✓ Compiled in 263ms (543 modules)
+ ✓ Compiled in 195ms (543 modules)
+ ✓ Compiled /kaihelp in 38ms (268 modules)
+ ✓ Compiled in 224ms (543 modules)
+ ✓ Compiled in 138ms (543 modules)
+ ✓ Compiled in 129ms (543 modules)
+ ✓ Compiled in 187ms (543 modules)
+ ✓ Compiled /kaihelp in 95ms (268 modules)
+ ✓ Compiled in 389ms (549 modules)
+ ✓ Compiled in 130ms (549 modules)
+ GET /kaihelp 200 in 85ms
+ ✓ Compiled in 211ms (549 modules)
+ ✓ Compiled in 224ms (549 modules)
+ ✓ Compiled in 130ms (549 modules)
+ ✓ Compiled in 140ms (549 modules)
+ GET /kaihelp 200 in 67ms
+ ✓ Compiled in 228ms (549 modules)
+ ✓ Compiled in 192ms (549 modules)
+ ✓ Compiled in 135ms (549 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 172ms (549 modules)
+ ⨯ src/app/kaihelp/page.tsx (53:7) @ conversations
+ ⨯ ReferenceError: Cannot access 'conversations' before initialization
+    at KaiHelpPage (./src/app/kaihelp/page.tsx:41:9)
+digest: "1331054886"
+[0m [90m 51 |[39m       scrollToBottom()[0m
+[0m [90m 52 |[39m     }[0m
+[0m[31m[1m>[22m[39m[90m 53 |[39m   }[33m,[39m [conversations[33m,[39m activeConversation])[0m
+[0m [90m    |[39m       [31m[1m^[22m[39m[0m
+[0m [90m 54 |[39m[0m
+[0m [90m 55 |[39m   [90m// Sample conversations data[39m[0m
+[0m [90m 56 |[39m   [36mconst[39m [conversations[33m,[39m setConversations] [33m=[39m useState[33m<[39m[33mConversation[39m[][33m>[39m([[0m
+ GET /kaihelp 500 in 91ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 139ms (549 modules)
+ ⨯ src/app/kaihelp/page.tsx (53:7) @ conversations
+ ⨯ ReferenceError: Cannot access 'conversations' before initialization
+    at KaiHelpPage (./src/app/kaihelp/page.tsx:41:9)
+digest: "1331054886"
+[0m [90m 51 |[39m       scrollToBottom()[0m
+[0m [90m 52 |[39m     }[0m
+[0m[31m[1m>[22m[39m[90m 53 |[39m   }[33m,[39m [conversations[33m,[39m activeConversation])[0m
+[0m [90m    |[39m       [31m[1m^[22m[39m[0m
+[0m [90m 54 |[39m[0m
+[0m [90m 55 |[39m   [90m// Sample conversations data[39m[0m
+[0m [90m 56 |[39m   [36mconst[39m [conversations[33m,[39m setConversations] [33m=[39m useState[33m<[39m[33mConversation[39m[][33m>[39m([[0m
+ ⨯ src/app/kaihelp/page.tsx (53:7) @ conversations
+ ⨯ ReferenceError: Cannot access 'conversations' before initialization
+    at KaiHelpPage (./src/app/kaihelp/page.tsx:41:9)
+digest: "1331054886"
+[0m [90m 51 |[39m       scrollToBottom()[0m
+[0m [90m 52 |[39m     }[0m
+[0m[31m[1m>[22m[39m[90m 53 |[39m   }[33m,[39m [conversations[33m,[39m activeConversation])[0m
+[0m [90m    |[39m       [31m[1m^[22m[39m[0m
+[0m [90m 54 |[39m[0m
+[0m [90m 55 |[39m   [90m// Sample conversations data[39m[0m
+[0m [90m 56 |[39m   [36mconst[39m [conversations[33m,[39m setConversations] [33m=[39m useState[33m<[39m[33mConversation[39m[][33m>[39m([[0m
+ GET /kaihelp 500 in 66ms
+ ⨯ src/app/kaihelp/page.tsx (53:7) @ conversations
+ ⨯ ReferenceError: Cannot access 'conversations' before initialization
+    at KaiHelpPage (./src/app/kaihelp/page.tsx:41:9)
+digest: "1331054886"
+[0m [90m 51 |[39m       scrollToBottom()[0m
+[0m [90m 52 |[39m     }[0m
+[0m[31m[1m>[22m[39m[90m 53 |[39m   }[33m,[39m [conversations[33m,[39m activeConversation])[0m
+[0m [90m    |[39m       [31m[1m^[22m[39m[0m
+[0m [90m 54 |[39m[0m
+[0m [90m 55 |[39m   [90m// Sample conversations data[39m[0m
+[0m [90m 56 |[39m   [36mconst[39m [conversations[33m,[39m setConversations] [33m=[39m useState[33m<[39m[33mConversation[39m[][33m>[39m([[0m
+ GET /kaihelp 500 in 29ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 147ms (549 modules)
+ GET /kaihelp 200 in 35ms
+ ✓ Compiled in 105ms (549 modules)
+ ✓ Compiled in 189ms (549 modules)
+ ✓ Compiled in 190ms (549 modules)
+ ✓ Compiled in 234ms (549 modules)
+ ✓ Compiled in 195ms (549 modules)
+ ✓ Compiled in 199ms (549 modules)
+ ✓ Compiled in 210ms (549 modules)
+ ✓ Compiled in 232ms (549 modules)
+ ✓ Compiled in 125ms (549 modules)
+ ✓ Compiled in 129ms (549 modules)
+ ✓ Compiled in 128ms (549 modules)
+ ✓ Compiled in 193ms (549 modules)
+ ✓ Compiled in 159ms (549 modules)
+ ✓ Compiled in 120ms (549 modules)
+ ✓ Compiled in 251ms (549 modules)
+ ✓ Compiled in 137ms (549 modules)
+ ✓ Compiled in 196ms (549 modules)
+ ✓ Compiled in 157ms (549 modules)
+ ✓ Compiled in 228ms (549 modules)
+ ✓ Compiled in 144ms (549 modules)
+ ✓ Compiled in 353ms (549 modules)
+ ✓ Compiled in 151ms (549 modules)
+ GET /kaihelp 200 in 74ms
+ ✓ Compiled in 243ms (549 modules)
+ ✓ Compiled in 130ms (549 modules)
+ ✓ Compiled in 131ms (549 modules)
+ ✓ Compiled in 126ms (549 modules)
+ ✓ Compiled in 161ms (549 modules)
+ ✓ Compiled in 148ms (549 modules)
+ ✓ Compiled in 195ms (549 modules)
+ GET /kaihelp 200 in 73ms
+ ✓ Compiled in 238ms (549 modules)
+ ✓ Compiled in 203ms (549 modules)
+ ✓ Compiled in 205ms (549 modules)
+ ✓ Compiled in 146ms (549 modules)
+ GET /kaihelp 200 in 73ms
+ ✓ Compiled in 253ms (549 modules)
+ ✓ Compiled in 196ms (549 modules)
+ ✓ Compiled in 144ms (549 modules)
+ ✓ Compiled in 166ms (549 modules)
+ ✓ Compiled in 238ms (549 modules)
+ GET /kaihelp/sorted?sidebar=open 200 in 72ms
+ ✓ Compiled in 250ms (549 modules)
+ ✓ Compiled in 254ms (549 modules)
+ ✓ Compiled in 221ms (549 modules)
+ ✓ Compiled in 243ms (549 modules)
+ ✓ Compiled in 139ms (549 modules)
+ ✓ Compiled in 277ms (549 modules)
+ ✓ Compiled in 242ms (549 modules)
+ ✓ Compiled /tasks in 246ms (551 modules)
+ ✓ Compiled /focus in 119ms (557 modules)
+ ✓ Compiled /focus/setup in 122ms (573 modules)
+ ✓ Compiled /habits in 129ms (589 modules)
+ ✓ Compiled /settings in 281ms (605 modules)
+ ✓ Compiled /settings/privacy in 193ms (615 modules)
+ ✓ Compiled /settings/data-export in 154ms (635 modules)
+ ✓ Compiled /settings/pro in 169ms (653 modules)
+ ⨯ ./src/app/settings/pro/components/ProFeatureCard.tsx
+Error: 
+  [31mx[0m Unexpected token `button`. Expected jsx identifier
+    ,-[[36;1;4m/Users/maxx/joidu/src/app/settings/pro/components/ProFeatureCard.tsx[0m:15:1]
+ [2m15[0m |   spacing = 16 
+ [2m16[0m | }: ProFeatureCardProps) {
+ [2m17[0m |   return (
+ [2m18[0m |     <button style={{
+    : [31;1m     ^^^^^^[0m
+ [2m19[0m |       backgroundColor: '#FFFFFF',
+ [2m20[0m |       border: '2px solid #e2e2e2',
+ [2m21[0m |       borderRadius: '16px',
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/settings/pro/components/ProFeatureCard.tsx
+./src/app/settings/pro/page.tsx
+ ✓ Compiled in 137ms (636 modules)
+ GET /settings/pro 200 in 99ms
+ ✓ Compiled in 224ms (636 modules)
+ ✓ Compiled in 121ms (636 modules)
+ ✓ Compiled in 188ms (636 modules)
+ ⨯ ./src/app/settings/pro/components/ProFeatureCard.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+    ,-[[36;1;4m/Users/maxx/joidu/src/app/settings/pro/components/ProFeatureCard.tsx[0m:15:1]
+ [2m15[0m |   spacing = 16 
+ [2m16[0m | }: ProFeatureCardProps) {
+ [2m17[0m |   return (
+ [2m18[0m |     <div style={{
+    : [31;1m     ^^^[0m
+ [2m19[0m |       backgroundColor: '#FFFFFF',
+ [2m20[0m |       border: '2px solid #e2e2e2',
+ [2m21[0m |       borderRadius: '16px',
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/settings/pro/components/ProFeatureCard.tsx
+./src/app/settings/pro/page.tsx
+ ⨯ ./src/app/settings/pro/components/ProFeatureCard.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+    ,-[[36;1;4m/Users/maxx/joidu/src/app/settings/pro/components/ProFeatureCard.tsx[0m:15:1]
+ [2m15[0m |   spacing = 16 
+ [2m16[0m | }: ProFeatureCardProps) {
+ [2m17[0m |   return (
+ [2m18[0m |     <div style={{
+    : [31;1m     ^^^[0m
+ [2m19[0m |       backgroundColor: '#FFFFFF',
+ [2m20[0m |       border: '2px solid #e2e2e2',
+ [2m21[0m |       borderRadius: '16px',
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/settings/pro/components/ProFeatureCard.tsx
+./src/app/settings/pro/page.tsx
+ ✓ Compiled in 133ms (636 modules)
+ ✓ Compiled in 148ms (636 modules)
+ ✓ Compiled in 158ms (636 modules)
+ ✓ Compiled / in 111ms (307 modules)
+ ✓ Compiled /_not-found in 172ms (624 modules)
+ GET /settings/help 404 in 54ms
+ GET /settings 200 in 51ms
+ ✓ Compiled in 218ms (336 modules)
+ ✓ Compiled in 137ms (621 modules)
+ ✓ Compiled in 76ms (336 modules)
+ ✓ Compiled in 75ms (336 modules)
+ ✓ Compiled in 81ms (336 modules)
+ ✓ Compiled in 88ms (336 modules)
+ ✓ Compiled in 79ms (336 modules)
+ ✓ Compiled /settings/help in 344ms (644 modules)
+ ✓ Compiled /settings/appearance in 166ms (658 modules)
+ ✓ Compiled in 271ms (651 modules)
+ ✓ Compiled in 124ms (651 modules)
+ GET /settings 200 in 81ms
+ ✓ Compiled /settings/help in 56ms (312 modules)
+ ✓ Compiled in 239ms (653 modules)
+ ✓ Compiled /settings/appearance in 104ms (309 modules)
+ ✓ Compiled in 650ms (654 modules)
+ ✓ Compiled in 119ms (654 modules)
+ ✓ Compiled /settings in 78ms (309 modules)
+ ✓ Compiled /settings/adhd-preferences in 150ms (663 modules)
+ ✓ Compiled in 464ms (659 modules)
+ ✓ Compiled in 152ms (659 modules)
+ ✓ Compiled in 187ms (659 modules)
+ ✓ Compiled /settings in 71ms (307 modules)
+ ✓ Compiled /settings/kai-settings in 220ms (660 modules)
+ ✓ Compiled in 427ms (666 modules)
+ ✓ Compiled in 214ms (666 modules)
+ ✓ Compiled in 112ms (666 modules)
+ ✓ Compiled / in 99ms (307 modules)
+ ✓ Compiled in 206ms (661 modules)
+ ✓ Compiled /settings/quiet-hours in 294ms (669 modules)
+ ✓ Compiled in 356ms (675 modules)
+ ✓ Compiled in 215ms (675 modules)
+ ✓ Compiled in 133ms (675 modules)
+ ✓ Compiled in 228ms (675 modules)
+ ✓ Compiled /settings/privacy in 88ms (308 modules)
+ ✓ Compiled in 356ms (676 modules)
+ ✓ Compiled in 268ms (676 modules)
+ ✓ Compiled in 314ms (676 modules)
+ ✓ Compiled /settings/data-export in 100ms (310 modules)
+ ✓ Compiled in 440ms (680 modules)
+ ✓ Compiled in 124ms (680 modules)
+ ✓ Compiled /settings in 49ms (310 modules)
+ ✓ Compiled /settings/pro in 95ms (310 modules)
+ ✓ Compiled in 370ms (679 modules)
+ ✓ Compiled in 137ms (679 modules)
+ ✓ Compiled in 261ms (679 modules)
+ ✓ Compiled in 173ms (679 modules)
+ ✓ Compiled /settings/help in 107ms (315 modules)
+ ✓ Compiled in 175ms (377 modules)
+ ✓ Compiled in 80ms (377 modules)
+ ✓ Compiled in 79ms (377 modules)
+ ✓ Compiled in 236ms (680 modules)
+ ✓ Compiled in 191ms (680 modules)
+ ✓ Compiled in 145ms (680 modules)
+ ✓ Compiled in 151ms (686 modules)
+ ✓ Compiled in 174ms (380 modules)
+ ✓ Compiled in 167ms (686 modules)
+ ✓ Compiled in 339ms (686 modules)
+ ✓ Compiled in 157ms (686 modules)
+ ✓ Compiled in 161ms (688 modules)
+ GET /settings 200 in 104ms
+ ✓ Compiled /_not-found in 189ms (677 modules)
+ GET /src/joidu-icons/signout.svg 404 in 264ms
+ GET /src/joidu-icons/alert.svg 404 in 260ms
+ GET /src/joidu-icons/backup.svg 404 in 257ms
+ GET /src/joidu-icons/privacy.svg 404 in 259ms
+ ✓ Compiled in 272ms (688 modules)
+ ✓ Compiled in 191ms (688 modules)
+ ✓ Compiled in 239ms (688 modules)
+ ✓ Compiled in 181ms (381 modules)
+ ✓ Compiled in 167ms (674 modules)
+ ✓ Compiled in 150ms (688 modules)
+ ✓ Compiled in 127ms (688 modules)
+ ✓ Compiled in 191ms (688 modules)
+ ✓ Compiled in 141ms (688 modules)
+ ✓ Compiled in 158ms (688 modules)
+ ✓ Compiled in 131ms (688 modules)
+ ✓ Compiled in 172ms (688 modules)
+ ✓ Compiled in 135ms (688 modules)
+ ✓ Compiled in 135ms (688 modules)
+ ✓ Compiled in 194ms (688 modules)
+ ✓ Compiled in 198ms (688 modules)
+ ✓ Compiled /settings/signout-data-export in 189ms (680 modules)
+ ✓ Compiled in 220ms (684 modules)
+ ✓ Compiled in 238ms (684 modules)
+ ✓ Compiled in 174ms (684 modules)
+ ✓ Compiled in 214ms (684 modules)
+ ✓ Compiled in 145ms (684 modules)
+ ✓ Compiled in 179ms (684 modules)
+ ✓ Compiled in 153ms (684 modules)
+ ✓ Compiled in 152ms (684 modules)
+ ✓ Compiled in 177ms (684 modules)
+ ✓ Compiled in 271ms (684 modules)
+ ✓ Compiled in 144ms (684 modules)
+ ✓ Compiled in 243ms (684 modules)
+ ✓ Compiled in 165ms (684 modules)
+ ✓ Compiled in 196ms (684 modules)
+ ✓ Compiled in 135ms (684 modules)
+ ✓ Compiled in 150ms (684 modules)
+ ✓ Compiled in 173ms (684 modules)
+ ✓ Compiled in 231ms (684 modules)
+ ✓ Compiled in 179ms (684 modules)
+ ✓ Compiled in 152ms (684 modules)
+ GET /settings 200 in 86ms
+ ✓ Compiled / in 146ms (309 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 267ms (688 modules)
+ GET /settings 200 in 170ms
+ ✓ Compiled in 151ms (688 modules)
+ ✓ Compiled in 190ms (688 modules)
+ ✓ Compiled /_not-found in 208ms (677 modules)
+ GET /settings/signout-data-export 200 in 57ms
+ GET /_next/static/css/app/layout.css?v=1755005022390 404 in 37ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 58ms
+ GET /_next/static/chunks/main-app.js?v=1755005022390 404 in 59ms
+ GET /_next/static/chunks/app/settings/signout-data-export/page.js 404 in 56ms
+ GET /_next/static/chunks/app/layout.js 404 in 52ms
+ GET / 200 in 64ms
+ GET /_next/static/css/app/layout.css?v=1755005062519 404 in 85ms
+ GET /_next/static/chunks/main-app.js?v=1755005062519 404 in 57ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 54ms
+ GET /_next/static/chunks/app/page.js 404 in 53ms
+ GET /_next/static/chunks/app/layout.js 404 in 53ms
+ ✓ Compiled in 313ms (688 modules)
+ ✓ Compiled in 200ms (688 modules)
+ ✓ Compiled in 148ms (688 modules)
+ ✓ Compiled in 219ms (688 modules)
+ ✓ Compiled in 151ms (688 modules)
+ GET / 200 in 104ms
+ ✓ Compiled /_not-found in 150ms (677 modules)
+ GET /_next/static/css/app/layout.css?v=1755005307471 404 in 230ms
+ GET /_next/static/chunks/main-app.js?v=1755005307471 404 in 76ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 73ms
+ GET /_next/static/chunks/app/page.js 404 in 49ms
+ GET / 200 in 69ms
+ GET /_next/static/css/app/layout.css?v=1755005315114 404 in 24ms
+ GET /_next/static/chunks/main-app.js?v=1755005315114 404 in 43ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 43ms
+ GET /_next/static/chunks/app/page.js 404 in 41ms
+ ✓ Compiled /tasks in 138ms (312 modules)
+Warning: Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <div>. See https://reactjs.org/link/warning-keys for more information.
+    at div
+    at Tasks (webpack-internal:///(ssr)/./src/app/tasks/page.tsx:22:78)
+    at ClientPageRoot (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/client-page.js:14:11)
+    at Lazy
+    at InnerLayoutRouter (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/layout-router.js:242:11)
+    at RedirectErrorBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/redirect-boundary.js:73:9)
+    at RedirectBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/redirect-boundary.js:81:11)
+    at NotFoundBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at LoadingBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/layout-router.js:347:11)
+    at ErrorBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/error-boundary.js:158:11)
+    at InnerScrollAndFocusHandler (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/layout-router.js:153:9)
+    at ScrollAndFocusHandler (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/layout-router.js:228:11)
+    at RenderFromTemplateContext (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/render-from-template-context.js:16:44)
+    at Lazy
+    at OuterLayoutRouter (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/layout-router.js:367:11)
+    at Lazy
+    at InnerLayoutRouter (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/layout-router.js:242:11)
+    at RedirectErrorBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/redirect-boundary.js:73:9)
+    at RedirectBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/redirect-boundary.js:81:11)
+    at NotFoundErrorBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at LoadingBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/layout-router.js:347:11)
+    at ErrorBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/error-boundary.js:158:11)
+    at InnerScrollAndFocusHandler (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/layout-router.js:153:9)
+    at ScrollAndFocusHandler (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/layout-router.js:228:11)
+    at RenderFromTemplateContext (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/render-from-template-context.js:16:44)
+    at Lazy
+    at OuterLayoutRouter (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/layout-router.js:367:11)
+    at Lazy
+    at main
+    at body
+    at html
+    at RedirectErrorBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/redirect-boundary.js:73:9)
+    at RedirectBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/redirect-boundary.js:81:11)
+    at ReactDevOverlay (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)
+    at HotReload (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:322:11)
+    at Router (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/app-router.js:202:11)
+    at ErrorBoundaryHandler (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/error-boundary.js:112:9)
+    at ErrorBoundary (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/error-boundary.js:158:11)
+    at AppRouter (webpack-internal:///(ssr)/./node_modules/next/dist/client/components/app-router.js:564:13)
+    at Lazy
+    at r4 (/Users/maxx/joidu/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:18826)
+    at r4 (/Users/maxx/joidu/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:18826)
+    at ServerInsertedHTMLProvider (/Users/maxx/joidu/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:24256)
+ GET /tasks 200 in 225ms
+ GET /_next/static/css/app/layout.css?v=1755005349567 404 in 54ms
+ GET /_next/static/chunks/main-app.js?v=1755005349567 404 in 45ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 44ms
+ GET /_next/static/chunks/app/tasks/page.js 404 in 42ms
+ ✓ Compiled /kaihelp in 71ms (318 modules)
+ GET /kaihelp 200 in 130ms
+ GET /_next/static/css/app/layout.css?v=1755005354716 404 in 29ms
+ GET /_next/static/chunks/main-app.js?v=1755005354716 404 in 44ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 43ms
+ GET /_next/static/chunks/app/kaihelp/page.js 404 in 42ms
+ GET / 200 in 58ms
+ GET /_next/static/css/app/layout.css?v=1755005407115 404 in 108ms
+ GET /_next/static/chunks/main-app.js?v=1755005407115 404 in 45ms
+ GET /_next/static/chunks/app/page.js 404 in 40ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 42ms
+ ✓ Compiled in 299ms (688 modules)
+ ✓ Compiled in 239ms (688 modules)
+ ✓ Compiled in 131ms (688 modules)
+[?25h

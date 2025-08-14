@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm:*)",
+      "Bash(cp:*)",
+      "Bash(npm run dev:*)",
+      "Bash(lsof:*)",
+      "Bash(pkill:*)",
+      "Bash(ls:*)",
+      "Bash(npx next dev:*)",
+      "Bash(sudo lsof:*)",
+      "Bash(curl:*)",
+      "Bash(DEBUG=*)",
+      "Bash(npm run build:*)",
+      "Bash(npm start)",
+      "Bash(node:*)",
+      "Bash(npm:*)",
+      "Bash(mkdir:*)",
+      "Bash(npx tsc:*)",
+      "Bash(find:*)",
+      "Bash(sed:*)",
+      "Bash(grep:*)"
+    ],
+    "deny": []
+  }
+}

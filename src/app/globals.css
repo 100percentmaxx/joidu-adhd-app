@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: #fefbf7;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #4c4c4c;
+    line-height: 1.4;
+  }
+}
+
+@layer components {
+  /* ADHD-friendly button styles */
+  .btn-primary {
+    @apply bg-primary-blue text-white px-5 py-3 rounded-small font-medium transition-all duration-200 hover:scale-95 active:scale-95;
+    min-height: 44px;
+    letter-spacing: 0.25px;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 text-text-primary px-5 py-3 rounded-small font-medium transition-all duration-200 hover:scale-95 active:scale-95;
+    min-height: 44px;
+    letter-spacing: 0.25px;
+  }
+  
+  .btn-orange {
+    @apply bg-primary-orange text-white px-5 py-3 rounded-small font-medium transition-all duration-200 hover:scale-95 active:scale-95;
+    min-height: 44px;
+    letter-spacing: 0.25px;
+  }
+  
+  /* Card styles */
+  .card {
+    @apply bg-card-background rounded-medium p-4 border border-border shadow-sm;
+  }
+  
+  .card-category {
+    @apply rounded-medium p-3 border-2;
+  }
+  
+  /* Category pill styles */
+  .pill-selected {
+    @apply bg-primary-blue text-white border-2 border-primary-blue;
+  }
+  
+  .pill-unselected {
+    @apply bg-white text-text-secondary border-2;
+  }
+  
+
+}
+
+/* Mobile-first responsive design */
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* Safe area for mobile devices */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ADHD-friendly transitions */
+.transition-gentle {
+  transition: all 0.2s ease-out;
+}
+
+.transition-smooth {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Focus indicators for accessibility */
+.focus-visible:focus {
+  outline: 2px solid #2847ef;
+  outline-offset: 2px;
+}
+
+/* Slider button override */
+.slider-button {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+} 
