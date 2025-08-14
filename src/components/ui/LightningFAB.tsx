@@ -17,7 +17,7 @@ export default function LightningFAB({ show = true }: LightningFABProps) {
   }
 
   return (
-    <div className="fixed z-50" style={{ bottom: '100px', right: '20px' }}>
+    <div className="fixed" style={{ bottom: '100px', right: '20px', zIndex: 100 }}>
       <button 
         onClick={handlePress}
         className="transition-all duration-200 hover:scale-105 active:scale-95"
