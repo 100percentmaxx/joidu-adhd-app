@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { Medal, Settings } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import LightningFAB from '@/components/ui/LightningFAB'
 
 export default function Home() {
   const router = useRouter()
@@ -549,6 +550,9 @@ export default function Home() {
 
       {/* Bottom spacer to ensure content can scroll above FAB */}
       <div style={{ height: '120px' }}></div>
+
+      {/* Just One Thing FAB */}
+      <LightningFAB />
     </div>
   )
 }
