@@ -27,6 +27,14 @@ export default function FAQItem({
         marginBottom: `${spacing}px`,
         transition: 'all 0.2s ease'
       }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = '#2847ef'
+        e.currentTarget.style.transform = 'translateY(-1px)'
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = '#e2e2e2'
+        e.currentTarget.style.transform = 'translateY(0px)'
+      }}
     >
       {/* Question Button */}
       <button
