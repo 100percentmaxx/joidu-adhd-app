@@ -27,8 +27,8 @@ export default function HelpSupportPage() {
     {
       icon: '/icons/rocket.svg',
       title: 'Getting Started Guide',
-      description: 'Coming soon - basic setup and usage guide',
-      action: () => console.log('Getting Started Guide temporarily disabled')
+      description: 'Basic setup and usage guide',
+      action: () => router.push('/help/getting-started')
     },
     {
       icon: '/icons/kai.svg',
