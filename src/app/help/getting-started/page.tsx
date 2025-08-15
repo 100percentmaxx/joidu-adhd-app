@@ -62,7 +62,7 @@ export default function GettingStartedPage() {
             backgroundColor: '#fa772c',
             color: 'white',
             fontSize: '16px',
-            fontWeight: 500,
+            fontWeight: 700,
             padding: '12px',
             borderRadius: '8px',
             border: 'none',
