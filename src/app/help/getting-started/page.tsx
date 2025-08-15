@@ -11,7 +11,7 @@ export default function GettingStartedPage() {
         {[...Array(50)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+            className="absolute w-1 h-1 bg-white rounded-full star-twinkle"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -27,13 +27,13 @@ export default function GettingStartedPage() {
         {/* Rocket Icon with Vibration Animation */}
         <div className="mb-8 inline-block animate-bounce">
           <Image
-            src="/src/joidu-icons/start.svg"
+            src="/icons/start.svg"
             alt="Rocket"
             width={60}
             height={60}
             className="animate-pulse"
             style={{
-              animation: 'vibrate 0.3s ease-in-out infinite alternate'
+              animation: 'vibrate 0.8s ease-in-out infinite alternate'
             }}
           />
         </div>
@@ -49,7 +49,7 @@ export default function GettingStartedPage() {
         </p>
       </div>
 
-      {/* Custom CSS for vibrate animation */}
+      {/* Custom CSS for animations */}
       <style jsx>{`
         @keyframes vibrate {
           0% { transform: translate(0, 0) rotate(0deg); }
@@ -57,6 +57,15 @@ export default function GettingStartedPage() {
           50% { transform: translate(-1px, 2px) rotate(1deg); }
           75% { transform: translate(2px, 1px) rotate(0deg); }
           100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 1; }
+        }
+        
+        .star-twinkle {
+          animation: twinkle ease-in-out infinite;
         }
       `}</style>
     </div>
