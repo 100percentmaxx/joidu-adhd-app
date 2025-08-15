@@ -123,7 +123,7 @@ export default function KaiGuidePage() {
         </p>
 
         {/* Bullet List */}
-        <div style={{ marginBottom: '32px' }}>
+        <div style={{ marginBottom: '32px', padding: '20px' }}>
           <p style={{
             fontSize: '14px',
             fontWeight: 700,
