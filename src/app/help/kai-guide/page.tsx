@@ -56,7 +56,7 @@ export default function KaiGuidePage() {
         </p>
       </div>
 
-      {/* Introduction Box */}
+      {/* White Container - extends to bottom */}
       <div style={{
         backgroundColor: 'white',
         borderRadius: '16px',
@@ -64,19 +64,17 @@ export default function KaiGuidePage() {
         padding: '20px',
         marginBottom: '32px'
       }}>
+        {/* Introduction Text */}
         <p style={{
           fontSize: '18px',
           fontWeight: 700,
           color: '#4c4c4c',
           lineHeight: '1.4',
-          margin: 0
+          marginBottom: '32px'
         }}>
           Hi! I'm Kai, and I'm here to help you work WITH your ADHD brain, not against it. Let me show you what makes me different from other AI assistants.
         </p>
-      </div>
 
-      {/* What Makes Kai Special Section */}
-      <div style={{ marginBottom: '32px' }}>
         {/* Section Title */}
         <h2 style={{
           fontSize: '16px',
@@ -92,7 +90,7 @@ export default function KaiGuidePage() {
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          marginBottom: '24px'
+          marginBottom: '18px'
         }}>
           <Image
             src="/icons/brain.svg"
@@ -117,7 +115,7 @@ export default function KaiGuidePage() {
           fontWeight: 400,
           color: '#4c4c4c',
           padding: '20px',
-          marginBottom: '24px',
+          marginBottom: '18px',
           lineHeight: '1.4',
           textAlign: 'justify'
         }}>
@@ -138,82 +136,87 @@ export default function KaiGuidePage() {
           <ul style={{
             fontSize: '14px',
             color: '#4c4c4c',
-            paddingLeft: '16px',
+            paddingLeft: '0',
             lineHeight: '1.6',
-            margin: 0
+            margin: 0,
+            listStyle: 'none'
           }}>
             <li style={{ marginBottom: '8px' }}>
-              <strong>No judgment:</strong> I never make you feel bad about incomplete tasks or missed deadlines
+              • <strong>No judgment:</strong> I never make you feel bad about incomplete tasks or missed deadlines
             </li>
             <li style={{ marginBottom: '8px' }}>
-              <strong>ADHD-aware suggestions:</strong> I understand executive function challenges and work around them
+              • <strong>ADHD-aware suggestions:</strong> I understand executive function challenges and work around them
             </li>
             <li style={{ marginBottom: '8px' }}>
-              <strong>Energy-sensitive:</strong> I know your brain works differently at different times of day
+              • <strong>Energy-sensitive:</strong> I know your brain works differently at different times of day
             </li>
             <li style={{ marginBottom: '8px' }}>
-              <strong>Celebration-focused:</strong> I emphasize wins and progress, not perfection
+              • <strong>Celebration-focused:</strong> I emphasize wins and progress, not perfection
             </li>
           </ul>
         </div>
-      </div>
 
-      {/* Interactive Element */}
-      <div style={{
-        backgroundColor: '#cae9ef',
-        borderRadius: '16px',
-        padding: '20px',
-        textAlign: 'center',
-        marginBottom: '24px'
-      }}>
-        {/* Twinkle Icon and Title */}
-        <div style={{ marginBottom: '18px' }}>
-          <Image
-            src="/icons/twinkle.svg"
-            alt="Twinkle"
-            width={24}
-            height={24}
-            style={{ marginBottom: '8px' }}
-          />
-          <h3 style={{
-            fontSize: '18px',
-            fontWeight: 700,
-            color: '#2847ef',
-            margin: 0
-          }}>
-            Try Asking Kai Now!
-          </h3>
-        </div>
-
-        {/* Chat Button (inactive) */}
-        <button
-          disabled
-          style={{
-            backgroundColor: '#2847ef',
-            color: 'white',
-            fontSize: '14px',
-            fontWeight: 700,
-            padding: '16px',
-            borderRadius: '12px',
-            border: 'none',
-            whiteSpace: 'nowrap',
-            marginBottom: '18px',
-            opacity: 0.7,
-            cursor: 'not-allowed'
-          }}
-        >
-          Chat with Kai Now
-        </button>
-
-        {/* Example Prompt */}
-        <p style={{
-          fontSize: '14px',
-          color: '#4c4c4c',
-          margin: 0,
-          lineHeight: '1.4'
+        {/* Interactive Element - Blue Container within White */}
+        <div style={{
+          backgroundColor: '#cae9ef',
+          borderRadius: '16px',
+          padding: '20px',
+          textAlign: 'center'
         }}>
-          <strong>Example prompt:</strong> Try asking: "I'm feeling overwhelmed with my to-do list"
-        </p>
+          {/* Twinkle Icon and Title */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: '18px'
+          }}>
+            <Image
+              src="/icons/twinkle.svg"
+              alt="Twinkle"
+              width={24}
+              height={24}
+              style={{ marginRight: '8px' }}
+            />
+            <h3 style={{
+              fontSize: '18px',
+              fontWeight: 700,
+              color: '#2847ef',
+              margin: 0
+            }}>
+              Try Asking Kai Now!
+            </h3>
+          </div>
+
+          {/* Chat Button (inactive) */}
+          <button
+            disabled
+            style={{
+              backgroundColor: '#2847ef',
+              color: 'white',
+              fontSize: '14px',
+              fontWeight: 700,
+              padding: '16px',
+              borderRadius: '12px',
+              border: 'none',
+              whiteSpace: 'nowrap',
+              marginBottom: '18px',
+              opacity: 0.7,
+              cursor: 'not-allowed'
+            }}
+          >
+            Chat with Kai Now
+          </button>
+
+          {/* Example Prompt */}
+          <p style={{
+            fontSize: '14px',
+            color: '#4c4c4c',
+            margin: 0,
+            lineHeight: '1.4'
+          }}>
+            <strong>Example prompt:</strong> Try asking: "I'm feeling overwhelmed with my to-do list"
+          </p>
+        </div>
       </div>
 
       {/* Navigation Buttons */}
