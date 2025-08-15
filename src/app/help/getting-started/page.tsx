@@ -2,8 +2,15 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 export default function GettingStartedPage() {
+  const router = useRouter()
+
+  const handleBackToHelp = () => {
+    router.push('/settings/help')
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#4c4c4c' }}>
       {/* Stars Background */}
@@ -43,9 +50,27 @@ export default function GettingStartedPage() {
         </h1>
 
         {/* Description Text */}
-        <p className="text-white text-base max-w-md mx-auto leading-relaxed">
+        <p className="text-white text-base max-w-md mx-auto leading-relaxed mb-8">
           We are working to bring you the best guide we possibly can. Check back soon!
         </p>
+
+        {/* Back Button */}
+        <button
+          onClick={handleBackToHelp}
+          className="transition-transform hover:scale-105"
+          style={{
+            backgroundColor: '#fa772c',
+            color: 'white',
+            fontSize: '16px',
+            fontWeight: 500,
+            padding: '12px',
+            borderRadius: '8px',
+            border: 'none',
+            whiteSpace: 'nowrap'
+          }}
+        >
+          Back to Help & Support
+        </button>
       </div>
 
       {/* Custom CSS for animations */}
