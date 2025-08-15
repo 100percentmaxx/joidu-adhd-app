@@ -34,7 +34,7 @@ export default function HelpSupportPage() {
       icon: '/icons/kai.svg',
       title: 'Understanding Kai AI',
       description: 'How your AI assistant learns and helps',
-      action: () => console.log('Navigate to Kai AI guide')
+      action: () => router.push('/help/kai-guide')
     },
     {
       icon: '/icons/brain.svg',
