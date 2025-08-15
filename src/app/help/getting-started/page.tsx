@@ -25,13 +25,12 @@ export default function GettingStartedPage() {
       {/* Hero Section */}
       <div className="text-center z-10">
         {/* Rocket Icon with Vibration Animation */}
-        <div className="mb-8 inline-block animate-bounce">
+        <div className="mb-8 inline-block">
           <Image
             src="/icons/start.svg"
             alt="Rocket"
-            width={60}
-            height={60}
-            className="animate-pulse"
+            width={80}
+            height={80}
             style={{
               animation: 'vibrate 0.8s ease-in-out infinite alternate'
             }}
@@ -52,11 +51,11 @@ export default function GettingStartedPage() {
       {/* Custom CSS for animations */}
       <style jsx>{`
         @keyframes vibrate {
-          0% { transform: translate(0, 0) rotate(0deg); }
-          25% { transform: translate(1px, -1px) rotate(-1deg); }
-          50% { transform: translate(-1px, 2px) rotate(1deg); }
-          75% { transform: translate(2px, 1px) rotate(0deg); }
-          100% { transform: translate(1px, -2px) rotate(-1deg); }
+          0% { transform: translateX(0px); }
+          25% { transform: translateX(-0.5px); }
+          50% { transform: translateX(0.5px); }
+          75% { transform: translateX(-0.5px); }
+          100% { transform: translateX(0px); }
         }
         
         @keyframes twinkle {
