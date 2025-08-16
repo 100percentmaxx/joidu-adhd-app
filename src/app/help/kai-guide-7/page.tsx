@@ -156,7 +156,7 @@ export default function KaiGuide7Page() {
           <button
             disabled
             style={{
-              backgroundColor: '#fa772c',
+              backgroundColor: '#c8bfef',
               color: '#FFFFFF',
               fontSize: '14px',
               fontWeight: 700,
@@ -177,8 +177,8 @@ export default function KaiGuide7Page() {
           <button
             disabled
             style={{
-              backgroundColor: '#a8e2bb',
-              color: '#4c4c4c',
+              backgroundColor: '#fa772c',
+              color: '#FFFFFF',
               fontSize: '14px',
               fontWeight: 700,
               padding: '12px 16px',
