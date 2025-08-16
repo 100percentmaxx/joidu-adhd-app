@@ -4,15 +4,15 @@ import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-export default function KaiGuide4Page() {
+export default function KaiGuide5Page() {
   const router = useRouter()
 
   const handleBack = () => {
-    router.push('/help/kai-guide-3')
+    router.push('/help/kai-guide-4')
   }
 
   const handleNext = () => {
-    router.push('/help/kai-guide-5')
+    router.push('/help/kai-guide-6')
   }
 
   return (
@@ -32,8 +32,8 @@ export default function KaiGuide4Page() {
           marginBottom: '24px'
         }}>
           <Image
-            src="/icons/preferences.svg"
-            alt="Preferences"
+            src="/icons/rate.svg"
+            alt="Rate"
             width={32}
             height={32}
             style={{ marginRight: '8px' }}
@@ -44,11 +44,11 @@ export default function KaiGuide4Page() {
             color: '#4c4c4c',
             margin: 0
           }}>
-            Make Kai Work for YOU
+            Getting the Most from Kai
           </h1>
         </div>
 
-        {/* Communication Styles Section */}
+        {/* Best Practices Section */}
         <div style={{ marginBottom: '20px' }}>
           <h2 style={{
             fontSize: '16px',
@@ -56,7 +56,7 @@ export default function KaiGuide4Page() {
             color: '#4c4c4c',
             marginBottom: '12px'
           }}>
-            Communication Styles:
+            Best Practices:
           </h2>
           <ul style={{
             fontSize: '14px',
@@ -67,21 +67,21 @@ export default function KaiGuide4Page() {
             listStyle: 'none'
           }}>
             <li style={{ marginBottom: '4px' }}>
-              • Gentle: Soft, nurturing support with lots of encouragement
+              • Be honest about your struggles - Kai can't help if you're not real
             </li>
             <li style={{ marginBottom: '4px' }}>
-              • Direct: Clear, straightforward guidance without extra fluff
+              • Use specific language - "I'm overwhelmed" vs "I feel bad"
             </li>
             <li style={{ marginBottom: '4px' }}>
-              • Funny: Playful, humorous approach to keep things light
+              • Try the suggestions - Kai learns what works for you over time
             </li>
             <li style={{ marginBottom: '4px' }}>
-              • Balanced: Mix of all styles based on your mood and situation
+              • Give feedback - Tell Kai when something helps or doesn't
             </li>
           </ul>
         </div>
 
-        {/* Response Preferences Section */}
+        {/* Conversation Starters Section */}
         <div style={{ marginBottom: '20px' }}>
           <h2 style={{
             fontSize: '16px',
@@ -89,7 +89,7 @@ export default function KaiGuide4Page() {
             color: '#4c4c4c',
             marginBottom: '12px'
           }}>
-            Response Preferences:
+            Conversation Starters:
           </h2>
           <ul style={{
             fontSize: '14px',
@@ -100,18 +100,21 @@ export default function KaiGuide4Page() {
             listStyle: 'none'
           }}>
             <li style={{ marginBottom: '4px' }}>
-              • Concise: Quick, actionable advice when you're overwhelmed
+              • "I'm stuck" - Gets immediate gentle intervention
             </li>
             <li style={{ marginBottom: '4px' }}>
-              • Detailed: Thorough explanations when you want to understand
+              • "Help me plan..." - Starts collaborative planning session
             </li>
             <li style={{ marginBottom: '4px' }}>
-              • Step-by-step: Broken down instructions for complex tasks
+              • "I'm feeling..." - Triggers emotional support mode
+            </li>
+            <li style={{ marginBottom: '4px' }}>
+              • "Break this down:" - Activates task breakdown assistance
             </li>
           </ul>
         </div>
 
-        {/* Learning Controls Section */}
+        {/* Making It Habit Section */}
         <div style={{ marginBottom: '24px' }}>
           <h2 style={{
             fontSize: '16px',
@@ -119,7 +122,7 @@ export default function KaiGuide4Page() {
             color: '#4c4c4c',
             marginBottom: '12px'
           }}>
-            Learning Controls:
+            Making It Habit:
           </h2>
           <ul style={{
             fontSize: '14px',
@@ -130,62 +133,58 @@ export default function KaiGuide4Page() {
             listStyle: 'none'
           }}>
             <li style={{ marginBottom: '4px' }}>
-              • Turn on/off pattern recognition
+              • Start small - Ask Kai one question a day
             </li>
             <li style={{ marginBottom: '4px' }}>
-              • Reset Kai's learning if you want a fresh start
+              • Use voice input when typing feels like too much
             </li>
             <li style={{ marginBottom: '4px' }}>
-              • Adjust suggestion frequency from minimal to frequent
+              • Try the 1 Thought feature for random ideas
             </li>
             <li style={{ marginBottom: '4px' }}>
-              • Set conversation boundaries for what Kai should remember
+              • Check in during overwhelm instead of suffering alone
             </li>
           </ul>
         </div>
 
-        {/* Settings Navigation Box */}
+        {/* Success Stories Box */}
         <div style={{
-          backgroundColor: '#cae9ef',
+          backgroundColor: '#f9dac5',
           borderRadius: '16px',
           padding: '16px',
-          textAlign: 'center',
           marginBottom: '24px'
         }}>
-          <h3 style={{
-            fontSize: '16px',
-            fontWeight: 700,
-            color: '#4c4c4c',
+          <div style={{
+            display: 'flex',
+            alignItems: 'flex-start',
             marginBottom: '12px'
           }}>
-            Customize Kai Settings:
-          </h3>
-          <button
-            disabled
-            style={{
-              backgroundColor: '#2847ef',
-              color: '#FFFFFF',
+            <Image
+              src="/icons/strong.svg"
+              alt="Success"
+              width={24}
+              height={24}
+              style={{ marginRight: '8px', marginTop: '2px' }}
+            />
+            <p style={{
               fontSize: '14px',
-              fontWeight: 700,
-              padding: '12px 16px',
-              borderRadius: '12px',
-              border: 'none',
-              whiteSpace: 'nowrap',
-              marginBottom: '12px',
-              opacity: 0.7,
-              cursor: 'not-allowed'
-            }}
-          >
-            Customize Kai
-          </button>
+              fontWeight: 400,
+              fontStyle: 'italic',
+              color: '#4c4c4c',
+              margin: 0,
+              lineHeight: '1.4'
+            }}>
+              "Kai helped me realize I was trying to do admin work when my brain wanted to be creative. Now I match my tasks to my energy and get so much more done!"
+            </p>
+          </div>
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
             color: '#4c4c4c',
             margin: 0,
-            lineHeight: '1.4'
+            textAlign: 'right'
           }}>
-            Preview: Different communication styles will be available in your settings
+            - Sarah, ADHD community member
           </p>
         </div>
       </div>
