@@ -12,7 +12,7 @@ export default function KaiGuidePage() {
   }
 
   const handleNext = () => {
-    // router.push('/help/kai-guide-2') // Inactive for now
+    router.push('/help/kai-guide-2')
   }
 
   return (
@@ -243,9 +243,10 @@ export default function KaiGuidePage() {
           ← Back
         </button>
 
-        {/* Next Button (inactive) */}
+        {/* Next Button */}
         <button
-          disabled
+          onClick={handleNext}
+          className="transition-transform hover:scale-105"
           style={{
             backgroundColor: '#f9c075',
             color: 'white',
@@ -254,9 +255,7 @@ export default function KaiGuidePage() {
             padding: '12px 16px',
             borderRadius: '8px',
             border: 'none',
-            whiteSpace: 'nowrap',
-            opacity: 0.5,
-            cursor: 'not-allowed'
+            whiteSpace: 'nowrap'
           }}
         >
           Next →
