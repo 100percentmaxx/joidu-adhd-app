@@ -52,7 +52,7 @@ export default function Home() {
         <div 
           className="w-6 h-6 rounded-full flex items-center justify-center" 
           style={{ 
-            backgroundColor: '#a8e2bb',
+            backgroundColor: 'var(--checkbox-checked)',
             border: 'none'
           }}
         >
@@ -77,8 +77,8 @@ export default function Home() {
         onClick={() => handleTaskComplete(taskName)}
         className="w-6 h-6 rounded-full transition-all duration-200 hover:bg-gray-50" 
         style={{ 
-          backgroundColor: 'white',
-          border: '2px solid #a5a5a5'
+          backgroundColor: 'var(--input-background)',
+          border: '2px solid var(--checkbox-unchecked)'
         }}
       ></button>
     )
@@ -92,7 +92,7 @@ export default function Home() {
   const day = currentDate.getDate()
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fefbf7' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       {/* Header Section */}
       <div className="px-5" style={{ marginTop: '24px', position: 'relative' }}>
         {/* Settings Gear Icon */}
@@ -110,19 +110,19 @@ export default function Home() {
         >
           <Settings 
             className="w-6 h-6" 
-            style={{ color: '#a5a5a5' }} 
+            style={{ color: 'var(--settings-icon)' }} 
           />
         </button>
 
         <h1 className="mb-1" style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '34px', 
           fontWeight: 700 
         }}>
           Good Morning, Sam!
         </h1>
         <p style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '17px', 
           fontWeight: 400,
           marginTop: '4px'
@@ -134,9 +134,9 @@ export default function Home() {
       {/* Today's Schedule Section */}
       <div className="px-5" style={{ marginTop: '24px' }}>
         <div className="border" style={{ 
-          backgroundColor: 'white', 
+          backgroundColor: 'var(--card-background)', 
           borderRadius: '12px', 
-          border: '1px solid #e2e2e2', 
+          border: '1px solid var(--border-color)', 
           padding: '16px', 
           paddingBottom: '56px',
           paddingTop: '24px',
@@ -144,7 +144,7 @@ export default function Home() {
         }}>
           {/* Section header inside container - positioned at top with zero padding */}
           <div className="inline-block px-2 py-1.5 text-sm font-medium text-white" style={{ 
-            backgroundColor: '#2847ef',
+            backgroundColor: 'var(--primary-blue)',
             borderRadius: '12px 0px 12px 0px',
             position: 'absolute',
             top: '0',
@@ -159,7 +159,7 @@ export default function Home() {
             {/* Personal trainer - Health */}
             <div className="flex overflow-hidden" style={{ height: '60px' }}>
               <div className="flex items-center justify-center" style={{ 
-                backgroundColor: '#ddede3',
+                backgroundColor: 'var(--category-health-light)',
                 borderRadius: '12px 0px 0px 12px',
                 width: '60px',
                 height: '100%'
@@ -167,18 +167,18 @@ export default function Home() {
                 <img src="/icons/health.svg" alt="health" style={{ width: '30px', height: '30px' }} />
               </div>
               <div className="flex-1 border-r border-t border-b flex items-center" style={{ 
-                backgroundColor: 'white', 
-                borderColor: '#ddede3',
+                backgroundColor: 'var(--card-background)', 
+                borderColor: 'var(--category-health-light)',
                 borderWidth: '3px',
                 borderRadius: '0px 12px 12px 0px',
                 paddingLeft: '16px',
                 height: '100%'
               }}>
                 <div>
-                  <div style={{ color: '#4c4c4c', fontSize: '17px', fontWeight: 700 }}>
+                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 700 }}>
                     7:00 - 8:00
                   </div>
-                  <div style={{ color: '#4c4c4c', fontSize: '17px', fontWeight: 500 }}>
+                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500 }}>
                     Personal trainer
                   </div>
                 </div>
@@ -188,7 +188,7 @@ export default function Home() {
             {/* Meeting with Emma - Work */}
             <div className="flex overflow-hidden" style={{ height: '60px' }}>
               <div className="flex items-center justify-center" style={{ 
-                backgroundColor: '#f9dac5',
+                backgroundColor: 'var(--category-work-light)',
                 borderRadius: '12px 0px 0px 12px',
                 width: '60px',
                 height: '100%'
@@ -196,18 +196,18 @@ export default function Home() {
                 <img src="/icons/work.svg" alt="work" style={{ width: '30px', height: '30px' }} />
               </div>
               <div className="flex-1 border-r border-t border-b flex items-center" style={{ 
-                backgroundColor: 'white', 
-                borderColor: '#f9dac5',
+                backgroundColor: 'var(--card-background)', 
+                borderColor: 'var(--category-work-light)',
                 borderWidth: '3px',
                 borderRadius: '0px 12px 12px 0px',
                 paddingLeft: '16px',
                 height: '100%'
               }}>
                 <div>
-                  <div style={{ color: '#4c4c4c', fontSize: '17px', fontWeight: 700 }}>
+                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 700 }}>
                     11:00 - 11:30
                   </div>
-                  <div style={{ color: '#4c4c4c', fontSize: '17px', fontWeight: 500 }}>
+                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500 }}>
                     Meeting with Emma
                   </div>
                 </div>
@@ -217,7 +217,7 @@ export default function Home() {
             {/* Coffee with Kay - Social */}
             <div className="flex overflow-hidden" style={{ height: '60px' }}>
               <div className="flex items-center justify-center" style={{ 
-                backgroundColor: '#e6e1f4',
+                backgroundColor: 'var(--category-social-light)',
                 borderRadius: '12px 0px 0px 12px',
                 width: '60px',
                 height: '100%'
@@ -225,18 +225,18 @@ export default function Home() {
                 <img src="/icons/social.svg" alt="social" style={{ width: '30px', height: '30px' }} />
               </div>
               <div className="flex-1 border-r border-t border-b flex items-center" style={{ 
-                backgroundColor: 'white', 
-                borderColor: '#e6e1f4',
+                backgroundColor: 'var(--card-background)', 
+                borderColor: 'var(--category-social-light)',
                 borderWidth: '3px',
                 borderRadius: '0px 12px 12px 0px',
                 paddingLeft: '16px',
                 height: '100%'
               }}>
                 <div>
-                  <div style={{ color: '#4c4c4c', fontSize: '17px', fontWeight: 700 }}>
+                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 700 }}>
                     1:00 - 2:00
                   </div>
-                  <div style={{ color: '#4c4c4c', fontSize: '17px', fontWeight: 500 }}>
+                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500 }}>
                     Coffee with Kay
                   </div>
                 </div>
@@ -246,7 +246,7 @@ export default function Home() {
           
           {/* All button positioned bottom-right inside container */}
           <button className="absolute text-sm font-medium text-white" style={{ 
-            backgroundColor: '#e2e2e2',
+            backgroundColor: 'var(--button-secondary-bg)',
             borderRadius: '12px',
             bottom: '12px',
             right: '16px',
@@ -263,9 +263,9 @@ export default function Home() {
       {/* Tasks Section */}
       <div className="px-5" style={{ marginTop: '24px' }}>
         <div className="border" style={{ 
-          backgroundColor: 'white', 
+          backgroundColor: 'var(--card-background)', 
           borderRadius: '12px', 
-          border: '1px solid #e2e2e2', 
+          border: '1px solid var(--border-color)', 
           padding: '16px', 
           paddingBottom: '56px',
           paddingTop: '24px',
@@ -273,7 +273,7 @@ export default function Home() {
         }}>
           {/* Section header inside container - positioned at top of container */}
           <div className="inline-block px-2 py-1.5 text-sm font-medium text-white" style={{ 
-            backgroundColor: '#2847ef',
+            backgroundColor: 'var(--primary-blue)',
             borderRadius: '12px 0px 12px 0px',
             position: 'absolute',
             top: '0',
@@ -288,7 +288,7 @@ export default function Home() {
             {/* Reply to emails - Work */}
             <div className="flex overflow-hidden" style={{ height: '60px' }}>
               <div className="flex items-center justify-between" style={{ 
-                backgroundColor: '#f9dac5',
+                backgroundColor: 'var(--category-work-light)',
                 borderRadius: '12px',
                 width: '100px',
                 height: '100%',
@@ -299,13 +299,13 @@ export default function Home() {
                 {renderCheckbox('Reply to emails')}
               </div>
               <div className="flex-1 flex items-center" style={{ 
-                backgroundColor: 'white',
+                backgroundColor: 'var(--card-background)',
                 paddingLeft: '16px'
               }}>
                 <button 
                   onClick={() => handleTaskDetail('Reply to emails')}
                   style={{ 
-                    color: completedTasks['Reply to emails'] ? '#e2e2e2' : '#4c4c4c', 
+                    color: completedTasks['Reply to emails'] ? 'var(--text-disabled)' : 'var(--text-primary)', 
                     fontSize: '17px', 
                     fontWeight: 500,
                     textDecoration: completedTasks['Reply to emails'] ? 'line-through' : 'none',
@@ -324,7 +324,7 @@ export default function Home() {
             {/* Meditate - Health */}
             <div className="flex overflow-hidden" style={{ height: '60px' }}>
               <div className="flex items-center justify-between" style={{ 
-                backgroundColor: '#ddede3',
+                backgroundColor: 'var(--category-health-light)',
                 borderRadius: '12px',
                 width: '100px',
                 height: '100%',
@@ -335,13 +335,13 @@ export default function Home() {
                 {renderCheckbox('Meditate 15 min.')}
               </div>
               <div className="flex-1 flex items-center" style={{ 
-                backgroundColor: 'white',
+                backgroundColor: 'var(--card-background)',
                 paddingLeft: '16px'
               }}>
                 <button 
                   onClick={() => handleTaskDetail('Meditate 15 min.')}
                   style={{ 
-                    color: completedTasks['Meditate 15 min.'] ? '#e2e2e2' : '#4c4c4c', 
+                    color: completedTasks['Meditate 15 min.'] ? 'var(--text-disabled)' : 'var(--text-primary)', 
                     fontSize: '17px', 
                     fontWeight: 500,
                     textDecoration: completedTasks['Meditate 15 min.'] ? 'line-through' : 'none',
@@ -360,7 +360,7 @@ export default function Home() {
             {/* Repair garden gate - Personal */}
             <div className="flex overflow-hidden" style={{ height: '60px' }}>
               <div className="flex items-center justify-between" style={{ 
-                backgroundColor: '#cae9ef',
+                backgroundColor: 'var(--category-personal-light)',
                 borderRadius: '12px',
                 width: '100px',
                 height: '100%',
@@ -371,13 +371,13 @@ export default function Home() {
                 {renderCheckbox('Repair garden gate')}
               </div>
               <div className="flex-1 flex items-center" style={{ 
-                backgroundColor: 'white',
+                backgroundColor: 'var(--card-background)',
                 paddingLeft: '16px'
               }}>
                 <button 
                   onClick={() => handleTaskDetail('Repair garden gate')}
                   style={{ 
-                    color: completedTasks['Repair garden gate'] ? '#e2e2e2' : '#4c4c4c', 
+                    color: completedTasks['Repair garden gate'] ? 'var(--text-disabled)' : 'var(--text-primary)', 
                     fontSize: '17px', 
                     fontWeight: 500,
                     textDecoration: completedTasks['Repair garden gate'] ? 'line-through' : 'none',
@@ -396,7 +396,7 @@ export default function Home() {
           
           {/* All button positioned bottom-right inside container */}
           <button className="absolute text-sm font-medium text-white" style={{ 
-            backgroundColor: '#e2e2e2',
+            backgroundColor: 'var(--button-secondary-bg)',
             borderRadius: '12px',
             bottom: '12px',
             right: '16px',
@@ -413,9 +413,9 @@ export default function Home() {
       {/* Habits Section */}
       <div className="px-5" style={{ marginTop: '24px' }}>
         <div className="border" style={{ 
-          backgroundColor: 'white', 
+          backgroundColor: 'var(--card-background)', 
           borderRadius: '12px', 
-          border: '1px solid #e2e2e2', 
+          border: '1px solid var(--border-color)', 
           padding: '16px', 
           paddingBottom: '56px',
           paddingTop: '24px',
@@ -423,7 +423,7 @@ export default function Home() {
         }}>
           {/* Section header inside container - positioned at top of container */}
           <div className="inline-block px-2 py-1.5 text-sm font-medium text-white" style={{ 
-            backgroundColor: '#2847ef',
+            backgroundColor: 'var(--primary-blue)',
             borderRadius: '12px 0px 12px 0px',
             position: 'absolute',
             top: '0',
@@ -440,7 +440,7 @@ export default function Home() {
               onClick={() => router.push('/habits?expand=morning-routine')}
               className="rounded-lg p-4 cursor-pointer transition-all duration-200 hover:scale-105" 
               style={{ 
-                backgroundColor: '#ddede3', 
+                backgroundColor: 'var(--category-health-light)', 
                 borderRadius: '12px',
                 aspectRatio: '1',
                 display: 'flex',
@@ -453,7 +453,7 @@ export default function Home() {
                 <div className="w-10 h-10 flex items-center justify-center mb-4">
                   <img src="/icons/health.svg" alt="health" style={{ width: '40px', height: '40px' }} />
                 </div>
-                <h3 className="font-bold mb-2" style={{ color: '#4c4c4c', fontSize: '17px' }}>
+                <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)', fontSize: '17px' }}>
                   Morning Routine
                 </h3>
                 <div className="flex items-center space-x-4">
@@ -476,7 +476,7 @@ export default function Home() {
               onClick={() => router.push('/habits?expand=work-startup')}
               className="rounded-lg p-4 cursor-pointer transition-all duration-200 hover:scale-105" 
               style={{ 
-                backgroundColor: '#f9dac5', 
+                backgroundColor: 'var(--category-work-light)', 
                 borderRadius: '12px',
                 aspectRatio: '1',
                 display: 'flex',
@@ -489,7 +489,7 @@ export default function Home() {
                 <div className="w-10 h-10 flex items-center justify-center mb-4">
                   <img src="/icons/work.svg" alt="work" style={{ width: '40px', height: '40px' }} />
                 </div>
-                <h3 className="font-bold mb-2" style={{ color: '#4c4c4c', fontSize: '17px' }}>
+                <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)', fontSize: '17px' }}>
                   Work Startup
                 </h3>
                 <div className="flex items-center space-x-4">
@@ -513,7 +513,7 @@ export default function Home() {
             onClick={() => router.push('/habits/add')}
             className="absolute text-sm font-medium text-white transition-all duration-200 hover:scale-105" 
             style={{ 
-              backgroundColor: '#a8e2bb',
+              backgroundColor: 'var(--checkbox-checked)',
               borderRadius: '12px',
               bottom: '12px',
               right: '84px',
@@ -532,7 +532,7 @@ export default function Home() {
             onClick={() => router.push('/habits')}
             className="absolute text-sm font-medium text-white transition-all duration-200 hover:scale-105" 
             style={{ 
-              backgroundColor: '#e2e2e2',
+              backgroundColor: 'var(--button-secondary-bg)',
               borderRadius: '12px',
               bottom: '12px',
               right: '16px',

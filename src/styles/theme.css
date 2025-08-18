@@ -46,6 +46,10 @@
   --checkbox-unchecked: #e2e2e2;
   --checkbox-checked: #a8e2bb;
 
+  /* Additional Home Screen Variables */
+  --text-disabled: #e2e2e2;
+  --settings-icon: #a5a5a5;
+
   /* Status and Feedback Colors */
   --success-light: #ddede3;
   --success-text: #2d5a3d;
