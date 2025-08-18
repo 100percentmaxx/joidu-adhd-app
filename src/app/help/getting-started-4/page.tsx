@@ -150,8 +150,8 @@ export default function GettingStarted4Page() {
               <Image
                 src="/icons/Just_One_Thing.svg"
                 alt="Just One Thing"
-                width={24}
-                height={24}
+                width={48}
+                height={48}
               />
             </div>
           </div>

@@ -32,7 +32,7 @@ export default function GettingStarted3Page() {
           marginBottom: '24px'
         }}>
           <Image
-            src="/icons/home.svg"
+            src="/icons/home_color.svg"
             alt="Home"
             width={32}
             height={32}
@@ -123,7 +123,7 @@ export default function GettingStarted3Page() {
         }}>
           <div style={{ marginBottom: '8px' }}>
             <Image
-              src="/icons/dashboard.svg"
+              src="/icons/home_active.svg"
               alt="Dashboard"
               width={24}
               height={24}

@@ -32,8 +32,8 @@ export default function GettingStarted8Page() {
           marginBottom: '24px'
         }}>
           <Image
-            src="/icons/rate.svg"
-            alt="Rate"
+            src="/icons/celebrate.svg"
+            alt="Celebrate"
             width={32}
             height={32}
             style={{ marginRight: '8px' }}
@@ -44,7 +44,7 @@ export default function GettingStarted8Page() {
             color: '#4c4c4c',
             margin: 0
           }}>
-            You're Ready to Activate Your Potential! 🚀
+            You're Ready to Activate Your Potential!
           </h1>
         </div>
 
@@ -210,8 +210,8 @@ export default function GettingStarted8Page() {
           marginBottom: '24px'
         }}>
           <Image
-            src="/icons/rate.svg"
-            alt="Rate"
+            src="/icons/celebrate.svg"
+            alt="Celebrate"
             width={24}
             height={24}
             style={{ marginRight: '8px', marginTop: '2px' }}

@@ -144,7 +144,7 @@ export default function GettingStarted5Page() {
         }}>
           <div style={{ marginBottom: '8px' }}>
             <Image
-              src="/icons/habit.svg"
+              src="/icons/habits_active.svg"
               alt="Habit"
               width={24}
               height={24}

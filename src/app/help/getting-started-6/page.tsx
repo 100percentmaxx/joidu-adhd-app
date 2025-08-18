@@ -44,7 +44,7 @@ export default function GettingStarted6Page() {
             color: '#4c4c4c',
             margin: 0
           }}>
-            Hyperfocus vs. Healthy Focus 🎯
+            Hyperfocus vs. Healthy Focus
           </h1>
         </div>
 

@@ -32,7 +32,7 @@ export default function GettingStarted7Page() {
           marginBottom: '24px'
         }}>
           <Image
-            src="/icons/tasks.svg"
+            src="/icons/tasks_3.svg"
             alt="Tasks"
             width={32}
             height={32}
@@ -138,7 +138,7 @@ export default function GettingStarted7Page() {
         }}>
           <div style={{ marginBottom: '8px' }}>
             <Image
-              src="/icons/tasks.svg"
+              src="/icons/tasks_active.svg"
               alt="Tasks"
               width={24}
               height={24}
