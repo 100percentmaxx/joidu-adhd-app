@@ -40,13 +40,13 @@ export default function HelpSupportPage() {
       icon: '/icons/brain.svg',
       title: 'ADHD-Specific Tips',
       description: 'Strategies for managing ADHD challenges',
-      action: () => console.log('Navigate to ADHD tips guide')
+      action: () => router.push('/help/adhd-tips')
     },
     {
       icon: '/icons/privacy.svg',
       title: 'Privacy & Data',
       description: 'How we protect your information',
-      action: () => console.log('Navigate to privacy guide')
+      action: () => router.push('/help/privacy-data')
     }
   ]
 
