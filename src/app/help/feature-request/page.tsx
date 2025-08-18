@@ -518,14 +518,27 @@ export default function FeatureRequestPage() {
               padding: '16px',
               marginBottom: '24px'
             }}>
-              <h3 style={{
-                fontSize: '14px',
-                fontWeight: 700,
-                color: '#4c4c4c',
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
                 marginBottom: '8px'
               }}>
-                💡 Need inspiration?
-              </h3>
+                <Image
+                  src="/icons/ideas_color.svg"
+                  alt="Ideas"
+                  width={20}
+                  height={20}
+                  style={{ marginRight: '8px' }}
+                />
+                <h3 style={{
+                  fontSize: '14px',
+                  fontWeight: 700,
+                  color: '#4c4c4c',
+                  margin: 0
+                }}>
+                  Need inspiration?
+                </h3>
+              </div>
               <p style={{
                 fontSize: '14px',
                 color: '#4c4c4c',
