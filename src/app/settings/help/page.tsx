@@ -70,7 +70,7 @@ export default function HelpSupportPage() {
       icon: '/icons/email.svg',
       title: 'Email Support',
       description: 'Get personalized help via email',
-      action: () => window.location.href = 'mailto:support@joidu.app?subject=Support Request'
+      action: () => router.push('/help/email-support')
     },
     {
       icon: '/icons/bug.svg',
