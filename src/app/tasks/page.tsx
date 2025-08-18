@@ -113,12 +113,12 @@ export default function Tasks() {
 
   // Category colors and icons mapping
   const categoryData = {
-    work: { color: '#f9dac5', icon: '/icons/work.svg' },
-    health: { color: '#ddede3', icon: '/icons/health.svg' },
-    personal: { color: '#cae9ef', icon: '/icons/personal.svg' },
-    social: { color: '#e6e1f4', icon: '/icons/social.svg' },
-    creative: { color: '#f4e1f4', icon: '/icons/creative.svg' },
-    finance: { color: '#fef7d6', icon: '/icons/finance.svg' }
+    work: { color: 'var(--category-work-light)', icon: '/icons/work.svg' },
+    health: { color: 'var(--category-health-light)', icon: '/icons/health.svg' },
+    personal: { color: 'var(--category-personal-light)', icon: '/icons/personal.svg' },
+    social: { color: 'var(--category-social-light)', icon: '/icons/social.svg' },
+    creative: { color: 'var(--category-creative-light)', icon: '/icons/creative.svg' },
+    finance: { color: 'var(--category-finance-light)', icon: '/icons/finance.svg' }
   }
 
   // Filter tasks based on active filter
@@ -201,13 +201,13 @@ export default function Tasks() {
           {renderCheckbox(task.name)}
         </div>
         <div className="flex-1 flex items-center" style={{ 
-          backgroundColor: 'white',
+          backgroundColor: 'var(--card-background)',
           paddingLeft: '16px'
         }}>
           <button 
             onClick={() => handleTaskDetail(task.name)}
             style={{ 
-              color: completedTasks[task.name] ? '#e2e2e2' : '#4c4c4c', 
+              color: completedTasks[task.name] ? 'var(--text-disabled)' : 'var(--text-primary)', 
               fontSize: '17px', 
               fontWeight: 500,
               textDecoration: completedTasks[task.name] ? 'line-through' : 'none',
@@ -238,17 +238,17 @@ export default function Tasks() {
     if (tasks.length === 0) return null
     
     return (
-      <div style={{ backgroundColor: '#cae9ef', border: '2px solid #98e1ea', borderRadius: '12px', padding: '4px' }}>
-        <h3 style={{ color: '#2847ef', fontSize: '17px', fontWeight: '500', marginBottom: '4px', paddingLeft: '8px', paddingTop: '4px' }}>
+      <div style={{ backgroundColor: 'var(--category-personal-light)', border: '2px solid var(--category-personal-dark)', borderRadius: '12px', padding: '4px' }}>
+        <h3 style={{ color: 'var(--primary-blue)', fontSize: '17px', fontWeight: '500', marginBottom: '4px', paddingLeft: '8px', paddingTop: '4px' }}>
           Focus on Just One Thing
         </h3>
         {tasks.map(task => (
-          <div key={task.id} style={{ backgroundColor: '#FFFFFF', border: '2px solid #98e1ea', borderRadius: '8px', padding: '8px 16px', display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
+          <div key={task.id} style={{ backgroundColor: 'var(--card-background)', border: '2px solid var(--category-personal-dark)', borderRadius: '8px', padding: '8px 16px', display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
             {renderCheckbox(task.name)}
             <button 
               onClick={() => handleTaskDetail(task.name)}
               style={{ 
-                color: completedTasks[task.name] ? '#e2e2e2' : '#4c4c4c', 
+                color: completedTasks[task.name] ? 'var(--text-disabled)' : 'var(--text-primary)', 
                 fontWeight: '500', 
                 marginLeft: '12px',
                 textDecoration: completedTasks[task.name] ? 'line-through' : 'none',
@@ -304,7 +304,7 @@ export default function Tasks() {
         <div 
           className="w-6 h-6 rounded-full flex items-center justify-center" 
           style={{ 
-            backgroundColor: '#a8e2bb',
+            backgroundColor: 'var(--checkbox-checked)',
             border: 'none'
           }}
         >
@@ -329,8 +329,8 @@ export default function Tasks() {
         onClick={() => handleTaskComplete(taskName)}
         className="w-6 h-6 rounded-full transition-all duration-200 hover:bg-gray-50" 
         style={{ 
-          backgroundColor: 'white',
-          border: '2px solid #a5a5a5'
+          backgroundColor: 'var(--input-background)',
+          border: '2px solid var(--checkbox-unchecked)'
         }}
       ></button>
     )
@@ -345,7 +345,7 @@ export default function Tasks() {
   const weekDates = [14, 15, 16, 17, 18, 19, 20]
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fefbf7' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       <style jsx>{`
         .animate-fadeIn {
           animation: fadeIn 0.3s ease-in-out;
@@ -368,25 +368,25 @@ export default function Tasks() {
           onClick={() => router.push('/')}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <button 
           onClick={() => router.push('/add-task')}
           className="flex items-center justify-center w-10 h-10"
         >
-          <Plus className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <Plus className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
       </div>
 
       {/* Tasks/Schedule Slider */}
       <div className="flex flex-col items-center px-5 py-4">
-        <div className="relative" style={{ width: '360px', height: '36px', backgroundColor: '#e2e2e2', borderRadius: '18px', padding: '2px' }}>
+        <div className="relative" style={{ width: '360px', height: '36px', backgroundColor: 'var(--button-secondary-bg)', borderRadius: '18px', padding: '2px' }}>
           <button 
             className="slider-button absolute text-white font-medium"
             style={{ 
               width: '180px', 
               height: '32px', 
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--primary-blue)',
               left: '2px',
               top: '2px',
               fontSize: '16px',
@@ -401,7 +401,7 @@ export default function Tasks() {
             style={{ 
               width: '180px', 
               height: '32px', 
-              backgroundColor: '#e2e2e2',
+              backgroundColor: 'var(--button-secondary-bg)',
               left: '182px',
               top: '2px',
               fontSize: '16px',
@@ -421,7 +421,7 @@ export default function Tasks() {
             style={{ 
               width: '80px', 
               height: '36px', 
-              backgroundColor: activeFilter === 'today' ? '#2847ef' : '#e2e2e2',
+              backgroundColor: activeFilter === 'today' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
               fontSize: '14px',
               borderRadius: '18px'
             }}
@@ -434,7 +434,7 @@ export default function Tasks() {
             style={{ 
               width: '80px', 
               height: '36px', 
-              backgroundColor: activeFilter === 'week' ? '#2847ef' : '#e2e2e2',
+              backgroundColor: activeFilter === 'week' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
               fontSize: '14px',
               borderRadius: '18px'
             }}
@@ -447,7 +447,7 @@ export default function Tasks() {
             style={{ 
               width: '80px', 
               height: '36px', 
-              backgroundColor: activeFilter === 'priority' ? '#2847ef' : '#e2e2e2',
+              backgroundColor: activeFilter === 'priority' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
               fontSize: '14px',
               borderRadius: '18px'
             }}
@@ -460,7 +460,7 @@ export default function Tasks() {
             style={{ 
               width: '80px', 
               height: '36px', 
-              backgroundColor: activeFilter === 'category' ? '#2847ef' : '#e2e2e2',
+              backgroundColor: activeFilter === 'category' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
               fontSize: '14px',
               borderRadius: '18px'
             }}
@@ -473,7 +473,7 @@ export default function Tasks() {
       {/* Calendar */}
       <div className="px-5 mb-6">
         <div className="text-center mb-3">
-          <h3 className="font-bold" style={{ color: '#2847ef' }}>
+          <h3 className="font-bold" style={{ color: 'var(--primary-blue)' }}>
             {monthName}
           </h3>
         </div>
@@ -481,7 +481,7 @@ export default function Tasks() {
         {/* Days of week */}
         <div className="grid grid-cols-7 gap-0 text-center mb-1">
           {dayNames.map((day, index) => (
-            <div key={index} className="text-blue-600 font-medium" style={{ color: '#2847ef' }}>
+            <div key={index} className="text-blue-600 font-medium" style={{ color: 'var(--primary-blue)' }}>
               {day}
             </div>
           ))}
@@ -490,14 +490,14 @@ export default function Tasks() {
         {/* Dates */}
         <div className="grid grid-cols-7 gap-0 text-center">
           {weekDates.map((date, index) => (
-            <div key={index} className="text-blue-600" style={{ color: '#2847ef' }}>
+            <div key={index} className="text-blue-600" style={{ color: 'var(--primary-blue)' }}>
               <div className={`w-8 h-8 flex items-center justify-center text-sm font-medium rounded-full mx-auto ${
                 date === selectedDay 
                   ? 'text-white' 
                   : 'text-blue-600'
               }`} style={{
-                backgroundColor: date === selectedDay ? '#2847ef' : 'transparent',
-                color: date === selectedDay ? '#ffffff' : '#2847ef'
+                backgroundColor: date === selectedDay ? 'var(--primary-blue)' : 'transparent',
+                color: date === selectedDay ? '#ffffff' : 'var(--primary-blue)'
               }}>
                 {date}
               </div>
@@ -508,7 +508,7 @@ export default function Tasks() {
 
       {/* Horizontal Line */}
       <div className="px-5 mb-6">
-        <div style={{ height: '1px', backgroundColor: '#e2e2e2' }}></div>
+        <div style={{ height: '1px', backgroundColor: 'var(--border-color)' }}></div>
       </div>
 
       {/* Dynamic Task Sections */}
@@ -516,14 +516,14 @@ export default function Tasks() {
         <div className="transition-all duration-300 ease-in-out">
           {Object.entries(groupedTasks).length === 0 ? (
             <div className="text-center py-8">
-              <p style={{ color: '#a5a5a5', fontSize: '16px' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '16px' }}>
                 No tasks found for the selected filter.
               </p>
               <button
                 onClick={() => setActiveFilter('today')}
                 className="mt-2 px-4 py-2 rounded-lg transition-all duration-200"
                 style={{
-                  backgroundColor: '#2847ef',
+                  backgroundColor: 'var(--primary-blue)',
                   color: 'white',
                   fontSize: '14px'
                 }}
@@ -543,20 +543,21 @@ export default function Tasks() {
               // Regular section rendering
               return (
                 <div key={key} className="animate-fadeIn">
-                  <h2 className="mb-3" style={{ color: '#4c4c4c', fontSize: '17px', fontWeight: 500, marginTop: '12px' }}>
+                  <h2 className="mb-3" style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500, marginTop: '12px' }}>
                     {getSectionTitle(key)}
                     {activeFilter === 'category' && (
                       <span className="ml-2 px-2 py-1 text-xs rounded-full" style={{
-                        backgroundColor: categoryData[key as Category]?.color || '#e2e2e2',
-                        color: '#4c4c4c'
+                        backgroundColor: categoryData[key as Category]?.color || 'var(--button-secondary-bg)',
+                        color: 'var(--text-primary)'
                       }}>
                         {tasks.length} {tasks.length === 1 ? 'task' : 'tasks'}
                       </span>
                     )}
                   </h2>
                   <div className="bg-white rounded-lg" style={{ 
+                    backgroundColor: 'var(--card-background)',
                     borderRadius: '12px',
-                    border: '1px solid #e2e2e2',
+                    border: '1px solid var(--border-color)',
                     padding: '16px'
                   }}>
                     <div className="space-y-2">
@@ -577,7 +578,7 @@ export default function Tasks() {
             onClick={() => router.push('/add-task')}
             className="px-6 py-3 rounded-lg shadow-lg transition-all duration-200 hover:scale-105"
             style={{
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--primary-blue)',
               color: 'white',
               fontSize: '16px',
               fontWeight: 600

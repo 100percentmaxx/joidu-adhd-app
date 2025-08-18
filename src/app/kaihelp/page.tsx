@@ -184,15 +184,15 @@ export default function KaiHelpPage() {
     }
   ])
 
-  // Category data using EXACT colors from design_system.md
+  // Category data using CSS variables
   const categories = [
-    { type: 'tasks' as ConversationType, label: 'Tasks', color: '#2847ef', bgColor: '#cae9ef', borderColor: '#98e1ea' }, // Primary Blue + Household/Errands colors
-    { type: 'focus' as ConversationType, label: 'Focus', color: '#c8bfef', bgColor: '#e6e1f4', borderColor: '#c8bfef' }, // Social/Relationships colors
-    { type: 'habits' as ConversationType, label: 'Habits', color: '#fa772c', bgColor: '#f9c075', borderColor: '#f9c075' }, // Primary Orange + Learning/Creative colors
-    { type: 'planning' as ConversationType, label: 'Planning', color: '#a8e2bb', bgColor: '#ddede3', borderColor: '#a8e2bb' }, // Personal Care/Health colors  
-    { type: 'ideas' as ConversationType, label: 'Ideas', color: '#f4b7ae', bgColor: '#f2d3d1', borderColor: '#f4b7ae' }, // Learning/Creative colors
-    { type: 'analytics' as ConversationType, label: 'Analytics', color: '#f7e98e', bgColor: '#fef7d6', borderColor: '#f7e98e' }, // Finance/Admin colors
-    { type: 'thought' as ConversationType, label: '1 Thought', color: '#2847ef', bgColor: '#f9dac5', borderColor: '#f9c075' } // Primary Blue + Work/Professional colors
+    { type: 'tasks' as ConversationType, label: 'Tasks', color: 'var(--primary-blue)', bgColor: 'var(--category-personal-light)', borderColor: 'var(--category-personal-dark)' },
+    { type: 'focus' as ConversationType, label: 'Focus', color: 'var(--category-social-dark)', bgColor: 'var(--category-social-light)', borderColor: 'var(--category-social-dark)' },
+    { type: 'habits' as ConversationType, label: 'Habits', color: 'var(--primary-orange)', bgColor: 'var(--category-work-dark)', borderColor: 'var(--category-work-dark)' },
+    { type: 'planning' as ConversationType, label: 'Planning', color: 'var(--category-health-dark)', bgColor: 'var(--category-health-light)', borderColor: 'var(--category-health-dark)' },
+    { type: 'ideas' as ConversationType, label: 'Ideas', color: 'var(--category-creative-dark)', bgColor: 'var(--category-creative-light)', borderColor: 'var(--category-creative-dark)' },
+    { type: 'analytics' as ConversationType, label: 'Analytics', color: 'var(--category-finance-dark)', bgColor: 'var(--category-finance-light)', borderColor: 'var(--category-finance-dark)' },
+    { type: 'thought' as ConversationType, label: '1 Thought', color: 'var(--primary-blue)', bgColor: 'var(--category-work-light)', borderColor: 'var(--category-work-dark)' }
   ]
 
   const handleSendMessage = () => {
@@ -405,17 +405,17 @@ export default function KaiHelpPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fefbf7' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <button 
           onClick={() => router.push('/')}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <h1 style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '17px', 
           fontWeight: 600 
         }}>
@@ -425,7 +425,7 @@ export default function KaiHelpPage() {
           onClick={() => setViewMode('thought-capture')}
           className="flex items-center justify-center w-10 h-10"
         >
-          <Plus className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <Plus className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
       </div>
 
@@ -462,7 +462,7 @@ export default function KaiHelpPage() {
           {/* Categories Header */}
           <div className="mb-4">
             <h2 style={{ 
-              color: '#a5a5a5', 
+              color: 'var(--text-secondary)', 
               fontSize: '16px', 
               fontWeight: 500, 
               marginBottom: '16px' 
@@ -502,7 +502,7 @@ export default function KaiHelpPage() {
                       {category.label}
                     </span>
                     <span style={{ 
-                      color: '#a5a5a5', 
+                      color: 'var(--text-secondary)', 
                       fontSize: '12px' 
                     }}>
                       {categoryConversations.length} conversation{categoryConversations.length !== 1 ? 's' : ''}
@@ -516,7 +516,7 @@ export default function KaiHelpPage() {
           {/* Organization Section */}
           <div className="mb-4">
             <h3 style={{ 
-              color: '#4c4c4c', 
+              color: 'var(--text-primary)', 
               fontSize: '16px', 
               fontWeight: 600, 
               marginBottom: '12px' 
@@ -524,14 +524,14 @@ export default function KaiHelpPage() {
               Organization
             </h3>
             <div className="space-y-2">
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Recent</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Recent</span>
               </button>
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Starred</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Starred</span>
               </button>
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Archive</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Archive</span>
               </button>
             </div>
           </div>
@@ -539,7 +539,7 @@ export default function KaiHelpPage() {
           {/* Help & Settings */}
           <div>
             <h3 style={{ 
-              color: '#4c4c4c', 
+              color: 'var(--text-primary)', 
               fontSize: '16px', 
               fontWeight: 600, 
               marginBottom: '12px' 
@@ -547,14 +547,14 @@ export default function KaiHelpPage() {
               Help & Settings
             </h3>
             <div className="space-y-2">
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Introduction</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Introduction</span>
               </button>
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Tips for KaiHelp</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Tips for KaiHelp</span>
               </button>
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Data Storage</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Data Storage</span>
               </button>
             </div>
           </div>
@@ -567,12 +567,12 @@ export default function KaiHelpPage() {
           <div className="text-center mb-6">
             <div 
               className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-              style={{ backgroundColor: '#2847ef' }}
+              style={{ backgroundColor: 'var(--primary-blue)' }}
             >
               <Star className="w-8 h-8" style={{ color: 'white' }} />
             </div>
             <h2 style={{ 
-              color: '#2847ef', 
+              color: 'var(--primary-blue)', 
               fontSize: '24px', 
               fontWeight: 600, 
               marginBottom: '8px' 
@@ -626,7 +626,7 @@ export default function KaiHelpPage() {
             onClick={handleSaveThought}
             className="w-full p-4 rounded-lg transition-all duration-200"
             style={{
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--primary-blue)',
               color: 'white',
               fontSize: '16px',
               fontWeight: 600
@@ -657,10 +657,10 @@ export default function KaiHelpPage() {
                     <div
                       className="max-w-[280px] px-4 py-3"
                       style={{
-                        backgroundColor: 'white',
-                        border: msg.sender === 'user' ? '2px solid #a8e2bb' : '2px solid #2847ef',
+                        backgroundColor: 'var(--card-background)',
+                        border: msg.sender === 'user' ? '2px solid var(--checkbox-checked)' : '2px solid var(--primary-blue)',
                         borderRadius: '16px',
-                        color: '#4c4c4c'
+                        color: 'var(--text-primary)'
                       }}
                     >
                       <p style={{ 
@@ -714,7 +714,7 @@ export default function KaiHelpPage() {
                     </div>
                     <span style={{
                       fontSize: '12px',
-                      color: '#a5a5a5',
+                      color: 'var(--text-secondary)',
                       marginTop: '4px',
                       marginLeft: msg.sender === 'user' ? '0' : '8px',
                       marginRight: msg.sender === 'user' ? '8px' : '0'
@@ -733,7 +733,7 @@ export default function KaiHelpPage() {
       )}
 
       {/* Chat Entry Section */}
-      <div className="fixed bottom-20 left-0 right-0 px-5 py-3" style={{ backgroundColor: '#e2e2e2' }}>
+      <div className="fixed bottom-20 left-0 right-0 px-5 py-3" style={{ backgroundColor: 'var(--button-secondary-bg)' }}>
         <div className="flex items-center space-x-3">
           {/* Upload Button */}
           <button className="p-2">
@@ -755,7 +755,7 @@ export default function KaiHelpPage() {
           
           {/* Chat Input Field */}
           <div className="flex-1 flex items-center rounded-full" style={{ 
-            backgroundColor: 'white', 
+            backgroundColor: 'var(--input-background)', 
             padding: '8px 16px'
           }}>
             <input
@@ -766,7 +766,7 @@ export default function KaiHelpPage() {
               className="flex-1 bg-transparent outline-none"
               style={{ 
                 fontSize: '16px', 
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 border: 'none'
               }}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
@@ -936,7 +936,7 @@ export default function KaiHelpPage() {
           />
           
           {/* Sidebar */}
-          <div className="fixed top-0 left-0 h-full w-80 z-50 shadow-lg overflow-y-auto" style={{ backgroundColor: '#fefbf7' }}>
+          <div className="fixed top-0 left-0 h-full w-80 z-50 shadow-lg overflow-y-auto" style={{ backgroundColor: 'var(--background)' }}>
             <div className="p-5">
               {/* Sidebar Close Button */}
               <div className="mb-3">
@@ -955,7 +955,7 @@ export default function KaiHelpPage() {
               {/* Sort by Category Title */}
               <div style={{ marginBottom: '12px' }}>
                 <h3 style={{ 
-                  color: '#a5a5a5', 
+                  color: 'var(--text-secondary)', 
                   fontSize: '16px', 
                   fontWeight: 500,
                   marginLeft: '12px'
@@ -1120,7 +1120,7 @@ export default function KaiHelpPage() {
               {/* Organization Section */}
               <div style={{ marginTop: '12px', marginLeft: '20px' }}>
                 <h4 style={{ 
-                  color: '#a5a5a5', 
+                  color: 'var(--text-secondary)', 
                   fontSize: '16px', 
                   fontWeight: 500,
                   marginBottom: '12px'
@@ -1147,7 +1147,7 @@ export default function KaiHelpPage() {
                         key={item}
                         onClick={() => setSelectedOrganization(item)}
                         style={{ 
-                          color: selectedOrganization === item ? '#2847ef' : '#a5a5a5',
+                          color: selectedOrganization === item ? 'var(--primary-blue)' : 'var(--text-secondary)',
                           cursor: 'pointer'
                         }}
                       >
@@ -1161,7 +1161,7 @@ export default function KaiHelpPage() {
               {/* Help & Settings Section */}
               <div style={{ marginTop: '12px', marginLeft: '20px' }}>
                 <h4 style={{ 
-                  color: '#a5a5a5', 
+                  color: 'var(--text-secondary)', 
                   fontSize: '16px', 
                   fontWeight: 500,
                   marginBottom: '12px'
@@ -1171,7 +1171,7 @@ export default function KaiHelpPage() {
                 
                 <div style={{ marginLeft: '8px' }}>
                   <div style={{ 
-                    color: '#a5a5a5', 
+                    color: 'var(--text-secondary)', 
                     fontSize: '14px', 
                     fontWeight: 500,
                     lineHeight: '1.5'

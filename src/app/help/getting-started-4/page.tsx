@@ -16,12 +16,12 @@ export default function GettingStarted4Page() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#e6e1f4', padding: '20px' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--guide-getting-started)', padding: '20px' }}>
       {/* White Container */}
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
-        border: '2px solid #e2e2e2',
+        border: '2px solid var(--border-color)',
         padding: '20px',
         marginBottom: '24px'
       }}>
@@ -41,7 +41,7 @@ export default function GettingStarted4Page() {
           <h1 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0
           }}>
             Your Overwhelm Rescue System ⚡
@@ -64,14 +64,14 @@ export default function GettingStarted4Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             When to use it:
           </h2>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -97,14 +97,14 @@ export default function GettingStarted4Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             What happens when you tap it:
           </h2>
           <ol style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0
@@ -126,7 +126,7 @@ export default function GettingStarted4Page() {
 
         {/* Try It Demo Box */}
         <div style={{
-          backgroundColor: '#f9dac5',
+          backgroundColor: 'var(--guide-adhd-tips)',
           borderRadius: '16px',
           padding: '20px',
           textAlign: 'center',
@@ -159,7 +159,7 @@ export default function GettingStarted4Page() {
           <h3 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: '#fa772c',
+            color: 'var(--primary-orange)',
             marginBottom: '18px'
           }}>
             Try the Orange Button!
@@ -168,7 +168,7 @@ export default function GettingStarted4Page() {
           <button
             disabled
             style={{
-              backgroundColor: '#fa772c',
+              backgroundColor: 'var(--primary-orange)',
               color: '#FFFFFF',
               fontSize: '14px',
               fontWeight: 700,
@@ -187,7 +187,7 @@ export default function GettingStarted4Page() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -197,7 +197,7 @@ export default function GettingStarted4Page() {
 
         {/* Secret Sauce Box */}
         <div style={{
-          backgroundColor: '#cae9ef',
+          backgroundColor: 'var(--guide-kai-ai)',
           borderRadius: '16px',
           padding: '16px',
           marginBottom: '16px'
@@ -205,7 +205,7 @@ export default function GettingStarted4Page() {
           <h3 style={{
             fontSize: '14px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px'
           }}>
             🤫 The secret sauce:
@@ -213,7 +213,7 @@ export default function GettingStarted4Page() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -223,7 +223,7 @@ export default function GettingStarted4Page() {
 
         {/* Reassurance Box */}
         <div style={{
-          backgroundColor: '#ddede3',
+          backgroundColor: 'var(--success-light)',
           borderRadius: '16px',
           padding: '16px',
           marginBottom: '24px'
@@ -231,7 +231,7 @@ export default function GettingStarted4Page() {
           <h3 style={{
             fontSize: '14px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px'
           }}>
             🤗 Remember:
@@ -239,7 +239,7 @@ export default function GettingStarted4Page() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -259,7 +259,7 @@ export default function GettingStarted4Page() {
           onClick={handleBack}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,
@@ -277,7 +277,7 @@ export default function GettingStarted4Page() {
           onClick={handleNext}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,

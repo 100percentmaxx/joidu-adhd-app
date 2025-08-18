@@ -12,12 +12,12 @@ export default function GettingStartedPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#e6e1f4', padding: '20px' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--guide-getting-started)', padding: '20px' }}>
       {/* White Container */}
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
-        border: '2px solid #e2e2e2',
+        border: '2px solid var(--border-color)',
         padding: '20px',
         marginBottom: '24px'
       }}>
@@ -39,7 +39,7 @@ export default function GettingStartedPage() {
           <h1 style={{
             fontSize: '28px',
             fontWeight: 700,
-            color: '#2847ef',
+            color: 'var(--primary-blue)',
             marginBottom: '24px',
             lineHeight: '1.2'
           }}>
@@ -50,7 +50,7 @@ export default function GettingStartedPage() {
           <p style={{
             fontSize: '16px',
             fontWeight: 400,
-            color: '#a5a5a5',
+            color: 'var(--text-secondary)',
             marginBottom: '32px',
             lineHeight: '1.4'
           }}>
@@ -60,16 +60,16 @@ export default function GettingStartedPage() {
 
         {/* Introduction Box */}
         <div style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--card-background)',
           borderRadius: '16px',
-          border: '2px solid #e2e2e2',
+          border: '2px solid var(--border-color)',
           padding: '20px',
           marginBottom: '32px'
         }}>
           <p style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px',
             lineHeight: '1.4'
           }}>
@@ -78,7 +78,7 @@ export default function GettingStartedPage() {
           <p style={{
             fontSize: '16px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -91,7 +91,7 @@ export default function GettingStartedPage() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#2847ef',
+            color: 'var(--primary-blue)',
             marginBottom: '24px'
           }}>
             Choose Your Journey:
@@ -100,7 +100,7 @@ export default function GettingStartedPage() {
           <button
             disabled
             style={{
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--button-primary-bg)',
               color: '#FFFFFF',
               fontSize: '16px',
               fontWeight: 500,
@@ -120,7 +120,7 @@ export default function GettingStartedPage() {
           <button
             disabled
             style={{
-              backgroundColor: '#fa772c',
+              backgroundColor: 'var(--primary-orange)',
               color: '#FFFFFF',
               fontSize: '16px',
               fontWeight: 500,
@@ -140,8 +140,8 @@ export default function GettingStartedPage() {
           <button
             disabled
             style={{
-              backgroundColor: '#e2e2e2',
-              color: '#4c4c4c',
+              backgroundColor: 'var(--button-secondary-bg)',
+              color: 'var(--text-primary)',
               fontSize: '16px',
               fontWeight: 500,
               padding: '16px',
@@ -161,7 +161,7 @@ export default function GettingStartedPage() {
             fontSize: '12px',
             fontWeight: 400,
             fontStyle: 'italic',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0
           }}>
             All paths currently lead to the full tour - customization coming soon!
@@ -170,7 +170,7 @@ export default function GettingStartedPage() {
 
         {/* Encouragement Box */}
         <div style={{
-          backgroundColor: '#ddede3',
+          backgroundColor: 'var(--success-light)',
           borderRadius: '16px',
           padding: '16px',
           display: 'flex',
@@ -188,7 +188,7 @@ export default function GettingStartedPage() {
             fontSize: '14px',
             fontWeight: 400,
             fontStyle: 'italic',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -208,7 +208,7 @@ export default function GettingStartedPage() {
           onClick={handleNext}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--category-work-dark)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,

@@ -94,11 +94,11 @@ export default function EmailSupportPage() {
 
   if (showSuccess) {
     return (
-      <div className="min-h-screen" style={{ backgroundColor: '#cae9ef', padding: '20px' }}>
+      <div className="min-h-screen" style={{ backgroundColor: 'var(--success-light)', padding: '20px' }}>
         <div style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--card-background)',
           borderRadius: '16px',
-          border: '2px solid #e2e2e2',
+          border: '2px solid var(--border-color)',
           padding: '40px',
           textAlign: 'center'
         }}>
@@ -114,14 +114,14 @@ export default function EmailSupportPage() {
           <h1 style={{
             fontSize: '24px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px'
           }}>
             Support Request Sent! 🎉
           </h1>
           <p style={{
             fontSize: '16px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '24px',
             lineHeight: '1.4'
           }}>
@@ -129,7 +129,7 @@ export default function EmailSupportPage() {
           </p>
           <p style={{
             fontSize: '14px',
-            color: '#a5a5a5',
+            color: 'var(--text-secondary)',
             margin: 0
           }}>
             Redirecting you back to Help & Support...
@@ -140,17 +140,17 @@ export default function EmailSupportPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#cae9ef' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--success-light)' }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <button 
           onClick={handleBack}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <h1 style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '17px', 
           fontWeight: 600 
         }}>
@@ -162,9 +162,9 @@ export default function EmailSupportPage() {
       {/* Content */}
       <div style={{ padding: '20px' }}>
         <div style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--card-background)',
           borderRadius: '16px',
-          border: '2px solid #e2e2e2',
+          border: '2px solid var(--border-color)',
           padding: '20px'
         }}>
           {/* Hero Section */}
@@ -182,7 +182,7 @@ export default function EmailSupportPage() {
             <h1 style={{
               fontSize: '24px',
               fontWeight: 700,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               margin: 0,
               marginBottom: '16px'
             }}>
@@ -192,7 +192,7 @@ export default function EmailSupportPage() {
             <p style={{
               fontSize: '16px',
               fontWeight: 400,
-              color: '#a5a5a5',
+              color: 'var(--text-secondary)',
               margin: 0
             }}>
               Our ADHD-aware support team is here to help you succeed
@@ -205,7 +205,7 @@ export default function EmailSupportPage() {
               <h2 style={{
                 fontSize: '18px',
                 fontWeight: 700,
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 marginBottom: '24px'
               }}>
                 What can we help you with?
@@ -216,8 +216,8 @@ export default function EmailSupportPage() {
                   key={category.id}
                   style={{
                     display: 'block',
-                    backgroundColor: selectedCategory === category.id ? '#f0f8ff' : '#fafafa',
-                    border: selectedCategory === category.id ? '2px solid #2847ef' : '2px solid #e2e2e2',
+                    backgroundColor: selectedCategory === category.id ? 'var(--background)' : 'var(--input-background)',
+                    border: selectedCategory === category.id ? '2px solid var(--primary-blue)' : '2px solid var(--input-border)',
                     borderRadius: '12px',
                     padding: '16px',
                     marginBottom: '8px',
@@ -238,14 +238,14 @@ export default function EmailSupportPage() {
                       <div style={{
                         fontSize: '16px',
                         fontWeight: 600,
-                        color: '#4c4c4c',
+                        color: 'var(--text-primary)',
                         marginBottom: '4px'
                       }}>
                         {category.title}
                       </div>
                       <div style={{
                         fontSize: '14px',
-                        color: '#a5a5a5'
+                        color: 'var(--text-secondary)'
                       }}>
                         {category.description}
                       </div>
@@ -261,7 +261,7 @@ export default function EmailSupportPage() {
                 display: 'block',
                 fontSize: '16px',
                 fontWeight: 600,
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 marginBottom: '8px'
               }}>
                 Subject *
@@ -276,7 +276,9 @@ export default function EmailSupportPage() {
                   width: '100%',
                   padding: '12px',
                   borderRadius: '8px',
-                  border: '2px solid #e2e2e2',
+                  border: '2px solid var(--input-border)',
+                  backgroundColor: 'var(--input-background)',
+                  color: 'var(--text-primary)',
                   fontSize: '16px',
                   marginBottom: '16px'
                 }}
@@ -286,7 +288,7 @@ export default function EmailSupportPage() {
                 display: 'block',
                 fontSize: '16px',
                 fontWeight: 600,
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 marginBottom: '8px'
               }}>
                 Tell us more *
@@ -301,7 +303,9 @@ export default function EmailSupportPage() {
                   width: '100%',
                   padding: '12px',
                   borderRadius: '8px',
-                  border: '2px solid #e2e2e2',
+                  border: '2px solid var(--input-border)',
+                  backgroundColor: 'var(--input-background)',
+                  color: 'var(--text-primary)',
                   fontSize: '16px',
                   marginBottom: '16px',
                   resize: 'vertical',
@@ -313,7 +317,7 @@ export default function EmailSupportPage() {
                 display: 'block',
                 fontSize: '16px',
                 fontWeight: 600,
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 marginBottom: '8px'
               }}>
                 Priority Level
@@ -325,7 +329,9 @@ export default function EmailSupportPage() {
                   width: '100%',
                   padding: '12px',
                   borderRadius: '8px',
-                  border: '2px solid #e2e2e2',
+                  border: '2px solid var(--input-border)',
+                  backgroundColor: 'var(--input-background)',
+                  color: 'var(--text-primary)',
                   fontSize: '16px',
                   marginBottom: '16px'
                 }}
@@ -349,8 +355,8 @@ export default function EmailSupportPage() {
                     width: '20px',
                     height: '20px',
                     borderRadius: '50%',
-                    backgroundColor: includeData ? '#ddede3' : '#ffffff',
-                    border: includeData ? '2px solid #a8e2bb' : '2px solid #a5a5a5',
+                    backgroundColor: includeData ? 'var(--success-light)' : 'var(--card-background)',
+                    border: includeData ? '2px solid var(--success-light)' : '2px solid var(--text-secondary)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -378,7 +384,7 @@ export default function EmailSupportPage() {
                 </div>
                 <span style={{
                   fontSize: '16px',
-                  color: '#4c4c4c'
+                  color: 'var(--text-primary)'
                 }}>
                   Include my app data for faster troubleshooting
                 </span>
@@ -394,7 +400,7 @@ export default function EmailSupportPage() {
               </label>
               <p style={{
                 fontSize: '14px',
-                color: '#a5a5a5',
+                color: 'var(--text-secondary)',
                 margin: 0,
                 marginBottom: '16px',
                 marginLeft: '28px'
@@ -412,7 +418,7 @@ export default function EmailSupportPage() {
                 display: 'block',
                 fontSize: '16px',
                 fontWeight: 600,
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 marginBottom: '8px'
               }}>
                 Your Email
@@ -425,14 +431,16 @@ export default function EmailSupportPage() {
                   width: '100%',
                   padding: '12px',
                   borderRadius: '8px',
-                  border: '2px solid #e2e2e2',
+                  border: '2px solid var(--input-border)',
+                  backgroundColor: 'var(--input-background)',
+                  color: 'var(--text-primary)',
                   fontSize: '16px',
                   marginBottom: '8px'
                 }}
               />
               <p style={{
                 fontSize: '14px',
-                color: '#a5a5a5',
+                color: 'var(--text-secondary)',
                 margin: 0
               }}>
                 We typically respond within 24 hours
@@ -449,8 +457,8 @@ export default function EmailSupportPage() {
                 type="button"
                 onClick={handleBack}
                 style={{
-                  backgroundColor: '#f5f5f5',
-                  color: '#4c4c4c',
+                  backgroundColor: 'var(--input-background)',
+                  color: 'var(--text-primary)',
                   fontSize: '16px',
                   fontWeight: 600,
                   padding: '12px 24px',
@@ -465,7 +473,7 @@ export default function EmailSupportPage() {
                 type="submit"
                 disabled={isSubmitting || !selectedCategory || !subject.trim() || !message.trim()}
                 style={{
-                  backgroundColor: isSubmitting ? '#a5a5a5' : '#2847ef',
+                  backgroundColor: isSubmitting ? 'var(--text-secondary)' : 'var(--primary-blue)',
                   color: '#FFFFFF',
                   fontSize: '16px',
                   fontWeight: 600,

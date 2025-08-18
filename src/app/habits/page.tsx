@@ -37,30 +37,30 @@ function HabitsContent() {
     return (
       <div style={{ 
         minHeight: '100vh', 
-        backgroundColor: '#fefbf7',
+        backgroundColor: 'var(--background)',
         padding: '20px 16px 100px 16px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <div style={{ color: '#4c4c4c' }}>Loading...</div>
+        <div style={{ color: 'var(--text-primary)' }}>Loading...</div>
       </div>
     )
   }
 
   // Show habits overview when habits exist
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fefbf7' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <button 
           onClick={() => router.push('/')}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <h1 style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '17px', 
           fontWeight: 600 
         }}>
@@ -70,7 +70,7 @@ function HabitsContent() {
           onClick={() => router.push('/habits/add')}
           className="flex items-center justify-center w-10 h-10"
         >
-          <Plus className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <Plus className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
       </div>
 
@@ -99,7 +99,7 @@ function HabitsContent() {
             onClick={() => router.push('/habits/add')}
             className="text-sm font-medium text-white transition-all duration-200 hover:scale-105" 
             style={{ 
-              backgroundColor: '#a8e2bb',
+              backgroundColor: 'var(--checkbox-checked)',
               borderRadius: '12px',
               width: '60px',
               height: '32px',

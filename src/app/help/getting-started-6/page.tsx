@@ -16,12 +16,12 @@ export default function GettingStarted6Page() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#e6e1f4', padding: '20px' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--guide-getting-started)', padding: '20px' }}>
       {/* White Container */}
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
-        border: '2px solid #e2e2e2',
+        border: '2px solid var(--border-color)',
         padding: '20px',
         marginBottom: '24px'
       }}>
@@ -41,7 +41,7 @@ export default function GettingStarted6Page() {
           <h1 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0
           }}>
             Hyperfocus vs. Healthy Focus
@@ -64,14 +64,14 @@ export default function GettingStarted6Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             What makes our timer ADHD-friendly:
           </h2>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -97,14 +97,14 @@ export default function GettingStarted6Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             How to use it:
           </h2>
           <ol style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0
@@ -129,7 +129,7 @@ export default function GettingStarted6Page() {
 
         {/* Try Focus Box */}
         <div style={{
-          backgroundColor: '#ddede3',
+          backgroundColor: 'var(--success-light)',
           borderRadius: '16px',
           padding: '20px',
           textAlign: 'center',
@@ -148,7 +148,7 @@ export default function GettingStarted6Page() {
           <h3 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: '#2847ef',
+            color: 'var(--primary-blue)',
             marginBottom: '18px'
           }}>
             Try a Focus Session
@@ -157,7 +157,7 @@ export default function GettingStarted6Page() {
           <button
             disabled
             style={{
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--primary-blue)',
               color: '#FFFFFF',
               fontSize: '14px',
               fontWeight: 700,
@@ -176,7 +176,7 @@ export default function GettingStarted6Page() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -186,7 +186,7 @@ export default function GettingStarted6Page() {
 
         {/* Energy-Aware Tips Box */}
         <div style={{
-          backgroundColor: '#fef7d6',
+          backgroundColor: 'var(--warning-light)',
           borderRadius: '16px',
           padding: '16px',
           marginBottom: '16px'
@@ -194,7 +194,7 @@ export default function GettingStarted6Page() {
           <h3 style={{
             fontSize: '14px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px'
           }}>
             ⚡ Energy-aware suggestions:
@@ -202,7 +202,7 @@ export default function GettingStarted6Page() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -212,7 +212,7 @@ export default function GettingStarted6Page() {
 
         {/* ADHD Insight Box */}
         <div style={{
-          backgroundColor: '#cae9ef',
+          backgroundColor: 'var(--guide-kai-ai)',
           borderRadius: '16px',
           padding: '16px',
           marginBottom: '24px'
@@ -220,7 +220,7 @@ export default function GettingStarted6Page() {
           <h3 style={{
             fontSize: '14px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px'
           }}>
             🧠 ADHD insight:
@@ -228,7 +228,7 @@ export default function GettingStarted6Page() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -248,7 +248,7 @@ export default function GettingStarted6Page() {
           onClick={handleBack}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,
@@ -266,7 +266,7 @@ export default function GettingStarted6Page() {
           onClick={handleNext}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,

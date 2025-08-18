@@ -102,7 +102,7 @@ function FocusSetupContent() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fefbf7', padding: '20px' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--background)', padding: '20px' }}>
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between" style={{ marginBottom: '20px' }}>
@@ -116,12 +116,12 @@ function FocusSetupContent() {
             }}
             aria-label="Go back"
           >
-            <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+            <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
           </button>
           <h1 style={{
             fontSize: '18px',
             fontWeight: 600,
-            color: '#2847ef',
+            color: 'var(--primary-blue)',
             margin: 0
           }}>
             Timer Setup
@@ -139,9 +139,9 @@ function FocusSetupContent() {
             style={{
               fontSize: '20px',
               fontWeight: 'medium',
-              color: taskTitle ? '#4c4c4c' : '#a5a5a5', // Main Gray when filled, Light Gray when placeholder
-              backgroundColor: 'white',
-              border: '2px solid #e2e2e2', // Light Gray stroke
+              color: taskTitle ? 'var(--text-primary)' : 'var(--text-secondary)', // Main Gray when filled, Light Gray when placeholder
+              backgroundColor: 'var(--input-background)',
+              border: '2px solid var(--input-border)', // Light Gray stroke
               borderRadius: '8px',
               padding: '12px 16px',
               textAlign: 'center' // Centered text
@@ -174,7 +174,7 @@ function FocusSetupContent() {
             onClick={handleCancel}
             className="font-medium transition-all duration-200 hover:opacity-80"
             style={{
-              backgroundColor: '#f4b7ae', // Light Red
+              backgroundColor: 'var(--error-light)', // Light Red
               color: 'white',
               height: '44px',
               borderRadius: '8px',
@@ -189,7 +189,7 @@ function FocusSetupContent() {
             disabled={!taskTitle.trim() || selectedDuration <= 0}
             className="text-white font-medium transition-all duration-200 hover:opacity-90 disabled:opacity-50"
             style={{
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--primary-blue)',
               height: '44px',
               borderRadius: '8px',
               border: 'none',
@@ -213,10 +213,10 @@ function FocusSetupContent() {
 export default function FocusSetupPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#fefbf7' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--background)' }}>
         <div className="text-center">
           <div className="animate-spin w-8 h-8 border-4 border-orange-300 border-t-orange-600 rounded-full mx-auto mb-4"></div>
-          <p style={{ color: '#a5a5a5' }}>Loading timer setup...</p>
+          <p style={{ color: 'var(--text-secondary)' }}>Loading timer setup...</p>
         </div>
       </div>
     }>

@@ -16,12 +16,12 @@ export default function KaiGuide4Page() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#cae9ef', padding: '20px' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--guide-kai-ai)', padding: '20px' }}>
       {/* White Container */}
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
-        border: '2px solid #e2e2e2',
+        border: '2px solid var(--border-color)',
         padding: '20px',
         marginBottom: '24px'
       }}>
@@ -41,7 +41,7 @@ export default function KaiGuide4Page() {
           <h1 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0
           }}>
             Make Kai Work for YOU
@@ -53,14 +53,14 @@ export default function KaiGuide4Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             Communication Styles:
           </h2>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -86,14 +86,14 @@ export default function KaiGuide4Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             Response Preferences:
           </h2>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -116,14 +116,14 @@ export default function KaiGuide4Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             Learning Controls:
           </h2>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -146,7 +146,7 @@ export default function KaiGuide4Page() {
 
         {/* Settings Navigation Box */}
         <div style={{
-          backgroundColor: '#cae9ef',
+          backgroundColor: 'var(--guide-kai-ai)',
           borderRadius: '16px',
           padding: '16px',
           textAlign: 'center',
@@ -155,7 +155,7 @@ export default function KaiGuide4Page() {
           <h3 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             Customize Kai Settings:
@@ -163,7 +163,7 @@ export default function KaiGuide4Page() {
           <button
             disabled
             style={{
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--primary-blue)',
               color: '#FFFFFF',
               fontSize: '14px',
               fontWeight: 700,
@@ -181,7 +181,7 @@ export default function KaiGuide4Page() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -201,7 +201,7 @@ export default function KaiGuide4Page() {
           onClick={handleBack}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,
@@ -219,7 +219,7 @@ export default function KaiGuide4Page() {
           onClick={handleNext}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,

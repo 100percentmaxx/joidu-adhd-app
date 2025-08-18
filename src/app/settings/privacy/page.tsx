@@ -108,17 +108,17 @@ export default function PrivacySettingsPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fefbf7' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <button 
           onClick={handleBack}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <h1 style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '17px', 
           fontWeight: 600 
         }}>
@@ -166,7 +166,7 @@ export default function PrivacySettingsPage() {
           marginBottom: '20px' 
         }}>
           <p style={{
-            color: '#a5a5a5',
+            color: 'var(--text-secondary)',
             fontSize: '12px',
             fontWeight: 400,
             margin: 0

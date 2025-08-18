@@ -126,7 +126,7 @@ function ExportPreviewModal({ settings, onClose, onExport }: ExportPreviewModalP
       padding: '20px'
     }}>
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
         width: '100%',
         maxWidth: '800px',
@@ -137,7 +137,7 @@ function ExportPreviewModal({ settings, onClose, onExport }: ExportPreviewModalP
         {/* Header */}
         <div style={{
           padding: '20px',
-          borderBottom: '2px solid #e2e2e2',
+          borderBottom: '2px solid var(--border-color)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between'
@@ -145,7 +145,7 @@ function ExportPreviewModal({ settings, onClose, onExport }: ExportPreviewModalP
           <h2 style={{
             fontSize: '20px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0
           }}>
             Export Preview
@@ -159,14 +159,14 @@ function ExportPreviewModal({ settings, onClose, onExport }: ExportPreviewModalP
               padding: '8px'
             }}
           >
-            <X className="w-6 h-6" style={{ color: '#a5a5a5' }} />
+            <X className="w-6 h-6" style={{ color: 'var(--text-secondary)' }} />
           </button>
         </div>
 
         {/* Tabs */}
         <div style={{
           padding: '0 20px',
-          borderBottom: '1px solid #e2e2e2',
+          borderBottom: '1px solid var(--border-color)',
           display: 'flex',
           gap: '8px',
           overflowX: 'auto'
@@ -183,8 +183,8 @@ function ExportPreviewModal({ settings, onClose, onExport }: ExportPreviewModalP
                 backgroundColor: 'transparent',
                 border: 'none',
                 cursor: 'pointer',
-                borderBottom: activeTab === tab.id ? '3px solid #2847ef' : '3px solid transparent',
-                color: activeTab === tab.id ? '#2847ef' : '#a5a5a5',
+                borderBottom: activeTab === tab.id ? '3px solid var(--primary-blue)' : '3px solid transparent',
+                color: activeTab === tab.id ? 'var(--primary-blue)' : 'var(--text-secondary)',
                 fontSize: '14px',
                 fontWeight: 600,
                 whiteSpace: 'nowrap'
@@ -227,7 +227,7 @@ function ExportPreviewModal({ settings, onClose, onExport }: ExportPreviewModalP
           {/* Data Display */}
           <div style={{
             backgroundColor: '#fafafa',
-            border: '1px solid #e2e2e2',
+            border: '1px solid var(--border-color)',
             borderRadius: '8px',
             padding: '16px',
             marginBottom: '24px'
@@ -235,7 +235,7 @@ function ExportPreviewModal({ settings, onClose, onExport }: ExportPreviewModalP
             <h3 style={{
               fontSize: '16px',
               fontWeight: 600,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               marginBottom: '12px'
             }}>
               {settings.format.toUpperCase()} Format Preview:
@@ -264,8 +264,8 @@ function ExportPreviewModal({ settings, onClose, onExport }: ExportPreviewModalP
             <button
               onClick={onClose}
               style={{
-                backgroundColor: '#e2e2e2',
-                color: '#4c4c4c',
+                backgroundColor: 'var(--button-secondary-bg)',
+                color: 'var(--button-secondary-text)',
                 fontSize: '14px',
                 fontWeight: 600,
                 padding: '12px 20px',
@@ -282,7 +282,7 @@ function ExportPreviewModal({ settings, onClose, onExport }: ExportPreviewModalP
                 onClose()
               }}
               style={{
-                backgroundColor: '#2847ef',
+                backgroundColor: 'var(--button-primary-bg)',
                 color: '#FFFFFF',
                 fontSize: '14px',
                 fontWeight: 600,
@@ -381,17 +381,17 @@ export default function DataExportPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fefbf7' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <button 
           onClick={handleBack}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <h1 style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '17px', 
           fontWeight: 600 
         }}>
@@ -408,7 +408,7 @@ export default function DataExportPage() {
         {/* What to Export Section */}
         <div style={{ marginBottom: '60px' }}>
           <h2 style={{
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             fontSize: '20px',
             fontWeight: 600,
             marginBottom: '20px'
@@ -460,7 +460,7 @@ export default function DataExportPage() {
         {/* Export Format Section */}
         <div style={{ marginBottom: '24px' }}>
           <h2 style={{
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             fontSize: '20px',
             fontWeight: 600,
             marginBottom: '20px'
@@ -518,7 +518,7 @@ export default function DataExportPage() {
             style={{
               width: '120px',
               height: '48px',
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--button-primary-bg)',
               borderRadius: '8px',
               border: 'none',
               cursor: (isExporting || getSelectedCount() === 0) ? 'not-allowed' : 'pointer',
@@ -542,7 +542,7 @@ export default function DataExportPage() {
           marginBottom: '20px' 
         }}>
           <p style={{
-            color: '#a5a5a5',
+            color: 'var(--text-secondary)',
             fontSize: '12px',
             fontWeight: 400,
             margin: 0

@@ -16,7 +16,7 @@ export default function KaiGuidePage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#cae9ef', padding: '20px' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--guide-kai-ai)', padding: '20px' }}>
       {/* Hero Section */}
       <div className="text-center mb-8">
         {/* Kai Icon with animations */}
@@ -37,7 +37,7 @@ export default function KaiGuidePage() {
         <h1 style={{
           fontSize: '28px',
           fontWeight: 700,
-          color: '#2847ef',
+          color: 'var(--primary-blue)',
           marginBottom: '24px',
           lineHeight: '1.2'
         }}>
@@ -48,7 +48,7 @@ export default function KaiGuidePage() {
         <p style={{
           fontSize: '16px',
           fontWeight: 400,
-          color: '#4c4c4c',
+          color: 'var(--text-primary)',
           marginBottom: '32px',
           lineHeight: '1.4'
         }}>
@@ -58,9 +58,9 @@ export default function KaiGuidePage() {
 
       {/* White Container - extends to bottom */}
       <div style={{
-        backgroundColor: 'white',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
-        border: '2px solid #e2e2e2',
+        border: '2px solid var(--border-color)',
         padding: '20px',
         marginBottom: '32px'
       }}>
@@ -68,7 +68,7 @@ export default function KaiGuidePage() {
         <p style={{
           fontSize: '18px',
           fontWeight: 700,
-          color: '#4c4c4c',
+          color: 'var(--text-primary)',
           lineHeight: '1.4',
           marginBottom: '32px'
         }}>
@@ -79,7 +79,7 @@ export default function KaiGuidePage() {
         <h2 style={{
           fontSize: '16px',
           fontWeight: 700,
-          color: '#2847ef',
+          color: 'var(--primary-blue)',
           textAlign: 'center',
           marginBottom: '32px'
         }}>
@@ -102,7 +102,7 @@ export default function KaiGuidePage() {
           <h3 style={{
             fontSize: '14px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0
           }}>
             Why Kai Gets ADHD Brains
@@ -113,7 +113,7 @@ export default function KaiGuidePage() {
         <p style={{
           fontSize: '14px',
           fontWeight: 400,
-          color: '#4c4c4c',
+          color: 'var(--text-primary)',
           padding: '20px',
           marginBottom: '18px',
           lineHeight: '1.4',
@@ -127,7 +127,7 @@ export default function KaiGuidePage() {
           <p style={{
             fontSize: '14px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px'
           }}>
             What this means for you:
@@ -135,7 +135,7 @@ export default function KaiGuidePage() {
           
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '0',
             lineHeight: '1.6',
             margin: 0,
@@ -158,7 +158,7 @@ export default function KaiGuidePage() {
 
         {/* Interactive Element - Blue Container within White */}
         <div style={{
-          backgroundColor: '#cae9ef',
+          backgroundColor: 'var(--guide-kai-ai)',
           borderRadius: '16px',
           padding: '20px',
           textAlign: 'center'
@@ -180,7 +180,7 @@ export default function KaiGuidePage() {
             <h3 style={{
               fontSize: '18px',
               fontWeight: 700,
-              color: '#2847ef',
+              color: 'var(--primary-blue)',
               margin: 0
             }}>
               Try Asking Kai Now!
@@ -191,7 +191,7 @@ export default function KaiGuidePage() {
           <button
             disabled
             style={{
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--primary-blue)',
               color: 'white',
               fontSize: '14px',
               fontWeight: 700,
@@ -210,7 +210,7 @@ export default function KaiGuidePage() {
           {/* Example Prompt */}
           <p style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -230,7 +230,7 @@ export default function KaiGuidePage() {
           onClick={handleBack}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: 'white',
             fontSize: '14px',
             fontWeight: 700,
@@ -248,7 +248,7 @@ export default function KaiGuidePage() {
           onClick={handleNext}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: 'white',
             fontSize: '14px',
             fontWeight: 700,

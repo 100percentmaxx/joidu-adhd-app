@@ -16,12 +16,12 @@ export default function KaiGuide6Page() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#cae9ef', padding: '20px' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--guide-kai-ai)', padding: '20px' }}>
       {/* White Container */}
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
-        border: '2px solid #e2e2e2',
+        border: '2px solid var(--border-color)',
         padding: '20px',
         marginBottom: '24px'
       }}>
@@ -41,7 +41,7 @@ export default function KaiGuide6Page() {
           <h1 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0
           }}>
             What Kai Can't Do (And That's OK) 💭
@@ -53,14 +53,14 @@ export default function KaiGuide6Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             Kai is NOT:
           </h2>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -86,14 +86,14 @@ export default function KaiGuide6Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             When to Seek Other Support:
           </h2>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -116,7 +116,7 @@ export default function KaiGuide6Page() {
 
         {/* Support Resources Box */}
         <div style={{
-          backgroundColor: '#fef7d6',
+          backgroundColor: 'var(--warning-light)',
           borderRadius: '16px',
           padding: '16px',
           marginBottom: '24px'
@@ -124,14 +124,14 @@ export default function KaiGuide6Page() {
           <h3 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             Additional ADHD Resources:
           </h3>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -155,7 +155,7 @@ export default function KaiGuide6Page() {
             fontSize: '14px',
             fontWeight: 400,
             fontStyle: 'italic',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             textAlign: 'center',
             lineHeight: '1.4'
@@ -176,7 +176,7 @@ export default function KaiGuide6Page() {
           onClick={handleBack}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,
@@ -194,7 +194,7 @@ export default function KaiGuide6Page() {
           onClick={handleNext}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,

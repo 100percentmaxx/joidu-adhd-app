@@ -16,12 +16,12 @@ export default function GettingStarted5Page() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#e6e1f4', padding: '20px' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--guide-getting-started)', padding: '20px' }}>
       {/* White Container */}
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
-        border: '2px solid #e2e2e2',
+        border: '2px solid var(--border-color)',
         padding: '20px',
         marginBottom: '24px'
       }}>
@@ -41,7 +41,7 @@ export default function GettingStarted5Page() {
           <h1 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0
           }}>
             Start Small, Win Big 🌱
@@ -64,7 +64,7 @@ export default function GettingStarted5Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             The 2-Minute Rule:
@@ -72,7 +72,7 @@ export default function GettingStarted5Page() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px',
             lineHeight: '1.4'
           }}>
@@ -80,7 +80,7 @@ export default function GettingStarted5Page() {
           </p>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -106,14 +106,14 @@ export default function GettingStarted5Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             Why this works for ADHD:
           </h2>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -136,7 +136,7 @@ export default function GettingStarted5Page() {
 
         {/* Create Habit Box */}
         <div style={{
-          backgroundColor: '#ddede3',
+          backgroundColor: 'var(--success-light)',
           borderRadius: '16px',
           padding: '20px',
           textAlign: 'center',
@@ -155,7 +155,7 @@ export default function GettingStarted5Page() {
           <h3 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: '#2847ef',
+            color: 'var(--primary-blue)',
             marginBottom: '18px'
           }}>
             Create Your First Habit
@@ -164,7 +164,7 @@ export default function GettingStarted5Page() {
           <button
             disabled
             style={{
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--primary-blue)',
               color: '#FFFFFF',
               fontSize: '14px',
               fontWeight: 700,
@@ -183,7 +183,7 @@ export default function GettingStarted5Page() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -193,7 +193,7 @@ export default function GettingStarted5Page() {
 
         {/* Success Story Box */}
         <div style={{
-          backgroundColor: '#cae9ef',
+          backgroundColor: 'var(--guide-kai-ai)',
           borderRadius: '16px',
           padding: '16px',
           display: 'flex',
@@ -211,7 +211,7 @@ export default function GettingStarted5Page() {
             <h3 style={{
               fontSize: '14px',
               fontWeight: 700,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               marginBottom: '8px'
             }}>
               ✨ Real user story:
@@ -220,7 +220,7 @@ export default function GettingStarted5Page() {
               fontSize: '14px',
               fontWeight: 400,
               fontStyle: 'italic',
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               margin: 0,
               lineHeight: '1.4'
             }}>
@@ -241,7 +241,7 @@ export default function GettingStarted5Page() {
           onClick={handleBack}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,
@@ -259,7 +259,7 @@ export default function GettingStarted5Page() {
           onClick={handleNext}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,

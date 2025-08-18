@@ -12,12 +12,12 @@ export default function ADHDTipsPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#f9dac5', padding: '20px' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--guide-adhd-tips)', padding: '20px' }}>
       {/* White Container */}
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
-        border: '2px solid #e2e2e2',
+        border: '2px solid var(--border-color)',
         padding: '20px',
         marginBottom: '24px'
       }}>
@@ -39,7 +39,7 @@ export default function ADHDTipsPage() {
           <h1 style={{
             fontSize: '28px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             marginBottom: '24px'
           }}>
@@ -49,7 +49,7 @@ export default function ADHDTipsPage() {
           <p style={{
             fontSize: '16px',
             fontWeight: 400,
-            color: '#a5a5a5',
+            color: 'var(--text-secondary)',
             margin: 0,
             marginBottom: '32px'
           }}>
@@ -59,9 +59,9 @@ export default function ADHDTipsPage() {
 
         {/* Coming Soon Box */}
         <div style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--card-background)',
           borderRadius: '16px',
-          border: '2px solid #e2e2e2',
+          border: '2px solid var(--border-color)',
           padding: '20px',
           textAlign: 'center',
           marginBottom: '32px'
@@ -79,7 +79,7 @@ export default function ADHDTipsPage() {
           <h2 style={{
             fontSize: '24px',
             fontWeight: 700,
-            color: '#fa772c',
+            color: 'var(--primary-orange)',
             margin: 0,
             marginBottom: '16px'
           }}>
@@ -89,7 +89,7 @@ export default function ADHDTipsPage() {
           <p style={{
             fontSize: '16px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             marginBottom: '20px',
             lineHeight: '1.4'
@@ -100,7 +100,7 @@ export default function ADHDTipsPage() {
           {/* Preview List */}
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -131,7 +131,7 @@ export default function ADHDTipsPage() {
 
         {/* Encouragement Box */}
         <div style={{
-          backgroundColor: '#ddede3',
+          backgroundColor: 'var(--success-light)',
           borderRadius: '16px',
           padding: '16px',
           display: 'flex',
@@ -149,7 +149,7 @@ export default function ADHDTipsPage() {
             <h3 style={{
               fontSize: '14px',
               fontWeight: 700,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               marginBottom: '8px'
             }}>
               💡 In the meantime:
@@ -157,7 +157,7 @@ export default function ADHDTipsPage() {
             <p style={{
               fontSize: '14px',
               fontWeight: 400,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               margin: 0,
               lineHeight: '1.4'
             }}>
@@ -168,7 +168,7 @@ export default function ADHDTipsPage() {
 
         {/* Stay Updated Box */}
         <div style={{
-          backgroundColor: '#cae9ef',
+          backgroundColor: 'var(--guide-kai-ai)',
           borderRadius: '16px',
           padding: '16px',
           marginBottom: '24px'
@@ -176,7 +176,7 @@ export default function ADHDTipsPage() {
           <h3 style={{
             fontSize: '14px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '8px'
           }}>
             📬 Want to know when it's ready?
@@ -184,7 +184,7 @@ export default function ADHDTipsPage() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -204,7 +204,7 @@ export default function ADHDTipsPage() {
           onClick={handleBack}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,

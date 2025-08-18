@@ -12,12 +12,12 @@ export default function PrivacyDataPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#ddede3', padding: '20px' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--guide-privacy)', padding: '20px' }}>
       {/* White Container */}
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
-        border: '2px solid #e2e2e2',
+        border: '2px solid var(--border-color)',
         padding: '20px',
         marginBottom: '24px'
       }}>
@@ -39,7 +39,7 @@ export default function PrivacyDataPage() {
           <h1 style={{
             fontSize: '28px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             marginBottom: '24px'
           }}>
@@ -49,7 +49,7 @@ export default function PrivacyDataPage() {
           <p style={{
             fontSize: '16px',
             fontWeight: 400,
-            color: '#a5a5a5',
+            color: 'var(--text-secondary)',
             margin: 0,
             marginBottom: '32px'
           }}>
@@ -59,9 +59,9 @@ export default function PrivacyDataPage() {
 
         {/* Privacy First Box */}
         <div style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--card-background)',
           borderRadius: '16px',
-          border: '2px solid #e2e2e2',
+          border: '2px solid var(--border-color)',
           padding: '20px',
           textAlign: 'center',
           marginBottom: '32px'
@@ -79,7 +79,7 @@ export default function PrivacyDataPage() {
           <h2 style={{
             fontSize: '24px',
             fontWeight: 700,
-            color: '#2847ef',
+            color: 'var(--primary-blue)',
             margin: 0,
             marginBottom: '16px'
           }}>
@@ -89,7 +89,7 @@ export default function PrivacyDataPage() {
           <p style={{
             fontSize: '16px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             marginBottom: '20px',
             lineHeight: '1.4'
@@ -102,7 +102,7 @@ export default function PrivacyDataPage() {
             <h3 style={{
               fontSize: '16px',
               fontWeight: 700,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               marginBottom: '12px'
             }}>
               This comprehensive guide will cover:
@@ -110,7 +110,7 @@ export default function PrivacyDataPage() {
             
             <ul style={{
               fontSize: '14px',
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               paddingLeft: '16px',
               lineHeight: '1.6',
               margin: 0,
@@ -141,7 +141,7 @@ export default function PrivacyDataPage() {
 
         {/* Current Protection Box */}
         <div style={{
-          backgroundColor: '#cae9ef',
+          backgroundColor: 'var(--guide-kai-ai)',
           borderRadius: '16px',
           padding: '16px',
           display: 'flex',
@@ -159,7 +159,7 @@ export default function PrivacyDataPage() {
             <h3 style={{
               fontSize: '14px',
               fontWeight: 700,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               marginBottom: '16px'
             }}>
               🛡️ Already Protected:
@@ -167,7 +167,7 @@ export default function PrivacyDataPage() {
             <p style={{
               fontSize: '14px',
               fontWeight: 400,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               margin: 0,
               lineHeight: '1.4'
             }}>
@@ -178,7 +178,7 @@ export default function PrivacyDataPage() {
 
         {/* Quick Privacy Facts Box */}
         <div style={{
-          backgroundColor: '#fef7d6',
+          backgroundColor: 'var(--warning-light)',
           borderRadius: '16px',
           padding: '16px',
           marginBottom: '24px'
@@ -186,14 +186,14 @@ export default function PrivacyDataPage() {
           <h3 style={{
             fontSize: '14px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             ⚡ Quick Privacy Facts:
           </h3>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -216,7 +216,7 @@ export default function PrivacyDataPage() {
 
         {/* Development Note Box */}
         <div style={{
-          backgroundColor: '#e6e1f4',
+          backgroundColor: 'var(--guide-getting-started)',
           borderRadius: '16px',
           padding: '16px',
           marginBottom: '24px'
@@ -224,7 +224,7 @@ export default function PrivacyDataPage() {
           <h3 style={{
             fontSize: '14px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px'
           }}>
             📝 In Development:
@@ -232,7 +232,7 @@ export default function PrivacyDataPage() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -252,7 +252,7 @@ export default function PrivacyDataPage() {
           onClick={handleBack}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,

@@ -16,12 +16,12 @@ export default function GettingStarted7Page() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#e6e1f4', padding: '20px' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--guide-getting-started)', padding: '20px' }}>
       {/* White Container */}
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
-        border: '2px solid #e2e2e2',
+        border: '2px solid var(--border-color)',
         padding: '20px',
         marginBottom: '24px'
       }}>
@@ -41,7 +41,7 @@ export default function GettingStarted7Page() {
           <h1 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0
           }}>
             Tasks That Don't Overwhelm 📝
@@ -64,14 +64,14 @@ export default function GettingStarted7Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             ADHD-friendly task features:
           </h2>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -100,14 +100,14 @@ export default function GettingStarted7Page() {
           <h2 style={{
             fontSize: '16px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '12px'
           }}>
             Pro tips for ADHD task success:
           </h2>
           <ul style={{
             fontSize: '14px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             paddingLeft: '16px',
             lineHeight: '1.6',
             margin: 0,
@@ -130,7 +130,7 @@ export default function GettingStarted7Page() {
 
         {/* Create Task Box */}
         <div style={{
-          backgroundColor: '#ddede3',
+          backgroundColor: 'var(--success-light)',
           borderRadius: '16px',
           padding: '20px',
           textAlign: 'center',
@@ -149,7 +149,7 @@ export default function GettingStarted7Page() {
           <h3 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: '#2847ef',
+            color: 'var(--primary-blue)',
             marginBottom: '18px'
           }}>
             Create Your First Task
@@ -158,7 +158,7 @@ export default function GettingStarted7Page() {
           <button
             disabled
             style={{
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--primary-blue)',
               color: '#FFFFFF',
               fontSize: '14px',
               fontWeight: 700,
@@ -177,7 +177,7 @@ export default function GettingStarted7Page() {
           <p style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4'
           }}>
@@ -187,7 +187,7 @@ export default function GettingStarted7Page() {
 
         {/* Celebration Box */}
         <div style={{
-          backgroundColor: '#f9dac5',
+          backgroundColor: 'var(--guide-adhd-tips)',
           borderRadius: '16px',
           padding: '16px',
           display: 'flex',
@@ -205,7 +205,7 @@ export default function GettingStarted7Page() {
             <h3 style={{
               fontSize: '14px',
               fontWeight: 700,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               marginBottom: '8px'
             }}>
               🎉 Celebration matters:
@@ -213,7 +213,7 @@ export default function GettingStarted7Page() {
             <p style={{
               fontSize: '14px',
               fontWeight: 400,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               margin: 0,
               lineHeight: '1.4'
             }}>
@@ -234,7 +234,7 @@ export default function GettingStarted7Page() {
           onClick={handleBack}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,
@@ -252,7 +252,7 @@ export default function GettingStarted7Page() {
           onClick={handleNext}
           className="transition-transform hover:scale-105"
           style={{
-            backgroundColor: '#f9c075',
+            backgroundColor: 'var(--primary-orange)',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: 700,

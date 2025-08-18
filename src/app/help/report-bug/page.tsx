@@ -122,11 +122,11 @@ export default function ReportBugPage() {
 
   if (showSuccess) {
     return (
-      <div className="min-h-screen" style={{ backgroundColor: '#f4b7ae', padding: '20px' }}>
+      <div className="min-h-screen" style={{ backgroundColor: 'var(--warning-light)', padding: '20px' }}>
         <div style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--card-background)',
           borderRadius: '16px',
-          border: '2px solid #e2e2e2',
+          border: '2px solid var(--border-color)',
           padding: '40px',
           textAlign: 'center'
         }}>
@@ -142,14 +142,14 @@ export default function ReportBugPage() {
           <h1 style={{
             fontSize: '24px',
             fontWeight: 700,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px'
           }}>
             Bug Report Sent!
           </h1>
           <p style={{
             fontSize: '16px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '32px',
             lineHeight: '1.4'
           }}>
@@ -159,7 +159,7 @@ export default function ReportBugPage() {
             <button
               onClick={handleReportAnother}
               style={{
-                backgroundColor: '#fa772c',
+                backgroundColor: 'var(--primary-orange)',
                 color: '#FFFFFF',
                 fontSize: '16px',
                 fontWeight: 600,
@@ -174,8 +174,8 @@ export default function ReportBugPage() {
             <button
               onClick={handleBack}
               style={{
-                backgroundColor: '#e2e2e2',
-                color: '#4c4c4c',
+                backgroundColor: 'var(--border-color)',
+                color: 'var(--text-primary)',
                 fontSize: '16px',
                 fontWeight: 600,
                 padding: '12px 24px',
@@ -193,17 +193,17 @@ export default function ReportBugPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#f4b7ae' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--warning-light)' }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <button 
           onClick={handleBack}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <h1 style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '17px', 
           fontWeight: 600 
         }}>
@@ -215,9 +215,9 @@ export default function ReportBugPage() {
       {/* Content */}
       <div style={{ padding: '20px' }}>
         <div style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--card-background)',
           borderRadius: '16px',
-          border: '2px solid #e2e2e2',
+          border: '2px solid var(--border-color)',
           padding: '20px'
         }}>
           {/* Hero Section */}
@@ -235,7 +235,7 @@ export default function ReportBugPage() {
             <h1 style={{
               fontSize: '24px',
               fontWeight: 700,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               margin: 0,
               marginBottom: '16px'
             }}>
@@ -245,7 +245,7 @@ export default function ReportBugPage() {
             <p style={{
               fontSize: '16px',
               fontWeight: 400,
-              color: '#a5a5a5',
+              color: 'var(--text-secondary)',
               margin: 0
             }}>
               Your bug reports help make Joidu better for everyone
@@ -258,14 +258,14 @@ export default function ReportBugPage() {
               <h2 style={{
                 fontSize: '18px',
                 fontWeight: 700,
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 marginBottom: '8px'
               }}>
                 What type of issue are you experiencing?
               </h2>
               <p style={{
                 fontSize: '14px',
-                color: '#a5a5a5',
+                color: 'var(--text-secondary)',
                 margin: 0,
                 marginBottom: '16px',
                 textAlign: 'left'
@@ -280,8 +280,8 @@ export default function ReportBugPage() {
                     style={{
                       display: 'flex',
                       alignItems: 'center',
-                      backgroundColor: selectedCategories.includes(category.id) ? '#f0f8ff' : '#fafafa',
-                      border: selectedCategories.includes(category.id) ? '2px solid #2847ef' : '2px solid #e2e2e2',
+                      backgroundColor: selectedCategories.includes(category.id) ? 'var(--background)' : 'var(--input-background)',
+                      border: selectedCategories.includes(category.id) ? '2px solid var(--primary-blue)' : '2px solid var(--input-border)',
                       borderRadius: '12px',
                       padding: '12px',
                       cursor: 'pointer',
@@ -293,8 +293,8 @@ export default function ReportBugPage() {
                         width: '20px',
                         height: '20px',
                         borderRadius: '50%',
-                        backgroundColor: selectedCategories.includes(category.id) ? '#a8e2bb' : '#ffffff',
-                        border: selectedCategories.includes(category.id) ? 'none' : '2px solid #e2e2e2',
+                        backgroundColor: selectedCategories.includes(category.id) ? 'var(--success-light)' : 'var(--card-background)',
+                        border: selectedCategories.includes(category.id) ? 'none' : '2px solid var(--border-color)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -310,14 +310,14 @@ export default function ReportBugPage() {
                       <div style={{
                         fontSize: '14px',
                         fontWeight: 600,
-                        color: '#4c4c4c',
+                        color: 'var(--text-primary)',
                         marginBottom: '2px'
                       }}>
                         {category.title}
                       </div>
                       <div style={{
                         fontSize: '12px',
-                        color: '#a5a5a5'
+                        color: 'var(--text-secondary)'
                       }}>
                         {category.description}
                       </div>
@@ -338,28 +338,28 @@ export default function ReportBugPage() {
               <h3 style={{
                 fontSize: '16px',
                 fontWeight: 700,
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 marginBottom: '12px'
               }}>
                 Device Information
               </h3>
               
               <div style={{ 
-                backgroundColor: '#fafafa', 
+                backgroundColor: 'var(--input-background)', 
                 borderRadius: '8px', 
                 padding: '12px',
                 marginBottom: '12px'
               }}>
-                <div style={{ fontSize: '14px', color: '#4c4c4c', marginBottom: '4px' }}>
+                <div style={{ fontSize: '14px', color: 'var(--text-primary)', marginBottom: '4px' }}>
                   <strong>Device:</strong> {deviceInfo.device}
                 </div>
-                <div style={{ fontSize: '14px', color: '#4c4c4c', marginBottom: '4px' }}>
+                <div style={{ fontSize: '14px', color: 'var(--text-primary)', marginBottom: '4px' }}>
                   <strong>OS:</strong> {deviceInfo.os}
                 </div>
-                <div style={{ fontSize: '14px', color: '#4c4c4c', marginBottom: '4px' }}>
+                <div style={{ fontSize: '14px', color: 'var(--text-primary)', marginBottom: '4px' }}>
                   <strong>App Version:</strong> {deviceInfo.appVersion}
                 </div>
-                <div style={{ fontSize: '14px', color: '#4c4c4c' }}>
+                <div style={{ fontSize: '14px', color: 'var(--text-primary)' }}>
                   <strong>Browser:</strong> {deviceInfo.browser}
                 </div>
               </div>
@@ -374,8 +374,8 @@ export default function ReportBugPage() {
                     width: '20px',
                     height: '20px',
                     borderRadius: '50%',
-                    backgroundColor: includeDeviceInfo ? '#a8e2bb' : '#ffffff',
-                    border: includeDeviceInfo ? 'none' : '2px solid #e2e2e2',
+                    backgroundColor: includeDeviceInfo ? 'var(--success-light)' : 'var(--card-background)',
+                    border: includeDeviceInfo ? 'none' : '2px solid var(--border-color)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -387,7 +387,7 @@ export default function ReportBugPage() {
                     <span style={{ color: 'white', fontSize: '12px', fontWeight: 'bold' }}>✓</span>
                   )}
                 </div>
-                <span style={{ fontSize: '14px', color: '#4c4c4c' }}>
+                <span style={{ fontSize: '14px', color: 'var(--text-primary)' }}>
                   Include this device info
                 </span>
                 <input
@@ -405,7 +405,7 @@ export default function ReportBugPage() {
                 display: 'block',
                 fontSize: '16px',
                 fontWeight: 700,
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 marginBottom: '8px'
               }}>
                 Tell us what happened
@@ -421,7 +421,9 @@ export default function ReportBugPage() {
                   width: '100%',
                   padding: '12px',
                   borderRadius: '8px',
-                  border: '2px solid #e2e2e2',
+                  border: '2px solid var(--input-border)',
+                  backgroundColor: 'var(--input-background)',
+                  color: 'var(--text-primary)',
                   fontSize: '14px',
                   resize: 'vertical',
                   fontFamily: 'inherit'
@@ -429,7 +431,7 @@ export default function ReportBugPage() {
               />
               <div style={{
                 fontSize: '12px',
-                color: '#a5a5a5',
+                color: 'var(--text-secondary)',
                 textAlign: 'right',
                 marginTop: '4px'
               }}>
@@ -442,7 +444,7 @@ export default function ReportBugPage() {
               <h3 style={{
                 fontSize: '16px',
                 fontWeight: 700,
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 marginBottom: '12px'
               }}>
                 How urgent is this issue?
@@ -463,8 +465,8 @@ export default function ReportBugPage() {
                       width: '20px',
                       height: '20px',
                       borderRadius: '50%',
-                      backgroundColor: severity === option.id ? '#a8e2bb' : '#ffffff',
-                      border: severity === option.id ? 'none' : '2px solid #e2e2e2',
+                      backgroundColor: severity === option.id ? 'var(--success-light)' : 'var(--card-background)',
+                      border: severity === option.id ? 'none' : '2px solid var(--border-color)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -476,7 +478,7 @@ export default function ReportBugPage() {
                       <span style={{ color: 'white', fontSize: '12px', fontWeight: 'bold' }}>✓</span>
                     )}
                   </div>
-                  <span style={{ fontSize: '14px', color: '#4c4c4c' }}>
+                  <span style={{ fontSize: '14px', color: 'var(--text-primary)' }}>
                     {option.label}
                   </span>
                   <input
@@ -493,7 +495,7 @@ export default function ReportBugPage() {
 
             {/* Helpful Info Box */}
             <div style={{
-              backgroundColor: '#cae9ef',
+              backgroundColor: 'var(--info-light)',
               borderRadius: '16px',
               padding: '16px',
               marginBottom: '24px'
@@ -501,14 +503,14 @@ export default function ReportBugPage() {
               <h3 style={{
                 fontSize: '14px',
                 fontWeight: 700,
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 marginBottom: '8px'
               }}>
                 💡 Helpful tip:
               </h3>
               <p style={{
                 fontSize: '14px',
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 margin: 0,
                 lineHeight: '1.4'
               }}>
@@ -521,7 +523,7 @@ export default function ReportBugPage() {
               <h3 style={{
                 fontSize: '16px',
                 fontWeight: 700,
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 marginBottom: '12px'
               }}>
                 Follow up (optional)
@@ -566,7 +568,7 @@ export default function ReportBugPage() {
                     <span style={{ color: 'white', fontSize: '12px', fontWeight: 'bold' }}>✓</span>
                   )}
                 </div>
-                <span style={{ fontSize: '14px', color: '#4c4c4c' }}>
+                <span style={{ fontSize: '14px', color: 'var(--text-primary)' }}>
                   Email me when this bug is fixed
                 </span>
                 <input
@@ -598,7 +600,7 @@ export default function ReportBugPage() {
                 onClick={handleBack}
                 style={{
                   backgroundColor: '#e2e2e2',
-                  color: '#4c4c4c',
+                  color: 'var(--text-primary)',
                   fontSize: '16px',
                   fontWeight: 600,
                   padding: '12px 24px',

@@ -136,7 +136,7 @@ export default function FeatureRequestPage() {
         <div style={{
           backgroundColor: '#FFFFFF',
           borderRadius: '16px',
-          border: '2px solid #e2e2e2',
+          border: '2px solid var(--border-color)',
           padding: '40px',
           textAlign: 'center'
         }}>
@@ -169,7 +169,7 @@ export default function FeatureRequestPage() {
             <button
               onClick={handleSuggestAnother}
               style={{
-                backgroundColor: '#2847ef',
+                backgroundColor: 'var(--primary-blue)',
                 color: '#FFFFFF',
                 fontSize: '16px',
                 fontWeight: 600,
@@ -184,7 +184,7 @@ export default function FeatureRequestPage() {
             <button
               onClick={handleBack}
               style={{
-                backgroundColor: '#e2e2e2',
+                backgroundColor: 'var(--button-secondary-bg)',
                 color: '#4c4c4c',
                 fontSize: '16px',
                 fontWeight: 600,
@@ -210,10 +210,10 @@ export default function FeatureRequestPage() {
           onClick={handleBack}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <h1 style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '17px', 
           fontWeight: 600 
         }}>
@@ -227,7 +227,7 @@ export default function FeatureRequestPage() {
         <div style={{
           backgroundColor: '#FFFFFF',
           borderRadius: '16px',
-          border: '2px solid #e2e2e2',
+          border: '2px solid var(--border-color)',
           padding: '20px'
         }}>
           {/* Hero Section */}
@@ -370,7 +370,7 @@ export default function FeatureRequestPage() {
                   width: '100%',
                   padding: '12px',
                   borderRadius: '8px',
-                  border: '2px solid #e2e2e2',
+                  border: '2px solid var(--border-color)',
                   fontSize: '14px',
                   resize: 'vertical',
                   fontFamily: 'inherit'
@@ -569,7 +569,7 @@ export default function FeatureRequestPage() {
                   width: '100%',
                   padding: '12px',
                   borderRadius: '8px',
-                  border: '2px solid #e2e2e2',
+                  border: '2px solid var(--border-color)',
                   fontSize: '14px',
                   marginBottom: '12px'
                 }}
@@ -630,7 +630,7 @@ export default function FeatureRequestPage() {
                 type="button"
                 onClick={handleBack}
                 style={{
-                  backgroundColor: '#e2e2e2',
+                  backgroundColor: 'var(--button-secondary-bg)',
                   color: '#4c4c4c',
                   fontSize: '16px',
                   fontWeight: 600,
@@ -646,7 +646,7 @@ export default function FeatureRequestPage() {
                 type="submit"
                 disabled={isSubmitting || selectedCategories.length === 0 || !description.trim()}
                 style={{
-                  backgroundColor: isSubmitting ? '#a5a5a5' : '#2847ef',
+                  backgroundColor: isSubmitting ? 'var(--text-secondary)' : 'var(--primary-blue)',
                   color: '#FFFFFF',
                   fontSize: '16px',
                   fontWeight: 600,
