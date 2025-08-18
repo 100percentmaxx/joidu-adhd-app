@@ -44,8 +44,7 @@ export default function AppearancePage() {
   }
 
   const handleTextSizeNavigation = () => {
-    // Navigate to text size adjustment screen
-    console.log('Navigate to text size settings')
+    router.push('/settings/appearance/text-size')
   }
 
   const toggleAccessibilityFeature = (feature: keyof AppearanceSettings, enabled: boolean) => {

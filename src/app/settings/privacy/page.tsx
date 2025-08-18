@@ -86,15 +86,15 @@ export default function PrivacySettingsPage() {
   }
 
   const handleCalendarPermission = () => {
-    console.log('Navigate to calendar permission settings')
+    router.push('/settings/privacy/calendar')
   }
 
   const handleNotificationPermission = () => {
-    console.log('Navigate to notification permission settings')
+    router.push('/settings/privacy/notifications')
   }
 
   const handlePrivacyPolicy = () => {
-    console.log('Open privacy policy document')
+    router.push('/settings/privacy/policy')
   }
 
   const handleDeleteAccount = () => {
