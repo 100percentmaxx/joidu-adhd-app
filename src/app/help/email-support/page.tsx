@@ -343,7 +343,6 @@ export default function EmailSupportPage() {
                   marginBottom: '8px',
                   cursor: 'pointer'
                 }}
-                onClick={() => setIncludeData(!includeData)}
               >
                 <div
                   style={{
@@ -357,7 +356,7 @@ export default function EmailSupportPage() {
                     justifyContent: 'center',
                     marginRight: '8px',
                     transition: 'all 0.2s ease',
-                    opacity: 1
+                    cursor: 'pointer'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.opacity = '0.8'
@@ -387,7 +386,14 @@ export default function EmailSupportPage() {
                   type="checkbox"
                   checked={includeData}
                   onChange={(e) => setIncludeData(e.target.checked)}
-                  style={{ display: 'none' }}
+                  style={{ 
+                    position: 'absolute',
+                    opacity: 0,
+                    width: '100%',
+                    height: '100%',
+                    margin: 0,
+                    cursor: 'pointer'
+                  }}
                   aria-label="Include app data for troubleshooting"
                 />
               </label>

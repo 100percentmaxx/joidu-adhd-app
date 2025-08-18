@@ -82,7 +82,7 @@ export default function HelpSupportPage() {
       icon: '/icons/ideas_color.svg',
       title: 'Feature Request',
       description: 'Suggest new features',
-      action: () => console.log('Open feature request form')
+      action: () => router.push('/help/feature-request')
     }
   ]
 
