@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, ChevronRight } from 'lucide-react'
+import { useTheme } from '@/contexts/ThemeContext'
 import ThemeSelector from './components/ThemeSelector'
 import DisplayOption from './components/DisplayOption'
 import ToggleRow from './components/ToggleRow'
@@ -17,6 +18,7 @@ interface AppearanceSettings {
 
 export default function AppearancePage() {
   const router = useRouter()
+  const { theme, setTheme } = useTheme()
   
   const [settings, setSettings] = useState<AppearanceSettings>({
     theme: 'light',
@@ -39,8 +41,7 @@ export default function AppearancePage() {
 
   const handleThemeChange = (selectedTheme: 'light' | 'dark' | 'auto') => {
     updateSetting('theme', selectedTheme)
-    // In a real app, this would apply theme changes immediately
-    console.log(`Theme changed to: ${selectedTheme}`)
+    setTheme(selectedTheme) // Apply theme immediately using context
   }
 
   const handleTextSizeNavigation = () => {
@@ -65,17 +66,17 @@ export default function AppearancePage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fefbf7' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <button 
           onClick={handleBack}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <h1 style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '17px', 
           fontWeight: 600 
         }}>
@@ -89,7 +90,7 @@ export default function AppearancePage() {
         {/* Theme Section */}
         <div style={{ marginBottom: '32px' }}>
           <h2 style={{
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             fontSize: '20px',
             fontWeight: 600,
             marginBottom: '24px'
@@ -98,7 +99,7 @@ export default function AppearancePage() {
           </h2>
 
           <ThemeSelector
-            selectedTheme={settings.theme}
+            selectedTheme={theme}
             onThemeChange={handleThemeChange}
           />
         </div>
@@ -106,7 +107,7 @@ export default function AppearancePage() {
         {/* Display Options Section */}
         <div style={{ marginBottom: '60px' }}>
           <h2 style={{
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             fontSize: '20px',
             fontWeight: 600,
             marginBottom: '24px'
@@ -156,7 +157,7 @@ export default function AppearancePage() {
           marginBottom: '20px' 
         }}>
           <p style={{
-            color: '#a5a5a5',
+            color: 'var(--text-secondary)',
             fontSize: '12px',
             fontWeight: 400,
             margin: 0

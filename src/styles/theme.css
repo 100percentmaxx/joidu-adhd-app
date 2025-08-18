@@ -1,0 +1,165 @@
+/* Joidu Dark Mode Color System */
+/* CSS Custom Properties for Light and Dark Themes */
+
+:root {
+  /* Core Background Colors */
+  --background: #fefbf7;
+  --card-background: #FFFFFF;
+  --border-color: #e2e2e2;
+
+  /* Text Colors */
+  --text-primary: #4c4c4c;
+  --text-secondary: #a5a5a5;
+  --text-tertiary: #a5a5a5;
+
+  /* Brand Colors */
+  --primary-blue: #2847ef;
+  --primary-orange: #fa772c;
+
+  /* Category Colors */
+  --category-work-light: #f9dac5;
+  --category-work-dark: #f9c075;
+  --category-health-light: #ddede3;
+  --category-health-dark: #a8e2bb;
+  --category-personal-light: #cae9ef;
+  --category-personal-dark: #98e1ea;
+  --category-social-light: #e6e1f4;
+  --category-social-dark: #c8bfef;
+  --category-creative-light: #f2d3d1;
+  --category-creative-dark: #f4b7ae;
+  --category-finance-light: #fef7d6;
+  --category-finance-dark: #f7e98e;
+
+  /* Guide Background Colors */
+  --guide-getting-started: #e6e1f4;
+  --guide-kai-ai: #cae9ef;
+  --guide-adhd-tips: #f9dac5;
+  --guide-privacy: #ddede3;
+
+  /* Interactive Elements */
+  --button-primary-bg: #2847ef;
+  --button-secondary-bg: #e2e2e2;
+  --button-secondary-text: #4c4c4c;
+  --input-background: #FFFFFF;
+  --input-border: #e2e2e2;
+  --input-focus-border: #2847ef;
+  --checkbox-unchecked: #e2e2e2;
+  --checkbox-checked: #a8e2bb;
+
+  /* Status and Feedback Colors */
+  --success-light: #ddede3;
+  --success-text: #2d5a3d;
+  --warning-light: #fef7d6;
+  --warning-text: #5a5a14;
+  --error-light: #f2d3d1;
+  --error-text: #5a2d2d;
+  --info-light: #cae9ef;
+  --info-text: #2d4a5a;
+}
+
+/* Dark Mode Colors */
+[data-theme="dark"] {
+  /* Core Background Colors */
+  --background: #1a1a1a;
+  --card-background: #2a2a2a;
+  --border-color: #404040;
+
+  /* Text Colors */
+  --text-primary: #e8e8e8;
+  --text-secondary: #a8a8a8;
+  --text-tertiary: #888888;
+
+  /* Brand Colors */
+  --primary-blue: #4a67ff;
+  --primary-orange: #ff8c4a;
+
+  /* Category Colors */
+  --category-work-light: #4a3b1a;
+  --category-work-dark: #8b6914;
+  --category-health-light: #1a3d2a;
+  --category-health-dark: #2d5a3d;
+  --category-personal-light: #1a3d4a;
+  --category-personal-dark: #2d4a5a;
+  --category-social-light: #2a1a3d;
+  --category-social-dark: #4a2d5a;
+  --category-creative-light: #3d1a1a;
+  --category-creative-dark: #5a2d2d;
+  --category-finance-light: #3d3d1a;
+  --category-finance-dark: #5a5a14;
+
+  /* Guide Background Colors */
+  --guide-getting-started: #2a1a3d;
+  --guide-kai-ai: #1a3d4a;
+  --guide-adhd-tips: #4a3b1a;
+  --guide-privacy: #1a3d2a;
+
+  /* Interactive Elements */
+  --button-primary-bg: #4a67ff;
+  --button-secondary-bg: #404040;
+  --button-secondary-text: #e8e8e8;
+  --input-background: #2a2a2a;
+  --input-border: #404040;
+  --input-focus-border: #4a67ff;
+  --checkbox-unchecked: #404040;
+  --checkbox-checked: #2d5a3d;
+
+  /* Status and Feedback Colors */
+  --success-light: #1a3d2a;
+  --success-text: #a8e2bb;
+  --warning-light: #3d3d1a;
+  --warning-text: #f7e98e;
+  --error-light: #3d1a1a;
+  --error-text: #f4b7ae;
+  --info-light: #1a3d4a;
+  --info-text: #98e1ea;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Base body styles using CSS variables */
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+/* Common component styles using CSS variables */
+.card {
+  background-color: var(--card-background);
+  border: 2px solid var(--border-color);
+}
+
+.button-primary {
+  background-color: var(--button-primary-bg);
+  color: #FFFFFF;
+}
+
+.button-secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+/* Form elements */
+input, textarea, select {
+  background-color: var(--input-background);
+  border: 2px solid var(--input-border);
+  color: var(--text-primary);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--input-focus-border);
+}

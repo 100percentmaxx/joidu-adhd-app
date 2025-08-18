@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import '../styles/theme.css'
 import BottomTabBar from '@/components/layout/BottomTabBar'
+import { ThemeProvider } from '@/contexts/ThemeContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,11 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`} style={{ backgroundColor: '#fefbf7', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <main style={{ flex: 1, paddingBottom: '80px' }}>
-          {children}
-        </main>
-        <BottomTabBar />
+      <body className={`${inter.className}`} style={{ backgroundColor: 'var(--background)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <ThemeProvider>
+          <main style={{ flex: 1, paddingBottom: '80px' }}>
+            {children}
+          </main>
+          <BottomTabBar />
+        </ThemeProvider>
       </body>
     </html>
   )
