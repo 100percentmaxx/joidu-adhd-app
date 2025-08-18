@@ -29,7 +29,8 @@ export default function NotificationPermissionsPage() {
 
   const checkNotificationPermission = () => {
     if ('Notification' in window) {
-      setSystemPermission(Notification.permission as 'granted' | 'denied' | 'default')
+      const permission = Notification.permission
+      setSystemPermission(permission === 'default' ? 'not-requested' : permission as 'granted' | 'denied')
     }
   }
 
