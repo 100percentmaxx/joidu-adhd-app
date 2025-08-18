@@ -76,7 +76,7 @@ export default function HelpSupportPage() {
       icon: '/icons/bug.svg',
       title: 'Report Bug',
       description: 'Help us fix issues quickly',
-      action: () => console.log('Open bug report form')
+      action: () => router.push('/help/report-bug')
     },
     {
       icon: '/icons/ideas_color.svg',
