@@ -336,29 +336,45 @@ export default function EmailSupportPage() {
               </select>
 
               {/* Include Data Checkbox */}
-              <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                marginBottom: '8px',
-                cursor: 'pointer'
-              }}>
+              <label 
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginBottom: '8px',
+                  cursor: 'pointer'
+                }}
+                onClick={() => setIncludeData(!includeData)}
+              >
                 <div
                   style={{
-                    width: '24px',
-                    height: '24px',
+                    width: '20px',
+                    height: '20px',
                     borderRadius: '50%',
-                    backgroundColor: includeData ? '#a8e2bb' : '#ffffff',
-                    border: includeData ? 'none' : '2px solid #e2e2e2',
+                    backgroundColor: includeData ? '#ddede3' : '#ffffff',
+                    border: includeData ? '2px solid #a8e2bb' : '2px solid #a5a5a5',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    marginRight: '12px',
-                    transition: 'all 0.2s ease'
+                    marginRight: '8px',
+                    transition: 'all 0.2s ease',
+                    opacity: 1
                   }}
-                  onClick={() => setIncludeData(!includeData)}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.opacity = '0.8'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.opacity = '1'
+                  }}
                 >
                   {includeData && (
-                    <span style={{ color: 'white', fontSize: '16px', fontWeight: 'bold' }}>✓</span>
+                    <span style={{ 
+                      color: 'white', 
+                      fontSize: '12px', 
+                      fontWeight: 'bold',
+                      lineHeight: '1'
+                    }}>
+                      ✓
+                    </span>
                   )}
                 </div>
                 <span style={{
@@ -372,6 +388,7 @@ export default function EmailSupportPage() {
                   checked={includeData}
                   onChange={(e) => setIncludeData(e.target.checked)}
                   style={{ display: 'none' }}
+                  aria-label="Include app data for troubleshooting"
                 />
               </label>
               <p style={{
@@ -379,9 +396,12 @@ export default function EmailSupportPage() {
                 color: '#a5a5a5',
                 margin: 0,
                 marginBottom: '16px',
-                marginLeft: '36px'
+                marginLeft: '28px'
               }}>
-                We'll only include anonymous usage data - no personal content
+                {includeData 
+                  ? "We'll only include anonymous usage data - no personal content"
+                  : "Only your message and selected category will be sent"
+                }
               </p>
             </div>
 

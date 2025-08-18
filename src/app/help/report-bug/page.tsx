@@ -159,7 +159,7 @@ export default function ReportBugPage() {
             <button
               onClick={handleReportAnother}
               style={{
-                backgroundColor: '#e74c3c',
+                backgroundColor: '#fa772c',
                 color: '#FFFFFF',
                 fontSize: '16px',
                 fontWeight: 600,
@@ -259,10 +259,19 @@ export default function ReportBugPage() {
                 fontSize: '18px',
                 fontWeight: 700,
                 color: '#4c4c4c',
-                marginBottom: '24px'
+                marginBottom: '8px'
               }}>
                 What type of issue are you experiencing?
               </h2>
+              <p style={{
+                fontSize: '14px',
+                color: '#a5a5a5',
+                margin: 0,
+                marginBottom: '16px',
+                textAlign: 'left'
+              }}>
+                (Check all that apply)
+              </p>
 
               <div style={{ display: 'grid', gap: '8px' }}>
                 {bugCategories.map((category) => (
@@ -604,7 +613,7 @@ export default function ReportBugPage() {
                 type="submit"
                 disabled={isSubmitting || selectedCategories.length === 0 || !description.trim()}
                 style={{
-                  backgroundColor: isSubmitting ? '#a5a5a5' : '#e74c3c',
+                  backgroundColor: isSubmitting ? '#a5a5a5' : '#fa772c',
                   color: '#FFFFFF',
                   fontSize: '16px',
                   fontWeight: 600,
