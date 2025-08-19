@@ -283,19 +283,19 @@ export default function FocusActivePage() {
         {/* Control Buttons */}
         <div 
           className="flex justify-center"
-          style={{ gap: '64px' }}
+          style={{ gap: 'clamp(40px, 10vw, 64px)', padding: '0 10px' }}
         >
           {/* Cancel Button */}
           <button
             onClick={handleCancel}
             className="transition-all duration-150 active:scale-95"
             style={{
-              width: '80px',
-              height: '80px',
+              width: 'clamp(60px, 15vw, 80px)',
+              height: 'clamp(60px, 15vw, 80px)',
               borderRadius: '50%',
               backgroundColor: 'var(--error-light)',
               color: 'white',
-              fontSize: '18px',
+              fontSize: 'clamp(14px, 4vw, 18px)',
               fontWeight: 500,
               border: 'none',
               cursor: 'pointer'
@@ -309,12 +309,12 @@ export default function FocusActivePage() {
             onClick={handlePause}
             className="transition-all duration-150 active:scale-95"
             style={{
-              width: '80px',
-              height: '80px',
+              width: 'clamp(60px, 15vw, 80px)',
+              height: 'clamp(60px, 15vw, 80px)',
               borderRadius: '50%',
               backgroundColor: 'var(--success-light)',
               color: 'white',
-              fontSize: '18px',
+              fontSize: 'clamp(14px, 4vw, 18px)',
               fontWeight: 500,
               border: 'none',
               cursor: 'pointer'
