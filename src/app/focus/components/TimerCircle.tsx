@@ -20,29 +20,30 @@ export default function TimerCircle({ minutes, onIncrement, onDecrement }: Timer
   }
 
   return (
-    <div className="flex flex-col items-center" style={{ marginBottom: '32px' }}>
-      {/* Large circular timer display - increased by 50% */}
+    <div className="flex flex-col items-center" style={{ marginBottom: '32px', padding: '0 10px' }}>
+      {/* Large circular timer display - responsive sizing */}
       <div 
         className="flex items-center justify-center relative"
         style={{
-          width: '480px', // 320 * 1.5
-          height: '480px', // 320 * 1.5
+          width: 'min(354px, calc(100vw - 60px))',
+          height: 'min(354px, calc(100vw - 60px))',
           borderRadius: '50%',
-          backgroundColor: 'var(--background)' // Background color
+          backgroundColor: 'var(--background)', // Background color
+          aspectRatio: '1/1'
         }}
       >
         {/* Light orange ring */}
         <svg 
           className="absolute inset-0 w-full h-full -rotate-90"
-          viewBox="0 0 480 480"
+          viewBox="0 0 354 354"
         >
           <circle
-            cx="240" // 160 * 1.5
-            cy="240" // 160 * 1.5
-            r="225" // 150 * 1.5
+            cx="177"
+            cy="177"
+            r="167"
             fill="none"
             stroke="var(--timer-ring-background)" // Timer ring background
-            strokeWidth="18" // 12 * 1.5
+            strokeWidth="10"
             opacity="0.6"
           />
         </svg>
@@ -50,21 +51,22 @@ export default function TimerCircle({ minutes, onIncrement, onDecrement }: Timer
         {/* Timer text positioned at absolute center */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div style={{
-            fontSize: '108px', // 72 * 1.5
+            fontSize: 'clamp(48px, 12vw, 80px)', // Responsive font size
             fontWeight: 'bold',
             color: 'var(--text-primary)',
-            lineHeight: '1'
+            lineHeight: '1',
+            textAlign: 'center'
           }}>
             {formatTime(minutes)}
           </div>
         </div>
         
         {/* MINUTES label and +/- buttons positioned below center */}
-        <div className="absolute inset-0 flex items-center justify-center" style={{ paddingTop: '198px' }}> {/* 132 * 1.5 */}
-          <div className="flex items-center justify-center" style={{ gap: '24px' }}> {/* 16 * 1.5 */}
+        <div className="absolute inset-0 flex items-center justify-center" style={{ paddingTop: 'clamp(120px, 30vw, 150px)' }}>
+          <div className="flex items-center justify-center" style={{ gap: 'clamp(16px, 4vw, 24px)' }}>
             {/* MINUTES label */}
             <div style={{
-              fontSize: '21px', // 14 * 1.5
+              fontSize: 'clamp(12px, 3.5vw, 16px)', // Responsive font size
               color: 'var(--text-secondary)',
               fontWeight: 'normal',
               letterSpacing: '0.05em'
@@ -73,19 +75,19 @@ export default function TimerCircle({ minutes, onIncrement, onDecrement }: Timer
             </div>
 
             {/* Plus/minus buttons stacked vertically */}
-            <div className="flex flex-col" style={{ gap: '9px' }}> {/* 6 * 1.5 */}
+            <div className="flex flex-col" style={{ gap: 'clamp(6px, 1.5vw, 9px)' }}>
               {/* Plus button */}
               <button
                 onClick={onIncrement}
                 className="flex items-center justify-center transition-all duration-200 hover:opacity-80"
                 style={{
-                  width: '42px', // 28 * 1.5
-                  height: '42px', // 28 * 1.5
+                  width: 'clamp(32px, 8vw, 42px)', // Responsive button size
+                  height: 'clamp(32px, 8vw, 42px)',
                   borderRadius: '50%',
                   backgroundColor: 'var(--input-background)', // Button fill
                   border: '1px solid var(--border-color)',
                   color: 'var(--text-secondary)', // Same color as MINUTES
-                  fontSize: '24px', // 16 * 1.5
+                  fontSize: 'clamp(16px, 4vw, 24px)', // Responsive font size
                   fontWeight: 'bold'
                 }}
                 aria-label="Increase timer by 1 minute"
@@ -98,13 +100,13 @@ export default function TimerCircle({ minutes, onIncrement, onDecrement }: Timer
                 onClick={onDecrement}
                 className="flex items-center justify-center transition-all duration-200 hover:opacity-80"
                 style={{
-                  width: '42px', // 28 * 1.5
-                  height: '42px', // 28 * 1.5
+                  width: 'clamp(32px, 8vw, 42px)', // Responsive button size
+                  height: 'clamp(32px, 8vw, 42px)',
                   borderRadius: '50%',
                   backgroundColor: 'var(--input-background)', // Button fill
                   border: '1px solid var(--border-color)',
                   color: 'var(--text-secondary)', // Same color as MINUTES
-                  fontSize: '24px', // 16 * 1.5
+                  fontSize: 'clamp(16px, 4vw, 24px)', // Responsive font size
                   fontWeight: 'bold'
                 }}
                 aria-label="Decrease timer by 1 minute"
