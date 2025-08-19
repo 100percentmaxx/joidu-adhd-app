@@ -30,7 +30,14 @@ export default function NotificationPermissionsPage() {
   const checkNotificationPermission = () => {
     if ('Notification' in window) {
       const permission = Notification.permission
-      setSystemPermission(permission === 'default' ? 'not-requested' : permission as 'granted' | 'denied')
+      if (permission === 'granted') {
+        setSystemPermission('granted')
+      } else if (permission === 'denied') {
+        setSystemPermission('denied')
+      } else {
+        // 'default' or any other value maps to 'not-requested'
+        setSystemPermission('not-requested')
+      }
     }
   }
 
@@ -52,8 +59,16 @@ export default function NotificationPermissionsPage() {
   const requestSystemPermission = async () => {
     if ('Notification' in window && Notification.permission === 'default') {
       const permission = await Notification.requestPermission()
-      setSystemPermission(permission as 'granted' | 'denied')
-      return permission === 'granted'
+      if (permission === 'granted') {
+        setSystemPermission('granted')
+        return true
+      } else if (permission === 'denied') {
+        setSystemPermission('denied')
+        return false
+      } else {
+        setSystemPermission('not-requested')
+        return false
+      }
     }
     return Notification.permission === 'granted'
   }
