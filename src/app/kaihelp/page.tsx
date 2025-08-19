@@ -678,15 +678,15 @@ export default function KaiHelpPage() {
                             className="flex items-center justify-center px-2 py-2"
                             style={{
                               backgroundColor: 
-                                msg.selectedCategory === 'tasks' ? '#98e1ea' :
-                                msg.selectedCategory === 'focus' ? '#c8bfef' :
-                                msg.selectedCategory === 'habits' ? '#f9c075' :
-                                msg.selectedCategory === 'planning' ? '#a8e2bb' :
-                                msg.selectedCategory === 'ideas' ? '#f4b7ae' :
-                                msg.selectedCategory === 'analytics' ? '#f7e98e' :
-                                msg.selectedCategory === 'kaihelp' ? '#2847ef' :
-                                msg.selectedCategory === 'custom' ? '#ddede3' :
-                                '#2847ef',
+                                msg.selectedCategory === 'tasks' ? 'var(--kaihelp-category-tasks)' :
+                                msg.selectedCategory === 'focus' ? 'var(--kaihelp-category-focus)' :
+                                msg.selectedCategory === 'habits' ? 'var(--kaihelp-category-habits)' :
+                                msg.selectedCategory === 'planning' ? 'var(--kaihelp-category-planning)' :
+                                msg.selectedCategory === 'ideas' ? 'var(--kaihelp-category-ideas)' :
+                                msg.selectedCategory === 'analytics' ? 'var(--kaihelp-category-analytics)' :
+                                msg.selectedCategory === 'kaihelp' ? 'var(--kaihelp-category-kaihelp)' :
+                                msg.selectedCategory === 'custom' ? 'var(--kaihelp-category-custom)' :
+                                'var(--kaihelp-category-kaihelp)',
                               borderRadius: '12px',
                               width: '105px', // Increased width by 20px (was 85px)
                               height: '36px' // Fixed height to match popup pills
@@ -812,7 +812,7 @@ export default function KaiHelpPage() {
                 onClick={() => handleThoughtCategorySelect('kaihelp')}
                 className="flex items-center justify-center px-2 py-2 transition-all duration-200 w-full"
                 style={{ 
-                  backgroundColor: '#2847ef', 
+                  backgroundColor: 'var(--kaihelp-category-kaihelp)', 
                   borderRadius: '12px',
                   border: selectedThoughtCategory === 'kaihelp' ? '2px solid #cae9ef' : '2px solid transparent'
                 }}
@@ -826,7 +826,7 @@ export default function KaiHelpPage() {
                 onClick={() => handleThoughtCategorySelect('tasks')}
                 className="flex items-center justify-center px-2 py-2 transition-all duration-200 w-full"
                 style={{ 
-                  backgroundColor: '#98e1ea', 
+                  backgroundColor: 'var(--kaihelp-category-tasks)', 
                   borderRadius: '12px',
                   border: selectedThoughtCategory === 'tasks' ? '2px solid #2847ef' : '2px solid transparent'
                 }}
@@ -840,7 +840,7 @@ export default function KaiHelpPage() {
                 onClick={() => handleThoughtCategorySelect('focus')}
                 className="flex items-center justify-center px-2 py-2 transition-all duration-200 w-full"
                 style={{ 
-                  backgroundColor: '#c8bfef', 
+                  backgroundColor: 'var(--kaihelp-category-focus)', 
                   borderRadius: '12px',
                   border: selectedThoughtCategory === 'focus' ? '2px solid #2847ef' : '2px solid transparent'
                 }}
@@ -854,7 +854,7 @@ export default function KaiHelpPage() {
                 onClick={() => handleThoughtCategorySelect('habits')}
                 className="flex items-center justify-center px-2 py-2 transition-all duration-200 w-full"
                 style={{ 
-                  backgroundColor: '#f9c075', 
+                  backgroundColor: 'var(--kaihelp-category-habits)', 
                   borderRadius: '12px',
                   border: selectedThoughtCategory === 'habits' ? '2px solid #2847ef' : '2px solid transparent'
                 }}
@@ -868,7 +868,7 @@ export default function KaiHelpPage() {
                 onClick={() => handleThoughtCategorySelect('planning')}
                 className="flex items-center justify-center px-2 py-2 transition-all duration-200 w-full"
                 style={{ 
-                  backgroundColor: '#a8e2bb', 
+                  backgroundColor: 'var(--kaihelp-category-planning)', 
                   borderRadius: '12px',
                   border: selectedThoughtCategory === 'planning' ? '2px solid #2847ef' : '2px solid transparent'
                 }}
@@ -882,7 +882,7 @@ export default function KaiHelpPage() {
                 onClick={() => handleThoughtCategorySelect('ideas')}
                 className="flex items-center justify-center px-2 py-2 transition-all duration-200 w-full"
                 style={{ 
-                  backgroundColor: '#f4b7ae', 
+                  backgroundColor: 'var(--kaihelp-category-ideas)', 
                   borderRadius: '12px',
                   border: selectedThoughtCategory === 'ideas' ? '2px solid #2847ef' : '2px solid transparent'
                 }}
@@ -896,7 +896,7 @@ export default function KaiHelpPage() {
                 onClick={() => handleThoughtCategorySelect('analytics')}
                 className="flex items-center justify-center px-2 py-2 transition-all duration-200 w-full"
                 style={{ 
-                  backgroundColor: '#f7e98e', 
+                  backgroundColor: 'var(--kaihelp-category-analytics)', 
                   borderRadius: '12px',
                   border: selectedThoughtCategory === 'analytics' ? '2px solid #2847ef' : '2px solid transparent'
                 }}
@@ -910,7 +910,7 @@ export default function KaiHelpPage() {
                 onClick={() => handleThoughtCategorySelect('custom')}
                 className="flex items-center justify-center px-2 py-2 transition-all duration-200 w-full"
                 style={{ 
-                  backgroundColor: '#ddede3', 
+                  backgroundColor: 'var(--kaihelp-category-custom)', 
                   borderRadius: '12px',
                   border: selectedThoughtCategory === 'custom' ? '2px solid #2847ef' : '2px solid transparent'
                 }}
@@ -937,7 +937,7 @@ export default function KaiHelpPage() {
           
           {/* Sidebar */}
           <div className="fixed top-0 left-0 h-full w-80 z-50 shadow-lg overflow-y-auto" style={{ backgroundColor: 'var(--background)' }}>
-            <div className="p-5">
+            <div className="p-5" style={{ paddingBottom: '100px' }}>
               {/* Sidebar Close Button */}
               <div className="mb-3">
                 <button 
@@ -980,7 +980,7 @@ export default function KaiHelpPage() {
                   }}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#98e1ea',
+                    backgroundColor: 'var(--kaihelp-category-tasks)',
                     border: selectedCategory === 'tasks' ? '2px solid #2847ef' : '2px solid transparent'
                   }}
                 >
@@ -1001,7 +1001,7 @@ export default function KaiHelpPage() {
                   }}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#c8bfef',
+                    backgroundColor: 'var(--kaihelp-category-focus)',
                     border: selectedCategory === 'focus' ? '2px solid #2847ef' : '2px solid transparent'
                   }}
                 >
@@ -1023,7 +1023,7 @@ export default function KaiHelpPage() {
                   }}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#f9c075',
+                    backgroundColor: 'var(--kaihelp-category-habits)',
                     border: selectedCategory === 'habits' ? '2px solid #2847ef' : '2px solid transparent',
                     transition: 'none' // Disable any transitions that might cause flashing
                   }}
@@ -1045,7 +1045,7 @@ export default function KaiHelpPage() {
                   }}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#a8e2bb',
+                    backgroundColor: 'var(--kaihelp-category-planning)',
                     border: selectedCategory === 'planning' ? '2px solid #2847ef' : '2px solid transparent'
                   }}
                 >
@@ -1066,7 +1066,7 @@ export default function KaiHelpPage() {
                   }}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#f4b7ae',
+                    backgroundColor: 'var(--kaihelp-category-ideas)',
                     border: selectedCategory === 'ideas' ? '2px solid #2847ef' : '2px solid transparent'
                   }}
                 >
@@ -1087,7 +1087,7 @@ export default function KaiHelpPage() {
                   }}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#f7e98e',
+                    backgroundColor: 'var(--kaihelp-category-analytics)',
                     border: selectedCategory === 'analytics' ? '2px solid #2847ef' : '2px solid transparent'
                   }}
                 >
@@ -1108,7 +1108,7 @@ export default function KaiHelpPage() {
                   }}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#2847ef',
+                    backgroundColor: 'var(--kaihelp-category-kaihelp)',
                     border: selectedCategory === 'thought' ? '2px solid #2847ef' : '2px solid transparent'
                   }}
                 >

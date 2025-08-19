@@ -63,6 +63,16 @@
   --error-text: #5a2d2d;
   --info-light: #cae9ef;
   --info-text: #2d4a5a;
+
+  /* KaiHelp Category Colors (Light Mode) */
+  --kaihelp-category-kaihelp: #4a67ff;
+  --kaihelp-category-tasks: #98e1ea;
+  --kaihelp-category-focus: #c8bfef;
+  --kaihelp-category-habits: #f9c075;
+  --kaihelp-category-planning: #a8e2bb;
+  --kaihelp-category-ideas: #f4b7ae;
+  --kaihelp-category-analytics: #f7e98e;
+  --kaihelp-category-custom: #e0e7ff;
 }
 
 /* Dark Mode Colors */
@@ -124,6 +134,16 @@
   --error-text: #f4b7ae;
   --info-light: #1a3d4a;
   --info-text: #98e1ea;
+
+  /* KaiHelp Category Colors (Dark Mode) */
+  --kaihelp-category-kaihelp: #4a67ff;
+  --kaihelp-category-tasks: #2d4a5a;
+  --kaihelp-category-focus: #4a2d5a;
+  --kaihelp-category-habits: #8b6914;
+  --kaihelp-category-planning: #2d5a3d;
+  --kaihelp-category-ideas: #5a2d2d;
+  --kaihelp-category-analytics: #5a5a14;
+  --kaihelp-category-custom: #4a67ff;
 }
 
 /* Smooth transitions for theme switching */

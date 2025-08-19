@@ -275,17 +275,17 @@ export default function SortedKaiHelpPage() {
 
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fefbf7' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <button 
           onClick={() => router.push('/kaihelp')}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <h1 style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '17px', 
           fontWeight: 600 
         }}>
@@ -295,7 +295,7 @@ export default function SortedKaiHelpPage() {
           onClick={() => setViewMode('thought-capture')}
           className="flex items-center justify-center w-10 h-10"
         >
-          <Plus className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <Plus className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
       </div>
 
@@ -318,7 +318,7 @@ export default function SortedKaiHelpPage() {
         {/* Header with Clear button */}
         <div className="flex items-center justify-between mb-4">
           <h2 style={{ 
-            color: '#a5a5a5', 
+            color: 'var(--text-secondary)', 
             fontSize: '16px', 
             fontWeight: 500 
           }}>
@@ -334,7 +334,7 @@ export default function SortedKaiHelpPage() {
             onClick={handleClearResults}
             className="px-3 py-1 rounded-lg"
             style={{
-              backgroundColor: '#f4b7ae',
+              backgroundColor: 'var(--error-light)',
               color: 'white',
               fontSize: '14px',
               fontWeight: 500,
@@ -348,8 +348,8 @@ export default function SortedKaiHelpPage() {
 
         {/* Filter indicator */}
         {selectedCategory && (
-          <div className="mb-4 p-3 rounded-lg" style={{ backgroundColor: '#e6f3ff', border: '1px solid #2847ef' }}>
-            <span style={{ color: '#2847ef', fontSize: '14px', fontWeight: 500 }}>
+          <div className="mb-4 p-3 rounded-lg" style={{ backgroundColor: 'var(--info-light)', border: '1px solid var(--primary-blue)' }}>
+            <span style={{ color: 'var(--primary-blue)', fontSize: '14px', fontWeight: 500 }}>
               Showing {filteredConversations.length} conversations in "{selectedCategory === 'thought' ? '1 Thought' : selectedCategory}" category
             </span>
           </div>
@@ -394,7 +394,7 @@ export default function SortedKaiHelpPage() {
                     </div>
                   </div>
                   <div style={{ 
-                    color: '#a5a5a5', 
+                    color: 'var(--text-secondary)', 
                     fontSize: '14px' 
                   }}>
                     {conv.timestamp}
@@ -405,12 +405,12 @@ export default function SortedKaiHelpPage() {
                     <div 
                       className="px-2 py-1 rounded-full"
                       style={{ 
-                        backgroundColor: '#e6f3ff',
-                        border: '1px solid #2847ef'
+                        backgroundColor: 'var(--info-light)',
+                        border: '1px solid var(--primary-blue)'
                       }}
                     >
                       <span style={{ 
-                        color: '#2847ef', 
+                        color: 'var(--primary-blue)', 
                         fontSize: '10px', 
                         fontWeight: 600 
                       }}>
@@ -419,7 +419,7 @@ export default function SortedKaiHelpPage() {
                     </div>
                   )}
                   {conv.isStarred && (
-                    <Star className="w-5 h-5" style={{ color: '#f39c12', fill: '#f39c12' }} />
+                    <Star className="w-5 h-5" style={{ color: 'var(--warning-text)', fill: 'var(--warning-text)' }} />
                   )}
                 </div>
               </button>
@@ -433,7 +433,7 @@ export default function SortedKaiHelpPage() {
           {/* Categories Header */}
           <div className="mb-4">
             <h2 style={{ 
-              color: '#a5a5a5', 
+              color: 'var(--text-secondary)', 
               fontSize: '16px', 
               fontWeight: 500, 
               marginBottom: '16px' 
@@ -473,7 +473,7 @@ export default function SortedKaiHelpPage() {
                       {category.label}
                     </span>
                     <span style={{ 
-                      color: '#a5a5a5', 
+                      color: 'var(--text-secondary)', 
                       fontSize: '12px' 
                     }}>
                       {categoryConversations.length} conversation{categoryConversations.length !== 1 ? 's' : ''}
@@ -487,7 +487,7 @@ export default function SortedKaiHelpPage() {
           {/* Organization Section */}
           <div className="mb-4">
             <h3 style={{ 
-              color: '#4c4c4c', 
+              color: 'var(--text-primary)', 
               fontSize: '16px', 
               fontWeight: 600, 
               marginBottom: '12px' 
@@ -495,14 +495,14 @@ export default function SortedKaiHelpPage() {
               Organization
             </h3>
             <div className="space-y-2">
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Recent</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Recent</span>
               </button>
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Starred</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Starred</span>
               </button>
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Archive</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Archive</span>
               </button>
             </div>
           </div>
@@ -510,7 +510,7 @@ export default function SortedKaiHelpPage() {
           {/* Help & Settings */}
           <div>
             <h3 style={{ 
-              color: '#4c4c4c', 
+              color: 'var(--text-primary)', 
               fontSize: '16px', 
               fontWeight: 600, 
               marginBottom: '12px' 
@@ -518,14 +518,14 @@ export default function SortedKaiHelpPage() {
               Help & Settings
             </h3>
             <div className="space-y-2">
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Introduction</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Introduction</span>
               </button>
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Tips for KaiHelp</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Tips for KaiHelp</span>
               </button>
-              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <span style={{ color: '#4c4c4c', fontSize: '15px' }}>Data Storage</span>
+              <button className="w-full text-left p-3 rounded-lg" style={{ backgroundColor: 'var(--card-background)' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '15px' }}>Data Storage</span>
               </button>
             </div>
           </div>
@@ -673,7 +673,7 @@ export default function SortedKaiHelpPage() {
       )}
 
       {/* Chat Entry Section */}
-      <div className="fixed bottom-20 left-0 right-0 px-5 py-3" style={{ backgroundColor: '#e2e2e2' }}>
+      <div className="fixed bottom-20 left-0 right-0 px-5 py-3" style={{ backgroundColor: 'var(--button-secondary-bg)' }}>
         <div className="flex items-center space-x-3">
           {/* Upload Button */}
           <button className="p-2">
@@ -695,7 +695,7 @@ export default function SortedKaiHelpPage() {
           
           {/* Chat Input Field */}
           <div className="flex-1 flex items-center rounded-full" style={{ 
-            backgroundColor: 'white', 
+            backgroundColor: 'var(--input-background)', 
             padding: '8px 16px'
           }}>
             <input
@@ -706,7 +706,7 @@ export default function SortedKaiHelpPage() {
               className="flex-1 bg-transparent outline-none"
               style={{ 
                 fontSize: '16px', 
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 border: 'none'
               }}
             />
@@ -750,7 +750,7 @@ export default function SortedKaiHelpPage() {
               <button 
                 onClick={() => saveThoughtWithCategory('tasks')}
                 className="p-3 rounded-lg text-center transition-all duration-200"
-                style={{ backgroundColor: '#98e1ea' }}
+                style={{ backgroundColor: 'var(--kaihelp-category-tasks)' }}
               >
                 <img src="/icons/sidebar_popout_tasks.svg" alt="tasks" style={{ width: '20px', height: '20px', margin: '0 auto 4px' }} />
                 <span style={{ color: 'white', fontSize: '12px', fontWeight: 500 }}>Tasks</span>
@@ -760,7 +760,7 @@ export default function SortedKaiHelpPage() {
               <button 
                 onClick={() => saveThoughtWithCategory('focus')}
                 className="p-3 rounded-lg text-center transition-all duration-200"
-                style={{ backgroundColor: '#c8bfef' }}
+                style={{ backgroundColor: 'var(--kaihelp-category-focus)' }}
               >
                 <img src="/icons/sidebar_popout_focus.svg" alt="focus" style={{ width: '20px', height: '20px', margin: '0 auto 4px' }} />
                 <span style={{ color: 'white', fontSize: '12px', fontWeight: 500 }}>Focus</span>
@@ -770,7 +770,7 @@ export default function SortedKaiHelpPage() {
               <button 
                 onClick={() => saveThoughtWithCategory('habits')}
                 className="p-3 rounded-lg text-center transition-all duration-200"
-                style={{ backgroundColor: '#f9c075' }}
+                style={{ backgroundColor: 'var(--kaihelp-category-habits)' }}
               >
                 <img src="/icons/sidebar_popout_habits.svg" alt="habits" style={{ width: '20px', height: '20px', margin: '0 auto 4px' }} />
                 <span style={{ color: 'white', fontSize: '12px', fontWeight: 500 }}>Habits</span>
@@ -780,7 +780,7 @@ export default function SortedKaiHelpPage() {
               <button 
                 onClick={() => saveThoughtWithCategory('planning')}
                 className="p-3 rounded-lg text-center transition-all duration-200"
-                style={{ backgroundColor: '#a8e2bb' }}
+                style={{ backgroundColor: 'var(--kaihelp-category-planning)' }}
               >
                 <img src="/icons/sidebar_popout_planning.svg" alt="planning" style={{ width: '20px', height: '20px', margin: '0 auto 4px' }} />
                 <span style={{ color: 'white', fontSize: '12px', fontWeight: 500 }}>Planning</span>
@@ -790,7 +790,7 @@ export default function SortedKaiHelpPage() {
               <button 
                 onClick={() => saveThoughtWithCategory('ideas')}
                 className="p-3 rounded-lg text-center transition-all duration-200"
-                style={{ backgroundColor: '#f4b7ae' }}
+                style={{ backgroundColor: 'var(--kaihelp-category-ideas)' }}
               >
                 <img src="/icons/sidebar_popout_ideas.svg" alt="ideas" style={{ width: '20px', height: '20px', margin: '0 auto 4px' }} />
                 <span style={{ color: 'white', fontSize: '12px', fontWeight: 500 }}>Ideas</span>
@@ -800,7 +800,7 @@ export default function SortedKaiHelpPage() {
               <button 
                 onClick={() => saveThoughtWithCategory('analytics')}
                 className="p-3 rounded-lg text-center transition-all duration-200"
-                style={{ backgroundColor: '#f7e98e' }}
+                style={{ backgroundColor: 'var(--kaihelp-category-analytics)' }}
               >
                 <img src="/icons/sidebar_popout_analytics.svg" alt="analytics" style={{ width: '20px', height: '20px', margin: '0 auto 4px' }} />
                 <span style={{ color: 'white', fontSize: '12px', fontWeight: 500 }}>Analytics</span>
@@ -810,7 +810,7 @@ export default function SortedKaiHelpPage() {
               <button 
                 onClick={() => saveThoughtWithCategory('kaihelp')}
                 className="p-3 rounded-lg text-center transition-all duration-200"
-                style={{ backgroundColor: '#2847ef' }}
+                style={{ backgroundColor: 'var(--kaihelp-category-kaihelp)' }}
               >
                 <img src="/icons/kai_white.svg" alt="kaihelp" style={{ width: '20px', height: '20px', margin: '0 auto 4px' }} />
                 <span style={{ color: 'white', fontSize: '12px', fontWeight: 500 }}>KaiHelp</span>
@@ -820,7 +820,7 @@ export default function SortedKaiHelpPage() {
               <button 
                 onClick={() => saveThoughtWithCategory('user_defined')}
                 className="p-3 rounded-lg text-center transition-all duration-200 flex flex-col items-center justify-center"
-                style={{ backgroundColor: '#ddede3' }}
+                style={{ backgroundColor: 'var(--kaihelp-category-custom)' }}
               >
                 <span style={{ color: 'white', fontSize: '12px', fontWeight: 500 }}>User Defined</span>
               </button>
@@ -843,8 +843,8 @@ export default function SortedKaiHelpPage() {
           />
           
           {/* Sidebar */}
-          <div className="fixed top-0 left-0 h-full w-80 z-50 shadow-lg overflow-y-auto" style={{ backgroundColor: '#fefbf7' }}>
-            <div className="p-5">
+          <div className="fixed top-0 left-0 h-full w-80 z-50 shadow-lg overflow-y-auto" style={{ backgroundColor: 'var(--background)' }}>
+            <div className="p-5" style={{ paddingBottom: '100px' }}>
               {/* Sidebar Close Button */}
               <div className="mb-3">
                 <button 
@@ -862,7 +862,7 @@ export default function SortedKaiHelpPage() {
               {/* Sort by Category Title */}
               <div style={{ marginBottom: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h3 style={{ 
-                  color: '#a5a5a5', 
+                  color: 'var(--text-secondary)', 
                   fontSize: '16px', 
                   fontWeight: 500,
                   marginLeft: '12px',
@@ -875,7 +875,7 @@ export default function SortedKaiHelpPage() {
                     onClick={() => setSelectedCategory(null)}
                     style={{
                       backgroundColor: 'transparent',
-                      color: '#2847ef',
+                      color: 'var(--primary-blue)',
                       fontSize: '14px',
                       fontWeight: 500,
                       border: 'none',
@@ -895,8 +895,8 @@ export default function SortedKaiHelpPage() {
                   onClick={() => setSelectedCategory('tasks')}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#98e1ea',
-                    border: selectedCategory === 'tasks' ? '2px solid #2847ef' : '2px solid transparent'
+                    backgroundColor: 'var(--kaihelp-category-tasks)',
+                    border: selectedCategory === 'tasks' ? '2px solid var(--primary-blue)' : '2px solid transparent'
                   }}
                 >
                   <img src="/icons/sidebar_popout_tasks.svg" alt="tasks" style={{ width: '24px', height: '24px', marginRight: '12px' }} />
@@ -908,8 +908,8 @@ export default function SortedKaiHelpPage() {
                   onClick={() => setSelectedCategory('focus')}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#c8bfef',
-                    border: selectedCategory === 'focus' ? '2px solid #2847ef' : '2px solid transparent'
+                    backgroundColor: 'var(--kaihelp-category-focus)',
+                    border: selectedCategory === 'focus' ? '2px solid var(--primary-blue)' : '2px solid transparent'
                   }}
                 >
                   <img src="/icons/sidebar_popout_focus.svg" alt="focus" style={{ width: '24px', height: '24px', marginRight: '12px' }} />
@@ -921,8 +921,8 @@ export default function SortedKaiHelpPage() {
                   onClick={() => setSelectedCategory('habits')}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#f9c075',
-                    border: selectedCategory === 'habits' ? '2px solid #2847ef' : '2px solid transparent'
+                    backgroundColor: 'var(--kaihelp-category-habits)',
+                    border: selectedCategory === 'habits' ? '2px solid var(--primary-blue)' : '2px solid transparent'
                   }}
                 >
                   <img src="/icons/sidebar_popout_habits.svg" alt="habits" style={{ width: '24px', height: '24px', marginRight: '12px' }} />
@@ -934,8 +934,8 @@ export default function SortedKaiHelpPage() {
                   onClick={() => setSelectedCategory('planning')}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#a8e2bb',
-                    border: selectedCategory === 'planning' ? '2px solid #2847ef' : '2px solid transparent'
+                    backgroundColor: 'var(--kaihelp-category-planning)',
+                    border: selectedCategory === 'planning' ? '2px solid var(--primary-blue)' : '2px solid transparent'
                   }}
                 >
                   <img src="/icons/sidebar_popout_planning.svg" alt="planning" style={{ width: '24px', height: '24px', marginRight: '12px' }} />
@@ -947,8 +947,8 @@ export default function SortedKaiHelpPage() {
                   onClick={() => setSelectedCategory('ideas')}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#f4b7ae',
-                    border: selectedCategory === 'ideas' ? '2px solid #2847ef' : '2px solid transparent'
+                    backgroundColor: 'var(--kaihelp-category-ideas)',
+                    border: selectedCategory === 'ideas' ? '2px solid var(--primary-blue)' : '2px solid transparent'
                   }}
                 >
                   <img src="/icons/sidebar_popout_ideas.svg" alt="ideas" style={{ width: '24px', height: '24px', marginRight: '12px' }} />
@@ -960,8 +960,8 @@ export default function SortedKaiHelpPage() {
                   onClick={() => setSelectedCategory('analytics')}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#f7e98e',
-                    border: selectedCategory === 'analytics' ? '2px solid #2847ef' : '2px solid transparent'
+                    backgroundColor: 'var(--kaihelp-category-analytics)',
+                    border: selectedCategory === 'analytics' ? '2px solid var(--primary-blue)' : '2px solid transparent'
                   }}
                 >
                   <img src="/icons/sidebar_popout_analytics.svg" alt="analytics" style={{ width: '24px', height: '24px', marginRight: '12px' }} />
@@ -973,8 +973,8 @@ export default function SortedKaiHelpPage() {
                   onClick={() => setSelectedCategory('thought')}
                   className="w-full flex items-center p-4 rounded-lg" 
                   style={{ 
-                    backgroundColor: '#2847ef',
-                    border: selectedCategory === 'thought' ? '2px solid #cae9ef' : '2px solid transparent'
+                    backgroundColor: 'var(--kaihelp-category-kaihelp)',
+                    border: selectedCategory === 'thought' ? '2px solid var(--info-text)' : '2px solid transparent'
                   }}
                 >
                   <img src="/icons/sidebar_popout_1_thought.svg" alt="1 thought" style={{ width: '24px', height: '24px', marginRight: '12px' }} />
@@ -985,7 +985,7 @@ export default function SortedKaiHelpPage() {
               {/* Organization Section */}
               <div style={{ marginTop: '12px', marginLeft: '20px' }}>
                 <h4 style={{ 
-                  color: '#a5a5a5', 
+                  color: 'var(--text-secondary)', 
                   fontSize: '16px', 
                   fontWeight: 500,
                   marginBottom: '12px'
@@ -995,7 +995,7 @@ export default function SortedKaiHelpPage() {
                 
                 <div style={{ marginLeft: '8px' }}>
                   <div style={{ 
-                    color: '#a5a5a5', 
+                    color: 'var(--text-secondary)', 
                     fontSize: '14px', 
                     fontWeight: 500,
                     marginBottom: '4px'
@@ -1012,7 +1012,7 @@ export default function SortedKaiHelpPage() {
                         key={item}
                         onClick={() => setSelectedOrganization(item)}
                         style={{ 
-                          color: selectedOrganization === item ? '#2847ef' : '#a5a5a5',
+                          color: selectedOrganization === item ? 'var(--primary-blue)' : 'var(--text-secondary)',
                           cursor: 'pointer'
                         }}
                       >
@@ -1026,7 +1026,7 @@ export default function SortedKaiHelpPage() {
               {/* Help & Settings Section */}
               <div style={{ marginTop: '12px', marginLeft: '20px' }}>
                 <h4 style={{ 
-                  color: '#a5a5a5', 
+                  color: 'var(--text-secondary)', 
                   fontSize: '16px', 
                   fontWeight: 500,
                   marginBottom: '12px'
@@ -1036,7 +1036,7 @@ export default function SortedKaiHelpPage() {
                 
                 <div style={{ marginLeft: '8px' }}>
                   <div style={{ 
-                    color: '#a5a5a5', 
+                    color: 'var(--text-secondary)', 
                     fontSize: '14px', 
                     fontWeight: 500,
                     lineHeight: '1.5'
