@@ -150,10 +150,10 @@ export default function FocusCompletePage() {
 
   if (!sessionData) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#cae9ef' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--category-personal-light)' }}>
         <div className="text-center">
           <div className="animate-spin w-8 h-8 border-4 border-blue-300 border-t-blue-600 rounded-full mx-auto mb-4"></div>
-          <p style={{ color: '#4c4c4c' }}>Loading your results...</p>
+          <p style={{ color: 'var(--text-primary)' }}>Loading your results...</p>
         </div>
       </div>
     )
@@ -162,7 +162,7 @@ export default function FocusCompletePage() {
   return (
     <div 
       className="min-h-screen"
-      style={{ backgroundColor: '#cae9ef', padding: '20px', position: 'relative' }}
+      style={{ backgroundColor: 'var(--category-personal-light)', padding: '20px', position: 'relative' }}
     >
       {/* Confetti Animation */}
       {showConfetti && <ConfettiAnimation />}
@@ -179,7 +179,7 @@ export default function FocusCompletePage() {
             }}
             aria-label="Go back"
           >
-            <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+            <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
           </button>
           <div style={{ width: '20px' }} />
         </div>
@@ -200,7 +200,7 @@ export default function FocusCompletePage() {
           <h1 style={{
             fontSize: '32px',
             fontWeight: 'bold',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px',
             lineHeight: '1.2'
           }}>
@@ -209,7 +209,7 @@ export default function FocusCompletePage() {
           
           <p style={{
             fontSize: '16px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '4px'
           }}>
             You just finished
@@ -218,7 +218,7 @@ export default function FocusCompletePage() {
           <p style={{
             fontSize: '18px',
             fontWeight: '500',
-            color: '#2847ef',
+            color: 'var(--primary-blue)',
             margin: 0
           }}>
             "{sessionData.taskTitle}"
@@ -227,7 +227,7 @@ export default function FocusCompletePage() {
 
         {/* Session Stats and ADHD Win Combined Section */}
         <div style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--card-background)',
           borderRadius: '16px',
           padding: '20px',
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
@@ -243,7 +243,7 @@ export default function FocusCompletePage() {
             <h3 style={{
               fontSize: '18px',
               fontWeight: '600',
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               margin: 0
             }}>
               Session Stats
@@ -257,14 +257,14 @@ export default function FocusCompletePage() {
               <div style={{
                 fontSize: '28px',
                 fontWeight: 'bold',
-                color: '#2847ef',
+                color: 'var(--primary-blue)',
                 lineHeight: '1'
               }}>
                 {sessionData.sessionMinutes}
               </div>
               <div style={{
                 fontSize: '12px',
-                color: '#a5a5a5',
+                color: 'var(--text-secondary)',
                 fontWeight: 'normal',
                 letterSpacing: '0.05em'
               }}>
@@ -277,14 +277,14 @@ export default function FocusCompletePage() {
               <div style={{
                 fontSize: '28px',
                 fontWeight: 'bold',
-                color: '#2847ef',
+                color: 'var(--primary-blue)',
                 lineHeight: '1'
               }}>
                 {sessionData.breaksTotal}
               </div>
               <div style={{
                 fontSize: '12px',
-                color: '#a5a5a5',
+                color: 'var(--text-secondary)',
                 fontWeight: 'normal',
                 letterSpacing: '0.05em'
               }}>
@@ -297,14 +297,14 @@ export default function FocusCompletePage() {
               <div style={{
                 fontSize: '28px',
                 fontWeight: 'bold',
-                color: '#2847ef',
+                color: 'var(--primary-blue)',
                 lineHeight: '1'
               }}>
                 {sessionData.totalMinutes}
               </div>
               <div style={{
                 fontSize: '12px',
-                color: '#a5a5a5',
+                color: 'var(--text-secondary)',
                 fontWeight: 'normal',
                 letterSpacing: '0.05em'
               }}>
@@ -317,14 +317,14 @@ export default function FocusCompletePage() {
               <div style={{
                 fontSize: '28px',
                 fontWeight: 'bold',
-                color: '#2847ef',
+                color: 'var(--primary-blue)',
                 lineHeight: '1'
               }}>
                 {sessionData.streakDays}
               </div>
               <div style={{
                 fontSize: '12px',
-                color: '#a5a5a5',
+                color: 'var(--text-secondary)',
                 fontWeight: 'normal',
                 letterSpacing: '0.05em'
               }}>
@@ -349,14 +349,14 @@ export default function FocusCompletePage() {
               <h4 style={{
                 fontSize: '16px',
                 fontWeight: '600',
-                color: '#fa772c',
+                color: 'var(--primary-orange)',
                 margin: '0 0 4px 0'
               }}>
                 ADHD Win!
               </h4>
               <p style={{
                 fontSize: '14px',
-                color: '#4c4c4c',
+                color: 'var(--text-primary)',
                 margin: 0,
                 lineHeight: '1.4'
               }}>
@@ -374,7 +374,7 @@ export default function FocusCompletePage() {
               onClick={handleFiveMinBreak}
               className="flex-1 transition-all duration-150 active:scale-95"
               style={{
-                backgroundColor: '#f4b7ae',
+                backgroundColor: 'var(--error-light)',
                 color: '#FFFFFF',
                 fontSize: '16px',
                 fontWeight: '500',
@@ -391,7 +391,7 @@ export default function FocusCompletePage() {
               onClick={handleKeepWorking}
               className="flex-1 transition-all duration-150 active:scale-95"
               style={{
-                backgroundColor: '#a8e2bb',
+                backgroundColor: 'var(--success-light)',
                 color: '#FFFFFF',
                 fontSize: '16px',
                 fontWeight: '500',
@@ -410,7 +410,7 @@ export default function FocusCompletePage() {
             onClick={handleMarkDone}
             className="w-full transition-all duration-150 active:scale-95"
             style={{
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--primary-blue)',
               color: '#FFFFFF',
               fontSize: '16px',
               fontWeight: '500',

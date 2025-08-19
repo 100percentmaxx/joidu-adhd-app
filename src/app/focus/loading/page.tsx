@@ -127,7 +127,7 @@ export default function FocusLoadingPage() {
   return (
     <div 
       className="min-h-screen flex flex-col items-center"
-      style={{ backgroundColor: '#cae9ef', paddingTop: '35vh' }}
+      style={{ backgroundColor: 'var(--category-personal-light)', paddingTop: '35vh' }}
       role="main"
       aria-label="Focus session loading screen"
     >
@@ -154,7 +154,7 @@ export default function FocusLoadingPage() {
           <h1 style={{
             fontSize: '28px',
             fontWeight: '500',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px',
             lineHeight: '1.2'
           }}>
@@ -163,7 +163,7 @@ export default function FocusLoadingPage() {
           
           <p style={{
             fontSize: '16px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4',
             maxWidth: '280px',

@@ -69,17 +69,17 @@ export default function FocusPreparingPage() {
 
   if (!session) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#fefbf7' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--background)' }}>
         <div className="text-center">
           <div className="animate-spin w-8 h-8 border-4 border-orange-300 border-t-orange-600 rounded-full mx-auto mb-4"></div>
-          <p style={{ color: '#a5a5a5' }}>Loading your focus session...</p>
+          <p style={{ color: 'var(--text-secondary)' }}>Loading your focus session...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen p-5" style={{ backgroundColor: '#fefbf7' }}>
+    <div className="min-h-screen p-5" style={{ backgroundColor: 'var(--background)' }}>
       <div className="max-w-2xl mx-auto">
         {!isCountdownActive ? (
           <>
@@ -89,7 +89,7 @@ export default function FocusPreparingPage() {
                 <span style={{ fontSize: '64px' }}>🧘‍♂️</span>
               </div>
               <h1 style={{ 
-                color: '#2847ef', 
+                color: 'var(--primary-blue)', 
                 fontSize: '28px', 
                 fontWeight: 600,
                 marginBottom: '8px'
@@ -97,14 +97,14 @@ export default function FocusPreparingPage() {
                 Let's Get Ready
               </h1>
               <p style={{ 
-                color: '#4c4c4c', 
+                color: 'var(--text-primary)', 
                 fontSize: '16px',
                 marginBottom: '4px'
               }}>
                 <strong>"{session.taskTitle}"</strong>
               </p>
               <p style={{ 
-                color: '#a5a5a5', 
+                color: 'var(--text-secondary)', 
                 fontSize: '14px'
               }}>
                 {session.duration} minute focus session
@@ -115,7 +115,7 @@ export default function FocusPreparingPage() {
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <h2 style={{ 
-                  color: '#4c4c4c', 
+                  color: 'var(--text-primary)', 
                   fontSize: '20px', 
                   fontWeight: 600
                 }}>
@@ -124,8 +124,8 @@ export default function FocusPreparingPage() {
                 <div 
                   className="px-3 py-1 rounded-full text-sm font-medium"
                   style={{
-                    backgroundColor: allTipsCompleted ? '#a8e2bb' : '#f7e98e',
-                    color: allTipsCompleted ? '#2d5016' : '#5d4e00'
+                    backgroundColor: allTipsCompleted ? 'var(--success-light)' : 'var(--warning-light)',
+                    color: allTipsCompleted ? 'var(--success-dark)' : 'var(--warning-dark)'
                   }}
                 >
                   {completedCount}/{preparationTips.length}
@@ -136,17 +136,18 @@ export default function FocusPreparingPage() {
                 {preparationTips.map((tip, index) => (
                   <div 
                     key={index}
-                    className="flex items-start space-x-3 p-4 rounded-lg bg-white border-2 transition-all duration-200"
+                    className="flex items-start space-x-3 p-4 rounded-lg border-2 transition-all duration-200"
                     style={{
-                      borderColor: completedTips[index] ? '#a8e2bb' : '#e2e2e2'
+                      backgroundColor: 'var(--card-background)',
+                      borderColor: completedTips[index] ? 'var(--success-light)' : 'var(--border-light)'
                     }}
                   >
                     <button
                       onClick={() => toggleTip(index)}
                       className="mt-1 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200"
                       style={{
-                        borderColor: completedTips[index] ? '#a8e2bb' : '#a5a5a5',
-                        backgroundColor: completedTips[index] ? '#a8e2bb' : 'transparent'
+                        borderColor: completedTips[index] ? 'var(--success-light)' : 'var(--text-secondary)',
+                        backgroundColor: completedTips[index] ? 'var(--success-light)' : 'transparent'
                       }}
                     >
                       {completedTips[index] && (
@@ -156,7 +157,7 @@ export default function FocusPreparingPage() {
                       )}
                     </button>
                     <p style={{ 
-                      color: completedTips[index] ? '#a5a5a5' : '#4c4c4c',
+                      color: completedTips[index] ? 'var(--text-secondary)' : 'var(--text-primary)',
                       fontSize: '16px',
                       textDecoration: completedTips[index] ? 'line-through' : 'none',
                       lineHeight: '1.4'
@@ -171,10 +172,10 @@ export default function FocusPreparingPage() {
             {/* Session Details Summary */}
             <div 
               className="mb-8 p-4 rounded-lg"
-              style={{ backgroundColor: '#e6f3ff', border: '1px solid #2847ef' }}
+              style={{ backgroundColor: 'var(--info-light)', border: '1px solid var(--primary-blue)' }}
             >
               <h3 style={{ 
-                color: '#2847ef', 
+                color: 'var(--primary-blue)', 
                 fontSize: '16px', 
                 fontWeight: 600,
                 marginBottom: '12px'
@@ -183,26 +184,26 @@ export default function FocusPreparingPage() {
               </h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span style={{ color: '#a5a5a5' }}>Duration:</span>
-                  <span style={{ color: '#4c4c4c', fontWeight: 500, marginLeft: '8px' }}>
+                  <span style={{ color: 'var(--text-secondary)' }}>Duration:</span>
+                  <span style={{ color: 'var(--text-primary)', fontWeight: 500, marginLeft: '8px' }}>
                     {session.duration} minutes
                   </span>
                 </div>
                 <div>
-                  <span style={{ color: '#a5a5a5' }}>Auto Break:</span>
-                  <span style={{ color: '#4c4c4c', fontWeight: 500, marginLeft: '8px' }}>
+                  <span style={{ color: 'var(--text-secondary)' }}>Auto Break:</span>
+                  <span style={{ color: 'var(--text-primary)', fontWeight: 500, marginLeft: '8px' }}>
                     {session.options.autoBreak ? 'On' : 'Off'}
                   </span>
                 </div>
                 <div>
-                  <span style={{ color: '#a5a5a5' }}>Break Duration:</span>
-                  <span style={{ color: '#4c4c4c', fontWeight: 500, marginLeft: '8px' }}>
+                  <span style={{ color: 'var(--text-secondary)' }}>Break Duration:</span>
+                  <span style={{ color: 'var(--text-primary)', fontWeight: 500, marginLeft: '8px' }}>
                     {session.options.breakDuration} minutes
                   </span>
                 </div>
                 <div>
-                  <span style={{ color: '#a5a5a5' }}>Block Distractions:</span>
-                  <span style={{ color: '#4c4c4c', fontWeight: 500, marginLeft: '8px' }}>
+                  <span style={{ color: 'var(--text-secondary)' }}>Block Distractions:</span>
+                  <span style={{ color: 'var(--text-primary)', fontWeight: 500, marginLeft: '8px' }}>
                     {session.options.blockDistractions ? 'On' : 'Off'}
                   </span>
                 </div>
@@ -215,7 +216,7 @@ export default function FocusPreparingPage() {
                 <button
                   onClick={startCountdown}
                   className="w-full py-4 px-6 rounded-lg text-white font-bold text-lg transition-all duration-200 hover:scale-105"
-                  style={{ backgroundColor: '#a8e2bb' }}
+                  style={{ backgroundColor: 'var(--success-light)' }}
                 >
                   🚀 Ready! Start 5-Second Countdown
                 </button>
@@ -223,7 +224,7 @@ export default function FocusPreparingPage() {
                 <button
                   onClick={startCountdown}
                   className="w-full py-4 px-6 rounded-lg text-white font-bold text-lg transition-all duration-200 hover:scale-105"
-                  style={{ backgroundColor: '#fa772c' }}
+                  style={{ backgroundColor: 'var(--primary-orange)' }}
                 >
                   ⚡ Start Countdown ({completedCount}/{preparationTips.length} ready)
                 </button>
@@ -233,9 +234,9 @@ export default function FocusPreparingPage() {
                 onClick={skipToFocus}
                 className="w-full py-3 px-6 rounded-lg font-medium transition-all duration-200"
                 style={{ 
-                  backgroundColor: 'white',
-                  color: '#2847ef',
-                  border: '2px solid #2847ef'
+                  backgroundColor: 'var(--card-background)',
+                  color: 'var(--primary-blue)',
+                  border: '2px solid var(--primary-blue)'
                 }}
               >
                 Skip Prep - Start Now
@@ -244,7 +245,11 @@ export default function FocusPreparingPage() {
               <button
                 onClick={goBack}
                 className="w-full py-3 px-6 rounded-lg font-medium text-gray-600 border-2 border-gray-300 hover:border-gray-400 transition-all duration-200"
-                style={{ backgroundColor: 'white' }}
+                style={{ 
+                  backgroundColor: 'var(--card-background)',
+                  color: 'var(--text-secondary)',
+                  border: '2px solid var(--border-light)'
+                }}
               >
                 ← Back to Setup
               </button>
@@ -253,13 +258,13 @@ export default function FocusPreparingPage() {
             {/* ADHD encouragement */}
             <div 
               className="mt-6 p-4 rounded-lg"
-              style={{ backgroundColor: '#f0f8f0', border: '1px solid #a8e2bb' }}
+              style={{ backgroundColor: 'var(--success-bg)', border: '1px solid var(--success-light)' }}
             >
               <div className="flex items-start space-x-3">
                 <span style={{ fontSize: '20px' }}>💚</span>
                 <div>
                   <h4 style={{ 
-                    color: '#2d5016', 
+                    color: 'var(--success-dark)', 
                     fontSize: '14px', 
                     fontWeight: 600,
                     marginBottom: '4px'
@@ -267,7 +272,7 @@ export default function FocusPreparingPage() {
                     You're Doing Great!
                   </h4>
                   <p style={{ 
-                    color: '#4c4c4c', 
+                    color: 'var(--text-primary)', 
                     fontSize: '14px',
                     lineHeight: '1.4'
                   }}>
@@ -285,7 +290,7 @@ export default function FocusPreparingPage() {
               <div className="mb-8">
                 <div 
                   className="w-32 h-32 rounded-full flex items-center justify-center mx-auto animate-pulse"
-                  style={{ backgroundColor: '#fa772c', boxShadow: '0 0 50px rgba(247, 119, 44, 0.5)' }}
+                  style={{ backgroundColor: 'var(--primary-orange)', boxShadow: '0 0 50px rgba(247, 119, 44, 0.5)' }}
                 >
                   <span style={{ 
                     fontSize: '48px', 
@@ -298,7 +303,7 @@ export default function FocusPreparingPage() {
               </div>
               
               <h2 style={{ 
-                color: '#2847ef', 
+                color: 'var(--primary-blue)', 
                 fontSize: '24px', 
                 fontWeight: 600,
                 marginBottom: '8px'
@@ -307,7 +312,7 @@ export default function FocusPreparingPage() {
               </h2>
               
               <p style={{ 
-                color: '#4c4c4c', 
+                color: 'var(--text-primary)', 
                 fontSize: '16px',
                 marginBottom: '24px'
               }}>
@@ -315,10 +320,10 @@ export default function FocusPreparingPage() {
               </p>
               
               <div className="space-y-2">
-                <p style={{ color: '#a5a5a5', fontSize: '14px' }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
                   Take a deep breath... 🫁
                 </p>
-                <p style={{ color: '#a5a5a5', fontSize: '14px' }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
                   You've got this! 💪
                 </p>
               </div>

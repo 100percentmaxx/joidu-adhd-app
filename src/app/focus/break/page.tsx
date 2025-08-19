@@ -66,7 +66,7 @@ export default function FocusBreakPage() {
   // Show loading if no session yet
   if (!session) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#cae9ef' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--category-personal-light)' }}>
         <div className="text-center">
           <div className="animate-spin w-8 h-8 border-4 border-blue-300 border-t-blue-600 rounded-full mx-auto mb-4"></div>
           <p style={{ color: 'var(--text-primary)' }}>Loading break screen...</p>
@@ -78,7 +78,7 @@ export default function FocusBreakPage() {
   return (
     <div 
       className="min-h-screen"
-      style={{ backgroundColor: '#cae9ef', padding: '20px' }}
+      style={{ backgroundColor: 'var(--category-personal-light)', padding: '20px' }}
     >
       {/* Header */}
       <div className="flex items-center justify-between" style={{ marginBottom: '20px' }}>
@@ -99,7 +99,7 @@ export default function FocusBreakPage() {
 
       {/* Main White Container - SINGLE BOX */}
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '16px',
         padding: '24px',
         boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
@@ -143,7 +143,7 @@ export default function FocusBreakPage() {
           <div style={{
             fontSize: '48px',
             fontWeight: 'bold',
-            color: '#98e1ea',
+            color: 'var(--timer-ring-progress)',
             lineHeight: '1',
             marginBottom: '8px'
           }}>
@@ -213,7 +213,7 @@ export default function FocusBreakPage() {
           onClick={handleCancel}
           className="flex-1 transition-all duration-150 active:scale-95"
           style={{
-            backgroundColor: '#f4b7ae',
+            backgroundColor: 'var(--error-light)',
             color: '#FFFFFF',
             fontSize: '16px',
             fontWeight: '500',
@@ -231,7 +231,7 @@ export default function FocusBreakPage() {
           onClick={handleResume}
           className="flex-1 transition-all duration-150 active:scale-95"
           style={{
-            backgroundColor: '#a8e2bb',
+            backgroundColor: 'var(--success-light)',
             color: '#FFFFFF',
             fontSize: '16px',
             fontWeight: '500',
