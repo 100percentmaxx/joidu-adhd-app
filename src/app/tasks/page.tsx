@@ -495,20 +495,16 @@ export default function Tasks() {
     return (
       <div 
         key={event.id}
-        className="flex items-center transition-all duration-200 hover:scale-105 cursor-pointer"
+        className="flex overflow-hidden transition-all duration-200 hover:scale-105 cursor-pointer"
         style={{
           /* 
-           * WHITE CARD DESIGN - matches Home screen "Today's Schedule" section
-           * - White background instead of colored
-           * - Proper border and shadow
-           * - Consistent padding and spacing
+           * EXACT COPY of Home screen schedule card styling
+           * - Two-part structure: colored tab + white card
+           * - Fixed height, proper border radius on each part
+           * - 3px category-colored border on white section
            */
-          backgroundColor: 'var(--card-background)', // White in light mode, dark in dark mode
-          border: '1px solid var(--border-color)',   // Light gray border
-          borderRadius: '12px',
-          padding: '16px',
-          marginBottom: '8px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'    // Subtle shadow for depth
+          height: '60px',     // Fixed height like Home screen
+          marginBottom: '8px' // Spacing between cards
         }}
         onClick={() => {
           // Handle event click - could navigate to event detail
@@ -516,59 +512,70 @@ export default function Tasks() {
         }}
       >
         {/* 
-         * CATEGORY ICON CIRCLE - Left side
-         * - Small colored circle background matching category
-         * - White icon on colored background for contrast
-         * - Fixed size for consistency
+         * LEFT CATEGORY TAB - Colored section with icon
+         * - Category background color
+         * - Rounded left corners only
+         * - Fixed 60px width
+         * - Icon centered
          */}
         <div 
           className="flex items-center justify-center"
           style={{
-            width: '32px',
-            height: '32px',
-            backgroundColor: categoryInfo.color, // Category color for the circle
-            borderRadius: '8px',
-            marginRight: '12px',
-            flexShrink: 0 // Prevent icon from shrinking
+            backgroundColor: categoryInfo.color,
+            borderRadius: '12px 0px 0px 12px', // Only left corners rounded
+            width: '60px',
+            height: '100%'
           }}
         >
           <img 
             src={categoryInfo.icon} 
             alt={event.category} 
-            style={{ width: '16px', height: '16px' }} // Smaller icon size to fit in circle
+            style={{ width: '30px', height: '30px' }} // Same icon size as Home screen
           />
         </div>
         
         {/* 
-         * TIME AND TITLE SECTION - Right side
-         * - Time: 15pt semibold, primary text color
-         * - Title: 15pt medium, primary text color  
-         * - Horizontal layout: Time - Title on same line
+         * RIGHT WHITE CARD SECTION - Content area
+         * - White background
+         * - 3px border in category color (top, right, bottom)
+         * - Rounded right corners only
+         * - Text content: Time above, Title below (vertical stack)
          */}
-        <div className="flex items-center flex-1">
-          {/* Time Range */}
-          <div 
-            style={{
-              color: 'var(--text-primary)', // Dark gray in light mode, light in dark mode
-              fontSize: '15px',            // 15pt as specified
-              fontWeight: '600',           // Semibold
-              marginRight: '12px',
-              flexShrink: 0               // Prevent time from wrapping
-            }}
-          >
-            {event.startTime} - {event.endTime}
-          </div>
-          
-          {/* Event Title */}
-          <div 
-            style={{
-              color: 'var(--text-primary)', // Same color as time for consistency
-              fontSize: '15px',            // 15pt as specified
-              fontWeight: '500',           // Medium weight
-              flex: 1                     // Take remaining space
-            }}
-          >
-            {event.title}
+        <div 
+          className="flex-1 border-r border-t border-b flex items-center"
+          style={{ 
+            backgroundColor: 'var(--card-background)', // White background
+            borderColor: categoryInfo.color,           // Category color border
+            borderWidth: '3px',                       // 3px border thickness
+            borderRadius: '0px 12px 12px 0px',        // Only right corners rounded
+            paddingLeft: '16px',                      // Left padding for content
+            height: '100%'
+          }}
+        >
+          {/* 
+           * TEXT CONTENT - Vertical stack like Home screen
+           * - Time: 17px bold (top line)
+           * - Title: 17px medium (bottom line)
+           * - Both use primary text color
+           */}
+          <div>
+            {/* Time Range - Top line, bold */}
+            <div style={{ 
+              color: 'var(--text-primary)', 
+              fontSize: '17px', 
+              fontWeight: 700 // Bold like Home screen
+            }}>
+              {event.startTime} - {event.endTime}
+            </div>
+            
+            {/* Event Title - Bottom line, medium */}
+            <div style={{ 
+              color: 'var(--text-primary)', 
+              fontSize: '17px', 
+              fontWeight: 500 // Medium weight like Home screen
+            }}>
+              {event.title}
+            </div>
           </div>
         </div>
       </div>
