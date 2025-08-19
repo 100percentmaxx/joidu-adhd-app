@@ -20,12 +20,12 @@ interface TaskFormData {
 }
 
 const categoryData = {
-  work: { color: '#f9dac5', icon: '/icons/work.svg', label: 'Work' },
-  health: { color: '#ddede3', icon: '/icons/health.svg', label: 'Health' },
-  personal: { color: '#cae9ef', icon: '/icons/personal.svg', label: 'Personal' },
-  social: { color: '#e6e1f4', icon: '/icons/social.svg', label: 'Social' },
-  creative: { color: '#efc7c2', icon: '/icons/creative.svg', label: 'Creative' },
-  finance: { color: '#f7e98e', icon: '/icons/finance_white.svg', label: 'Finance' }
+  work: { color: 'var(--category-work-light)', icon: '/icons/work.svg', label: 'Work' },
+  health: { color: 'var(--category-health-light)', icon: '/icons/health.svg', label: 'Health' },
+  personal: { color: 'var(--category-personal-light)', icon: '/icons/personal.svg', label: 'Personal' },
+  social: { color: 'var(--category-social-light)', icon: '/icons/social.svg', label: 'Social' },
+  creative: { color: 'var(--category-creative-light)', icon: '/icons/creative.svg', label: 'Creative' },
+  finance: { color: 'var(--category-finance-light)', icon: '/icons/finance_white.svg', label: 'Finance' }
 }
 
 const durationData = {
@@ -73,17 +73,17 @@ export default function AddTask() {
   const categories: Category[] = ['work', 'health', 'personal', 'social', 'creative', 'finance']
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fefbf7' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <button 
           onClick={() => router.back()}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <h1 style={{ 
-          color: '#2847ef', 
+          color: 'var(--primary-blue)', 
           fontSize: '17px', 
           fontWeight: 600 
         }}>
@@ -96,7 +96,7 @@ export default function AddTask() {
         {/* Task Description */}
         <div className="mb-6">
           <label style={{ 
-            color: '#4c4c4c', 
+            color: 'var(--text-primary)', 
             fontSize: '17px', 
             fontWeight: 500,
             display: 'block',
@@ -110,19 +110,19 @@ export default function AddTask() {
             placeholder="Prepare presentation slides"
             className="w-full p-3 rounded-lg border"
             style={{
-              backgroundColor: 'white',
-              borderColor: errors.description ? '#ff4444' : '#e2e2e2',
+              backgroundColor: 'var(--input-background)',
+              borderColor: errors.description ? 'var(--error)' : 'var(--border-light)',
               borderRadius: '12px',
               fontSize: '15px',
               fontWeight: 400,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               height: '44px',
               resize: 'none',
               fontFamily: 'system-ui, -apple-system, sans-serif'
             }}
           />
           {errors.description && (
-            <p style={{ color: '#ff4444', fontSize: '14px', marginTop: '4px' }}>
+            <p style={{ color: 'var(--error)', fontSize: '14px', marginTop: '4px' }}>
               {errors.description}
             </p>
           )}
@@ -130,20 +130,20 @@ export default function AddTask() {
 
         {/* AI Suggestion Box */}
         <div className="mb-6 p-3 rounded-lg" style={{
-          backgroundColor: '#cae9ef',
+          backgroundColor: 'var(--category-personal-light)',
           borderRadius: '12px'
         }}>
           <div className="flex items-center space-x-3">
             <img src="/icons/kai.svg" alt="kai" style={{ width: '24px', height: '24px' }} />
             <div className="flex-1">
-              <span style={{ color: '#4c4c4c', fontSize: '14px', fontWeight: 500 }}>
+              <span style={{ color: 'var(--text-primary)', fontSize: '14px', fontWeight: 500 }}>
                 This seems like a complex task. I can break it into smaller steps?
               </span>
             </div>
             <button 
               className="px-3 py-1 rounded text-white"
               style={{ 
-                backgroundColor: '#2847ef',
+                backgroundColor: 'var(--primary-blue)',
                 fontSize: '14px',
                 fontWeight: 500,
                 borderRadius: '12px',
@@ -159,12 +159,12 @@ export default function AddTask() {
         </div>
 
         {/* Separator Line */}
-        <div style={{ height: '2px', backgroundColor: '#e2e2e2', margin: '24px 0' }}></div>
+        <div style={{ height: '2px', backgroundColor: 'var(--border-light)', margin: '24px 0' }}></div>
 
         {/* Category Selection */}
         <div className="mb-6">
           <label style={{ 
-            color: '#4c4c4c', 
+            color: 'var(--text-primary)', 
             fontSize: '17px', 
             fontWeight: 500,
             display: 'block',
@@ -180,7 +180,7 @@ export default function AddTask() {
                 className="flex items-center p-3 rounded-lg transition-all"
                 style={{
                   backgroundColor: categoryData[category].color,
-                  border: formData.category === category ? '2px solid #2847ef' : '1px solid transparent',
+                  border: formData.category === category ? '2px solid var(--primary-blue)' : '1px solid transparent',
                   borderRadius: '8px',
                   height: '48px',
                   width: '100%'
@@ -202,19 +202,19 @@ export default function AddTask() {
             ))}
           </div>
           {errors.category && (
-            <p style={{ color: '#ff4444', fontSize: '14px', marginTop: '4px' }}>
+            <p style={{ color: 'var(--error)', fontSize: '14px', marginTop: '4px' }}>
               {errors.category}
             </p>
           )}
         </div>
 
         {/* Separator Line */}
-        <div style={{ height: '2px', backgroundColor: '#e2e2e2', margin: '24px 0' }}></div>
+        <div style={{ height: '2px', backgroundColor: 'var(--border-light)', margin: '24px 0' }}></div>
 
         {/* When do you want to do this? */}
         <div className="mb-6">
           <label style={{ 
-            color: '#4c4c4c', 
+            color: 'var(--text-primary)', 
             fontSize: '17px', 
             fontWeight: 500,
             display: 'block',
@@ -229,12 +229,12 @@ export default function AddTask() {
             placeholder="Wednesday, 2 July"
             className="w-full p-3 rounded-lg border mb-3"
             style={{
-              backgroundColor: 'white',
-              borderColor: '#e2e2e2',
+              backgroundColor: 'var(--input-background)',
+              borderColor: 'var(--border-light)',
               borderRadius: '12px',
               fontSize: '15px',
               fontWeight: 400,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               fontFamily: 'system-ui, -apple-system, sans-serif'
             }}
           />
@@ -251,7 +251,7 @@ export default function AddTask() {
                 onClick={() => setFormData(prev => ({ ...prev, dueDate: option.value as DueDate }))}
                 className="flex-1 py-2 px-4 rounded-lg font-medium"
                 style={{
-                  backgroundColor: '#2847ef',
+                  backgroundColor: 'var(--primary-blue)',
                   color: 'white',
                   fontSize: '14px',
                   borderRadius: '20px',
@@ -265,12 +265,12 @@ export default function AddTask() {
         </div>
 
         {/* Separator Line */}
-        <div style={{ height: '2px', backgroundColor: '#e2e2e2', margin: '24px 0' }}></div>
+        <div style={{ height: '2px', backgroundColor: 'var(--border-light)', margin: '24px 0' }}></div>
 
         {/* How long might this take? */}
         <div className="mb-6">
           <label style={{ 
-            color: '#4c4c4c', 
+            color: 'var(--text-primary)', 
             fontSize: '17px', 
             fontWeight: 500,
             display: 'block',
@@ -285,8 +285,8 @@ export default function AddTask() {
                 onClick={() => setFormData(prev => ({ ...prev, duration: key as Duration }))}
                 className="flex-1 p-4 rounded-lg border text-center"
                 style={{
-                  backgroundColor: formData.duration === key ? '#cae9ef' : 'white',
-                  border: formData.duration === key ? '2px solid #2847ef' : '1px solid #e2e2e2',
+                  backgroundColor: formData.duration === key ? 'var(--category-personal-light)' : 'var(--input-background)',
+                  border: formData.duration === key ? '2px solid var(--primary-blue)' : '1px solid var(--border-light)',
                   borderRadius: '8px',
                   height: '80px',
                   display: 'flex',
@@ -296,10 +296,10 @@ export default function AddTask() {
                 }}
               >
                 <img src={data.icon} alt={key} style={{ width: '20px', height: '20px', marginBottom: '4px' }} />
-                <div style={{ color: '#4c4c4c', fontSize: '14px', fontWeight: 500, marginBottom: '2px' }}>
+                <div style={{ color: 'var(--text-primary)', fontSize: '14px', fontWeight: 500, marginBottom: '2px' }}>
                   {data.label}
                 </div>
-                <div style={{ color: '#a5a5a5', fontSize: '12px' }}>
+                <div style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>
                   {data.time}
                 </div>
               </button>
@@ -310,7 +310,7 @@ export default function AddTask() {
         {/* Energy Level */}
         <div className="mb-6" style={{ marginTop: '10px' }}>
           <label style={{ 
-            color: '#4c4c4c', 
+            color: 'var(--text-primary)', 
             fontSize: '17px', 
             fontWeight: 500,
             display: 'block',
@@ -320,17 +320,17 @@ export default function AddTask() {
           </label>
           <div className="flex space-x-2">
             {[
-              { value: 'low', label: 'Low', color: '#a8e2bb' },
-              { value: 'medium', label: 'Medium', color: '#f7e98e' },
-              { value: 'high', label: 'High', color: '#efc7c2' }
+              { value: 'low', label: 'Low', color: 'var(--category-health-light)' },
+              { value: 'medium', label: 'Medium', color: 'var(--category-finance-light)' },
+              { value: 'high', label: 'High', color: 'var(--category-creative-light)' }
             ].map((option) => (
               <button
                 key={option.value}
                 onClick={() => setFormData(prev => ({ ...prev, energyLevel: option.value as EnergyLevel }))}
                 className="flex-1 p-4 rounded-lg border text-center"
                 style={{
-                  backgroundColor: formData.energyLevel === option.value ? '#cae9ef' : 'white',
-                  border: formData.energyLevel === option.value ? '2px solid #2847ef' : '1px solid #e2e2e2',
+                  backgroundColor: formData.energyLevel === option.value ? 'var(--category-personal-light)' : 'var(--input-background)',
+                  border: formData.energyLevel === option.value ? '2px solid var(--primary-blue)' : '1px solid var(--border-light)',
                   borderRadius: '8px',
                   height: '80px',
                   display: 'flex',
@@ -345,10 +345,10 @@ export default function AddTask() {
                     width: '14px',
                     height: '14px',
                     backgroundColor: option.color,
-                    border: '2px solid #a5a5a5'
+                    border: '2px solid var(--text-secondary)'
                   }}
                 ></div>
-                <div style={{ color: '#4c4c4c', fontSize: '14px', fontWeight: 500 }}>
+                <div style={{ color: 'var(--text-primary)', fontSize: '14px', fontWeight: 500 }}>
                   {option.label}
                 </div>
               </button>
@@ -357,15 +357,15 @@ export default function AddTask() {
         </div>
 
         {/* Separator Line */}
-        <div style={{ height: '2px', backgroundColor: '#e2e2e2', margin: '24px 0' }}></div>
+        <div style={{ height: '2px', backgroundColor: 'var(--border-light)', margin: '24px 0' }}></div>
 
         {/* Set Reminder */}
         <div className="flex items-center justify-between p-4 rounded-lg mb-6" style={{
-          backgroundColor: '#fefbf7',
+          backgroundColor: 'var(--background)',
           borderRadius: '8px'
         }}>
           <span style={{ 
-            color: '#4c4c4c', 
+            color: 'var(--text-primary)', 
             fontSize: '17px', 
             fontWeight: 500 
           }}>
@@ -375,7 +375,7 @@ export default function AddTask() {
             onClick={() => setFormData(prev => ({ ...prev, reminder: !prev.reminder }))}
             className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors"
             style={{
-              backgroundColor: formData.reminder ? '#2847ef' : '#e2e2e2'
+              backgroundColor: formData.reminder ? 'var(--primary-blue)' : 'var(--border-light)'
             }}
           >
             <span
@@ -388,24 +388,24 @@ export default function AddTask() {
         </div>
 
         {/* Separator Line */}
-        <div style={{ height: '2px', backgroundColor: '#e2e2e2', margin: '24px 0' }}></div>
+        <div style={{ height: '2px', backgroundColor: 'var(--border-light)', margin: '24px 0' }}></div>
 
         {/* Second AI Suggestion Box */}
         <div className="mb-6 p-3 rounded-lg" style={{
-          backgroundColor: '#cae9ef',
+          backgroundColor: 'var(--category-personal-light)',
           borderRadius: '12px'
         }}>
           <div className="flex items-center space-x-3">
             <img src="/icons/kai.svg" alt="kai" style={{ width: '24px', height: '24px' }} />
             <div className="flex-1">
-              <span style={{ color: '#4c4c4c', fontSize: '14px', fontWeight: 500 }}>
+              <span style={{ color: 'var(--text-primary)', fontSize: '14px', fontWeight: 500 }}>
                 Based on your patterns, you handle emails best in the morning (9 - 11 AM) when your focus is sharpest. Consider doing this first thing you wake!
               </span>
             </div>
             <button 
               className="px-3 py-1 rounded text-white"
               style={{ 
-                backgroundColor: '#2847ef',
+                backgroundColor: 'var(--primary-blue)',
                 fontSize: '14px',
                 fontWeight: 500,
                 borderRadius: '12px',
@@ -426,7 +426,7 @@ export default function AddTask() {
             onClick={handleSubmit}
             className="py-3 px-8 rounded-lg text-white font-semibold"
             style={{
-              backgroundColor: '#2847ef',
+              backgroundColor: 'var(--primary-blue)',
               fontSize: '16px',
               borderRadius: '8px',
               border: 'none',
