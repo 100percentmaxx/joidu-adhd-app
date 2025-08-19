@@ -34,8 +34,8 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
     if (!difficulty || difficulty === 'normal') return null
     
     const pillStyles = {
-      important: { bg: '#f7e98e', text: '#a5a5a5' },
-      challenging: { bg: '#f4b7ae', text: '#FFFFFF' }
+      important: { bg: 'var(--category-finance-light)', text: 'var(--text-secondary)' },
+      challenging: { bg: 'var(--category-creative-light)', text: '#FFFFFF' }
     }
     
     const style = pillStyles[difficulty as keyof typeof pillStyles]
@@ -81,7 +81,7 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
           <h3 style={{
             fontSize: '18px',
             fontWeight: 600,
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: '0 0 4px 0'
           }}>
             {habit.name}
@@ -89,7 +89,7 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
           <div style={{
             fontSize: '14px',
             fontWeight: 400,
-            color: '#a5a5a5',
+            color: 'var(--text-secondary)',
             margin: 0,
             display: 'flex',
             alignItems: 'center',
@@ -121,8 +121,8 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
           <div style={{
             width: '100%',
             height: '14px',
-            backgroundColor: '#e2e2e2',
-            border: '1px solid #a5a5a5',
+            backgroundColor: 'var(--border-color)',
+            border: '1px solid var(--border-color)',
             borderRadius: '7px',
             overflow: 'hidden',
             position: 'relative'
@@ -130,7 +130,7 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
             <div style={{
               width: `${completionPercentage}%`,
               height: '16px',
-              backgroundColor: '#fa772c',
+              backgroundColor: 'var(--primary-orange)',
               borderRadius: '6px',
               transition: 'width 0.3s ease',
               position: 'absolute',
@@ -144,7 +144,7 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
         <span style={{
           fontSize: '16px',
           fontWeight: 400,
-          color: '#a5a5a5',
+          color: 'var(--text-secondary)',
           whiteSpace: 'nowrap'
         }}>
           {completedSteps.length}/{habit.steps.length}
@@ -168,7 +168,7 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
             height="20" 
             viewBox="0 0 24 24" 
             fill="none" 
-            stroke="#4c4c4c" 
+            stroke="var(--text-primary)" 
             strokeWidth="2"
             style={{
               transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -183,7 +183,7 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
       {/* Expanded Section */}
       {isExpanded && (
         <div style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--card-background)',
           borderRadius: '0px 0px 12px 12px',
           padding: '16px',
           marginTop: '12px',
@@ -215,8 +215,9 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
                       width: '20px',
                       height: '20px',
                       borderRadius: '50%',
-                      backgroundColor: isCompleted ? '#ddede3' : '#FFFFFF',
-                      border: `1px solid ${isCompleted ? '#a8e2bb' : '#a5a5a5'}`,
+                      backgroundColor: isCompleted ? 'var(--checkbox-checked)' : 'var(--card-background)',
+                      border: `1px solid ${isCompleted ? 'var(--checkbox-checked)' : 'var(--border-color)'}`,
+
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -237,7 +238,7 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
                     <div style={{
                       fontSize: '16px',
                       fontWeight: 600,
-                      color: isCompleted ? '#a5a5a5' : '#4c4c4c',
+                      color: isCompleted ? 'var(--text-disabled)' : 'var(--text-primary)',
                       textDecoration: isCompleted ? 'line-through' : 'none',
                       marginBottom: '4px',
                       display: 'flex',
@@ -250,7 +251,7 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
                     {step.estimatedMinutes && (
                       <div style={{
                         fontSize: '12px',
-                        color: '#a5a5a5',
+                        color: 'var(--text-secondary)',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '4px'

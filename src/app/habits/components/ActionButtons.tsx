@@ -29,19 +29,19 @@ export default function ActionButtons({ onSkip, onReset, onEdit }: ActionButtons
     }}>
       <button
         onClick={onSkip}
-        style={buttonStyle('#98e1ea')}
+        style={buttonStyle('var(--category-personal-dark)')}
       >
         Skip
       </button>
       <button
         onClick={onReset}
-        style={buttonStyle('#f9c075')}
+        style={buttonStyle('var(--category-finance-dark)')}
       >
         Reset
       </button>
       <button
         onClick={onEdit}
-        style={buttonStyle('#a5a5a5')}
+        style={buttonStyle('var(--text-secondary)')}
       >
         Edit
       </button>
