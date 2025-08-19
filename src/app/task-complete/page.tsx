@@ -78,7 +78,7 @@ function TaskCompleteContent() {
         }
       `}</style>
       
-      <div className="min-h-screen" style={{ backgroundColor: '#cae9ef' }}>
+      <div className="min-h-screen" style={{ backgroundColor: 'var(--category-personal-light)' }}>
       {/* Confetti Animation */}
       {showConfetti && (
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
@@ -101,7 +101,7 @@ function TaskCompleteContent() {
                   style={{
                     width: '8px',
                     height: '8px',
-                    backgroundColor: ['#a8e2bb', '#2847ef', '#fa772c', '#e6e1f4'][Math.floor(Math.random() * 4)],
+                    backgroundColor: ['var(--success-light)', 'var(--primary-blue)', 'var(--primary-orange)', 'var(--category-social-light)'][Math.floor(Math.random() * 4)],
                     clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
                     transform: `rotate(${Math.random() * 360}deg)`
                   }}
@@ -112,7 +112,7 @@ function TaskCompleteContent() {
                   style={{
                     width: `${4 + Math.random() * 8}px`,
                     height: `${4 + Math.random() * 8}px`,
-                    backgroundColor: ['#a8e2bb', '#2847ef', '#fa772c', '#e6e1f4', '#f9dac5', '#cae9ef'][Math.floor(Math.random() * 6)],
+                    backgroundColor: ['var(--success-light)', 'var(--primary-blue)', 'var(--primary-orange)', 'var(--category-social-light)', 'var(--category-work-light)', 'var(--category-personal-light)'][Math.floor(Math.random() * 6)],
                     borderRadius: Math.random() > 0.5 ? '50%' : '2px',
                     transform: `rotate(${Math.random() * 360}deg)`
                   }}
@@ -129,7 +129,7 @@ function TaskCompleteContent() {
           onClick={() => router.back()}
           className="flex items-center justify-center w-10 h-10"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
       </div>
 
@@ -143,7 +143,7 @@ function TaskCompleteContent() {
             style={{
               width: '80px',
               height: '80px',
-              backgroundColor: '#a8e2bb',
+              backgroundColor: 'var(--success-light)',
               transform: showCelebration ? 'scale(1)' : 'scale(0)',
               opacity: showCelebration ? 1 : 0
             }}
@@ -175,7 +175,7 @@ function TaskCompleteContent() {
             }}
           >
             <h1 style={{ 
-              color: '#4c4c4c', 
+              color: 'var(--text-primary)', 
               fontSize: '28px', 
               fontWeight: 700,
               marginBottom: '8px'
@@ -183,7 +183,7 @@ function TaskCompleteContent() {
               Amazing Work!
             </h1>
             <p style={{ 
-              color: '#4c4c4c', 
+              color: 'var(--text-primary)', 
               fontSize: '17px', 
               fontWeight: 500,
               marginBottom: '16px'
@@ -202,15 +202,16 @@ function TaskCompleteContent() {
           }}
         >
           {/* Your Progress Section */}
-          <div className="mb-8 p-4 bg-white rounded-lg" style={{
+          <div className="mb-8 p-4 rounded-lg" style={{
+            backgroundColor: 'var(--card-background)',
             borderRadius: '12px',
-            border: '2px solid #e2e2e2'
+            border: '2px solid var(--border-light)'
           }}>
             {/* Header */}
             <div className="flex items-center space-x-2 mb-4">
               <img src="/icons/analytics_color.svg" alt="analytics" style={{ width: '28px', height: '28px' }} />
               <h2 style={{ 
-                color: '#4c4c4c', 
+                color: 'var(--text-primary)', 
                 fontSize: '20px', 
                 fontWeight: 600 
               }}>
@@ -223,7 +224,7 @@ function TaskCompleteContent() {
               {/* Today */}
               <div className="text-center">
                 <div style={{ 
-                  color: '#a8e2bb', 
+                  color: 'var(--success-light)', 
                   fontSize: '32px', 
                   fontWeight: 700,
                   marginBottom: '4px'
@@ -231,7 +232,7 @@ function TaskCompleteContent() {
                   {stats.tasksCompleted}
                 </div>
                 <div style={{ 
-                  color: '#4c4c4c', 
+                  color: 'var(--text-primary)', 
                   fontSize: '14px',
                   fontWeight: 500
                 }}>
@@ -242,7 +243,7 @@ function TaskCompleteContent() {
               {/* This Week */}
               <div className="text-center">
                 <div style={{ 
-                  color: '#a8e2bb', 
+                  color: 'var(--success-light)', 
                   fontSize: '32px', 
                   fontWeight: 700,
                   marginBottom: '4px'
@@ -250,7 +251,7 @@ function TaskCompleteContent() {
                   {stats.totalTasks}
                 </div>
                 <div style={{ 
-                  color: '#4c4c4c', 
+                  color: 'var(--text-primary)', 
                   fontSize: '14px',
                   fontWeight: 500
                 }}>
@@ -261,7 +262,7 @@ function TaskCompleteContent() {
               {/* Total */}
               <div className="text-center">
                 <div style={{ 
-                  color: '#a8e2bb', 
+                  color: 'var(--success-light)', 
                   fontSize: '32px', 
                   fontWeight: 700,
                   marginBottom: '4px'
@@ -269,7 +270,7 @@ function TaskCompleteContent() {
                   {stats.points}
                 </div>
                 <div style={{ 
-                  color: '#4c4c4c', 
+                  color: 'var(--text-primary)', 
                   fontSize: '14px',
                   fontWeight: 500
                 }}>
@@ -280,7 +281,7 @@ function TaskCompleteContent() {
               {/* Streak */}
               <div className="text-center">
                 <div style={{ 
-                  color: '#a8e2bb', 
+                  color: 'var(--success-light)', 
                   fontSize: '32px', 
                   fontWeight: 700,
                   marginBottom: '4px'
@@ -288,7 +289,7 @@ function TaskCompleteContent() {
                   {stats.streak}
                 </div>
                 <div style={{ 
-                  color: '#4c4c4c', 
+                  color: 'var(--text-primary)', 
                   fontSize: '14px',
                   fontWeight: 500
                 }}>
@@ -302,7 +303,7 @@ function TaskCompleteContent() {
               <div className="flex items-center justify-center space-x-2 mb-2">
                 <img src="/icons/fire.svg" alt="fire" style={{ width: '20px', height: '20px' }} />
                 <span style={{ 
-                  color: '#f9c075', 
+                  color: 'var(--primary-orange)', 
                   fontSize: '16px', 
                   fontWeight: 600 
                 }}>
@@ -310,7 +311,7 @@ function TaskCompleteContent() {
                 </span>
               </div>
               <p style={{ 
-                color: '#a5a5a5', 
+                color: 'var(--text-secondary)', 
                 fontSize: '12px',
                 fontWeight: 500
               }}>
@@ -320,15 +321,16 @@ function TaskCompleteContent() {
           </div>
 
           {/* Today's Habits Section */}
-          <div className="mb-8 p-4 bg-white rounded-lg" style={{
+          <div className="mb-8 p-4 rounded-lg" style={{
+            backgroundColor: 'var(--card-background)',
             borderRadius: '12px',
-            border: '2px solid #e2e2e2'
+            border: '2px solid var(--border-light)'
           }}>
             {/* Header */}
             <div className="flex items-center space-x-2 mb-4">
               <img src="/icons/habits_2.svg" alt="habits" style={{ width: '28px', height: '28px' }} />
               <h2 style={{ 
-                color: '#4c4c4c', 
+                color: 'var(--text-primary)', 
                 fontSize: '20px', 
                 fontWeight: 600 
               }}>
@@ -339,12 +341,12 @@ function TaskCompleteContent() {
             {/* Progress Bar */}
             <div 
               className="h-3 rounded-full mb-3"
-              style={{ backgroundColor: '#f3f4f6' }}
+              style={{ backgroundColor: 'var(--border-light)' }}
             >
               <div 
                 className="h-3 rounded-full transition-all duration-1000 delay-700"
                 style={{ 
-                  backgroundColor: '#fa772c',
+                  backgroundColor: 'var(--primary-orange)',
                   width: animateStats ? '75%' : '0%'
                 }}
               ></div>
@@ -352,7 +354,7 @@ function TaskCompleteContent() {
 
             {/* Summary Text */}
             <p style={{ 
-              color: '#a5a5a5', 
+              color: 'var(--text-secondary)', 
               fontSize: '14px',
               fontWeight: 500,
               textAlign: 'center'
@@ -365,16 +367,16 @@ function TaskCompleteContent() {
           <div 
             className="p-4 rounded-lg mb-8"
             style={{
-              backgroundColor: 'white',
+              backgroundColor: 'var(--card-background)',
               borderRadius: '12px',
-              border: '2px solid #e2e2e2'
+              border: '2px solid var(--border-light)'
             }}
           >
             {/* Header */}
             <div className="flex items-center space-x-2 mb-4">
               <img src="/icons/brain.svg" alt="brain" style={{ width: '28px', height: '28px' }} />
               <h3 style={{ 
-                color: '#4c4c4c', 
+                color: 'var(--text-primary)', 
                 fontSize: '20px', 
                 fontWeight: 600
               }}>
@@ -382,7 +384,7 @@ function TaskCompleteContent() {
               </h3>
             </div>
             <p style={{ 
-              color: '#4c4c4c', 
+              color: 'var(--text-primary)', 
               fontSize: '14px', 
               lineHeight: '1.4'
             }}>
@@ -396,7 +398,7 @@ function TaskCompleteContent() {
               onClick={handleContinue}
               className="px-8 py-3 rounded-lg text-white font-semibold transition-all duration-200 hover:opacity-90"
               style={{
-                backgroundColor: '#2847ef',
+                backgroundColor: 'var(--primary-blue)',
                 fontSize: '16px',
                 borderRadius: '12px',
                 border: 'none',

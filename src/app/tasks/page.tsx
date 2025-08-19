@@ -280,15 +280,29 @@ export default function Tasks() {
     }
   }
   
-  const handleTaskComplete = (taskName: string) => {
-    const newCompletedTasks = { ...completedTasks, [taskName]: true }
-    setCompletedTasks(newCompletedTasks)
-    // Save to localStorage
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('joidu-completed-tasks', JSON.stringify(newCompletedTasks))
+  const handleTaskToggle = (taskName: string) => {
+    const isCurrentlyCompleted = completedTasks[taskName]
+    
+    if (isCurrentlyCompleted) {
+      // Uncheck the task
+      const newCompletedTasks = { ...completedTasks }
+      delete newCompletedTasks[taskName]
+      setCompletedTasks(newCompletedTasks)
+      // Save to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('joidu-completed-tasks', JSON.stringify(newCompletedTasks))
+      }
+    } else {
+      // Check the task
+      const newCompletedTasks = { ...completedTasks, [taskName]: true }
+      setCompletedTasks(newCompletedTasks)
+      // Save to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('joidu-completed-tasks', JSON.stringify(newCompletedTasks))
+      }
+      // Navigate to celebration screen with task name
+      router.push(`/task-complete?task=${encodeURIComponent(taskName)}`)
     }
-    // Navigate to celebration screen with task name
-    router.push(`/task-complete?task=${encodeURIComponent(taskName)}`)
   }
 
   const handleTaskDetail = (taskName: string) => {
@@ -301,12 +315,15 @@ export default function Tasks() {
     
     if (completed) {
       return (
-        <div 
-          className="w-6 h-6 rounded-full flex items-center justify-center" 
+        <button 
+          onClick={() => handleTaskToggle(taskName)}
+          className="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 hover:opacity-80" 
           style={{ 
             backgroundColor: 'var(--checkbox-checked)',
-            border: 'none'
+            border: 'none',
+            cursor: 'pointer'
           }}
+          title="Click to uncheck task"
         >
           <svg 
             width="14" 
@@ -320,18 +337,20 @@ export default function Tasks() {
           >
             <polyline points="20,6 9,17 4,12"></polyline>
           </svg>
-        </div>
+        </button>
       )
     }
     
     return (
       <button 
-        onClick={() => handleTaskComplete(taskName)}
+        onClick={() => handleTaskToggle(taskName)}
         className="w-6 h-6 rounded-full transition-all duration-200 hover:bg-gray-50" 
         style={{ 
           backgroundColor: 'var(--input-background)',
-          border: '2px solid var(--checkbox-unchecked)'
+          border: '2px solid var(--checkbox-unchecked)',
+          cursor: 'pointer'
         }}
+        title="Click to check task"
       ></button>
     )
   }
