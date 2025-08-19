@@ -8,6 +8,7 @@ import LightningFAB from '@/components/ui/LightningFAB'
 type FilterType = 'all' | 'today' | 'week' | 'priority' | 'category'
 type Category = 'work' | 'health' | 'personal' | 'social' | 'creative' | 'finance'
 type Priority = 'low' | 'medium' | 'high'
+type ViewType = 'tasks' | 'schedule'
 
 interface Task {
   id: string
@@ -18,11 +19,22 @@ interface Task {
   section: 'focus' | 'today' | 'tomorrow'
 }
 
+interface ScheduleEvent {
+  id: string
+  title: string
+  startTime: string // "7:00"
+  endTime: string   // "8:00"
+  date: string      // "2024-04-16"
+  category: Category
+  icon?: string     // icon name from joidu-icons
+}
+
 export default function Tasks() {
   const router = useRouter()
   const currentDate = new Date()
   const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>({})
   const [activeFilter, setActiveFilter] = useState<FilterType>('today')
+  const [activeView, setActiveView] = useState<ViewType>('tasks')
 
   // Define task data with categories, priorities, and dates
   const allTasks: Task[] = [
@@ -81,6 +93,103 @@ export default function Tasks() {
       priority: 'high',
       dueDate: new Date(currentDate.getTime() + 24 * 60 * 60 * 1000), // Tomorrow
       section: 'tomorrow'
+    }
+  ]
+
+  // Sample schedule events data
+  const scheduleEvents: ScheduleEvent[] = [
+    // Tuesday, April 16
+    {
+      id: 'e1',
+      title: 'Personal trainer',
+      startTime: '7:00',
+      endTime: '8:00',
+      date: '2024-04-16',
+      category: 'health',
+      icon: 'health.svg'
+    },
+    {
+      id: 'e2',
+      title: 'Meeting with Emma',
+      startTime: '11:00',
+      endTime: '11:30',
+      date: '2024-04-16',
+      category: 'work',
+      icon: 'work.svg'
+    },
+    {
+      id: 'e3',
+      title: 'Coffee with Kay',
+      startTime: '1:00',
+      endTime: '2:00',
+      date: '2024-04-16',
+      category: 'social',
+      icon: 'social.svg'
+    },
+    {
+      id: 'e4',
+      title: 'Pick up laundry',
+      startTime: '3:00',
+      endTime: '4:30',
+      date: '2024-04-16',
+      category: 'personal',
+      icon: 'personal.svg'
+    },
+    {
+      id: 'e5',
+      title: 'Collins dinner',
+      startTime: '7:00',
+      endTime: '8:30',
+      date: '2024-04-16',
+      category: 'social',
+      icon: 'social.svg'
+    },
+    // Wednesday, April 17
+    {
+      id: 'e6',
+      title: 'Performance review',
+      startTime: '8:00',
+      endTime: '9:00',
+      date: '2024-04-17',
+      category: 'work',
+      icon: 'work.svg'
+    },
+    {
+      id: 'e7',
+      title: 'Financial advisor appt.',
+      startTime: '1:00',
+      endTime: '2:00',
+      date: '2024-04-17',
+      category: 'finance',
+      icon: 'finance.svg'
+    },
+    // Thursday, April 18
+    {
+      id: 'e8',
+      title: 'Work on presentation',
+      startTime: '3:00',
+      endTime: '4:30',
+      date: '2024-04-18',
+      category: 'work',
+      icon: 'work.svg'
+    },
+    {
+      id: 'e9',
+      title: 'Racquet ball w/ Curtis',
+      startTime: '5:00',
+      endTime: '6:00',
+      date: '2024-04-18',
+      category: 'health',
+      icon: 'health.svg'
+    },
+    {
+      id: 'e10',
+      title: 'Oil painting class',
+      startTime: '6:30',
+      endTime: '8:00',
+      date: '2024-04-18',
+      category: 'creative',
+      icon: 'creative.svg'
     }
   ]
   
@@ -363,6 +472,167 @@ export default function Tasks() {
   // Generate calendar dates for the week
   const weekDates = [14, 15, 16, 17, 18, 19, 20]
 
+  // Schedule functions
+  const groupEventsByDay = () => {
+    return scheduleEvents.reduce((groups, event) => {
+      const eventDate = new Date(event.date)
+      const dayKey = eventDate.toLocaleDateString('en-US', { 
+        weekday: 'long',
+        month: 'long', 
+        day: 'numeric'
+      })
+      
+      if (!groups[dayKey]) {
+        groups[dayKey] = []
+      }
+      groups[dayKey].push(event)
+      return groups
+    }, {} as Record<string, ScheduleEvent[]>)
+  }
+
+  const renderScheduleEvent = (event: ScheduleEvent) => {
+    const categoryInfo = categoryData[event.category]
+    return (
+      <div 
+        key={event.id}
+        className="flex items-center transition-all duration-200 hover:scale-105 cursor-pointer"
+        style={{
+          backgroundColor: categoryInfo.color,
+          borderRadius: '12px',
+          padding: '12px',
+          marginBottom: '8px'
+        }}
+        onClick={() => {
+          // Handle event click - could navigate to event detail
+          console.log('Event clicked:', event.title)
+        }}
+      >
+        {/* Category Icon */}
+        <div 
+          className="flex items-center justify-center"
+          style={{
+            width: '32px',
+            height: '32px',
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            borderRadius: '8px',
+            marginRight: '12px'
+          }}
+        >
+          <img 
+            src={categoryInfo.icon} 
+            alt={event.category} 
+            style={{ width: '20px', height: '20px' }} 
+          />
+        </div>
+        
+        {/* Time Range */}
+        <div 
+          style={{
+            color: 'var(--text-primary)',
+            fontSize: '14px',
+            fontWeight: '500',
+            minWidth: '80px',
+            marginRight: '12px'
+          }}
+        >
+          {event.startTime} - {event.endTime}
+        </div>
+        
+        {/* Event Title */}
+        <div 
+          style={{
+            color: 'var(--text-primary)',
+            fontSize: '16px',
+            fontWeight: '400',
+            flex: 1
+          }}
+        >
+          {event.title}
+        </div>
+      </div>
+    )
+  }
+
+  const renderScheduleView = () => {
+    const groupedEvents = groupEventsByDay()
+    
+    return (
+      <div className="px-5 space-y-6">
+        {/* Month Navigation Header */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center">
+            <button 
+              className="p-2"
+              style={{ color: 'var(--primary-blue)' }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="15,18 9,12 15,6"></polyline>
+              </svg>
+            </button>
+            <h2 style={{ 
+              color: 'var(--primary-blue)', 
+              fontSize: '20px', 
+              fontWeight: '600',
+              margin: '0 16px'
+            }}>
+              April
+            </h2>
+            <button 
+              className="p-2"
+              style={{ color: 'var(--primary-blue)' }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="9,18 15,12 9,6"></polyline>
+              </svg>
+            </button>
+          </div>
+          <button 
+            onClick={() => router.push('/add-task')}
+            className="flex items-center justify-center"
+            style={{
+              width: '32px',
+              height: '32px',
+              backgroundColor: 'var(--primary-blue)',
+              borderRadius: '8px',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            <Plus className="w-5 h-5" style={{ color: 'white' }} />
+          </button>
+        </div>
+
+        {/* Events by Day */}
+        {Object.entries(groupedEvents).length === 0 ? (
+          <div className="text-center py-8">
+            <p style={{ color: 'var(--text-secondary)', fontSize: '16px' }}>
+              No events scheduled
+            </p>
+          </div>
+        ) : (
+          Object.entries(groupedEvents).map(([dayKey, events]) => (
+            <div key={dayKey} className="animate-fadeIn">
+              <h3 
+                style={{ 
+                  color: 'var(--text-primary)', 
+                  fontSize: '16px', 
+                  fontWeight: '600',
+                  marginBottom: '12px',
+                  marginTop: dayKey === Object.keys(groupedEvents)[0] ? '0' : '24px'
+                }}
+              >
+                {dayKey}
+              </h3>
+              <div>
+                {events.map(event => renderScheduleEvent(event))}
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       <style jsx>{`
@@ -397,216 +667,248 @@ export default function Tasks() {
         </button>
       </div>
 
-      {/* Tasks/Schedule Slider */}
+      {/* Tasks/Schedule Toggle */}
       <div className="flex flex-col items-center px-5 py-4">
         <div className="relative" style={{ width: '360px', height: '36px', backgroundColor: 'var(--button-secondary-bg)', borderRadius: '18px', padding: '2px' }}>
-          <button 
-            className="slider-button absolute text-white font-medium"
+          {/* Sliding Background */}
+          <div 
+            className="absolute transition-all duration-300 ease-in-out"
             style={{ 
-              width: '180px', 
+              width: '178px', 
               height: '32px', 
               backgroundColor: 'var(--primary-blue)',
+              borderRadius: '16px',
+              left: activeView === 'tasks' ? '2px' : '180px',
+              top: '2px'
+            }}
+          />
+          {/* Tasks Button */}
+          <button 
+            onClick={() => setActiveView('tasks')}
+            className="absolute transition-all duration-300 ease-in-out z-10"
+            style={{ 
+              width: '178px', 
+              height: '32px', 
+              backgroundColor: 'transparent',
               left: '2px',
               top: '2px',
               fontSize: '16px',
               fontWeight: '500',
-              borderRadius: '16px'
+              borderRadius: '16px',
+              border: 'none',
+              cursor: 'pointer',
+              color: activeView === 'tasks' ? 'white' : 'var(--text-secondary)'
             }}
           >
             Tasks
           </button>
+          {/* Schedule Button */}
           <button 
-            className="slider-button absolute text-white font-medium"
+            onClick={() => setActiveView('schedule')}
+            className="absolute transition-all duration-300 ease-in-out z-10"
             style={{ 
-              width: '180px', 
+              width: '178px', 
               height: '32px', 
-              backgroundColor: 'var(--button-secondary-bg)',
-              left: '182px',
+              backgroundColor: 'transparent',
+              left: '180px',
               top: '2px',
               fontSize: '16px',
               fontWeight: '500',
-              borderRadius: '16px'
+              borderRadius: '16px',
+              border: 'none',
+              cursor: 'pointer',
+              color: activeView === 'schedule' ? 'white' : 'var(--text-secondary)'
             }}
           >
             Schedule
           </button>
         </div>
         
-        {/* Filter Buttons */}
-        <div className="flex justify-between mt-4" style={{ width: '360px' }}>
-          <button 
-            onClick={() => setActiveFilter('today')}
-            className="slider-button text-white font-medium transition-all duration-200 hover:scale-105"
-            style={{ 
-              width: '80px', 
-              height: '36px', 
-              backgroundColor: activeFilter === 'today' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
-              fontSize: '14px',
-              borderRadius: '18px'
-            }}
-          >
-            Today
-          </button>
-          <button 
-            onClick={() => setActiveFilter('week')}
-            className="slider-button text-white font-medium transition-all duration-200 hover:scale-105"
-            style={{ 
-              width: '80px', 
-              height: '36px', 
-              backgroundColor: activeFilter === 'week' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
-              fontSize: '14px',
-              borderRadius: '18px'
-            }}
-          >
-            This Week
-          </button>
-          <button 
-            onClick={() => setActiveFilter('priority')}
-            className="slider-button text-white font-medium transition-all duration-200 hover:scale-105"
-            style={{ 
-              width: '80px', 
-              height: '36px', 
-              backgroundColor: activeFilter === 'priority' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
-              fontSize: '14px',
-              borderRadius: '18px'
-            }}
-          >
-            Priority
-          </button>
-          <button 
-            onClick={() => setActiveFilter('category')}
-            className="slider-button text-white font-medium transition-all duration-200 hover:scale-105"
-            style={{ 
-              width: '80px', 
-              height: '36px', 
-              backgroundColor: activeFilter === 'category' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
-              fontSize: '14px',
-              borderRadius: '18px'
-            }}
-          >
-            Category
-          </button>
-        </div>
+        {/* Filter Buttons - Only show for Tasks view */}
+        {activeView === 'tasks' && (
+          <div className="flex justify-between mt-4" style={{ width: '360px' }}>
+            <button 
+              onClick={() => setActiveFilter('today')}
+              className="slider-button text-white font-medium transition-all duration-200 hover:scale-105"
+              style={{ 
+                width: '80px', 
+                height: '36px', 
+                backgroundColor: activeFilter === 'today' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
+                fontSize: '14px',
+                borderRadius: '18px'
+              }}
+            >
+              Today
+            </button>
+            <button 
+              onClick={() => setActiveFilter('week')}
+              className="slider-button text-white font-medium transition-all duration-200 hover:scale-105"
+              style={{ 
+                width: '80px', 
+                height: '36px', 
+                backgroundColor: activeFilter === 'week' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
+                fontSize: '14px',
+                borderRadius: '18px'
+              }}
+            >
+              This Week
+            </button>
+            <button 
+              onClick={() => setActiveFilter('priority')}
+              className="slider-button text-white font-medium transition-all duration-200 hover:scale-105"
+              style={{ 
+                width: '80px', 
+                height: '36px', 
+                backgroundColor: activeFilter === 'priority' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
+                fontSize: '14px',
+                borderRadius: '18px'
+              }}
+            >
+              Priority
+            </button>
+            <button 
+              onClick={() => setActiveFilter('category')}
+              className="slider-button text-white font-medium transition-all duration-200 hover:scale-105"
+              style={{ 
+                width: '80px', 
+                height: '36px', 
+                backgroundColor: activeFilter === 'category' ? 'var(--primary-blue)' : 'var(--button-secondary-bg)',
+                fontSize: '14px',
+                borderRadius: '18px'
+              }}
+            >
+              Category
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* Calendar */}
-      <div className="px-5 mb-6">
-        <div className="text-center mb-3">
-          <h3 className="font-bold" style={{ color: 'var(--primary-blue)' }}>
-            {monthName}
-          </h3>
-        </div>
-        
-        {/* Days of week */}
-        <div className="grid grid-cols-7 gap-0 text-center mb-1">
-          {dayNames.map((day, index) => (
-            <div key={index} className="text-blue-600 font-medium" style={{ color: 'var(--primary-blue)' }}>
-              {day}
+      {/* Main Content - Conditional Rendering */}
+      {activeView === 'tasks' ? (
+        <>
+          {/* Calendar */}
+          <div className="px-5 mb-6">
+            <div className="text-center mb-3">
+              <h3 className="font-bold" style={{ color: 'var(--primary-blue)' }}>
+                {monthName}
+              </h3>
             </div>
-          ))}
-        </div>
-        
-        {/* Dates */}
-        <div className="grid grid-cols-7 gap-0 text-center">
-          {weekDates.map((date, index) => (
-            <div key={index} className="text-blue-600" style={{ color: 'var(--primary-blue)' }}>
-              <div className={`w-8 h-8 flex items-center justify-center text-sm font-medium rounded-full mx-auto ${
-                date === selectedDay 
-                  ? 'text-white' 
-                  : 'text-blue-600'
-              }`} style={{
-                backgroundColor: date === selectedDay ? 'var(--primary-blue)' : 'transparent',
-                color: date === selectedDay ? '#ffffff' : 'var(--primary-blue)'
-              }}>
-                {date}
-              </div>
+            
+            {/* Days of week */}
+            <div className="grid grid-cols-7 gap-0 text-center mb-1">
+              {dayNames.map((day, index) => (
+                <div key={index} className="text-blue-600 font-medium" style={{ color: 'var(--primary-blue)' }}>
+                  {day}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+            
+            {/* Dates */}
+            <div className="grid grid-cols-7 gap-0 text-center">
+              {weekDates.map((date, index) => (
+                <div key={index} className="text-blue-600" style={{ color: 'var(--primary-blue)' }}>
+                  <div className={`w-8 h-8 flex items-center justify-center text-sm font-medium rounded-full mx-auto ${
+                    date === selectedDay 
+                      ? 'text-white' 
+                      : 'text-blue-600'
+                  }`} style={{
+                    backgroundColor: date === selectedDay ? 'var(--primary-blue)' : 'transparent',
+                    color: date === selectedDay ? '#ffffff' : 'var(--primary-blue)'
+                  }}>
+                    {date}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-      {/* Horizontal Line */}
-      <div className="px-5 mb-6">
-        <div style={{ height: '1px', backgroundColor: 'var(--border-color)' }}></div>
-      </div>
+          {/* Horizontal Line */}
+          <div className="px-5 mb-6">
+            <div style={{ height: '1px', backgroundColor: 'var(--border-color)' }}></div>
+          </div>
 
-      {/* Dynamic Task Sections */}
-      <div className="px-5 space-y-6">
-        <div className="transition-all duration-300 ease-in-out">
-          {Object.entries(groupedTasks).length === 0 ? (
-            <div className="text-center py-8">
-              <p style={{ color: 'var(--text-secondary)', fontSize: '16px' }}>
-                No tasks found for the selected filter.
-              </p>
+          {/* Dynamic Task Sections */}
+          <div className="px-5 space-y-6">
+            <div className="transition-all duration-300 ease-in-out">
+              {Object.entries(groupedTasks).length === 0 ? (
+                <div className="text-center py-8">
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '16px' }}>
+                    No tasks found for the selected filter.
+                  </p>
+                  <button
+                    onClick={() => setActiveFilter('today')}
+                    className="mt-2 px-4 py-2 rounded-lg transition-all duration-200"
+                    style={{
+                      backgroundColor: 'var(--primary-blue)',
+                      color: 'white',
+                      fontSize: '14px'
+                    }}
+                  >
+                    Show Today's Tasks
+                  </button>
+                </div>
+              ) : (
+                Object.entries(groupedTasks).map(([key, tasks]) => {
+                  if (tasks.length === 0) return null
+                  
+                  // Special rendering for focus section
+                  if (key === 'focus' && activeFilter !== 'category') {
+                    return renderFocusSection(tasks)
+                  }
+                  
+                  // Regular section rendering
+                  return (
+                    <div key={key} className="animate-fadeIn">
+                      <h2 className="mb-3" style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500, marginTop: '12px' }}>
+                        {getSectionTitle(key)}
+                        {activeFilter === 'category' && (
+                          <span className="ml-2 px-2 py-1 text-xs rounded-full" style={{
+                            backgroundColor: categoryData[key as Category]?.color || 'var(--button-secondary-bg)',
+                            color: 'var(--text-primary)'
+                          }}>
+                            {tasks.length} {tasks.length === 1 ? 'task' : 'tasks'}
+                          </span>
+                        )}
+                      </h2>
+                      <div className="bg-white rounded-lg" style={{ 
+                        backgroundColor: 'var(--card-background)',
+                        borderRadius: '12px',
+                        border: '1px solid var(--border-color)',
+                        padding: '16px'
+                      }}>
+                        <div className="space-y-2">
+                          {tasks.map(task => renderTaskItem(task))}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })
+              )}
+            </div>
+          </div>
+
+          {/* Add Task Button - Below task sections */}
+          <div className="px-5" style={{ marginTop: '12px' }}>
+            <div className="flex justify-end">
               <button
-                onClick={() => setActiveFilter('today')}
-                className="mt-2 px-4 py-2 rounded-lg transition-all duration-200"
+                onClick={() => router.push('/add-task')}
+                className="px-6 py-3 rounded-lg shadow-lg transition-all duration-200 hover:scale-105"
                 style={{
                   backgroundColor: 'var(--primary-blue)',
                   color: 'white',
-                  fontSize: '14px'
+                  fontSize: '16px',
+                  fontWeight: 600
                 }}
               >
-                Show Today's Tasks
+                Add Task
               </button>
             </div>
-          ) : (
-            Object.entries(groupedTasks).map(([key, tasks]) => {
-              if (tasks.length === 0) return null
-              
-              // Special rendering for focus section
-              if (key === 'focus' && activeFilter !== 'category') {
-                return renderFocusSection(tasks)
-              }
-              
-              // Regular section rendering
-              return (
-                <div key={key} className="animate-fadeIn">
-                  <h2 className="mb-3" style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500, marginTop: '12px' }}>
-                    {getSectionTitle(key)}
-                    {activeFilter === 'category' && (
-                      <span className="ml-2 px-2 py-1 text-xs rounded-full" style={{
-                        backgroundColor: categoryData[key as Category]?.color || 'var(--button-secondary-bg)',
-                        color: 'var(--text-primary)'
-                      }}>
-                        {tasks.length} {tasks.length === 1 ? 'task' : 'tasks'}
-                      </span>
-                    )}
-                  </h2>
-                  <div className="bg-white rounded-lg" style={{ 
-                    backgroundColor: 'var(--card-background)',
-                    borderRadius: '12px',
-                    border: '1px solid var(--border-color)',
-                    padding: '16px'
-                  }}>
-                    <div className="space-y-2">
-                      {tasks.map(task => renderTaskItem(task))}
-                    </div>
-                  </div>
-                </div>
-              )
-            })
-          )}
-        </div>
-      </div>
-
-      {/* Add Task Button - Below task sections */}
-      <div className="px-5" style={{ marginTop: '12px' }}>
-        <div className="flex justify-end">
-          <button
-            onClick={() => router.push('/add-task')}
-            className="px-6 py-3 rounded-lg shadow-lg transition-all duration-200 hover:scale-105"
-            style={{
-              backgroundColor: 'var(--primary-blue)',
-              color: 'white',
-              fontSize: '16px',
-              fontWeight: 600
-            }}
-          >
-            Add Task
-          </button>
-        </div>
-      </div>
+          </div>
+        </>
+      ) : (
+        /* Schedule View */
+        renderScheduleView()
+      )}
 
       {/* Bottom spacing for navigation */}
       <div className="h-20"></div>
