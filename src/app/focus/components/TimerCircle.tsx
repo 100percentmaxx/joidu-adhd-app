@@ -28,7 +28,7 @@ export default function TimerCircle({ minutes, onIncrement, onDecrement }: Timer
           width: '480px', // 320 * 1.5
           height: '480px', // 320 * 1.5
           borderRadius: '50%',
-          backgroundColor: '#fefbf7' // Pale beige fill
+          backgroundColor: 'var(--background)' // Background color
         }}
       >
         {/* Light orange ring */}
@@ -41,7 +41,7 @@ export default function TimerCircle({ minutes, onIncrement, onDecrement }: Timer
             cy="240" // 160 * 1.5
             r="225" // 150 * 1.5
             fill="none"
-            stroke="#f9dac5" // Light Orange
+            stroke="var(--timer-ring-background)" // Timer ring background
             strokeWidth="18" // 12 * 1.5
             opacity="0.6"
           />
@@ -52,7 +52,7 @@ export default function TimerCircle({ minutes, onIncrement, onDecrement }: Timer
           <div style={{
             fontSize: '108px', // 72 * 1.5
             fontWeight: 'bold',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             lineHeight: '1'
           }}>
             {formatTime(minutes)}
@@ -65,7 +65,7 @@ export default function TimerCircle({ minutes, onIncrement, onDecrement }: Timer
             {/* MINUTES label */}
             <div style={{
               fontSize: '21px', // 14 * 1.5
-              color: '#a5a5a5',
+              color: 'var(--text-secondary)',
               fontWeight: 'normal',
               letterSpacing: '0.05em'
             }}>
@@ -82,9 +82,9 @@ export default function TimerCircle({ minutes, onIncrement, onDecrement }: Timer
                   width: '42px', // 28 * 1.5
                   height: '42px', // 28 * 1.5
                   borderRadius: '50%',
-                  backgroundColor: 'white', // White fill
-                  border: '1px solid #e2e2e2',
-                  color: '#a5a5a5', // Same color as MINUTES
+                  backgroundColor: 'var(--input-background)', // Button fill
+                  border: '1px solid var(--border-color)',
+                  color: 'var(--text-secondary)', // Same color as MINUTES
                   fontSize: '24px', // 16 * 1.5
                   fontWeight: 'bold'
                 }}
@@ -101,9 +101,9 @@ export default function TimerCircle({ minutes, onIncrement, onDecrement }: Timer
                   width: '42px', // 28 * 1.5
                   height: '42px', // 28 * 1.5
                   borderRadius: '50%',
-                  backgroundColor: 'white', // White fill
-                  border: '1px solid #e2e2e2',
-                  color: '#a5a5a5', // Same color as MINUTES
+                  backgroundColor: 'var(--input-background)', // Button fill
+                  border: '1px solid var(--border-color)',
+                  color: 'var(--text-secondary)', // Same color as MINUTES
                   fontSize: '24px', // 16 * 1.5
                   fontWeight: 'bold'
                 }}

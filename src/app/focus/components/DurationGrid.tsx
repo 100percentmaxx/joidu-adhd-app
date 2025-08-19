@@ -50,9 +50,9 @@ export default function DurationGrid({ selectedDuration, onDurationSelect }: Dur
               style={{
                 height: '48px',
                 borderRadius: '12px',
-                backgroundColor: isSelected ? '#cae9ef' : 'white', // Light Blue for selected, white for unselected
-                color: '#4c4c4c',
-                border: isSelected ? '2px solid #2847ef' : '2px solid #e2e2e2', // Primary Blue stroke for selected, Light Gray for unselected
+                backgroundColor: isSelected ? 'var(--category-personal-light)' : 'var(--card-background)', // Light Blue for selected, white for unselected
+                color: 'var(--text-primary)',
+                border: isSelected ? '2px solid var(--primary-blue)' : '2px solid var(--border-color)', // Primary Blue stroke for selected, Light Gray for unselected
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',

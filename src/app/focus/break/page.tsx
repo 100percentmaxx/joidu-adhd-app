@@ -69,7 +69,7 @@ export default function FocusBreakPage() {
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#cae9ef' }}>
         <div className="text-center">
           <div className="animate-spin w-8 h-8 border-4 border-blue-300 border-t-blue-600 rounded-full mx-auto mb-4"></div>
-          <p style={{ color: '#4c4c4c' }}>Loading break screen...</p>
+          <p style={{ color: 'var(--text-primary)' }}>Loading break screen...</p>
         </div>
       </div>
     )
@@ -92,7 +92,7 @@ export default function FocusBreakPage() {
           }}
           aria-label="Go back to timer"
         >
-          <ArrowLeft className="w-6 h-6" style={{ color: '#2847ef' }} />
+          <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <div style={{ width: '20px' }} />
       </div>
@@ -120,7 +120,7 @@ export default function FocusBreakPage() {
           <h1 style={{
             fontSize: '28px',
             fontWeight: '600',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             marginBottom: '16px',
             lineHeight: '1.2'
           }}>
@@ -129,7 +129,7 @@ export default function FocusBreakPage() {
           
           <p style={{
             fontSize: '16px',
-            color: '#4c4c4c',
+            color: 'var(--text-primary)',
             margin: 0,
             lineHeight: '1.4',
             textAlign: 'center'
@@ -151,7 +151,7 @@ export default function FocusBreakPage() {
           </div>
           <div style={{
             fontSize: '12px',
-            color: '#a5a5a5',
+            color: 'var(--text-secondary)',
             fontWeight: 'normal',
             letterSpacing: '0.05em'
           }}>
@@ -171,7 +171,7 @@ export default function FocusBreakPage() {
             <h3 style={{
               fontSize: '18px',
               fontWeight: '500',
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               margin: 0
             }}>
               Quick Recharge Ideas
@@ -196,7 +196,7 @@ export default function FocusBreakPage() {
                 <div style={{
                   fontSize: '14px',
                   fontWeight: '500',
-                  color: '#4c4c4c'
+                  color: 'var(--text-primary)'
                 }}>
                   {idea.label}
                 </div>

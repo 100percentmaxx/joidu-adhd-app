@@ -50,6 +50,10 @@
   --text-disabled: #e2e2e2;
   --settings-icon: #a5a5a5;
 
+  /* Timer Ring Colors */
+  --timer-ring-background: #f9dac5;
+  --timer-ring-progress: #f9c075;
+
   /* Status and Feedback Colors */
   --success-light: #ddede3;
   --success-text: #2d5a3d;
@@ -106,6 +110,10 @@
   --input-focus-border: #4a67ff;
   --checkbox-unchecked: #404040;
   --checkbox-checked: #2d5a3d;
+
+  /* Timer Ring Colors */
+  --timer-ring-background: #4a3b1a;
+  --timer-ring-progress: #8b6914;
 
   /* Status and Feedback Colors */
   --success-light: #1a3d2a;

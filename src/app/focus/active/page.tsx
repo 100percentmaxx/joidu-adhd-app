@@ -233,10 +233,10 @@ export default function FocusActivePage() {
 
   if (!session) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#fefbf7' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--background)' }}>
         <div className="text-center">
           <div className="animate-spin w-8 h-8 border-4 border-orange-300 border-t-orange-600 rounded-full mx-auto mb-4"></div>
-          <p style={{ color: '#a5a5a5' }}>Loading your focus session...</p>
+          <p style={{ color: 'var(--text-secondary)' }}>Loading your focus session...</p>
         </div>
       </div>
     )
@@ -245,13 +245,13 @@ export default function FocusActivePage() {
   return (
     <div 
       className="min-h-screen flex flex-col justify-center items-center"
-      style={{ backgroundColor: '#fefbf7', padding: '20px' }}
+      style={{ backgroundColor: 'var(--background)', padding: '20px' }}
     >
       <div className="text-center w-full max-w-md">
         {/* Header Section */}
         <div style={{ marginBottom: '32px' }}>
           <div style={{
-            backgroundColor: 'white',
+            backgroundColor: 'var(--card-background)',
             border: '2px solid #e2e2e2',
             borderRadius: '12px',
             padding: '16px 20px',
@@ -260,7 +260,7 @@ export default function FocusActivePage() {
             <h1 style={{
               fontSize: '24px',
               fontWeight: 500,
-              color: '#4c4c4c',
+              color: 'var(--text-primary)',
               margin: 0,
               lineHeight: '1.2',
               textAlign: 'center'
@@ -293,7 +293,7 @@ export default function FocusActivePage() {
               width: '80px',
               height: '80px',
               borderRadius: '50%',
-              backgroundColor: '#f4b7ae',
+              backgroundColor: 'var(--error-light)',
               color: 'white',
               fontSize: '18px',
               fontWeight: 500,
@@ -312,7 +312,7 @@ export default function FocusActivePage() {
               width: '80px',
               height: '80px',
               borderRadius: '50%',
-              backgroundColor: '#a8e2bb',
+              backgroundColor: 'var(--success-light)',
               color: 'white',
               fontSize: '18px',
               fontWeight: 500,

@@ -19,9 +19,9 @@ export default function KaiRecommendation({
     <div 
       className="flex items-start"
       style={{
-        backgroundColor: isCompact ? '#f5f5f5' : '#f0f8ff',
+        backgroundColor: isCompact ? 'var(--button-secondary-bg)' : 'var(--info-light)',
         borderRadius: '12px',
-        border: '2px solid #2847ef', // Dark Blue 2px stroke
+        border: '2px solid var(--primary-blue)', // Dark Blue 2px stroke
         padding: '16px',
         marginBottom: '16px',
         gap: '12px'
@@ -54,7 +54,7 @@ export default function KaiRecommendation({
         <h4 style={{
           fontSize: '16px',
           fontWeight: 600,
-          color: '#2847ef',
+          color: 'var(--primary-blue)',
           marginBottom: '8px',
           margin: 0
         }}>
@@ -64,7 +64,7 @@ export default function KaiRecommendation({
         {/* Text content */}
         <p style={{
           fontSize: '14px',
-          color: '#4c4c4c',
+          color: 'var(--text-primary)',
           lineHeight: '1.4',
           margin: 0
         }}>

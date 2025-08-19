@@ -49,7 +49,7 @@ export default function TimerCircleActive({ timeRemaining, totalTime, isRunning,
             cy="210"
             r={radius}
             fill="none"
-            stroke="#f9dac5" // Light Orange
+            stroke="var(--timer-ring-background)" // Timer ring background
             strokeWidth="12"
           />
           
@@ -59,7 +59,7 @@ export default function TimerCircleActive({ timeRemaining, totalTime, isRunning,
             cy="210"
             r={radius}
             fill="none"
-            stroke="#f9c075" // Dark Orange
+            stroke="var(--timer-ring-progress)" // Timer ring progress
             strokeWidth="12"
             strokeLinecap="round"
             strokeDasharray={strokeDasharray}
@@ -76,7 +76,7 @@ export default function TimerCircleActive({ timeRemaining, totalTime, isRunning,
               cx={ballX}
               cy={ballY}
               r="12" // 24px diameter
-              fill="#f9c075" // Dark Orange ball
+              fill="var(--timer-ring-progress)" // Timer ring progress ball
               style={{
                 transition: isRunning ? 'cx 1s linear, cy 1s linear' : 'none'
               }}
@@ -93,7 +93,7 @@ export default function TimerCircleActive({ timeRemaining, totalTime, isRunning,
             transform: 'translate(-50%, -50%)',
             fontSize: '96px', // Doubled from 48px
             fontWeight: 600,
-            color: '#4c4c4c', // Main Gray
+            color: 'var(--text-primary)', // Main Gray
             lineHeight: '1',
             textAlign: 'center'
           }}
@@ -105,7 +105,7 @@ export default function TimerCircleActive({ timeRemaining, totalTime, isRunning,
       {/* Session duration below timer */}
       <p style={{
         fontSize: '16px',
-        color: '#a5a5a5', // Light Gray
+        color: 'var(--text-secondary)', // Light Gray
         fontWeight: 'normal',
         margin: 0
       }}>
