@@ -497,57 +497,79 @@ export default function Tasks() {
         key={event.id}
         className="flex items-center transition-all duration-200 hover:scale-105 cursor-pointer"
         style={{
-          backgroundColor: categoryInfo.color,
+          /* 
+           * WHITE CARD DESIGN - matches Home screen "Today's Schedule" section
+           * - White background instead of colored
+           * - Proper border and shadow
+           * - Consistent padding and spacing
+           */
+          backgroundColor: 'var(--card-background)', // White in light mode, dark in dark mode
+          border: '1px solid var(--border-color)',   // Light gray border
           borderRadius: '12px',
-          padding: '12px',
-          marginBottom: '8px'
+          padding: '16px',
+          marginBottom: '8px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'    // Subtle shadow for depth
         }}
         onClick={() => {
           // Handle event click - could navigate to event detail
           console.log('Event clicked:', event.title)
         }}
       >
-        {/* Category Icon */}
+        {/* 
+         * CATEGORY ICON CIRCLE - Left side
+         * - Small colored circle background matching category
+         * - White icon on colored background for contrast
+         * - Fixed size for consistency
+         */}
         <div 
           className="flex items-center justify-center"
           style={{
             width: '32px',
             height: '32px',
-            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            backgroundColor: categoryInfo.color, // Category color for the circle
             borderRadius: '8px',
-            marginRight: '12px'
+            marginRight: '12px',
+            flexShrink: 0 // Prevent icon from shrinking
           }}
         >
           <img 
             src={categoryInfo.icon} 
             alt={event.category} 
-            style={{ width: '20px', height: '20px' }} 
+            style={{ width: '16px', height: '16px' }} // Smaller icon size to fit in circle
           />
         </div>
         
-        {/* Time Range */}
-        <div 
-          style={{
-            color: 'var(--text-primary)',
-            fontSize: '14px',
-            fontWeight: '500',
-            minWidth: '80px',
-            marginRight: '12px'
-          }}
-        >
-          {event.startTime} - {event.endTime}
-        </div>
-        
-        {/* Event Title */}
-        <div 
-          style={{
-            color: 'var(--text-primary)',
-            fontSize: '16px',
-            fontWeight: '400',
-            flex: 1
-          }}
-        >
-          {event.title}
+        {/* 
+         * TIME AND TITLE SECTION - Right side
+         * - Time: 15pt semibold, primary text color
+         * - Title: 15pt medium, primary text color  
+         * - Horizontal layout: Time - Title on same line
+         */}
+        <div className="flex items-center flex-1">
+          {/* Time Range */}
+          <div 
+            style={{
+              color: 'var(--text-primary)', // Dark gray in light mode, light in dark mode
+              fontSize: '15px',            // 15pt as specified
+              fontWeight: '600',           // Semibold
+              marginRight: '12px',
+              flexShrink: 0               // Prevent time from wrapping
+            }}
+          >
+            {event.startTime} - {event.endTime}
+          </div>
+          
+          {/* Event Title */}
+          <div 
+            style={{
+              color: 'var(--text-primary)', // Same color as time for consistency
+              fontSize: '15px',            // 15pt as specified
+              fontWeight: '500',           // Medium weight
+              flex: 1                     // Take remaining space
+            }}
+          >
+            {event.title}
+          </div>
         </div>
       </div>
     )
@@ -612,17 +634,31 @@ export default function Tasks() {
         ) : (
           Object.entries(groupedEvents).map(([dayKey, events]) => (
             <div key={dayKey} className="animate-fadeIn">
+              {/* 
+               * DAY HEADER - OUTSIDE card container
+               * - Standalone text element, not inside a card
+               * - 17pt Medium weight, primary text color
+               * - 24px margin bottom for proper spacing
+               * - First header has no top margin, others have 24px
+               */}
               <h3 
                 style={{ 
-                  color: 'var(--text-primary)', 
-                  fontSize: '16px', 
-                  fontWeight: '600',
-                  marginBottom: '12px',
-                  marginTop: dayKey === Object.keys(groupedEvents)[0] ? '0' : '24px'
+                  color: 'var(--text-primary)',  // Dark gray in light mode, light in dark mode
+                  fontSize: '17px',            // 17pt as specified in requirements  
+                  fontWeight: '500',           // Medium weight (not 600/semibold)
+                  marginBottom: '24px',        // 24px spacing before cards
+                  marginTop: dayKey === Object.keys(groupedEvents)[0] ? '0' : '24px' // No margin on first, 24px on others
                 }}
               >
                 {dayKey}
               </h3>
+              
+              {/* 
+               * EVENT CARDS CONTAINER
+               * - Each event is its own white card
+               * - Cards are separate from the day header
+               * - No wrapping container around cards
+               */}
               <div>
                 {events.map(event => renderScheduleEvent(event))}
               </div>
