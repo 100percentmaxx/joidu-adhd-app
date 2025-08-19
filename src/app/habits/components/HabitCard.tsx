@@ -22,6 +22,19 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
   const todaysProgress = getTodaysProgress(habit.id)
   const completionPercentage = getCompletionPercentage(habit.id, habit.steps.length)
   const streak = calculateStreak(habit.id)
+
+  // Map category types to CSS variables for theme support
+  const getCategoryBackgroundColor = (category: string) => {
+    switch (category) {
+      case 'work': return 'var(--category-work-light)'
+      case 'health': return 'var(--category-health-light)'
+      case 'personal': return 'var(--category-personal-light)'
+      case 'social': return 'var(--category-social-light)'
+      case 'creative': return 'var(--category-creative-light)'
+      case 'finance': return 'var(--category-finance-light)'
+      default: return 'var(--category-personal-light)'
+    }
+  }
   
   const completedSteps = todaysProgress?.completedSteps || []
   const totalMinutes = habit.steps.reduce((sum, step) => sum + (step.estimatedMinutes || 0), 0)
@@ -61,7 +74,7 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
     <div 
       className="transition-all duration-200 hover:scale-105"
       style={{
-        backgroundColor: categoryConfig.lightColor,
+        backgroundColor: getCategoryBackgroundColor(habit.category),
         borderRadius: '16px',
         padding: '16px',
         marginBottom: '12px'
@@ -160,7 +173,10 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
             padding: '4px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            opacity: 1,
+            minWidth: '28px',
+            minHeight: '28px'
           }}
         >
           <svg 
@@ -169,7 +185,7 @@ export default function HabitCard({ habit, onSkip, onReset, onEdit, initialExpan
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="var(--text-primary)" 
-            strokeWidth="2"
+            strokeWidth="2.5"
             style={{
               transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
               transition: 'transform 0.2s ease'
