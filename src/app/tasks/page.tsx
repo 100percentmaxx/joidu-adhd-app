@@ -502,9 +502,9 @@ export default function Tasks() {
            * - Two-part structure: colored tab + white card
            * - Fixed height, proper border radius on each part
            * - 3px category-colored border on white section
+           * - Margin is now handled by container logic
            */
-          height: '60px',     // Fixed height like Home screen
-          marginBottom: '8px' // Spacing between cards
+          height: '60px' // Fixed height like Home screen
         }}
         onClick={() => {
           // Handle event click - could navigate to event detail
@@ -639,38 +639,76 @@ export default function Tasks() {
             </p>
           </div>
         ) : (
-          Object.entries(groupedEvents).map(([dayKey, events]) => (
-            <div key={dayKey} className="animate-fadeIn">
-              {/* 
-               * DAY HEADER - OUTSIDE card container
-               * - Standalone text element, not inside a card
-               * - 17pt Medium weight, primary text color
-               * - 24px margin bottom for proper spacing
-               * - First header has no top margin, others have 24px
-               */}
-              <h3 
-                style={{ 
-                  color: 'var(--text-primary)',  // Dark gray in light mode, light in dark mode
-                  fontSize: '17px',            // 17pt as specified in requirements  
-                  fontWeight: '500',           // Medium weight (not 600/semibold)
-                  marginBottom: '24px',        // 24px spacing before cards
-                  marginTop: dayKey === Object.keys(groupedEvents)[0] ? '0' : '24px' // No margin on first, 24px on others
-                }}
-              >
-                {dayKey}
-              </h3>
-              
-              {/* 
-               * EVENT CARDS CONTAINER
-               * - Each event is its own white card
-               * - Cards are separate from the day header
-               * - No wrapping container around cards
-               */}
-              <div>
-                {events.map(event => renderScheduleEvent(event))}
+          Object.entries(groupedEvents).map(([dayKey, events]) => {
+            // Get the date from the first event to determine if it's Today/Tomorrow
+            const eventDate = new Date(events[0].date)
+            const today = new Date()
+            const tomorrow = new Date(today)
+            tomorrow.setDate(today.getDate() + 1)
+            
+            // Format display text: Today, Tomorrow, or actual date
+            let displayText = dayKey
+            if (eventDate.toDateString() === today.toDateString()) {
+              displayText = 'Today'
+            } else if (eventDate.toDateString() === tomorrow.toDateString()) {
+              displayText = 'Tomorrow'
+            }
+            
+            return (
+              <div key={dayKey} className="animate-fadeIn">
+                {/* 
+                 * DAY HEADER - OUTSIDE white container
+                 * - Shows "Today", "Tomorrow", or actual date
+                 * - 17pt Medium weight, primary text color
+                 * - 16px margin bottom before white container
+                 * - 24px margin top between day sections
+                 */}
+                <h3 
+                  style={{ 
+                    color: 'var(--text-primary)',  // Dark gray in light mode, light in dark mode
+                    fontSize: '17px',            // 17pt as specified in requirements  
+                    fontWeight: '500',           // Medium weight
+                    marginBottom: '16px',        // 16px spacing before white container
+                    marginTop: dayKey === Object.keys(groupedEvents)[0] ? '0' : '24px' // No margin on first, 24px on others
+                  }}
+                >
+                  {displayText}
+                </h3>
+                
+                {/* 
+                 * WHITE CONTAINER for all events of this day
+                 * - White background with light gray border
+                 * - Contains all event cards for this day
+                 * - 2px border, rounded corners, padding
+                 * - Matches Home screen container styling
+                 */}
+                <div style={{
+                  backgroundColor: 'var(--card-background)', // White background (theme-aware)
+                  border: '2px solid var(--border-color)',   // 2px light gray border (#e2e2e2)
+                  borderRadius: '12px',                     // Rounded corners
+                  padding: '16px',                          // Inner padding for event cards
+                  marginBottom: '12px'                      // Space after container
+                }}>
+                  {/* 
+                   * EVENT CARDS within the white container
+                   * - Each event card maintains its two-part structure
+                   * - All cards for this day are grouped together
+                   * - Last card has no bottom margin to prevent extra space
+                   */}
+                  {events.map((event, index) => (
+                    <div
+                      key={event.id}
+                      style={{
+                        marginBottom: index === events.length - 1 ? '0' : '8px' // No margin on last card
+                      }}
+                    >
+                      {renderScheduleEvent(event)}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))
+            )
+          })
         )}
       </div>
     )
