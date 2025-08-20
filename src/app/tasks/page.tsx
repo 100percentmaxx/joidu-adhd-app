@@ -731,7 +731,14 @@ export default function Tasks() {
           <ArrowLeft className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
         </button>
         <button 
-          onClick={() => router.push('/add-task')}
+          onClick={() => {
+            // Context-aware navigation based on current tab
+            if (activeView === 'schedule') {
+              router.push('/add-event')
+            } else {
+              router.push('/add-task') // Default for Tasks view and others
+            }
+          }}
           className="flex items-center justify-center w-10 h-10"
         >
           <Plus className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} />
