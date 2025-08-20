@@ -116,13 +116,34 @@ export default function AddEvent() {
 
   // Calculate duration between start and end time
   const calculateDuration = () => {
-    // Simple duration calculation (this would be more robust in production)
-    const start = formData.startTime
-    const end = formData.endTime
-    
-    // For demo purposes, return 30 minutes
-    // In production, you'd parse the times and calculate the difference
-    return '30 minutes'
+    try {
+      // Parse time strings (assumes format like "10:00 AM")
+      const parseTime = (timeStr: string) => {
+        const [time, period] = timeStr.split(' ')
+        const [hours, minutes] = time.split(':').map(Number)
+        let hour24 = hours
+        
+        if (period === 'PM' && hours !== 12) hour24 += 12
+        if (period === 'AM' && hours === 12) hour24 = 0
+        
+        return hour24 * 60 + minutes // Return total minutes
+      }
+      
+      const startMinutes = parseTime(formData.startTime)
+      const endMinutes = parseTime(formData.endTime)
+      
+      let duration = endMinutes - startMinutes
+      if (duration < 0) duration += 24 * 60 // Handle next day
+      
+      const hours = Math.floor(duration / 60)
+      const mins = duration % 60
+      
+      if (hours === 0) return `${mins} minutes`
+      if (mins === 0) return `${hours} hour${hours > 1 ? 's' : ''}`
+      return `${hours} hour${hours > 1 ? 's' : ''} ${mins} minutes`
+    } catch {
+      return '30 minutes'
+    }
   }
 
   // Handle form submission
@@ -155,15 +176,35 @@ export default function AddEvent() {
             <button
               key={key}
               onClick={() => setFormData(prev => ({ ...prev, category: key as Category }))}
-              className="flex items-center justify-center px-3 py-2 rounded-lg transition-all duration-200"
+              className="flex items-center px-3 py-2 rounded-lg transition-all duration-200 relative"
               style={{
-                backgroundColor: isSelected ? info.color : 'var(--card-background)',
-                border: isSelected ? '2px solid var(--primary-blue)' : '1px solid var(--border-color)',
-                color: isSelected ? 'var(--text-primary)' : 'var(--text-primary)'
+                backgroundColor: info.color,
+                border: isSelected ? '2px solid var(--primary-blue)' : '2px solid transparent',
+                minHeight: '44px'
               }}
             >
-              <img src={info.icon} alt={info.name} style={{ width: '16px', height: '16px', marginRight: '6px' }} />
-              <span style={{ fontSize: '14px', fontWeight: '500' }}>{info.name}</span>
+              <img 
+                src={info.icon} 
+                alt={info.name} 
+                style={{ 
+                  width: '28px', 
+                  height: '28px', 
+                  position: 'absolute',
+                  left: '12px'
+                }} 
+              />
+              <span 
+                style={{ 
+                  fontSize: '14px', 
+                  fontWeight: '500',
+                  color: 'white',
+                  width: '100%',
+                  textAlign: 'center',
+                  marginLeft: '20px'
+                }}
+              >
+                {info.name}
+              </span>
             </button>
           )
         })}
@@ -254,38 +295,41 @@ export default function AddEvent() {
           />
         </div>
 
-        {/* AI Suggestion Card */}
-        {showAISuggestion && (
-          <div style={{
-            backgroundColor: 'var(--info-light)',
-            borderRadius: '12px',
-            padding: '12px',
-            marginBottom: '20px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div style={{
-                width: '32px',
-                height: '32px',
-                backgroundColor: 'var(--primary-blue)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginRight: '12px'
-              }}>
-                <span style={{ color: 'white', fontSize: '16px', fontWeight: 'bold' }}>✨</span>
-              </div>
-              <span style={{ 
-                fontSize: '14px', 
-                color: 'var(--text-primary)',
-                flex: 1
-              }}>
-                This looks like a {categoryData[suggestedCategory].name.toLowerCase()} item. Should I add this category?
-              </span>
+        {/* Kai Suggestion Box - Always visible as shown in mockup */}
+        <div style={{
+          backgroundColor: 'var(--info-light)',
+          borderRadius: '12px',
+          padding: '12px',
+          marginBottom: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{
+              width: '32px',
+              height: '32px',
+              backgroundColor: 'var(--primary-blue)',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginRight: '12px'
+            }}>
+              <span style={{ color: 'white', fontSize: '16px', fontWeight: 'bold' }}>✨</span>
             </div>
+            <span style={{ 
+              fontSize: '14px', 
+              color: 'var(--text-primary)',
+              flex: 1
+            }}>
+              {showAISuggestion 
+                ? `This looks like a ${categoryData[suggestedCategory].name.toLowerCase()} item. Should I add this category?`
+                : 'I can suggest a category when you enter your event title'
+              }
+            </span>
+          </div>
+          {showAISuggestion && (
             <button
               onClick={acceptAISuggestion}
               style={{
@@ -301,8 +345,8 @@ export default function AddEvent() {
             >
               Accept
             </button>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Category Selection */}
         <div style={{ marginBottom: '20px' }}>
@@ -363,7 +407,9 @@ export default function AddEvent() {
               <input
                 type="text"
                 value={formData.startTime}
-                onChange={(e) => setFormData(prev => ({ ...prev, startTime: e.target.value }))}
+                onChange={(e) => {
+                  setFormData(prev => ({ ...prev, startTime: e.target.value }))
+                }}
                 style={{
                   width: '100%',
                   backgroundColor: 'var(--input-background)',
@@ -394,7 +440,9 @@ export default function AddEvent() {
               <input
                 type="text"
                 value={formData.endTime}
-                onChange={(e) => setFormData(prev => ({ ...prev, endTime: e.target.value }))}
+                onChange={(e) => {
+                  setFormData(prev => ({ ...prev, endTime: e.target.value }))
+                }}
                 style={{
                   width: '100%',
                   backgroundColor: 'var(--input-background)',
