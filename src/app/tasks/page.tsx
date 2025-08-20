@@ -35,6 +35,9 @@ export default function Tasks() {
   const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>({})
   const [activeFilter, setActiveFilter] = useState<FilterType>('today')
   const [activeView, setActiveView] = useState<ViewType>('tasks')
+  
+  // Schedule view state for month navigation
+  const [currentMonth, setCurrentMonth] = useState(new Date())
 
   // Define task data with categories, priorities, and dates
   const allTasks: Task[] = [
@@ -472,20 +475,66 @@ export default function Tasks() {
   // Generate calendar dates for the week
   const weekDates = [14, 15, 16, 17, 18, 19, 20]
 
-  // Schedule functions
-  const groupEventsByDay = () => {
-    return scheduleEvents.reduce((groups, event) => {
-      const eventDate = new Date(event.date)
-      const dayKey = eventDate.toLocaleDateString('en-US', { 
+  // Month navigation functions for Schedule view
+  const navigateMonth = (direction: 'prev' | 'next') => {
+    setCurrentMonth(prevMonth => {
+      const newMonth = new Date(prevMonth)
+      if (direction === 'prev') {
+        newMonth.setMonth(newMonth.getMonth() - 1)
+      } else {
+        newMonth.setMonth(newMonth.getMonth() + 1)
+      }
+      return newMonth
+    })
+  }
+
+  const getMonthName = (date: Date) => {
+    return date.toLocaleDateString('en-US', { month: 'long' })
+  }
+
+  // Smart date labeling logic for Schedule view
+  const getDateLabel = (eventDate: Date): string => {
+    const today = new Date()
+    const tomorrow = new Date(today)
+    tomorrow.setDate(today.getDate() + 1)
+    
+    // Clear time for accurate date comparison
+    const eventDateOnly = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate())
+    const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate())
+    const tomorrowOnly = new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate())
+    
+    if (eventDateOnly.getTime() === todayOnly.getTime()) {
+      return 'Today'
+    } else if (eventDateOnly.getTime() === tomorrowOnly.getTime()) {
+      return 'Tomorrow'
+    } else {
+      // Format as "Wednesday, April 17"
+      return eventDate.toLocaleDateString('en-US', { 
         weekday: 'long',
         month: 'long', 
         day: 'numeric'
       })
+    }
+  }
+
+  // Schedule functions - Filter events by current month and group by day
+  const groupEventsByDay = () => {
+    // Filter events to only show those in the current viewed month
+    const monthEvents = scheduleEvents.filter(event => {
+      const eventDate = new Date(event.date)
+      return eventDate.getMonth() === currentMonth.getMonth() && 
+             eventDate.getFullYear() === currentMonth.getFullYear()
+    })
+
+    // Group filtered events by date with smart labeling
+    return monthEvents.reduce((groups, event) => {
+      const eventDate = new Date(event.date)
+      const dateLabel = getDateLabel(eventDate)
       
-      if (!groups[dayKey]) {
-        groups[dayKey] = []
+      if (!groups[dateLabel]) {
+        groups[dateLabel] = []
       }
-      groups[dayKey].push(event)
+      groups[dateLabel].push(event)
       return groups
     }, {} as Record<string, ScheduleEvent[]>)
   }
@@ -586,129 +635,69 @@ export default function Tasks() {
     const groupedEvents = groupEventsByDay()
     
     return (
-      <div className="px-5 space-y-6">
-        {/* Month Navigation Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center">
-            <button 
-              className="p-2"
-              style={{ color: 'var(--primary-blue)' }}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="15,18 9,12 15,6"></polyline>
-              </svg>
-            </button>
-            <h2 style={{ 
-              color: 'var(--primary-blue)', 
-              fontSize: '20px', 
-              fontWeight: '600',
-              margin: '0 16px'
-            }}>
-              April
-            </h2>
-            <button 
-              className="p-2"
-              style={{ color: 'var(--primary-blue)' }}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="9,18 15,12 9,6"></polyline>
-              </svg>
-            </button>
-          </div>
-          <button 
-            onClick={() => router.push('/add-task')}
-            className="flex items-center justify-center"
-            style={{
-              width: '32px',
-              height: '32px',
-              backgroundColor: 'var(--primary-blue)',
-              borderRadius: '8px',
-              border: 'none',
-              cursor: 'pointer'
-            }}
-          >
-            <Plus className="w-5 h-5" style={{ color: 'white' }} />
-          </button>
-        </div>
-
-        {/* Events by Day */}
+      <div className="px-5">
+        {/* Events by Day - Smart date labeling is now handled in groupEventsByDay */}
         {Object.entries(groupedEvents).length === 0 ? (
           <div className="text-center py-8">
             <p style={{ color: 'var(--text-secondary)', fontSize: '16px' }}>
-              No events scheduled
+              No events scheduled for {getMonthName(currentMonth)}
             </p>
           </div>
         ) : (
-          Object.entries(groupedEvents).map(([dayKey, events]) => {
-            // Get the date from the first event to determine if it's Today/Tomorrow
-            const eventDate = new Date(events[0].date)
-            const today = new Date()
-            const tomorrow = new Date(today)
-            tomorrow.setDate(today.getDate() + 1)
-            
-            // Format display text: Today, Tomorrow, or actual date
-            let displayText = dayKey
-            if (eventDate.toDateString() === today.toDateString()) {
-              displayText = 'Today'
-            } else if (eventDate.toDateString() === tomorrow.toDateString()) {
-              displayText = 'Tomorrow'
-            }
-            
-            return (
-              <div key={dayKey} className="animate-fadeIn">
+          Object.entries(groupedEvents).map(([dateLabel, events]) => (
+            <div key={dateLabel} className="animate-fadeIn">
+              {/* 
+               * DATE HEADER - OUTSIDE white container  
+               * - Smart labels: "Today", "Tomorrow", or "Wednesday, April 17"
+               * - 17pt Medium weight, #4c4c4c color
+               * - 24px margin top, 16px margin bottom
+               * - Positioned above each day's event group
+               */}
+              <h3 
+                style={{ 
+                  color: 'var(--text-primary)',  // #4c4c4c in light mode, theme-aware
+                  fontSize: '17px',            // 17pt as specified
+                  fontWeight: '500',           // Medium weight
+                  marginBottom: '16px',        // 16px before white container
+                  marginTop: dateLabel === Object.keys(groupedEvents)[0] ? '0' : '24px' // 24px between sections
+                }}
+              >
+                {dateLabel}
+              </h3>
+              
+              {/* 
+               * WHITE CONTAINER for all events of this day
+               * - Groups all events for a single date
+               * - White background with 2px #e2e2e2 border
+               * - 12px border radius, 16px inner padding
+               * - Contains multiple event cards with proper spacing
+               */}
+              <div style={{
+                backgroundColor: 'var(--card-background)', // White (theme-aware)
+                border: '2px solid var(--border-color)',   // 2px light gray (#e2e2e2)
+                borderRadius: '12px',
+                padding: '16px',
+                marginBottom: '12px'
+              }}>
                 {/* 
-                 * DAY HEADER - OUTSIDE white container
-                 * - Shows "Today", "Tomorrow", or actual date
-                 * - 17pt Medium weight, primary text color
-                 * - 16px margin bottom before white container
-                 * - 24px margin top between day sections
+                 * EVENT CARDS - Each day's scheduled events
+                 * - Maintains Home screen two-part styling (colored tab + white card)
+                 * - 8px spacing between cards, no margin on last card
+                 * - All events for this date grouped together
                  */}
-                <h3 
-                  style={{ 
-                    color: 'var(--text-primary)',  // Dark gray in light mode, light in dark mode
-                    fontSize: '17px',            // 17pt as specified in requirements  
-                    fontWeight: '500',           // Medium weight
-                    marginBottom: '16px',        // 16px spacing before white container
-                    marginTop: dayKey === Object.keys(groupedEvents)[0] ? '0' : '24px' // No margin on first, 24px on others
-                  }}
-                >
-                  {displayText}
-                </h3>
-                
-                {/* 
-                 * WHITE CONTAINER for all events of this day
-                 * - White background with light gray border
-                 * - Contains all event cards for this day
-                 * - 2px border, rounded corners, padding
-                 * - Matches Home screen container styling
-                 */}
-                <div style={{
-                  backgroundColor: 'var(--card-background)', // White background (theme-aware)
-                  border: '2px solid var(--border-color)',   // 2px light gray border (#e2e2e2)
-                  borderRadius: '12px',                     // Rounded corners
-                  padding: '16px',                          // Inner padding for event cards
-                  marginBottom: '12px'                      // Space after container
-                }}>
-                  {/* 
-                   * EVENT CARDS within the white container
-                   * - Each event card maintains its two-part structure
-                   * - All cards for this day are grouped together
-                   * - Last card has no bottom margin to prevent extra space
-                   */}
-                  {events.map((event, index) => (
-                    <div
-                      key={event.id}
-                      style={{
-                        marginBottom: index === events.length - 1 ? '0' : '8px' // No margin on last card
-                      }}
-                    >
-                      {renderScheduleEvent(event)}
-                    </div>
-                  ))}
-                </div>
+                {events.map((event, index) => (
+                  <div
+                    key={event.id}
+                    style={{
+                      marginBottom: index === events.length - 1 ? '0' : '8px'
+                    }}
+                  >
+                    {renderScheduleEvent(event)}
+                  </div>
+                ))}
               </div>
-            )
-          })
+            </div>
+          ))
         )}
       </div>
     )
@@ -733,7 +722,8 @@ export default function Tasks() {
         }
       `}</style>
       {/* Top Navigation Bar */}
-      <div className="flex items-center justify-between px-5 py-4">
+      {/* Top Navigation - Reduced padding for 18px spacing */}
+      <div className="flex items-center justify-between px-5" style={{ paddingTop: '16px', paddingBottom: '18px' }}>
         <button 
           onClick={() => router.push('/')}
           className="flex items-center justify-center w-10 h-10"
@@ -749,7 +739,7 @@ export default function Tasks() {
       </div>
 
       {/* Tasks/Schedule Toggle */}
-      <div className="flex flex-col items-center px-5 py-4">
+      <div className="flex flex-col items-center px-5" style={{ paddingBottom: '18px' }}>
         <div className="relative" style={{ width: '360px', height: '36px', backgroundColor: 'var(--button-secondary-bg)', borderRadius: '18px', padding: '2px' }}>
           {/* Sliding Background */}
           <div 
@@ -863,6 +853,63 @@ export default function Tasks() {
           </div>
         )}
       </div>
+
+      {/* Month Navigation - 18px below the Tasks/Schedule toggle */}
+      {activeView === 'schedule' && (
+        <div className="flex items-center justify-center px-5" style={{ paddingBottom: '18px' }}>
+          {/* 
+           * PROMINENT MONTH NAVIGATION
+           * - Positioned 18px below the Tasks/Schedule toggle
+           * - Large, prominent month name (22pt Semibold)
+           * - Blue color matching app theme (#2847ef)
+           * - Left/right arrows for month navigation
+           * - Functional month switching with event filtering
+           */}
+          <div className="flex items-center">
+            <button 
+              onClick={() => navigateMonth('prev')}
+              className="p-3 transition-all duration-200 hover:scale-110"
+              style={{ 
+                color: 'var(--primary-blue)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="15,18 9,12 15,6"></polyline>
+              </svg>
+            </button>
+            
+            {/* Month Name - Prominent display */}
+            <h2 style={{ 
+              color: 'var(--primary-blue)',  // #2847ef theme color
+              fontSize: '22px',             // 22pt Semibold as specified
+              fontWeight: '600',            // Semibold weight
+              margin: '0 24px',             // Generous spacing from arrows
+              minWidth: '120px',            // Prevent layout shift
+              textAlign: 'center'           // Center the month name
+            }}>
+              {getMonthName(currentMonth)}
+            </h2>
+            
+            <button 
+              onClick={() => navigateMonth('next')}
+              className="p-3 transition-all duration-200 hover:scale-110"
+              style={{ 
+                color: 'var(--primary-blue)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="9,18 15,12 9,6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Main Content - Conditional Rendering */}
       {activeView === 'tasks' ? (
