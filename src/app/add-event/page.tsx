@@ -306,18 +306,15 @@ export default function AddEvent() {
           justifyContent: 'space-between'
         }}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div style={{
-              width: '32px',
-              height: '32px',
-              backgroundColor: 'var(--primary-blue)',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginRight: '12px'
-            }}>
-              <span style={{ color: 'white', fontSize: '16px', fontWeight: 'bold' }}>✨</span>
-            </div>
+            <img 
+              src="/icons/kai.svg" 
+              alt="Kai" 
+              style={{ 
+                width: '24px', 
+                height: '24px', 
+                marginRight: '12px' 
+              }} 
+            />
             <span style={{ 
               fontSize: '14px', 
               color: 'var(--text-primary)',
