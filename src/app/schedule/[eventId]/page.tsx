@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
-import { ArrowLeft, Plus } from 'lucide-react'
+import { ArrowLeft, Plus, Clock } from 'lucide-react'
 
 // TypeScript interfaces
 interface PreparationItem {
@@ -52,39 +52,39 @@ export default function ScheduleDetail() {
   const categoryData: Record<string, CategoryInfo> = {
     work: { 
       name: 'Work', 
-      lightColor: '#f9dac5', 
-      darkColor: '#e0943a',
-      icon: '/src/joidu-icons/work.svg' 
+      lightColor: 'var(--category-work-light)', 
+      darkColor: 'var(--category-work-dark)',
+      icon: '/icons/work.svg' 
     },
     health: { 
       name: 'Health', 
-      lightColor: '#ddede3', 
-      darkColor: '#4ade80',
-      icon: '/src/joidu-icons/health.svg' 
+      lightColor: 'var(--category-health-light)', 
+      darkColor: 'var(--category-health-dark)',
+      icon: '/icons/health.svg' 
     },
     personal: { 
       name: 'Personal', 
-      lightColor: '#e0e7ff', 
-      darkColor: '#818cf8',
-      icon: '/src/joidu-icons/personal.svg' 
+      lightColor: 'var(--category-personal-light)', 
+      darkColor: 'var(--category-personal-dark)',
+      icon: '/icons/personal.svg' 
     },
     social: { 
       name: 'Social', 
-      lightColor: '#fce7f3', 
-      darkColor: '#f472b6',
-      icon: '/src/joidu-icons/social.svg' 
+      lightColor: 'var(--category-social-light)', 
+      darkColor: 'var(--category-social-dark)',
+      icon: '/icons/social.svg' 
     },
     creative: { 
       name: 'Creative', 
-      lightColor: '#fed7d7', 
-      darkColor: '#f56565',
-      icon: '/src/joidu-icons/creative.svg' 
+      lightColor: 'var(--category-creative-light)', 
+      darkColor: 'var(--category-creative-dark)',
+      icon: '/icons/creative.svg' 
     },
     finance: { 
       name: 'Finance', 
-      lightColor: '#d1fae5', 
-      darkColor: '#34d399',
-      icon: '/src/joidu-icons/finance.svg' 
+      lightColor: 'var(--category-finance-light)', 
+      darkColor: 'var(--category-finance-dark)',
+      icon: '/icons/finance.svg' 
     }
   }
 
@@ -173,7 +173,7 @@ export default function ScheduleDetail() {
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
             <path 
               d="M20 6L9 17L4 12" 
-              stroke="#a8e2bb" 
+              stroke="white" 
               strokeWidth="2" 
               strokeLinecap="round" 
               strokeLinejoin="round"
@@ -209,15 +209,15 @@ export default function ScheduleDetail() {
       </div>
 
       {/* Main Content */}
-      <div className="px-5 pb-32">
-        {/* Main Event Card */}
+      <div className="px-5 pb-6">
+        {/* White Container with Category Border */}
         <div 
           style={{
             backgroundColor: 'white',
             borderRadius: '12px',
             overflow: 'hidden',
-            marginBottom: '24px',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+            border: `2px solid ${categoryInfo.lightColor}`,
+            marginBottom: '18px'
           }}
         >
           {/* Category Header */}
@@ -255,275 +255,315 @@ export default function ScheduleDetail() {
               {eventData.startTime} - {eventData.endTime}  {eventData.date}
             </p>
 
-            {/* Travel Alert */}
+            {/* Travel Alert - Centered */}
             {eventData.travelAlert && (
               <div style={{
-                backgroundColor: '#fa772c',
-                borderRadius: '20px',
-                padding: '8px 16px',
                 display: 'flex',
-                alignItems: 'center',
-                width: 'fit-content'
+                justifyContent: 'center',
+                marginBottom: '16px'
               }}>
-                <img 
-                  src="/src/joidu-icons/alert.svg" 
-                  alt="Alert"
-                  style={{ width: '16px', height: '16px', marginRight: '8px' }}
-                />
-                <span style={{
-                  fontSize: '13px',
-                  fontWeight: 500,
-                  color: 'white'
+                <div style={{
+                  backgroundColor: '#fa772c',
+                  borderRadius: '20px',
+                  padding: '8px 16px',
+                  display: 'flex',
+                  alignItems: 'center'
                 }}>
-                  {eventData.travelAlert}
-                </span>
+                  <img 
+                    src="/icons/alert.svg" 
+                    alt="Alert"
+                    style={{ width: '16px', height: '16px', marginRight: '8px' }}
+                  />
+                  <span style={{
+                    fontSize: '13px',
+                    fontWeight: 500,
+                    color: 'white'
+                  }}>
+                    {eventData.travelAlert}
+                  </span>
+                </div>
               </div>
             )}
-          </div>
-        </div>
 
-        {/* Location and Travel Section */}
-        <div style={{ marginBottom: '24px' }}>
-          <h3 style={{
-            fontSize: '17px',
-            fontWeight: 500,
-            color: '#4c4c4c',
-            marginBottom: '12px'
-          }}>
-            Location and Travel
-          </h3>
-          
-          <p style={{
-            fontSize: '15px',
-            color: '#4c4c4c',
-            marginBottom: '12px'
-          }}>
-            {eventData.location}
-          </p>
+            {/* Separator Line */}
+            <div style={{
+              height: '1px',
+              backgroundColor: '#e2e2e2',
+              margin: '18px 0'
+            }} />
 
-          <button
-            onClick={handleGetDirections}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              background: 'none',
-              border: 'none',
-              color: '#2847ef',
-              fontSize: '15px',
-              cursor: 'pointer'
-            }}
-          >
-            <img 
-              src="/src/joidu-icons/location.svg" 
-              alt="Location"
-              style={{ width: '16px', height: '16px', marginRight: '8px' }}
-            />
-            Get directions
-          </button>
-        </div>
+            {/* Location and Travel Section */}
+            <div style={{ marginBottom: '18px' }}>
+              <h3 style={{
+                fontSize: '17px',
+                fontWeight: 500,
+                color: '#4c4c4c',
+                marginBottom: '12px'
+              }}>
+                Location and Travel
+              </h3>
+              
+              <p style={{
+                fontSize: '15px',
+                color: '#4c4c4c',
+                marginBottom: '12px'
+              }}>
+                {eventData.location}
+              </p>
 
-        {/* Preparation Checklist Section */}
-        <div style={{ marginBottom: '24px' }}>
-          <h3 style={{
-            fontSize: '17px',
-            fontWeight: 500,
-            color: '#4c4c4c',
-            marginBottom: '16px'
-          }}>
-            Preparation Checklist
-          </h3>
-
-          {eventData.preparationItems.map((item) => (
-            <div 
-              key={item.id}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                marginBottom: '16px'
-              }}
-            >
-              {renderCheckbox(item.completed, () => togglePreparationItem(item.id))}
-              <div style={{ marginLeft: '12px', flex: 1 }}>
-                <p style={{
+              <button
+                onClick={handleGetDirections}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  background: 'none',
+                  border: 'none',
+                  color: '#2847ef',
                   fontSize: '15px',
-                  color: '#4c4c4c',
-                  marginBottom: '2px'
-                }}>
-                  {item.title}
-                </p>
-                <p style={{
-                  fontSize: '13px',
-                  color: '#a5a5a5'
-                }}>
-                  ⏱ {item.estimatedTime}
-                </p>
-              </div>
+                  cursor: 'pointer'
+                }}
+              >
+                <img 
+                  src="/icons/location.svg" 
+                  alt="Location"
+                  style={{ width: '16px', height: '16px', marginRight: '8px' }}
+                />
+                Get directions
+              </button>
             </div>
-          ))}
-        </div>
 
-        {/* Related Tasks Section */}
-        <div style={{ marginBottom: '24px' }}>
-          <h3 style={{
-            fontSize: '17px',
-            fontWeight: 500,
-            color: '#4c4c4c',
-            marginBottom: '16px'
-          }}>
-            Related Tasks
-          </h3>
+            {/* Separator Line */}
+            <div style={{
+              height: '1px',
+              backgroundColor: '#e2e2e2',
+              margin: '18px 0'
+            }} />
 
-          {eventData.relatedTasks.map((task) => (
-            <div 
-              key={task.id}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
+            {/* Preparation Checklist Section */}
+            <div style={{ marginBottom: '18px' }}>
+              <h3 style={{
+                fontSize: '17px',
+                fontWeight: 500,
+                color: '#4c4c4c',
                 marginBottom: '16px'
-              }}
-            >
-              {renderCheckbox(task.completed, () => toggleRelatedTask(task.id))}
-              <div style={{ marginLeft: '12px', flex: 1 }}>
-                <p style={{
-                  fontSize: '15px',
-                  color: '#4c4c4c',
-                  marginBottom: '2px'
-                }}>
-                  {task.title}
-                </p>
-                <p style={{
-                  fontSize: '13px',
-                  color: '#a5a5a5'
-                }}>
-                  {task.dueNote}
-                </p>
-              </div>
+              }}>
+                Preparation Checklist
+              </h3>
+
+              {eventData.preparationItems.map((item) => (
+                <div 
+                  key={item.id}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginBottom: '16px'
+                  }}
+                >
+                  {renderCheckbox(item.completed, () => togglePreparationItem(item.id))}
+                  <div style={{ marginLeft: '12px', flex: 1 }}>
+                    <p style={{
+                      fontSize: '15px',
+                      color: '#4c4c4c',
+                      marginBottom: '2px'
+                    }}>
+                      {item.title}
+                    </p>
+                    <div style={{
+                      fontSize: '13px',
+                      color: '#a5a5a5',
+                      display: 'flex',
+                      alignItems: 'center'
+                    }}>
+                      <Clock size={14} style={{ marginRight: '4px' }} />
+                      {item.estimatedTime}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        {/* Kai's Suggestions Section */}
-        <div style={{ marginBottom: '40px' }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginBottom: '18px'
-          }}>
-            <img 
-              src="/src/joidu-icons/kai.svg" 
-              alt="Kai"
-              style={{ width: '24px', height: '24px', marginRight: '12px' }}
-            />
-            <h3 style={{
-              fontSize: '17px',
-              fontWeight: 500,
-              color: '#4c4c4c'
-            }}>
-              Kai's Suggestions
-            </h3>
-          </div>
+            {/* Separator Line */}
+            <div style={{
+              height: '1px',
+              backgroundColor: '#e2e2e2',
+              margin: '18px 0'
+            }} />
 
-          <div style={{
-            backgroundColor: '#cae9ef',
-            borderRadius: '16px',
-            padding: '16px'
-          }}>
-            {/* Optimal prep time */}
-            <div style={{ marginBottom: '20px' }}>
+            {/* Related Tasks Section */}
+            <div style={{ marginBottom: '18px' }}>
+              <h3 style={{
+                fontSize: '17px',
+                fontWeight: 500,
+                color: '#4c4c4c',
+                marginBottom: '16px'
+              }}>
+                Related Tasks
+              </h3>
+
+              {eventData.relatedTasks.map((task) => (
+                <div 
+                  key={task.id}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginBottom: '16px'
+                  }}
+                >
+                  {renderCheckbox(task.completed, () => toggleRelatedTask(task.id))}
+                  <div style={{ marginLeft: '12px', flex: 1 }}>
+                    <p style={{
+                      fontSize: '15px',
+                      color: '#4c4c4c',
+                      marginBottom: '2px'
+                    }}>
+                      {task.title}
+                    </p>
+                    <p style={{
+                      fontSize: '13px',
+                      color: '#a5a5a5'
+                    }}>
+                      {task.dueNote}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Separator Line */}
+            <div style={{
+              height: '1px',
+              backgroundColor: '#e2e2e2',
+              margin: '18px 0'
+            }} />
+
+            {/* Kai's Suggestions Section */}
+            <div style={{ marginBottom: '18px' }}>
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                marginBottom: '8px'
+                marginBottom: '16px'
               }}>
                 <img 
-                  src="/src/joidu-icons/ideas_color.svg" 
-                  alt="Ideas"
-                  style={{ width: '16px', height: '16px', marginRight: '8px' }}
+                  src="/icons/kai.svg" 
+                  alt="Kai"
+                  style={{ width: '24px', height: '24px', marginRight: '12px' }}
                 />
-                <h4 style={{
-                  fontSize: '15px',
+                <h3 style={{
+                  fontSize: '17px',
                   fontWeight: 500,
                   color: '#4c4c4c'
                 }}>
-                  Optimal prep time
-                </h4>
+                  Kai's Suggestions
+                </h3>
               </div>
-              <p style={{
-                fontSize: '15px',
-                color: '#4c4c4c',
-                lineHeight: '1.4'
-              }}>
-                {eventData.kaiSuggestions.optimalPrepTime}
-              </p>
-            </div>
 
-            {/* Notes & Ideas */}
-            <div>
-              <h4 style={{
-                fontSize: '15px',
-                fontWeight: 500,
-                color: '#4c4c4c',
-                marginBottom: '8px'
+              {/* Optimal prep time - Blue container */}
+              <div style={{
+                backgroundColor: '#cae9ef',
+                borderRadius: '16px',
+                padding: '16px',
+                marginBottom: '18px'
               }}>
-                Notes & Ideas
-              </h4>
-              <p style={{
-                fontSize: '15px',
-                color: '#4c4c4c',
-                lineHeight: '1.4'
-              }}>
-                {eventData.kaiSuggestions.notes}
-              </p>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginBottom: '8px'
+                }}>
+                  <img 
+                    src="/icons/ideas_color.svg" 
+                    alt="Ideas"
+                    style={{ width: '16px', height: '16px', marginRight: '8px' }}
+                  />
+                  <h4 style={{
+                    fontSize: '15px',
+                    fontWeight: 500,
+                    color: '#4c4c4c'
+                  }}>
+                    Optimal prep time
+                  </h4>
+                </div>
+                <p style={{
+                  fontSize: '15px',
+                  color: '#4c4c4c',
+                  lineHeight: '1.4'
+                }}>
+                  {eventData.kaiSuggestions.optimalPrepTime}
+                </p>
+              </div>
+
+              {/* Separator Line */}
+              <div style={{
+                height: '1px',
+                backgroundColor: '#e2e2e2',
+                margin: '18px 0'
+              }} />
+
+              {/* Notes & Ideas - Outside blue container */}
+              <div>
+                <h4 style={{
+                  fontSize: '15px',
+                  fontWeight: 500,
+                  color: '#4c4c4c',
+                  marginBottom: '8px'
+                }}>
+                  Notes & Ideas
+                </h4>
+                <p style={{
+                  fontSize: '15px',
+                  color: '#4c4c4c',
+                  lineHeight: '1.4'
+                }}>
+                  {eventData.kaiSuggestions.notes}
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Action Buttons */}
-      <div style={{
-        position: 'fixed',
-        bottom: '100px', // Above tab bar
-        left: '20px',
-        right: '20px',
-        display: 'flex',
-        gap: '12px'
-      }}>
-        <button
-          onClick={handleAddReminder}
-          style={{
-            flex: 1,
-            backgroundColor: '#2847ef',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            padding: '12px',
-            fontSize: '15px',
-            fontWeight: 500,
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          + Reminder
-        </button>
-        
-        <button
-          onClick={handleEdit}
-          style={{
-            flex: 1,
-            backgroundColor: '#2847ef',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            padding: '12px',
-            fontSize: '15px',
-            fontWeight: 500,
-            cursor: 'pointer'
-          }}
-        >
-          Edit
-        </button>
+      {/* Bottom Action Buttons - Scroll with page */}
+      <div className="px-5" style={{ marginBottom: '20px' }}>
+        <div style={{
+          display: 'flex',
+          gap: '12px'
+        }}>
+          <button
+            onClick={handleAddReminder}
+            style={{
+              flex: 1,
+              backgroundColor: '#2847ef',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              padding: '12px',
+              fontSize: '15px',
+              fontWeight: 500,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            + Reminder
+          </button>
+          
+          <button
+            onClick={handleEdit}
+            style={{
+              flex: 1,
+              backgroundColor: '#2847ef',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              padding: '12px',
+              fontSize: '15px',
+              fontWeight: 500,
+              cursor: 'pointer'
+            }}
+          >
+            Edit
+          </button>
+        </div>
       </div>
 
       {/* Bottom spacing for tab navigation */}
