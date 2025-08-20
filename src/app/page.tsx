@@ -307,17 +307,41 @@ export default function Home() {
             </button>
           </div>
           
+          {/* Add button positioned 8px to the left of All button */}
+          <button 
+            onClick={() => router.push('/add-event')}
+            className="absolute text-sm font-medium text-white transition-all duration-200 hover:scale-105" 
+            style={{ 
+              backgroundColor: 'var(--checkbox-checked)',
+              borderRadius: '12px',
+              bottom: '12px',
+              right: '84px',
+              width: '60px',
+              height: '32px',
+              fontSize: '14px',
+              fontWeight: 500,
+              cursor: 'pointer'
+            }}
+          >
+            Add
+          </button>
+
           {/* All button positioned bottom-right inside container */}
-          <button className="absolute text-sm font-medium text-white" style={{ 
-            backgroundColor: 'var(--button-secondary-bg)',
-            borderRadius: '12px',
-            bottom: '12px',
-            right: '16px',
-            width: '60px',
-            height: '32px',
-            fontSize: '14px',
-            fontWeight: 500
-          }}>
+          <button 
+            onClick={() => router.push('/tasks?view=schedule')}
+            className="absolute text-sm font-medium text-white transition-all duration-200 hover:scale-105"
+            style={{ 
+              backgroundColor: 'var(--button-secondary-bg)',
+              borderRadius: '12px',
+              bottom: '12px',
+              right: '16px',
+              width: '60px',
+              height: '32px',
+              fontSize: '14px',
+              fontWeight: 500,
+              cursor: 'pointer'
+            }}
+          >
             All
           </button>
         </div>
@@ -457,17 +481,41 @@ export default function Home() {
             </div>
           </div>
           
+          {/* Add button positioned 8px to the left of All button */}
+          <button 
+            onClick={() => router.push('/add-task')}
+            className="absolute text-sm font-medium text-white transition-all duration-200 hover:scale-105" 
+            style={{ 
+              backgroundColor: 'var(--checkbox-checked)',
+              borderRadius: '12px',
+              bottom: '12px',
+              right: '84px',
+              width: '60px',
+              height: '32px',
+              fontSize: '14px',
+              fontWeight: 500,
+              cursor: 'pointer'
+            }}
+          >
+            Add
+          </button>
+
           {/* All button positioned bottom-right inside container */}
-          <button className="absolute text-sm font-medium text-white" style={{ 
-            backgroundColor: 'var(--button-secondary-bg)',
-            borderRadius: '12px',
-            bottom: '12px',
-            right: '16px',
-            width: '60px',
-            height: '32px',
-            fontSize: '14px',
-            fontWeight: 500
-          }}>
+          <button 
+            onClick={() => router.push('/tasks')}
+            className="absolute text-sm font-medium text-white transition-all duration-200 hover:scale-105"
+            style={{ 
+              backgroundColor: 'var(--button-secondary-bg)',
+              borderRadius: '12px',
+              bottom: '12px',
+              right: '16px',
+              width: '60px',
+              height: '32px',
+              fontSize: '14px',
+              fontWeight: 500,
+              cursor: 'pointer'
+            }}
+          >
             All
           </button>
         </div>
