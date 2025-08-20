@@ -593,8 +593,9 @@ function TasksContent() {
           height: '60px' // Fixed height like Home screen
         }}
         onClick={() => {
-          // Handle event click - could navigate to event detail
-          console.log('Event clicked:', event.title)
+          // Navigate to event detail screen
+          const eventSlug = event.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')
+          router.push(`/schedule/${eventSlug}`)
         }}
       >
         {/* 

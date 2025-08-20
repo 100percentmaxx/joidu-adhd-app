@@ -178,7 +178,21 @@ export default function Home() {
           
           <div className="space-y-2" style={{ marginTop: '24px' }}>
             {/* Personal trainer - Health */}
-            <div className="flex overflow-hidden" style={{ height: '60px' }}>
+            <button 
+              onClick={() => router.push('/schedule/personal-trainer')}
+              className="flex overflow-hidden w-full"
+              style={{ 
+                height: '60px', 
+                background: 'none', 
+                border: 'none', 
+                padding: 0, 
+                cursor: 'pointer',
+                transition: 'transform 0.2s ease'
+              }}
+              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
               <div className="flex items-center justify-center" style={{ 
                 backgroundColor: 'var(--category-health-light)',
                 borderRadius: '12px 0px 0px 12px',
@@ -204,10 +218,24 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </button>
             
             {/* Meeting with Emma - Work */}
-            <div className="flex overflow-hidden" style={{ height: '60px' }}>
+            <button 
+              onClick={() => router.push('/schedule/meeting-with-emma')}
+              className="flex overflow-hidden w-full"
+              style={{ 
+                height: '60px', 
+                background: 'none', 
+                border: 'none', 
+                padding: 0, 
+                cursor: 'pointer',
+                transition: 'transform 0.2s ease'
+              }}
+              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
               <div className="flex items-center justify-center" style={{ 
                 backgroundColor: 'var(--category-work-light)',
                 borderRadius: '12px 0px 0px 12px',
@@ -233,10 +261,24 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </button>
             
             {/* Coffee with Kay - Social */}
-            <div className="flex overflow-hidden" style={{ height: '60px' }}>
+            <button 
+              onClick={() => router.push('/schedule/coffee-with-kay')}
+              className="flex overflow-hidden w-full"
+              style={{ 
+                height: '60px', 
+                background: 'none', 
+                border: 'none', 
+                padding: 0, 
+                cursor: 'pointer',
+                transition: 'transform 0.2s ease'
+              }}
+              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
               <div className="flex items-center justify-center" style={{ 
                 backgroundColor: 'var(--category-social-light)',
                 borderRadius: '12px 0px 0px 12px',
@@ -262,7 +304,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </button>
           </div>
           
           {/* All button positioned bottom-right inside container */}

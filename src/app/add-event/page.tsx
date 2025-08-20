@@ -235,8 +235,9 @@ export default function AddEvent() {
             <button
               key={key}
               onClick={() => setFormData(prev => ({ ...prev, category: key as Category }))}
-              className="flex items-center px-3 py-2 rounded-lg transition-all duration-200 relative"
+              className="flex items-center px-3 py-2 transition-all duration-200 relative"
               style={{
+                borderRadius: '10px',
                 backgroundColor: info.color,
                 border: isSelected ? '2px solid var(--primary-blue)' : '2px solid transparent',
                 minHeight: '44px'
@@ -574,23 +575,24 @@ export default function AddEvent() {
         </div>
 
         {/* Add Event Button */}
-        <button
-          onClick={handleSubmit}
-          style={{
-            width: '100%',
-            backgroundColor: 'var(--primary-blue)',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            padding: '16px',
-            fontSize: '15px',
-            fontWeight: '500',
-            cursor: 'pointer',
-            marginBottom: '20px'
-          }}
-        >
-          Add Event
-        </button>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
+          <button
+            onClick={handleSubmit}
+            style={{
+              width: '140px',
+              backgroundColor: 'var(--primary-blue)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '10px',
+              padding: '16px',
+              fontSize: '15px',
+              fontWeight: '500',
+              cursor: 'pointer'
+            }}
+          >
+            Add Event
+          </button>
+        </div>
       </div>
 
       {/* Bottom spacing for navigation */}
