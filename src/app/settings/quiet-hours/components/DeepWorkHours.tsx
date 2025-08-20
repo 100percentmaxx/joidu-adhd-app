@@ -1,5 +1,5 @@
 import React from 'react'
-import TimePicker from './TimePicker'
+import QuietHoursTimePicker from './TimePicker'
 
 interface DeepWorkHoursProps {
   startTime: string
@@ -60,7 +60,7 @@ export default function DeepWorkHours({
         gap: '16px',
         justifyContent: 'center'
       }}>
-        <TimePicker
+        <QuietHoursTimePicker
           value={startTime}
           onChange={onStartTimeChange}
         />
@@ -73,7 +73,7 @@ export default function DeepWorkHours({
           to
         </span>
         
-        <TimePicker
+        <QuietHoursTimePicker
           value={endTime}
           onChange={onEndTimeChange}
         />

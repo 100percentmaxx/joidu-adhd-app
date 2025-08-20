@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { ArrowLeft, Plus, Calendar } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import LightningFAB from '@/components/ui/LightningFAB'
 
 type FilterType = 'all' | 'today' | 'week' | 'priority' | 'category'
@@ -29,12 +29,14 @@ interface ScheduleEvent {
   icon?: string     // icon name from joidu-icons
 }
 
-export default function Tasks() {
+function TasksContent() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const currentDate = new Date()
   const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>({})
   const [activeFilter, setActiveFilter] = useState<FilterType>('today')
   const [activeView, setActiveView] = useState<ViewType>('tasks')
+  const [userEvents, setUserEvents] = useState<ScheduleEvent[]>([])
   
   // Schedule view state for month navigation
   const [currentMonth, setCurrentMonth] = useState(new Date())
@@ -99,104 +101,120 @@ export default function Tasks() {
     }
   ]
 
-  // Sample schedule events data
-  const scheduleEvents: ScheduleEvent[] = [
-    // Tuesday, April 16
-    {
-      id: 'e1',
-      title: 'Personal trainer',
-      startTime: '7:00',
-      endTime: '8:00',
-      date: '2024-04-16',
-      category: 'health',
-      icon: 'health.svg'
-    },
-    {
-      id: 'e2',
-      title: 'Meeting with Emma',
-      startTime: '11:00',
-      endTime: '11:30',
-      date: '2024-04-16',
-      category: 'work',
-      icon: 'work.svg'
-    },
-    {
-      id: 'e3',
-      title: 'Coffee with Kay',
-      startTime: '1:00',
-      endTime: '2:00',
-      date: '2024-04-16',
-      category: 'social',
-      icon: 'social.svg'
-    },
-    {
-      id: 'e4',
-      title: 'Pick up laundry',
-      startTime: '3:00',
-      endTime: '4:30',
-      date: '2024-04-16',
-      category: 'personal',
-      icon: 'personal.svg'
-    },
-    {
-      id: 'e5',
-      title: 'Collins dinner',
-      startTime: '7:00',
-      endTime: '8:30',
-      date: '2024-04-16',
-      category: 'social',
-      icon: 'social.svg'
-    },
-    // Wednesday, April 17
-    {
-      id: 'e6',
-      title: 'Performance review',
-      startTime: '8:00',
-      endTime: '9:00',
-      date: '2024-04-17',
-      category: 'work',
-      icon: 'work.svg'
-    },
-    {
-      id: 'e7',
-      title: 'Financial advisor appt.',
-      startTime: '1:00',
-      endTime: '2:00',
-      date: '2024-04-17',
-      category: 'finance',
-      icon: 'finance.svg'
-    },
-    // Thursday, April 18
-    {
-      id: 'e8',
-      title: 'Work on presentation',
-      startTime: '3:00',
-      endTime: '4:30',
-      date: '2024-04-18',
-      category: 'work',
-      icon: 'work.svg'
-    },
-    {
-      id: 'e9',
-      title: 'Racquet ball w/ Curtis',
-      startTime: '5:00',
-      endTime: '6:00',
-      date: '2024-04-18',
-      category: 'health',
-      icon: 'health.svg'
-    },
-    {
-      id: 'e10',
-      title: 'Oil painting class',
-      startTime: '6:30',
-      endTime: '8:00',
-      date: '2024-04-18',
-      category: 'creative',
-      icon: 'creative.svg'
-    }
-  ]
+  // Sample schedule events data with current dates
+  const getSampleEvents = (): ScheduleEvent[] => {
+    const today = new Date()
+    const tomorrow = new Date(today)
+    tomorrow.setDate(today.getDate() + 1)
+    const dayAfter = new Date(today)
+    dayAfter.setDate(today.getDate() + 2)
+    
+    const formatDate = (date: Date) => date.toISOString().split('T')[0]
+    
+    return [
+      // Today
+      {
+        id: 'e1',
+        title: 'Personal trainer',
+        startTime: '7:00',
+        endTime: '8:00',
+        date: formatDate(today),
+        category: 'health',
+        icon: 'health.svg'
+      },
+      {
+        id: 'e2',
+        title: 'Meeting with Emma',
+        startTime: '11:00',
+        endTime: '11:30',
+        date: formatDate(today),
+        category: 'work',
+        icon: 'work.svg'
+      },
+      {
+        id: 'e3',
+        title: 'Coffee with Kay',
+        startTime: '1:00',
+        endTime: '2:00',
+        date: formatDate(today),
+        category: 'social',
+        icon: 'social.svg'
+      },
+      {
+        id: 'e4',
+        title: 'Pick up laundry',
+        startTime: '3:00',
+        endTime: '4:30',
+        date: formatDate(today),
+        category: 'personal',
+        icon: 'personal.svg'
+      },
+      {
+        id: 'e5',
+        title: 'Collins dinner',
+        startTime: '7:00',
+        endTime: '8:30',
+        date: formatDate(today),
+        category: 'social',
+        icon: 'social.svg'
+      },
+      // Tomorrow
+      {
+        id: 'e6',
+        title: 'Performance review',
+        startTime: '8:00',
+        endTime: '9:00',
+        date: formatDate(tomorrow),
+        category: 'work',
+        icon: 'work.svg'
+      },
+      {
+        id: 'e7',
+        title: 'Financial advisor appt.',
+        startTime: '1:00',
+        endTime: '2:00',
+        date: formatDate(tomorrow),
+        category: 'finance',
+        icon: 'finance.svg'
+      },
+      // Day after tomorrow
+      {
+        id: 'e8',
+        title: 'Work on presentation',
+        startTime: '3:00',
+        endTime: '4:30',
+        date: formatDate(dayAfter),
+        category: 'work',
+        icon: 'work.svg'
+      },
+      {
+        id: 'e9',
+        title: 'Racquet ball w/ Curtis',
+        startTime: '5:00',
+        endTime: '6:00',
+        date: formatDate(dayAfter),
+        category: 'health',
+        icon: 'health.svg'
+      },
+      {
+        id: 'e10',
+        title: 'Oil painting class',
+        startTime: '6:30',
+        endTime: '8:00',
+        date: formatDate(dayAfter),
+        category: 'creative',
+        icon: 'creative.svg'
+      }
+    ]
+  }
+
+  // Get combined events (sample + user events)
+  const getAllEvents = (): ScheduleEvent[] => {
+    const sampleEvents = getSampleEvents()
+    return [...sampleEvents, ...userEvents]
+  }
   
-  // Load completed tasks and filter state from localStorage
+  // Load completed tasks, filter state, and events from localStorage
   useEffect(() => {
     // Only access localStorage on client side
     if (typeof window === 'undefined') return
@@ -214,7 +232,26 @@ export default function Tasks() {
     if (savedFilter) {
       setActiveFilter(savedFilter as FilterType)
     }
+
+    // Load user events from localStorage
+    const savedEvents = localStorage.getItem('joidu-events')
+    if (savedEvents) {
+      try {
+        const events = JSON.parse(savedEvents)
+        setUserEvents(events)
+      } catch (error) {
+        console.error('Error loading events:', error)
+      }
+    }
   }, [])
+
+  // Handle URL parameters to set initial view
+  useEffect(() => {
+    const view = searchParams.get('view')
+    if (view === 'schedule') {
+      setActiveView('schedule')
+    }
+  }, [searchParams])
 
   // Save filter state to localStorage when it changes
   useEffect(() => {
@@ -520,7 +557,7 @@ export default function Tasks() {
   // Schedule functions - Filter events by current month and group by day
   const groupEventsByDay = () => {
     // Filter events to only show those in the current viewed month
-    const monthEvents = scheduleEvents.filter(event => {
+    const monthEvents = getAllEvents().filter(event => {
       const eventDate = new Date(event.date)
       return eventDate.getMonth() === currentMonth.getMonth() && 
              eventDate.getFullYear() === currentMonth.getFullYear()
@@ -1051,5 +1088,15 @@ export default function Tasks() {
       {/* Lightning FAB */}
       <LightningFAB />
     </div>
+  )
+}
+
+export default function Tasks() {
+  return (
+    <Suspense fallback={<div style={{ backgroundColor: 'var(--background)', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ color: 'var(--primary-blue)', fontSize: '17px' }}>Loading...</div>
+    </div>}>
+      <TasksContent />
+    </Suspense>
   )
 } 

@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Clock } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
+import TimePicker from '@/components/ui/TimePicker'
 
 // TypeScript interfaces for type safety
 interface EventFormData {
@@ -159,11 +160,68 @@ export default function AddEvent() {
       return
     }
 
-    // Save event logic would go here
-    console.log('Saving event:', formData)
+    // Create event object for storage
+    const newEvent = {
+      id: `event_${Date.now()}`, // Simple ID generation
+      title: formData.title,
+      startTime: formData.startTime,
+      endTime: formData.endTime,
+      date: formatDateForStorage(formData.date), // Convert to YYYY-MM-DD format
+      category: formData.category,
+      location: formData.location,
+      notes: formData.notes,
+      setReminder: formData.setReminder,
+      addTravelBuffer: formData.addTravelBuffer,
+      createPrepTasks: formData.createPrepTasks,
+      createdAt: new Date().toISOString()
+    }
+
+    // Save to localStorage
+    try {
+      const existingEvents = JSON.parse(localStorage.getItem('joidu-events') || '[]')
+      existingEvents.push(newEvent)
+      localStorage.setItem('joidu-events', JSON.stringify(existingEvents))
+      console.log('Event saved successfully:', newEvent)
+    } catch (error) {
+      console.error('Error saving event:', error)
+      alert('Error saving event. Please try again.')
+      return
+    }
     
     // Navigate back to Schedule view
-    router.push('/tasks') // Will need to set activeView to 'schedule'
+    router.push('/tasks?view=schedule')
+  }
+
+  // Helper function to convert date string to YYYY-MM-DD format
+  const formatDateForStorage = (dateStr: string) => {
+    try {
+      // Handle format like "Wednesday, 2 July" or similar
+      const today = new Date()
+      const currentYear = today.getFullYear()
+      
+      // For now, let's assume it's the current year and parse the date
+      // This is a simple implementation - in production you'd want more robust date parsing
+      if (dateStr.includes('Today')) {
+        return today.toISOString().split('T')[0]
+      }
+      if (dateStr.includes('Tomorrow')) {
+        const tomorrow = new Date(today)
+        tomorrow.setDate(today.getDate() + 1)
+        return tomorrow.toISOString().split('T')[0]
+      }
+      
+      // For dates like "Wednesday, 2 July", we'll need to parse and convert
+      // For now, let's try to create a date and format it
+      const parsedDate = new Date(`${dateStr} ${currentYear}`)
+      if (!isNaN(parsedDate.getTime())) {
+        return parsedDate.toISOString().split('T')[0]
+      }
+      
+      // Fallback to today if parsing fails
+      return today.toISOString().split('T')[0]
+    } catch {
+      return new Date().toISOString().split('T')[0]
+    }
   }
 
   // Render category pills
@@ -400,28 +458,11 @@ export default function AddEvent() {
             Time
           </label>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
-            <div style={{ flex: 1, position: 'relative' }}>
-              <input
-                type="text"
+            <div style={{ flex: 1 }}>
+              <TimePicker
                 value={formData.startTime}
-                onChange={(e) => {
-                  setFormData(prev => ({ ...prev, startTime: e.target.value }))
-                }}
-                style={{
-                  width: '100%',
-                  backgroundColor: 'var(--input-background)',
-                  border: '1px solid var(--border-color)',
-                  borderRadius: '12px',
-                  padding: '14px 16px',
-                  paddingRight: '40px',
-                  fontSize: '16px',
-                  color: 'var(--text-primary)',
-                  outline: 'none'
-                }}
-              />
-              <Clock 
-                className="absolute right-3 top-1/2 transform -translate-y-1/2" 
-                style={{ width: '20px', height: '20px', color: 'var(--text-secondary)' }} 
+                onChange={(time) => setFormData(prev => ({ ...prev, startTime: time }))}
+                placeholder="Start time"
               />
             </div>
             
@@ -433,28 +474,11 @@ export default function AddEvent() {
               to
             </span>
             
-            <div style={{ flex: 1, position: 'relative' }}>
-              <input
-                type="text"
+            <div style={{ flex: 1 }}>
+              <TimePicker
                 value={formData.endTime}
-                onChange={(e) => {
-                  setFormData(prev => ({ ...prev, endTime: e.target.value }))
-                }}
-                style={{
-                  width: '100%',
-                  backgroundColor: 'var(--input-background)',
-                  border: '1px solid var(--border-color)',
-                  borderRadius: '12px',
-                  padding: '14px 16px',
-                  paddingRight: '40px',
-                  fontSize: '16px',
-                  color: 'var(--text-primary)',
-                  outline: 'none'
-                }}
-              />
-              <Clock 
-                className="absolute right-3 top-1/2 transform -translate-y-1/2" 
-                style={{ width: '20px', height: '20px', color: 'var(--text-secondary)' }} 
+                onChange={(time) => setFormData(prev => ({ ...prev, endTime: time }))}
+                placeholder="End time"
               />
             </div>
           </div>

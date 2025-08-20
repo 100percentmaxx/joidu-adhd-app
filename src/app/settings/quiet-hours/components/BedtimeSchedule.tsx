@@ -1,5 +1,5 @@
 import React from 'react'
-import TimePicker from './TimePicker'
+import QuietHoursTimePicker from './TimePicker'
 import DaySelector from './DaySelector'
 
 interface BedtimeScheduleProps {
@@ -66,7 +66,7 @@ export default function BedtimeSchedule({
         marginBottom: '20px',
         justifyContent: 'center'
       }}>
-        <TimePicker
+        <QuietHoursTimePicker
           value={startTime}
           onChange={onStartTimeChange}
         />
@@ -79,7 +79,7 @@ export default function BedtimeSchedule({
           to
         </span>
         
-        <TimePicker
+        <QuietHoursTimePicker
           value={endTime}
           onChange={onEndTimeChange}
         />
