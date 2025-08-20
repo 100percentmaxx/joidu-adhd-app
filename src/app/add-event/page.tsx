@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import TimePicker from '@/components/ui/TimePicker'
+import DatePicker from '@/components/ui/DatePicker'
 
 // TypeScript interfaces for type safety
 interface EventFormData {
@@ -428,21 +429,10 @@ export default function AddEvent() {
           }}>
             Date
           </label>
-          <input
-            type="text"
+          <DatePicker
             value={formData.date}
-            onChange={(e) => setFormData(prev => ({ ...prev, date: e.target.value }))}
+            onChange={(date) => setFormData(prev => ({ ...prev, date }))}
             placeholder="Wednesday, 2 July"
-            style={{
-              width: '100%',
-              backgroundColor: 'var(--input-background)',
-              border: '1px solid var(--border-color)',
-              borderRadius: '12px',
-              padding: '14px 16px',
-              fontSize: '16px',
-              color: 'var(--text-primary)',
-              outline: 'none'
-            }}
           />
         </div>
 
