@@ -14,7 +14,7 @@ export default function CircularCheckbox({ checked, onChange, size = 24 }: Circu
       className="w-6 h-6 rounded-full transition-all duration-200 hover:bg-gray-50"
       style={{
         backgroundColor: checked ? '#a8e2bb' : '#FFFFFF',
-        border: checked ? 'none' : '2px solid #a5a5a5',
+        border: checked ? 'none' : '2px solid #e2e2e2',
         cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',

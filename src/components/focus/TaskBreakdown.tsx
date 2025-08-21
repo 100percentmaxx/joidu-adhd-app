@@ -226,7 +226,7 @@ export default function TaskBreakdown({
                   onClick={() => toggleStepCompletion(step.id)}
                   className="mt-1 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200"
                   style={{
-                    borderColor: step.isCompleted ? '#a8e2bb' : '#a5a5a5',
+                    borderColor: step.isCompleted ? '#a8e2bb' : '#e2e2e2',
                     backgroundColor: step.isCompleted ? '#a8e2bb' : 'transparent'
                   }}
                 >

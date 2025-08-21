@@ -111,7 +111,7 @@ function TaskDetailContent() {
                 className="w-6 h-6 rounded-full mr-4" 
                 style={{ 
                   backgroundColor: 'white',
-                  border: '2px solid #a5a5a5'
+                  border: '2px solid #e2e2e2'
                 }}
               />
               <h1 style={{ 
