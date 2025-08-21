@@ -110,15 +110,14 @@ export default function TasksEmptyState({ userName = 'Your' }: TasksEmptyStatePr
       backgroundColor: '#FFFFFF',
       borderRadius: '16px',
       padding: '16px',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
       textAlign: 'center'
     }}>
       {/* Main Icon */}
-      <div style={{ marginBottom: '8px', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'center' }}>
         <img 
           src="/icons/tasks_3.svg" 
           alt="Tasks"
-          style={{ width: '32px', height: '32px' }}
+          style={{ width: '42px', height: '42px' }}
         />
       </div>
 
