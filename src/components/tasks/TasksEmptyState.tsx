@@ -108,18 +108,17 @@ export default function TasksEmptyState({ userName = 'Your' }: TasksEmptyStatePr
   return (
     <div style={{
       backgroundColor: '#FFFFFF',
-      border: '1px solid #e2e2e2',
       borderRadius: '16px',
       padding: '16px',
       boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
       textAlign: 'center'
     }}>
       {/* Main Icon */}
-      <div style={{ marginBottom: '8px' }}>
+      <div style={{ marginBottom: '8px', display: 'flex', justifyContent: 'center' }}>
         <img 
           src="/icons/tasks_3.svg" 
           alt="Tasks"
-          style={{ width: '24px', height: '24px' }}
+          style={{ width: '32px', height: '32px' }}
         />
       </div>
 
@@ -138,18 +137,39 @@ export default function TasksEmptyState({ userName = 'Your' }: TasksEmptyStatePr
         fontSize: '13px',
         fontWeight: 400,
         color: '#a5a5a5',
-        margin: '0 0 16px 0'
+        margin: '0 0 18px 0'
       }}>
         Perfect clean slate for your ADHD brain!
       </p>
+
+      {/* Try Adding Line */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: '18px'
+      }}>
+        <img 
+          src="/icons/twinkle.svg" 
+          alt="Twinkle"
+          style={{ width: '24px', height: '24px', marginRight: '8px' }}
+        />
+        <span style={{
+          fontSize: '15px',
+          fontWeight: 400,
+          color: '#4c4c4c'
+        }}>
+          Try Adding Your First Task:
+        </span>
+      </div>
 
       {/* Starter Suggestions */}
       <div style={{ textAlign: 'left' }}>
         {/* Email Task Suggestion */}
         {renderSuggestionRow(
           <img 
-            src="/icons/twinkle.svg" 
-            alt="Twinkle"
+            src="/icons/email.svg" 
+            alt="Email"
             style={{ width: '20px', height: '20px' }}
           />,
           'Reply to important emails',
@@ -159,8 +179,8 @@ export default function TasksEmptyState({ userName = 'Your' }: TasksEmptyStatePr
         {/* Grocery Task Suggestion */}
         {renderSuggestionRow(
           <img 
-            src="/icons/email.svg" 
-            alt="Email"
+            src="/icons/personal_gray.svg" 
+            alt="Personal"
             style={{ width: '20px', height: '20px' }}
           />,
           'Make grocery list',
