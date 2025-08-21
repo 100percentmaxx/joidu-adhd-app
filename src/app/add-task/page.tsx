@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { ArrowLeft } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 type Category = 'work' | 'health' | 'personal' | 'social' | 'creative' | 'finance'
 type EnergyLevel = 'low' | 'medium' | 'high'
@@ -34,8 +34,10 @@ const durationData = {
   long: { icon: '/icons/clock.svg', label: 'Long', time: '> 1 hour' }
 }
 
-export default function AddTask() {
+function AddTaskForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  
   const [formData, setFormData] = useState<TaskFormData>({
     description: '',
     category: 'work',
@@ -45,6 +47,20 @@ export default function AddTask() {
     energyLevel: 'medium',
     reminder: false
   })
+
+  // Handle URL parameters for pre-populated data
+  useEffect(() => {
+    const title = searchParams.get('title')
+    const category = searchParams.get('category') as Category | null
+    
+    if (title || category) {
+      setFormData(prev => ({
+        ...prev,
+        description: title || prev.description,
+        category: (category && Object.keys(categoryData).includes(category)) ? category : prev.category
+      }))
+    }
+  }, [searchParams])
 
   const [errors, setErrors] = useState<Record<string, string>>({})
 
@@ -439,5 +455,13 @@ export default function AddTask() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function AddTask() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AddTaskForm />
+    </Suspense>
   )
 }

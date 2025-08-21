@@ -4,10 +4,23 @@ import React, { useState, useEffect } from 'react'
 import { Medal, Settings } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import LightningFAB from '@/components/ui/LightningFAB'
+import TasksEmptyState from '@/components/tasks/TasksEmptyState'
 
 export default function Home() {
   const router = useRouter()
   const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>({})
+  
+  // Define tasks array - in production this would come from API/localStorage
+  const tasks = [
+    { name: 'Reply to emails', category: 'work', icon: '/icons/work.svg' },
+    { name: 'Meditate 15 min.', category: 'health', icon: '/icons/health.svg' },
+    { name: 'Repair garden gate', category: 'personal', icon: '/icons/personal.svg' }
+  ]
+  
+  // For demo purposes, allow toggling between empty and filled state
+  // Set to true to see empty state, false to see populated tasks
+  const [showEmptyState, setShowEmptyState] = useState(true)
+  const activeTasks = showEmptyState ? [] : tasks
   
   // Load completed tasks from localStorage on component mount
   useEffect(() => {
@@ -371,115 +384,62 @@ export default function Home() {
             Tasks
           </div>
           
-          <div className="space-y-2" style={{ marginTop: '24px' }}>
-            {/* Reply to emails - Work */}
-            <div className="flex overflow-hidden" style={{ height: '60px' }}>
-              <div className="flex items-center justify-between" style={{ 
-                backgroundColor: 'var(--category-work-light)',
-                borderRadius: '12px',
-                width: '100px',
-                height: '100%',
-                paddingLeft: '12px',
-                paddingRight: '12px'
-              }}>
-                <img src="/icons/work.svg" alt="work" style={{ width: '30px', height: '30px' }} />
-                {renderCheckbox('Reply to emails')}
-              </div>
-              <div className="flex-1 flex items-center" style={{ 
-                backgroundColor: 'var(--card-background)',
-                paddingLeft: '16px'
-              }}>
-                <button 
-                  onClick={() => handleTaskDetail('Reply to emails')}
-                  style={{ 
-                    color: completedTasks['Reply to emails'] ? 'var(--text-disabled)' : 'var(--text-primary)', 
-                    fontSize: '17px', 
-                    fontWeight: 500,
-                    textDecoration: completedTasks['Reply to emails'] ? 'line-through' : 'none',
-                    background: 'none',
-                    border: 'none',
-                    padding: 0,
-                    cursor: 'pointer',
-                    textAlign: 'left'
-                  }}
-                >
-                  Reply to emails
-                </button>
-              </div>
+          {/* Task Content - Conditional Rendering */}
+          {activeTasks.length === 0 ? (
+            <div style={{ marginTop: '24px' }}>
+              <TasksEmptyState userName="Your" />
             </div>
-            
-            {/* Meditate - Health */}
-            <div className="flex overflow-hidden" style={{ height: '60px' }}>
-              <div className="flex items-center justify-between" style={{ 
-                backgroundColor: 'var(--category-health-light)',
-                borderRadius: '12px',
-                width: '100px',
-                height: '100%',
-                paddingLeft: '12px',
-                paddingRight: '12px'
-              }}>
-                <img src="/icons/health.svg" alt="health" style={{ width: '30px', height: '30px' }} />
-                {renderCheckbox('Meditate 15 min.')}
-              </div>
-              <div className="flex-1 flex items-center" style={{ 
-                backgroundColor: 'var(--card-background)',
-                paddingLeft: '16px'
-              }}>
-                <button 
-                  onClick={() => handleTaskDetail('Meditate 15 min.')}
-                  style={{ 
-                    color: completedTasks['Meditate 15 min.'] ? 'var(--text-disabled)' : 'var(--text-primary)', 
-                    fontSize: '17px', 
-                    fontWeight: 500,
-                    textDecoration: completedTasks['Meditate 15 min.'] ? 'line-through' : 'none',
-                    background: 'none',
-                    border: 'none',
-                    padding: 0,
-                    cursor: 'pointer',
-                    textAlign: 'left'
-                  }}
-                >
-                  Meditate 15 min.
-                </button>
-              </div>
+          ) : (
+            <div className="space-y-2" style={{ marginTop: '24px' }}>
+              {activeTasks.map((task, index) => {
+                const categoryColors = {
+                  work: 'var(--category-work-light)',
+                  health: 'var(--category-health-light)',
+                  personal: 'var(--category-personal-light)',
+                  social: 'var(--category-social-light)',
+                  creative: 'var(--category-creative-light)',
+                  finance: 'var(--category-finance-light)'
+                }
+                
+                return (
+                  <div key={index} className="flex overflow-hidden" style={{ height: '60px' }}>
+                    <div className="flex items-center justify-between" style={{ 
+                      backgroundColor: categoryColors[task.category as keyof typeof categoryColors],
+                      borderRadius: '12px',
+                      width: '100px',
+                      height: '100%',
+                      paddingLeft: '12px',
+                      paddingRight: '12px'
+                    }}>
+                      <img src={task.icon} alt={task.category} style={{ width: '30px', height: '30px' }} />
+                      {renderCheckbox(task.name)}
+                    </div>
+                    <div className="flex-1 flex items-center" style={{ 
+                      backgroundColor: 'var(--card-background)',
+                      paddingLeft: '16px'
+                    }}>
+                      <button 
+                        onClick={() => handleTaskDetail(task.name)}
+                        style={{ 
+                          color: completedTasks[task.name] ? 'var(--text-disabled)' : 'var(--text-primary)', 
+                          fontSize: '17px', 
+                          fontWeight: 500,
+                          textDecoration: completedTasks[task.name] ? 'line-through' : 'none',
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          cursor: 'pointer',
+                          textAlign: 'left'
+                        }}
+                      >
+                        {task.name}
+                      </button>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
-            
-            {/* Repair garden gate - Personal */}
-            <div className="flex overflow-hidden" style={{ height: '60px' }}>
-              <div className="flex items-center justify-between" style={{ 
-                backgroundColor: 'var(--category-personal-light)',
-                borderRadius: '12px',
-                width: '100px',
-                height: '100%',
-                paddingLeft: '12px',
-                paddingRight: '12px'
-              }}>
-                <img src="/icons/personal.svg" alt="personal" style={{ width: '30px', height: '30px' }} />
-                {renderCheckbox('Repair garden gate')}
-              </div>
-              <div className="flex-1 flex items-center" style={{ 
-                backgroundColor: 'var(--card-background)',
-                paddingLeft: '16px'
-              }}>
-                <button 
-                  onClick={() => handleTaskDetail('Repair garden gate')}
-                  style={{ 
-                    color: completedTasks['Repair garden gate'] ? 'var(--text-disabled)' : 'var(--text-primary)', 
-                    fontSize: '17px', 
-                    fontWeight: 500,
-                    textDecoration: completedTasks['Repair garden gate'] ? 'line-through' : 'none',
-                    background: 'none',
-                    border: 'none',
-                    padding: 0,
-                    cursor: 'pointer',
-                    textAlign: 'left'
-                  }}
-                >
-                  Repair garden gate
-                </button>
-              </div>
-            </div>
-          </div>
+          )}
           
           {/* Add button positioned 8px to the left of All button */}
           <button 
@@ -502,10 +462,10 @@ export default function Home() {
 
           {/* All button positioned bottom-right inside container */}
           <button 
-            onClick={() => router.push('/tasks')}
-            className="absolute text-sm font-medium text-white transition-all duration-200 hover:scale-105"
+            onClick={activeTasks.length > 0 ? () => router.push('/tasks') : undefined}
+            className="absolute text-sm font-medium text-white transition-all duration-200"
             style={{ 
-              backgroundColor: 'var(--button-secondary-bg)',
+              backgroundColor: activeTasks.length > 0 ? 'var(--button-secondary-bg)' : '#a5a5a5',
               borderRadius: '12px',
               bottom: '12px',
               right: '16px',
@@ -513,7 +473,18 @@ export default function Home() {
               height: '32px',
               fontSize: '14px',
               fontWeight: 500,
-              cursor: 'pointer'
+              cursor: activeTasks.length > 0 ? 'pointer' : 'not-allowed',
+              opacity: activeTasks.length > 0 ? 1 : 0.5,
+              transform: activeTasks.length > 0 ? 'scale(1)' : 'scale(1)'
+            }}
+            disabled={activeTasks.length === 0}
+            onMouseEnter={(e) => {
+              if (activeTasks.length > 0) {
+                e.currentTarget.style.transform = 'scale(1.05)'
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)'
             }}
           >
             All
