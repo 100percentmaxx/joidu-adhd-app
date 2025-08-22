@@ -29,6 +29,18 @@ function AddHabitContent() {
 
   // Load prefilled data from URL params
   useEffect(() => {
+    // Handle new simple URL parameters from Empty State
+    const title = searchParams.get('title')
+    const category = searchParams.get('category') as CategoryType | null
+    const frequency = searchParams.get('frequency') as FrequencyType | null
+    
+    if (title || category || frequency) {
+      if (title) setHabitName(title)
+      if (category) setCategory(category)
+      if (frequency) setFrequency(frequency)
+    }
+    
+    // Legacy support for complex JSON prefill data
     const prefillData = searchParams.get('prefill')
     if (prefillData) {
       try {

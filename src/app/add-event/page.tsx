@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import React, { useState, useEffect, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import TimePicker from '@/components/ui/TimePicker'
 import DatePicker from '@/components/ui/DatePicker'
@@ -28,8 +28,9 @@ interface CategoryInfo {
   icon: string
 }
 
-export default function AddEvent() {
+function AddEventForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   
   // Form state management
   const [formData, setFormData] = useState<EventFormData>({
@@ -58,6 +59,22 @@ export default function AddEvent() {
     creative: { name: 'Creative', color: 'var(--category-creative-light)', icon: '/icons/creative.svg' },
     finance: { name: 'Finance', color: 'var(--category-finance-light)', icon: '/icons/finance.svg' }
   }
+
+  // Handle URL parameters for pre-populated data
+  useEffect(() => {
+    const title = searchParams.get('title')
+    const category = searchParams.get('category') as Category | null
+    const time = searchParams.get('time')
+    
+    if (title || category || time) {
+      setFormData(prev => ({
+        ...prev,
+        title: title || prev.title,
+        category: (category && Object.keys(categoryData).includes(category)) ? category : prev.category,
+        startTime: time ? `${time.substring(0, 2)}:${time.substring(3, 5)} ${parseInt(time.substring(0, 2)) >= 12 ? 'PM' : 'AM'}` : prev.startTime
+      }))
+    }
+  }, [searchParams])
 
   // Initialize date to today if not set
   useEffect(() => {
@@ -598,5 +615,13 @@ export default function AddEvent() {
       {/* Bottom spacing for navigation */}
       <div style={{ height: '80px' }}></div>
     </div>
+  )
+}
+
+export default function AddEvent() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AddEventForm />
+    </Suspense>
   )
 }
