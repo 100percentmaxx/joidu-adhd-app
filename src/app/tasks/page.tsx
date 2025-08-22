@@ -40,6 +40,18 @@ function TasksContent() {
   
   // Schedule view state for month navigation
   const [currentMonth, setCurrentMonth] = useState(new Date())
+  
+  // Tasks view calendar state - Enhanced dual navigation system
+  const [selectedDate, setSelectedDate] = useState(new Date()) // Currently selected date
+  const [currentWeekStart, setCurrentWeekStart] = useState(() => {
+    // Initialize to start of current week (can be any 7-day period)
+    const today = new Date()
+    const dayOfWeek = today.getDay() // 0 = Sunday, 1 = Monday, etc.
+    const weekStart = new Date(today)
+    weekStart.setDate(today.getDate() - dayOfWeek) // Start from Sunday
+    return weekStart
+  })
+  const [tasksCurrentMonth, setTasksCurrentMonth] = useState(new Date()) // Month shown in Tasks view
 
   // Define task data with categories, priorities, and dates
   const allTasks: Task[] = [
@@ -270,7 +282,163 @@ function TasksContent() {
     finance: { color: 'var(--category-finance-light)', icon: '/icons/finance.svg' }
   }
 
-  // Filter tasks based on active filter
+  // ==========================================
+  // DUAL NAVIGATION SYSTEM - Calendar Functions
+  // ==========================================
+
+  /**
+   * MONTH NAVIGATION (Top Level)
+   * - Changes the month displayed in the calendar header
+   * - Updates the current week to show a week from the new month
+   * - Maintains selected date if it exists in the new month
+   */
+  const navigateTasksMonth = (direction: 'prev' | 'next') => {
+    setTasksCurrentMonth(prevMonth => {
+      const newMonth = new Date(prevMonth)
+      if (direction === 'prev') {
+        newMonth.setMonth(newMonth.getMonth() - 1)
+      } else {
+        newMonth.setMonth(newMonth.getMonth() + 1)
+      }
+      
+      // Update current week to show first week of new month
+      const firstDayOfMonth = new Date(newMonth.getFullYear(), newMonth.getMonth(), 1)
+      const dayOfWeek = firstDayOfMonth.getDay()
+      const weekStart = new Date(firstDayOfMonth)
+      weekStart.setDate(firstDayOfMonth.getDate() - dayOfWeek) // Start from Sunday
+      setCurrentWeekStart(weekStart)
+      
+      return newMonth
+    })
+  }
+
+  /**
+   * WEEK NAVIGATION (Secondary Level)
+   * - Moves the displayed week by 7 days in either direction
+   * - Can cross month boundaries seamlessly
+   * - Updates month display if week crosses into different month
+   */
+  const navigateWeek = (direction: 'prev' | 'next') => {
+    setCurrentWeekStart(prevWeekStart => {
+      const newWeekStart = new Date(prevWeekStart)
+      if (direction === 'prev') {
+        newWeekStart.setDate(newWeekStart.getDate() - 7)
+      } else {
+        newWeekStart.setDate(newWeekStart.getDate() + 7)
+      }
+      
+      // Update month display if week crossed month boundary
+      const weekMiddle = new Date(newWeekStart)
+      weekMiddle.setDate(newWeekStart.getDate() + 3) // Wednesday of the week
+      
+      if (weekMiddle.getMonth() !== tasksCurrentMonth.getMonth() || 
+          weekMiddle.getFullYear() !== tasksCurrentMonth.getFullYear()) {
+        setTasksCurrentMonth(new Date(weekMiddle.getFullYear(), weekMiddle.getMonth(), 1))
+      }
+      
+      return newWeekStart
+    })
+  }
+
+  /**
+   * DATE SELECTION
+   * - Handles clicking on individual calendar dates
+   * - Updates selected date and task filtering
+   * - Provides visual feedback with blue circle
+   */
+  const handleDateSelect = (date: Date) => {
+    setSelectedDate(new Date(date))
+  }
+
+  /**
+   * WEEK DATES GENERATION
+   * - Generates array of 7 dates starting from currentWeekStart
+   * - Handles month boundaries (may show dates from 2 different months)
+   * - Returns Date objects for proper comparison and formatting
+   */
+  const getWeekDates = (): Date[] => {
+    const dates: Date[] = []
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(currentWeekStart)
+      date.setDate(currentWeekStart.getDate() + i)
+      dates.push(date)
+    }
+    return dates
+  }
+
+  /**
+   * SWIPE GESTURE HANDLING
+   * - Detects horizontal swipes on calendar area
+   * - Left swipe: Next week, Right swipe: Previous week
+   * - Uses touch events with minimum distance threshold
+   */
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0]
+    setTouchStartX(touch.clientX)
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return
+    
+    const touch = e.changedTouches[0]
+    const diff = touchStartX - touch.clientX
+    const minSwipeDistance = 50 // Minimum pixels for swipe detection
+    
+    if (Math.abs(diff) > minSwipeDistance) {
+      if (diff > 0) {
+        // Swiped left - next week
+        navigateWeek('next')
+      } else {
+        // Swiped right - previous week
+        navigateWeek('prev')
+      }
+    }
+    setTouchStartX(null)
+  }
+
+  // Touch handling state for swipe gestures
+  const [touchStartX, setTouchStartX] = useState<number | null>(null)
+
+  /**
+   * KEYBOARD NAVIGATION SUPPORT
+   * - Arrow keys for week navigation
+   * - Enter/Space for date selection
+   * - Escape to return to today
+   */
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    switch (e.key) {
+      case 'ArrowLeft':
+        e.preventDefault()
+        navigateWeek('prev')
+        break
+      case 'ArrowRight':
+        e.preventDefault()
+        navigateWeek('next')
+        break
+      case 'ArrowUp':
+        e.preventDefault()
+        navigateTasksMonth('prev')
+        break
+      case 'ArrowDown':
+        e.preventDefault()
+        navigateTasksMonth('next')
+        break
+      case 'Home':
+      case 'Escape':
+        e.preventDefault()
+        // Return to today
+        const today = new Date()
+        setSelectedDate(today)
+        const dayOfWeek = today.getDay()
+        const weekStart = new Date(today)
+        weekStart.setDate(today.getDate() - dayOfWeek)
+        setCurrentWeekStart(weekStart)
+        setTasksCurrentMonth(new Date(today.getFullYear(), today.getMonth(), 1))
+        break
+    }
+  }
+
+  // Filter tasks based on active filter and selected date
   const getFilteredTasks = () => {
     const today = new Date()
     const startOfWeek = new Date(today)
@@ -280,8 +448,9 @@ function TasksContent() {
 
     switch (activeFilter) {
       case 'today':
+        // Show tasks for selected date instead of always today
         return allTasks.filter(task => 
-          task.dueDate.toDateString() === today.toDateString()
+          task.dueDate.toDateString() === selectedDate.toDateString()
         )
       case 'week':
         return allTasks.filter(task => 
@@ -503,14 +672,13 @@ function TasksContent() {
       ></button>
     )
   }
+  // Calendar display constants
   const dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   
-  const monthName = monthNames[currentDate.getMonth()]
-  const selectedDay = 16 // Tuesday, April 16 as shown in mockup
-  
-  // Generate calendar dates for the week
-  const weekDates = [14, 15, 16, 17, 18, 19, 20]
+  // Get current week dates for display
+  const weekDates = getWeekDates()
+  const monthName = monthNames[tasksCurrentMonth.getMonth()]
 
   // Month navigation functions for Schedule view
   const navigateMonth = (direction: 'prev' | 'next') => {
@@ -748,10 +916,60 @@ function TasksContent() {
           animation: fadeIn 0.3s ease-in-out;
         }
         
+        .calendar-transition {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .calendar-slide-in {
+          animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .week-nav-btn:hover {
+          background-color: rgba(40, 71, 239, 0.1);
+          border-radius: 50%;
+        }
+        
+        .month-nav-btn:hover {
+          background-color: rgba(40, 71, 239, 0.1);
+          border-radius: 8px;
+        }
+        
+        .date-btn:focus {
+          outline: 2px solid var(--primary-blue);
+          outline-offset: 2px;
+        }
+        
         @keyframes fadeIn {
           from {
             opacity: 0;
             transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        /* Smooth transitions for task content when date changes */
+        .task-content-transition {
+          animation: contentFadeIn 0.4s ease-out;
+        }
+        
+        @keyframes contentFadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(15px);
           }
           to {
             opacity: 1;
@@ -844,7 +1062,19 @@ function TasksContent() {
         {activeView === 'tasks' && (
           <div className="flex justify-between mt-4" style={{ width: '360px' }}>
             <button 
-              onClick={() => setActiveFilter('today')}
+              onClick={() => {
+                setActiveFilter('today')
+                // When "Today" is clicked, navigate to and select today's date
+                const today = new Date()
+                setSelectedDate(today)
+                // Update week to show today
+                const dayOfWeek = today.getDay()
+                const weekStart = new Date(today)
+                weekStart.setDate(today.getDate() - dayOfWeek)
+                setCurrentWeekStart(weekStart)
+                // Update month display
+                setTasksCurrentMonth(new Date(today.getFullYear(), today.getMonth(), 1))
+              }}
               className="slider-button text-white font-medium transition-all duration-200 hover:scale-105"
               style={{ 
                 width: '80px', 
@@ -959,39 +1189,165 @@ function TasksContent() {
       {/* Main Content - Conditional Rendering */}
       {activeView === 'tasks' ? (
         <>
-          {/* Calendar */}
-          <div className="px-5 mb-6">
-            <div className="text-center mb-3">
-              <h3 className="font-bold" style={{ color: 'var(--primary-blue)' }}>
+          {/* 
+           * INTERACTIVE CALENDAR WITH DUAL NAVIGATION
+           * - Month navigation at top (primary level)
+           * - Week navigation below dates (secondary level)
+           * - Mobile swipe gestures on calendar area
+           * - Date selection with blue circle indicator
+           * - Handles month boundaries seamlessly
+           */}
+          <div 
+            className="px-5 mb-6"
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+            role="application"
+            aria-label="Interactive calendar - Use arrow keys to navigate, Home or Escape to return to today"
+          >
+            {/* 
+             * MONTH NAVIGATION (Primary Level)
+             * - Left/right arrows around month name
+             * - #2847ef color, 16px size, 8px spacing
+             * - Updates both month display and current week
+             */}
+            <div className="flex items-center justify-center mb-3">
+              <button 
+                onClick={() => navigateTasksMonth('prev')}
+                className="month-nav-btn p-2 transition-all duration-200 hover:scale-110"
+                style={{ 
+                  color: 'var(--primary-blue)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+                aria-label="Previous month"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="15,18 9,12 15,6"></polyline>
+                </svg>
+              </button>
+              
+              <h3 
+                className="font-bold mx-2"
+                style={{ 
+                  color: 'var(--primary-blue)',
+                  minWidth: '120px',
+                  textAlign: 'center'
+                }}
+              >
                 {monthName}
               </h3>
+              
+              <button 
+                onClick={() => navigateTasksMonth('next')}
+                className="month-nav-btn p-2 transition-all duration-200 hover:scale-110"
+                style={{ 
+                  color: 'var(--primary-blue)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+                aria-label="Next month"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="9,18 15,12 9,6"></polyline>
+                </svg>
+              </button>
             </div>
             
-            {/* Days of week */}
-            <div className="grid grid-cols-7 gap-0 text-center mb-1">
+            {/* Days of week header */}
+            <div className="grid grid-cols-7 gap-0 text-center mb-2">
               {dayNames.map((day, index) => (
-                <div key={index} className="text-blue-600 font-medium" style={{ color: 'var(--primary-blue)' }}>
+                <div key={index} className="text-blue-600 font-medium py-1" style={{ color: 'var(--primary-blue)' }}>
                   {day}
                 </div>
               ))}
             </div>
             
-            {/* Dates */}
-            <div className="grid grid-cols-7 gap-0 text-center">
-              {weekDates.map((date, index) => (
-                <div key={index} className="text-blue-600" style={{ color: 'var(--primary-blue)' }}>
-                  <div className={`w-8 h-8 flex items-center justify-center text-sm font-medium rounded-full mx-auto ${
-                    date === selectedDay 
-                      ? 'text-white' 
-                      : 'text-blue-600'
-                  }`} style={{
-                    backgroundColor: date === selectedDay ? 'var(--primary-blue)' : 'transparent',
-                    color: date === selectedDay ? '#ffffff' : 'var(--primary-blue)'
-                  }}>
-                    {date}
+            {/* 
+             * CALENDAR DATES WITH SWIPE GESTURES
+             * - Shows any 7-day period (not limited to calendar weeks)
+             * - Touch/swipe enabled for mobile navigation
+             * - Visual selection state with blue circle
+             * - Clickable date selection
+             */}
+            <div 
+              className="calendar-transition grid grid-cols-7 gap-0 text-center mb-4"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              style={{ touchAction: 'pan-y' }} // Allow vertical scroll but capture horizontal
+            >
+              {weekDates.map((date, index) => {
+                const isSelected = date.toDateString() === selectedDate.toDateString()
+                const isToday = date.toDateString() === new Date().toDateString()
+                
+                return (
+                  <div key={index} className="text-blue-600 py-1" style={{ color: 'var(--primary-blue)' }}>
+                    <button
+                      onClick={() => handleDateSelect(date)}
+                      className="date-btn w-8 h-8 flex items-center justify-center text-sm font-medium rounded-full mx-auto transition-all duration-200 hover:scale-110"
+                      style={{
+                        backgroundColor: isSelected ? 'var(--primary-blue)' : 'transparent',
+                        color: isSelected ? '#ffffff' : 'var(--primary-blue)',
+                        border: isToday && !isSelected ? '2px solid var(--primary-blue)' : 'none',
+                        cursor: 'pointer',
+                        minWidth: '32px',
+                        minHeight: '32px' // Proper touch target size
+                      }}
+                      aria-label={`Select ${date.toLocaleDateString()}`}
+                    >
+                      {date.getDate()}
+                    </button>
                   </div>
-                </div>
-              ))}
+                )
+              })}
+            </div>
+            
+            {/* 
+             * WEEK NAVIGATION (Secondary Level)
+             * - Positioned below calendar dates
+             * - 60px apart horizontally, centered
+             * - #2847ef color, 16px size, 44px touch targets
+             * - Shifts week by 7 days in either direction
+             */}
+            <div className="flex items-center justify-center">
+              <button 
+                onClick={() => navigateWeek('prev')}
+                className="week-nav-btn flex items-center justify-center transition-all duration-200 hover:scale-110"
+                style={{ 
+                  color: 'var(--primary-blue)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  width: '44px',
+                  height: '44px',
+                  marginRight: '30px' // 60px apart total
+                }}
+                aria-label="Previous week"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="15,18 9,12 15,6"></polyline>
+                </svg>
+              </button>
+              
+              <button 
+                onClick={() => navigateWeek('next')}
+                className="week-nav-btn flex items-center justify-center transition-all duration-200 hover:scale-110"
+                style={{ 
+                  color: 'var(--primary-blue)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  width: '44px',
+                  height: '44px',
+                  marginLeft: '30px' // 60px apart total
+                }}
+                aria-label="Next week"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="9,18 15,12 9,6"></polyline>
+                </svg>
+              </button>
             </div>
           </div>
 
@@ -1002,7 +1358,7 @@ function TasksContent() {
 
           {/* Dynamic Task Sections */}
           <div className="px-5 space-y-6">
-            <div className="transition-all duration-300 ease-in-out">
+            <div className="task-content-transition transition-all duration-300 ease-in-out">
               {Object.entries(groupedTasks).length === 0 ? (
                 <div className="text-center py-8">
                   <p style={{ color: 'var(--text-secondary)', fontSize: '16px' }}>
