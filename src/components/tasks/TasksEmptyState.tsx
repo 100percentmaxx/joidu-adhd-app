@@ -12,9 +12,9 @@ interface TasksEmptyStateProps {
 export default function TasksEmptyState({ userName = 'Sam Johnson', userProfilePic }: TasksEmptyStateProps) {
   const router = useRouter()
 
-  // Generate user initials for profile circle if no profile pic provided
-  const getUserInitials = (name: string) => {
-    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+  // Generate user initial (first letter only) for profile circle if no profile pic provided
+  const getUserInitial = (name: string) => {
+    return name.charAt(0).toUpperCase()
   }
 
   // Get first name from full name
@@ -82,9 +82,9 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
     >
       {/* Left Icon */}
       <div style={{ 
-        width: '20px', 
-        height: '20px',
-        marginRight: '8px',
+        width: '32px', 
+        height: '32px',
+        marginRight: '12px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -123,7 +123,7 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
         <img 
           src="/icons/tasks_3.svg" 
           alt="Tasks"
-          style={{ width: '42px', height: '42px' }}
+          style={{ width: '60px', height: '60px' }}
         />
       </div>
 
@@ -175,7 +175,7 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
           <img 
             src="/icons/email.svg" 
             alt="Email"
-            style={{ width: '20px', height: '20px' }}
+            style={{ width: '32px', height: '32px' }}
           />,
           'Reply to important emails',
           handleEmailTask
@@ -186,7 +186,7 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
           <img 
             src="/icons/personal_gray.svg" 
             alt="Personal"
-            style={{ width: '20px', height: '20px' }}
+            style={{ width: '32px', height: '32px' }}
           />,
           'Make grocery list',
           handleGroceryTask
@@ -199,26 +199,26 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
               src={userProfilePic}
               alt="Profile"
               style={{
-                width: '20px',
-                height: '20px',
+                width: '32px',
+                height: '32px',
                 borderRadius: '50%',
                 objectFit: 'cover'
               }}
             />
           ) : (
             <div style={{
-              width: '20px',
-              height: '20px',
+              width: '32px',
+              height: '32px',
               borderRadius: '50%',
-              backgroundColor: '#2847ef',
+              backgroundColor: '#f9c075',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '10px',
+              fontSize: '14px',
               fontWeight: 600,
               color: 'white'
             }}>
-              {getUserInitials(userName)}
+              {getUserInitial(userName)}
             </div>
           ),
           `${getFirstName(userName)}'s first task`,

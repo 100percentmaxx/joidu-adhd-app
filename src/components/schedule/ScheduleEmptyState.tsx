@@ -12,9 +12,9 @@ interface ScheduleEmptyStateProps {
 export default function ScheduleEmptyState({ userName = 'Sam Johnson', userProfilePic }: ScheduleEmptyStateProps) {
   const router = useRouter()
 
-  // Generate user initials for profile circle if no profile pic provided
-  const getUserInitials = (name: string) => {
-    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+  // Generate user initial (first letter only) for profile circle if no profile pic provided
+  const getUserInitial = (name: string) => {
+    return name.charAt(0).toUpperCase()
   }
 
   // Get first name from full name
@@ -82,9 +82,9 @@ export default function ScheduleEmptyState({ userName = 'Sam Johnson', userProfi
     >
       {/* Left Icon */}
       <div style={{ 
-        width: '20px', 
-        height: '20px',
-        marginRight: '8px',
+        width: '32px', 
+        height: '32px',
+        marginRight: '12px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -123,7 +123,7 @@ export default function ScheduleEmptyState({ userName = 'Sam Johnson', userProfi
         <img 
           src="/icons/schedule.svg" 
           alt="Schedule"
-          style={{ width: '42px', height: '42px' }}
+          style={{ width: '60px', height: '60px' }}
         />
       </div>
 
@@ -176,7 +176,7 @@ export default function ScheduleEmptyState({ userName = 'Sam Johnson', userProfi
           <img 
             src="/icons/morning.svg" 
             alt="Morning"
-            style={{ width: '20px', height: '20px' }}
+            style={{ width: '32px', height: '32px' }}
           />,
           'Morning meeting',
           handleMorningMeeting
@@ -187,7 +187,7 @@ export default function ScheduleEmptyState({ userName = 'Sam Johnson', userProfi
           <img 
             src="/icons/food.svg" 
             alt="Food"
-            style={{ width: '20px', height: '20px' }}
+            style={{ width: '32px', height: '32px' }}
           />,
           'Lunch break',
           handleLunchBreak
@@ -200,26 +200,26 @@ export default function ScheduleEmptyState({ userName = 'Sam Johnson', userProfi
               src={userProfilePic}
               alt="Profile"
               style={{
-                width: '20px',
-                height: '20px',
+                width: '32px',
+                height: '32px',
                 borderRadius: '50%',
                 objectFit: 'cover'
               }}
             />
           ) : (
             <div style={{
-              width: '20px',
-              height: '20px',
+              width: '32px',
+              height: '32px',
               borderRadius: '50%',
-              backgroundColor: '#2847ef',
+              backgroundColor: '#f9c075',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '10px',
+              fontSize: '14px',
               fontWeight: 600,
               color: 'white'
             }}>
-              {getUserInitials(userName)}
+              {getUserInitial(userName)}
             </div>
           ),
           `${getFirstName(userName)}'s first schedule event`,

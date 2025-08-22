@@ -141,14 +141,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
-      {/* Header Section */}
-      <div className="px-5" style={{ marginTop: '24px', position: 'relative' }}>
-        {/* Settings Gear Icon */}
+      {/* Settings Gear Icon - Positioned at top */}
+      <div className="px-5" style={{ position: 'relative', paddingTop: '16px' }}>
         <button
           onClick={() => router.push('/settings')}
           style={{
             position: 'absolute',
-            top: '-16px', // Moved up 8px more to create 8px space above title
+            top: '16px',
             right: '20px',
             background: 'none',
             border: 'none',
@@ -161,7 +160,10 @@ export default function Home() {
             style={{ color: 'var(--settings-icon)' }} 
           />
         </button>
+      </div>
 
+      {/* Header Section */}
+      <div className="px-5" style={{ marginTop: '8px' }}>
         <h1 className="mb-1" style={{ 
           color: 'var(--primary-blue)', 
           fontSize: '34px', 
