@@ -143,12 +143,12 @@ export default function Home() {
     <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       {/* Header Section */}
       <div className="px-5" style={{ marginTop: '24px', position: 'relative' }}>
-        {/* Settings Gear Icon - Positioned at very top */}
+        {/* Settings Gear Icon - Positioned well above title */}
         <button
           onClick={() => router.push('/settings')}
           style={{
             position: 'absolute',
-            top: '-8px', // Position at very top of page
+            top: '-32px', // Move much higher to create space above title
             right: '20px',
             background: 'none',
             border: 'none',

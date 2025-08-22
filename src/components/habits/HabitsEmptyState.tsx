@@ -26,25 +26,29 @@ export default function HabitsEmptyState({ userName = 'Sam', userProfilePic }: H
   const handleDrinkWaterHabit = () => {
     const params = new URLSearchParams({
       title: 'Drink water when you wake up',
-      category: 'health'
+      category: 'health',
+      frequency: 'daily'
     })
-    router.push(`/add-habit?${params.toString()}`)
+    router.push(`/habits/add?${params.toString()}`)
   }
 
   const handleMeditationHabit = () => {
     const params = new URLSearchParams({
       title: '5-Minute morning meditation',
-      category: 'health'
+      category: 'health',
+      frequency: 'daily'
     })
-    router.push(`/add-habit?${params.toString()}`)
+    router.push(`/habits/add?${params.toString()}`)
   }
 
   const handlePersonalHabit = () => {
     const firstName = getFirstName(userName)
     const params = new URLSearchParams({
-      title: `${firstName}'s first habit`
+      title: `${firstName}'s first habit`,
+      category: 'personal',
+      frequency: 'daily'
     })
-    router.push(`/add-habit?${params.toString()}`)
+    router.push(`/habits/add?${params.toString()}`)
   }
 
   // Render suggestion row component

@@ -26,25 +26,28 @@ export default function ScheduleEmptyState({ userName = 'Sam Johnson', userProfi
   const handleMorningMeeting = () => {
     const params = new URLSearchParams({
       title: 'Morning meeting',
-      time: '09:00'
+      time: '09:00',
+      category: 'work'
     })
-    router.push(`/add-schedule?${params.toString()}`)
+    router.push(`/add-event?${params.toString()}`)
   }
 
   const handleLunchBreak = () => {
     const params = new URLSearchParams({
       title: 'Lunch break',
-      time: '12:00'
+      time: '12:00',
+      category: 'personal'
     })
-    router.push(`/add-schedule?${params.toString()}`)
+    router.push(`/add-event?${params.toString()}`)
   }
 
   const handlePersonalEvent = () => {
     const firstName = getFirstName(userName)
     const params = new URLSearchParams({
-      title: `${firstName}'s first schedule event`
+      title: `${firstName}'s first schedule event`,
+      category: 'personal'
     })
-    router.push(`/add-schedule?${params.toString()}`)
+    router.push(`/add-event?${params.toString()}`)
   }
 
   // Render suggestion row component
