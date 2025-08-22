@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import LightningFAB from '@/components/ui/LightningFAB'
 import TasksEmptyState from '@/components/tasks/TasksEmptyState'
 import ScheduleEmptyState from '@/components/schedule/ScheduleEmptyState'
+import HabitsEmptyState from '@/components/habits/HabitsEmptyState'
 
 export default function Home() {
   const router = useRouter()
@@ -25,6 +26,15 @@ export default function Home() {
   
   // For demo purposes, control schedule empty state
   const [showScheduleEmptyState, setShowScheduleEmptyState] = useState(true)
+  
+  // For demo purposes, control habits empty state
+  const [showHabitsEmptyState, setShowHabitsEmptyState] = useState(true)
+  
+  // User profile information - in production this would come from authentication/settings
+  const [userInfo, setUserInfo] = useState({
+    name: 'Sam Johnson', // User's full name
+    profilePic: null as string | null // User's profile picture URL, null if not set
+  })
   
   // Load completed tasks from localStorage on component mount
   useEffect(() => {
@@ -138,7 +148,7 @@ export default function Home() {
           onClick={() => router.push('/settings')}
           style={{
             position: 'absolute',
-            top: '-8px',
+            top: '-16px', // Moved up 8px more to create 8px space above title
             right: '20px',
             background: 'none',
             border: 'none',
@@ -196,7 +206,7 @@ export default function Home() {
           {/* Schedule Content - Conditional Rendering */}
           {showScheduleEmptyState ? (
             <div style={{ marginTop: '24px' }}>
-              <ScheduleEmptyState userName="Sam" />
+              <ScheduleEmptyState userName={userInfo.name} userProfilePic={userInfo.profilePic} />
             </div>
           ) : (
             <div className="space-y-2" style={{ marginTop: '24px' }}>
@@ -398,7 +408,7 @@ export default function Home() {
           {/* Task Content - Conditional Rendering */}
           {activeTasks.length === 0 ? (
             <div style={{ marginTop: '24px' }}>
-              <TasksEmptyState userName="Your" />
+              <TasksEmptyState userName={userInfo.name} userProfilePic={userInfo.profilePic} />
             </div>
           ) : (
             <div className="space-y-2" style={{ marginTop: '24px' }}>
@@ -527,79 +537,86 @@ export default function Home() {
             Habits
           </div>
           
-          <div className="grid grid-cols-2 gap-2" style={{ marginTop: '24px' }}>
-            {/* Morning Routine - Health */}
-            <button 
-              onClick={() => router.push('/habits?expand=morning-routine')}
-              className="rounded-lg p-4 cursor-pointer transition-all duration-200 hover:scale-105" 
-              style={{ 
-                backgroundColor: 'var(--category-health-light)', 
-                borderRadius: '12px',
-                aspectRatio: '1',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: '16px',
-                border: 'none'
-              }}>
-              <div className="flex flex-col items-start">
-                <div className="w-10 h-10 flex items-center justify-center mb-4">
-                  <img src="/icons/health.svg" alt="health" style={{ width: '40px', height: '40px' }} />
+          {/* Habits Content - Conditional Rendering */}
+          {showHabitsEmptyState ? (
+            <div style={{ marginTop: '24px' }}>
+              <HabitsEmptyState userName={userInfo.name} userProfilePic={userInfo.profilePic} />
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-2" style={{ marginTop: '24px' }}>
+              {/* Morning Routine - Health */}
+              <button 
+                onClick={() => router.push('/habits?expand=morning-routine')}
+                className="rounded-lg p-4 cursor-pointer transition-all duration-200 hover:scale-105" 
+                style={{ 
+                  backgroundColor: 'var(--category-health-light)', 
+                  borderRadius: '12px',
+                  aspectRatio: '1',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: '16px',
+                  border: 'none'
+                }}>
+                <div className="flex flex-col items-start">
+                  <div className="w-10 h-10 flex items-center justify-center mb-4">
+                    <img src="/icons/health.svg" alt="health" style={{ width: '40px', height: '40px' }} />
+                  </div>
+                  <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)', fontSize: '17px' }}>
+                    Morning Routine
+                  </h3>
+                  <div className="flex items-center space-x-4">
+                    <span className="text-xs flex items-center text-gray-500">
+                      <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                      </svg>
+                      12 min.
+                    </span>
+                    <span className="text-xs flex items-center text-gray-500">
+                      <Medal className="w-3 h-3 mr-1" />
+                      84 day streak
+                    </span>
+                  </div>
                 </div>
-                <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)', fontSize: '17px' }}>
-                  Morning Routine
-                </h3>
-                <div className="flex items-center space-x-4">
-                  <span className="text-xs flex items-center text-gray-500">
-                    <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                    </svg>
-                    12 min.
-                  </span>
-                  <span className="text-xs flex items-center text-gray-500">
-                    <Medal className="w-3 h-3 mr-1" />
-                    84 day streak
-                  </span>
+              </button>
+              
+              {/* Work Startup - Work */}
+              <button 
+                onClick={() => router.push('/habits?expand=work-startup')}
+                className="rounded-lg p-4 cursor-pointer transition-all duration-200 hover:scale-105" 
+                style={{ 
+                  backgroundColor: 'var(--category-work-light)', 
+                  borderRadius: '12px',
+                  aspectRatio: '1',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: '16px',
+                  border: 'none'
+                }}>
+                <div className="flex flex-col items-start">
+                  <div className="w-10 h-10 flex items-center justify-center mb-4">
+                    <img src="/icons/work.svg" alt="work" style={{ width: '40px', height: '40px' }} />
+                  </div>
+                  <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)', fontSize: '17px' }}>
+                    Work Startup
+                  </h3>
+                  <div className="flex items-center space-x-4">
+                    <span className="text-xs flex items-center text-gray-500">
+                      <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                      </svg>
+                      15 min
+                    </span>
+                    <span className="text-xs flex items-center text-gray-500">
+                      <Medal className="w-3 h-3 mr-1" />
+                      2 day streak
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </button>
-            
-            {/* Work Startup - Work */}
-            <button 
-              onClick={() => router.push('/habits?expand=work-startup')}
-              className="rounded-lg p-4 cursor-pointer transition-all duration-200 hover:scale-105" 
-              style={{ 
-                backgroundColor: 'var(--category-work-light)', 
-                borderRadius: '12px',
-                aspectRatio: '1',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: '16px',
-                border: 'none'
-              }}>
-              <div className="flex flex-col items-start">
-                <div className="w-10 h-10 flex items-center justify-center mb-4">
-                  <img src="/icons/work.svg" alt="work" style={{ width: '40px', height: '40px' }} />
-                </div>
-                <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)', fontSize: '17px' }}>
-                  Work Startup
-                </h3>
-                <div className="flex items-center space-x-4">
-                  <span className="text-xs flex items-center text-gray-500">
-                    <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                    </svg>
-                    15 min
-                  </span>
-                  <span className="text-xs flex items-center text-gray-500">
-                    <Medal className="w-3 h-3 mr-1" />
-                    2 day streak
-                  </span>
-                </div>
-              </div>
-            </button>
-          </div>
+              </button>
+            </div>
+          )}
           
           {/* Add button positioned 8px to the left of All button */}
           <button 

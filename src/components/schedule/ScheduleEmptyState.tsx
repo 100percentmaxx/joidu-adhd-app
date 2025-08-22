@@ -6,15 +6,20 @@ import { ChevronRight } from 'lucide-react'
 
 interface ScheduleEmptyStateProps {
   userName?: string
+  userProfilePic?: string | null
 }
 
-export default function ScheduleEmptyState({ userName = 'Your' }: ScheduleEmptyStateProps) {
+export default function ScheduleEmptyState({ userName = 'Sam Johnson', userProfilePic }: ScheduleEmptyStateProps) {
   const router = useRouter()
 
-  // Generate user initials for profile circle if no name provided
+  // Generate user initials for profile circle if no profile pic provided
   const getUserInitials = (name: string) => {
-    if (name === 'Your') return 'S'
     return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+  }
+
+  // Get first name from full name
+  const getFirstName = (name: string) => {
+    return name.split(' ')[0]
   }
 
   // Navigation handlers for each suggestion
@@ -35,8 +40,9 @@ export default function ScheduleEmptyState({ userName = 'Your' }: ScheduleEmptyS
   }
 
   const handlePersonalEvent = () => {
+    const firstName = getFirstName(userName)
     const params = new URLSearchParams({
-      title: `${userName === 'Your' ? 'Sam' : userName}'s first schedule event`
+      title: `${firstName}'s first schedule event`
     })
     router.push(`/add-schedule?${params.toString()}`)
   }
@@ -189,21 +195,34 @@ export default function ScheduleEmptyState({ userName = 'Your' }: ScheduleEmptyS
 
         {/* Personal Event Suggestion */}
         {renderSuggestionRow(
-          <div style={{
-            width: '20px',
-            height: '20px',
-            borderRadius: '50%',
-            backgroundColor: '#2847ef',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '10px',
-            fontWeight: 600,
-            color: 'white'
-          }}>
-            {getUserInitials('Sam')}
-          </div>,
-          "Sam's first schedule event",
+          userProfilePic ? (
+            <img 
+              src={userProfilePic}
+              alt="Profile"
+              style={{
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                objectFit: 'cover'
+              }}
+            />
+          ) : (
+            <div style={{
+              width: '20px',
+              height: '20px',
+              borderRadius: '50%',
+              backgroundColor: '#2847ef',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '10px',
+              fontWeight: 600,
+              color: 'white'
+            }}>
+              {getUserInitials(userName)}
+            </div>
+          ),
+          `${getFirstName(userName)}'s first schedule event`,
           handlePersonalEvent
         )}
       </div>

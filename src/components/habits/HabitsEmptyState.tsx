@@ -4,12 +4,12 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { ChevronRight } from 'lucide-react'
 
-interface TasksEmptyStateProps {
+interface HabitsEmptyStateProps {
   userName?: string
   userProfilePic?: string | null
 }
 
-export default function TasksEmptyState({ userName = 'Sam Johnson', userProfilePic }: TasksEmptyStateProps) {
+export default function HabitsEmptyState({ userName = 'Sam', userProfilePic }: HabitsEmptyStateProps) {
   const router = useRouter()
 
   // Generate user initials for profile circle if no profile pic provided
@@ -23,28 +23,28 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
   }
 
   // Navigation handlers for each suggestion
-  const handleEmailTask = () => {
+  const handleDrinkWaterHabit = () => {
     const params = new URLSearchParams({
-      title: 'Reply to important emails',
-      category: 'work'
+      title: 'Drink water when you wake up',
+      category: 'health'
     })
-    router.push(`/add-task?${params.toString()}`)
+    router.push(`/add-habit?${params.toString()}`)
   }
 
-  const handleGroceryTask = () => {
+  const handleMeditationHabit = () => {
     const params = new URLSearchParams({
-      title: 'Make grocery list',
-      category: 'personal'
+      title: '5-Minute morning meditation',
+      category: 'health'
     })
-    router.push(`/add-task?${params.toString()}`)
+    router.push(`/add-habit?${params.toString()}`)
   }
 
-  const handlePersonalTask = () => {
+  const handlePersonalHabit = () => {
     const firstName = getFirstName(userName)
     const params = new URLSearchParams({
-      title: `${firstName}'s first task`
+      title: `${firstName}'s first habit`
     })
-    router.push(`/add-task?${params.toString()}`)
+    router.push(`/add-habit?${params.toString()}`)
   }
 
   // Render suggestion row component
@@ -92,7 +92,7 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
         {icon}
       </div>
 
-      {/* Task Text */}
+      {/* Habit Text */}
       <span style={{
         flex: 1,
         textAlign: 'left',
@@ -121,8 +121,8 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
       {/* Main Icon */}
       <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'center' }}>
         <img 
-          src="/icons/tasks_3.svg" 
-          alt="Tasks"
+          src="/icons/habits_2.svg" 
+          alt="Habits"
           style={{ width: '42px', height: '42px' }}
         />
       </div>
@@ -134,7 +134,7 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
         color: '#4c4c4c',
         margin: '0 0 4px 0'
       }}>
-        Ready to Get Started?
+        Let's Build Something Great!
       </h3>
 
       {/* Description Text */}
@@ -142,9 +142,10 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
         fontSize: '13px',
         fontWeight: 400,
         color: '#a5a5a5',
-        margin: '0 0 18px 0'
+        margin: '0 0 18px 0',
+        lineHeight: '1.4'
       }}>
-        Perfect clean slate for your ADHD brain!
+        Small, consistent actions create big changes. Perfect for ADHD brains who thrive on routine.
       </p>
 
       {/* Try Adding Line */}
@@ -164,35 +165,35 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
           fontWeight: 400,
           color: '#4c4c4c'
         }}>
-          Try Adding Your First Task:
+          Maybe start with something healthy:
         </span>
       </div>
 
       {/* Starter Suggestions */}
       <div style={{ textAlign: 'left' }}>
-        {/* Email Task Suggestion */}
+        {/* Drink Water Habit Suggestion */}
         {renderSuggestionRow(
           <img 
-            src="/icons/email.svg" 
-            alt="Email"
+            src="/icons/drink_water.svg" 
+            alt="Drink Water"
             style={{ width: '20px', height: '20px' }}
           />,
-          'Reply to important emails',
-          handleEmailTask
+          'Drink water when you wake up',
+          handleDrinkWaterHabit
         )}
 
-        {/* Grocery Task Suggestion */}
+        {/* Meditation Habit Suggestion */}
         {renderSuggestionRow(
           <img 
-            src="/icons/personal_gray.svg" 
-            alt="Personal"
+            src="/icons/calm.svg" 
+            alt="Meditation"
             style={{ width: '20px', height: '20px' }}
           />,
-          'Make grocery list',
-          handleGroceryTask
+          '5-Minute morning meditation',
+          handleMeditationHabit
         )}
 
-        {/* Personal Task Suggestion */}
+        {/* Personal Habit Suggestion */}
         {renderSuggestionRow(
           userProfilePic ? (
             <img 
@@ -221,8 +222,8 @@ export default function TasksEmptyState({ userName = 'Sam Johnson', userProfileP
               {getUserInitials(userName)}
             </div>
           ),
-          `${getFirstName(userName)}'s first task`,
-          handlePersonalTask
+          `${getFirstName(userName)}'s first habit`,
+          handlePersonalHabit
         )}
       </div>
     </div>
