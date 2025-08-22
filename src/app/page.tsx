@@ -5,6 +5,7 @@ import { Medal, Settings } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import LightningFAB from '@/components/ui/LightningFAB'
 import TasksEmptyState from '@/components/tasks/TasksEmptyState'
+import ScheduleEmptyState from '@/components/schedule/ScheduleEmptyState'
 
 export default function Home() {
   const router = useRouter()
@@ -21,6 +22,9 @@ export default function Home() {
   // Set to true to see empty state, false to see populated tasks
   const [showEmptyState, setShowEmptyState] = useState(true)
   const activeTasks = showEmptyState ? [] : tasks
+  
+  // For demo purposes, control schedule empty state
+  const [showScheduleEmptyState, setShowScheduleEmptyState] = useState(true)
   
   // Load completed tasks from localStorage on component mount
   useEffect(() => {
@@ -189,136 +193,143 @@ export default function Home() {
             Today's Schedule
           </div>
           
-          <div className="space-y-2" style={{ marginTop: '24px' }}>
-            {/* Personal trainer - Health */}
-            <button 
-              onClick={() => router.push('/schedule/personal-trainer')}
-              className="flex overflow-hidden w-full"
-              style={{ 
-                height: '60px', 
-                background: 'none', 
-                border: 'none', 
-                padding: 0, 
-                cursor: 'pointer',
-                transition: 'transform 0.2s ease'
-              }}
-              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
-              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            >
-              <div className="flex items-center justify-center" style={{ 
-                backgroundColor: 'var(--category-health-light)',
-                borderRadius: '12px 0px 0px 12px',
-                width: '60px',
-                height: '100%'
-              }}>
-                <img src="/icons/health.svg" alt="health" style={{ width: '30px', height: '30px' }} />
-              </div>
-              <div className="flex-1 border-r border-t border-b flex items-center" style={{ 
-                backgroundColor: 'var(--card-background)', 
-                borderColor: 'var(--category-health-light)',
-                borderWidth: '3px',
-                borderRadius: '0px 12px 12px 0px',
-                paddingLeft: '16px',
-                height: '100%'
-              }}>
-                <div>
-                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 700 }}>
-                    7:00 - 8:00
-                  </div>
-                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500 }}>
-                    Personal trainer
+          {/* Schedule Content - Conditional Rendering */}
+          {showScheduleEmptyState ? (
+            <div style={{ marginTop: '24px' }}>
+              <ScheduleEmptyState userName="Sam" />
+            </div>
+          ) : (
+            <div className="space-y-2" style={{ marginTop: '24px' }}>
+              {/* Personal trainer - Health */}
+              <button 
+                onClick={() => router.push('/schedule/personal-trainer')}
+                className="flex overflow-hidden w-full"
+                style={{ 
+                  height: '60px', 
+                  background: 'none', 
+                  border: 'none', 
+                  padding: 0, 
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease'
+                }}
+                onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+                onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                <div className="flex items-center justify-center" style={{ 
+                  backgroundColor: 'var(--category-health-light)',
+                  borderRadius: '12px 0px 0px 12px',
+                  width: '60px',
+                  height: '100%'
+                }}>
+                  <img src="/icons/health.svg" alt="health" style={{ width: '30px', height: '30px' }} />
+                </div>
+                <div className="flex-1 border-r border-t border-b flex items-center" style={{ 
+                  backgroundColor: 'var(--card-background)', 
+                  borderColor: 'var(--category-health-light)',
+                  borderWidth: '3px',
+                  borderRadius: '0px 12px 12px 0px',
+                  paddingLeft: '16px',
+                  height: '100%'
+                }}>
+                  <div>
+                    <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 700 }}>
+                      7:00 - 8:00
+                    </div>
+                    <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500 }}>
+                      Personal trainer
+                    </div>
                   </div>
                 </div>
-              </div>
-            </button>
-            
-            {/* Meeting with Emma - Work */}
-            <button 
-              onClick={() => router.push('/schedule/meeting-with-emma')}
-              className="flex overflow-hidden w-full"
-              style={{ 
-                height: '60px', 
-                background: 'none', 
-                border: 'none', 
-                padding: 0, 
-                cursor: 'pointer',
-                transition: 'transform 0.2s ease'
-              }}
-              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
-              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            >
-              <div className="flex items-center justify-center" style={{ 
-                backgroundColor: 'var(--category-work-light)',
-                borderRadius: '12px 0px 0px 12px',
-                width: '60px',
-                height: '100%'
-              }}>
-                <img src="/icons/work.svg" alt="work" style={{ width: '30px', height: '30px' }} />
-              </div>
-              <div className="flex-1 border-r border-t border-b flex items-center" style={{ 
-                backgroundColor: 'var(--card-background)', 
-                borderColor: 'var(--category-work-light)',
-                borderWidth: '3px',
-                borderRadius: '0px 12px 12px 0px',
-                paddingLeft: '16px',
-                height: '100%'
-              }}>
-                <div>
-                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 700 }}>
-                    11:00 - 11:30
-                  </div>
-                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500 }}>
-                    Meeting with Emma
+              </button>
+              
+              {/* Meeting with Emma - Work */}
+              <button 
+                onClick={() => router.push('/schedule/meeting-with-emma')}
+                className="flex overflow-hidden w-full"
+                style={{ 
+                  height: '60px', 
+                  background: 'none', 
+                  border: 'none', 
+                  padding: 0, 
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease'
+                }}
+                onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+                onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                <div className="flex items-center justify-center" style={{ 
+                  backgroundColor: 'var(--category-work-light)',
+                  borderRadius: '12px 0px 0px 12px',
+                  width: '60px',
+                  height: '100%'
+                }}>
+                  <img src="/icons/work.svg" alt="work" style={{ width: '30px', height: '30px' }} />
+                </div>
+                <div className="flex-1 border-r border-t border-b flex items-center" style={{ 
+                  backgroundColor: 'var(--card-background)', 
+                  borderColor: 'var(--category-work-light)',
+                  borderWidth: '3px',
+                  borderRadius: '0px 12px 12px 0px',
+                  paddingLeft: '16px',
+                  height: '100%'
+                }}>
+                  <div>
+                    <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 700 }}>
+                      11:00 - 11:30
+                    </div>
+                    <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500 }}>
+                      Meeting with Emma
+                    </div>
                   </div>
                 </div>
-              </div>
-            </button>
-            
-            {/* Coffee with Kay - Social */}
-            <button 
-              onClick={() => router.push('/schedule/coffee-with-kay')}
-              className="flex overflow-hidden w-full"
-              style={{ 
-                height: '60px', 
-                background: 'none', 
-                border: 'none', 
-                padding: 0, 
-                cursor: 'pointer',
-                transition: 'transform 0.2s ease'
-              }}
-              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
-              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            >
-              <div className="flex items-center justify-center" style={{ 
-                backgroundColor: 'var(--category-social-light)',
-                borderRadius: '12px 0px 0px 12px',
-                width: '60px',
-                height: '100%'
-              }}>
-                <img src="/icons/social.svg" alt="social" style={{ width: '30px', height: '30px' }} />
-              </div>
-              <div className="flex-1 border-r border-t border-b flex items-center" style={{ 
-                backgroundColor: 'var(--card-background)', 
-                borderColor: 'var(--category-social-light)',
-                borderWidth: '3px',
-                borderRadius: '0px 12px 12px 0px',
-                paddingLeft: '16px',
-                height: '100%'
-              }}>
-                <div>
-                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 700 }}>
-                    1:00 - 2:00
-                  </div>
-                  <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500 }}>
-                    Coffee with Kay
+              </button>
+              
+              {/* Coffee with Kay - Social */}
+              <button 
+                onClick={() => router.push('/schedule/coffee-with-kay')}
+                className="flex overflow-hidden w-full"
+                style={{ 
+                  height: '60px', 
+                  background: 'none', 
+                  border: 'none', 
+                  padding: 0, 
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease'
+                }}
+                onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+                onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                <div className="flex items-center justify-center" style={{ 
+                  backgroundColor: 'var(--category-social-light)',
+                  borderRadius: '12px 0px 0px 12px',
+                  width: '60px',
+                  height: '100%'
+                }}>
+                  <img src="/icons/social.svg" alt="social" style={{ width: '30px', height: '30px' }} />
+                </div>
+                <div className="flex-1 border-r border-t border-b flex items-center" style={{ 
+                  backgroundColor: 'var(--card-background)', 
+                  borderColor: 'var(--category-social-light)',
+                  borderWidth: '3px',
+                  borderRadius: '0px 12px 12px 0px',
+                  paddingLeft: '16px',
+                  height: '100%'
+                }}>
+                  <div>
+                    <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 700 }}>
+                      1:00 - 2:00
+                    </div>
+                    <div style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 500 }}>
+                      Coffee with Kay
+                    </div>
                   </div>
                 </div>
-              </div>
-            </button>
-          </div>
+              </button>
+            </div>
+          )}
           
           {/* Add button positioned 8px to the left of All button */}
           <button 
