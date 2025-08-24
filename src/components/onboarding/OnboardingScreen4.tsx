@@ -46,16 +46,14 @@ export default function OnboardingScreen4({
         
         {/* Celebration Icon */}
         <div className="mb-8">
-          <div 
-            className="w-20 h-20 rounded-2xl flex items-center justify-center text-sm font-bold"
+          <img 
+            src="/icons/celebrate.svg" 
+            alt="Celebration"
             style={{ 
-              backgroundColor: '#2847ef',
-              color: 'white'
+              width: '80px', 
+              height: '80px' 
             }}
-          >
-            {/* Placeholder for celebrate.svg */}
-            🎉
-          </div>
+          />
         </div>
 
         {/* Main Heading */}
@@ -79,7 +77,7 @@ export default function OnboardingScreen4({
           {/* Step 1 - Settings Access */}
           <div className="mb-6">
             <div className="flex items-center gap-3 mb-3">
-              <Settings size={16} style={{ color: '#4c4c4c' }} />
+              <Settings size={24} style={{ color: '#4c4c4c' }} />
               <p 
                 className="text-base leading-relaxed"
                 style={{ color: '#4c4c4c' }}
@@ -108,16 +106,12 @@ export default function OnboardingScreen4({
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4 flex-1">
-                  {/* Help Icon Placeholder */}
-                  <div 
-                    className="w-10 h-10 rounded-lg flex items-center justify-center text-xs font-medium flex-shrink-0"
-                    style={{ 
-                      backgroundColor: '#2847ef',
-                      color: 'white'
-                    }}
-                  >
-                    HELP
-                  </div>
+                  {/* Help Icon */}
+                  <img 
+                    src="/icons/help.svg" 
+                    alt="Help"
+                    className="w-10 h-10 flex-shrink-0"
+                  />
                   
                   <div className="flex-1 min-w-0">
                     <h3 
@@ -158,16 +152,12 @@ export default function OnboardingScreen4({
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4 flex-1">
-                  {/* Rocket Icon Placeholder */}
-                  <div 
-                    className="w-10 h-10 rounded-lg flex items-center justify-center text-xs font-medium flex-shrink-0"
-                    style={{ 
-                      backgroundColor: '#2847ef',
-                      color: 'white'
-                    }}
-                  >
-                    🚀
-                  </div>
+                  {/* Start Icon */}
+                  <img 
+                    src="/icons/start.svg" 
+                    alt="Getting Started"
+                    className="w-10 h-10 flex-shrink-0"
+                  />
                   
                   <div className="flex-1 min-w-0">
                     <h3 
@@ -213,16 +203,12 @@ export default function OnboardingScreen4({
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4 flex-1">
-                  {/* Kai Icon Placeholder */}
-                  <div 
-                    className="w-10 h-10 rounded-lg flex items-center justify-center text-xs font-medium flex-shrink-0"
-                    style={{ 
-                      backgroundColor: '#2847ef',
-                      color: 'white'
-                    }}
-                  >
-                    KAI ✨
-                  </div>
+                  {/* Kai Icon */}
+                  <img 
+                    src="/icons/kai.svg" 
+                    alt="Kai AI"
+                    className="w-10 h-10 flex-shrink-0"
+                  />
                   
                   <div className="flex-1 min-w-0">
                     <h3 

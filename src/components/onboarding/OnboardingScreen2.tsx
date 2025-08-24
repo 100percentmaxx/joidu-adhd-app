@@ -102,36 +102,19 @@ export default function OnboardingScreen2({
         <div className="w-full mb-8">
           <div 
             className="rounded-2xl p-6 shadow-sm relative"
-            style={{ backgroundColor: '#fefbf7' }}
+            style={{ 
+              backgroundColor: '#fefbf7',
+              border: '2px solid #e2e2e2'
+            }}
           >
             {/* Kai Icon */}
-            <div className="flex items-start gap-3">
-              <div 
-                className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0"
-                style={{ 
-                  backgroundColor: '#2847ef',
-                  color: 'white'
-                }}
-              >
-                {/* Placeholder for kai.svg */}
-                KAI
-              </div>
+            <div className="flex items-start gap-3 mb-4">
+              <img 
+                src="/icons/kai.svg" 
+                alt="Kai AI"
+                className="w-8 h-8 flex-shrink-0"
+              />
               <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <span 
-                    className="font-semibold text-sm"
-                    style={{ color: '#4c4c4c' }}
-                  >
-                    Kai
-                  </span>
-                  <div 
-                    className="w-4 h-4 rounded-full flex items-center justify-center text-xs"
-                    style={{ backgroundColor: '#2847ef' }}
-                  >
-                    {/* Placeholder for sparkle icon */}
-                    <span style={{ color: 'white' }}>✨</span>
-                  </div>
-                </div>
                 <p 
                   className="text-base leading-relaxed"
                   style={{ color: '#4c4c4c' }}

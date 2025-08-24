@@ -221,17 +221,8 @@ export default function OnboardingScreen1({
       >
         <div className="max-w-sm mx-auto w-full md:max-w-md lg:max-w-lg">
           <div className="flex justify-between items-center">
-            {/* Back Button */}
-            <button
-              onClick={onBack}
-              className="px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-200 hover:opacity-90"
-              style={{ 
-                backgroundColor: '#2847ef',
-                color: 'white'
-              }}
-            >
-              ← Back
-            </button>
+            {/* Empty space where back button would be */}
+            <div></div>
 
             {/* Skip and Next Buttons */}
             <div className="flex items-center gap-3">

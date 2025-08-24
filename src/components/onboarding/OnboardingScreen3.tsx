@@ -57,19 +57,19 @@ export default function OnboardingScreen3({
       id: 'newly-diagnosed',
       title: 'Newly diagnosed',
       subtitle: 'Diagnosed within the last year - still figuring things out and learning what works',
-      iconPlaceholder: 'NEW'
+      iconPlaceholder: 'new.svg'
     },
     {
       id: 'self-aware',
       title: 'Self-aware but struggling',
       subtitle: 'I know I have ADHD traits but haven\'t found the right system yet',
-      iconPlaceholder: 'FOCUS'
+      iconPlaceholder: 'focus.svg'
     },
     {
       id: 'experienced',
       title: 'Experienced but adapting',
       subtitle: 'Living with ADHD for years - looking for better tools and strategies',
-      iconPlaceholder: 'TARGET'
+      iconPlaceholder: 'focus_2.svg'
     }
   ]
 
@@ -102,33 +102,13 @@ export default function OnboardingScreen3({
             }}
           >
             {/* Kai Icon */}
-            <div className="flex items-start gap-3">
-              <div 
-                className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0"
-                style={{ 
-                  backgroundColor: '#2847ef',
-                  color: 'white'
-                }}
-              >
-                {/* Placeholder for kai.svg */}
-                KAI
-              </div>
+            <div className="flex items-start gap-3 mb-4">
+              <img 
+                src="/icons/kai.svg" 
+                alt="Kai AI"
+                className="w-8 h-8 flex-shrink-0"
+              />
               <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <span 
-                    className="font-semibold text-sm"
-                    style={{ color: '#4c4c4c' }}
-                  >
-                    Kai
-                  </span>
-                  <div 
-                    className="w-4 h-4 rounded-full flex items-center justify-center text-xs"
-                    style={{ backgroundColor: '#2847ef' }}
-                  >
-                    {/* Placeholder for sparkle icon */}
-                    <span style={{ color: 'white' }}>✨</span>
-                  </div>
-                </div>
                 <p 
                   className="text-base leading-relaxed"
                   style={{ color: '#4c4c4c' }}
@@ -171,17 +151,12 @@ export default function OnboardingScreen3({
                 aria-describedby={`${option.id}-description`}
               >
                 <div className="flex items-start gap-4">
-                  {/* Icon Placeholder */}
-                  <div 
-                    className="w-12 h-12 rounded-lg flex items-center justify-center text-xs font-medium flex-shrink-0 mt-1"
-                    style={{ 
-                      backgroundColor: '#2847ef',
-                      color: 'white'
-                    }}
-                  >
-                    {/* Placeholder for respective SVG icons */}
-                    {option.iconPlaceholder}
-                  </div>
+                  {/* Icon */}
+                  <img 
+                    src={`/icons/${option.iconPlaceholder}`}
+                    alt={option.title}
+                    className="w-12 h-12 flex-shrink-0 mt-1"
+                  />
                   
                   <div className="flex-1 min-w-0">
                     {/* Title */}
