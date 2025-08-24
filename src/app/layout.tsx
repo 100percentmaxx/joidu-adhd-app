@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import '../styles/theme.css'
-import BottomTabBar from '@/components/layout/BottomTabBar'
+import ConditionalLayout from '@/components/layout/ConditionalLayout'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,10 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`} style={{ backgroundColor: 'var(--background)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <ThemeProvider>
-          <main style={{ flex: 1, paddingBottom: '80px' }}>
+          <ConditionalLayout>
             {children}
-          </main>
-          <BottomTabBar />
+          </ConditionalLayout>
         </ThemeProvider>
       </body>
     </html>
