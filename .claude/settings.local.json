@@ -22,7 +22,8 @@
       "Bash(grep:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(sudo npm i -g @anthropic-ai/claude-code)"
     ],
     "deny": []
   }
