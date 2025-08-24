@@ -1,7 +1,8 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { ChevronRight, Settings } from 'lucide-react'
+import ConfettiAnimation from '@/components/animations/ConfettiAnimation'
 
 interface OnboardingScreen4Props {
   onBack?: () => void
@@ -35,6 +36,29 @@ export default function OnboardingScreen4({
   onBack,
   onFinish
 }: OnboardingScreen4Props) {
+  const [showConfetti, setShowConfetti] = useState(false)
+  const [isFinishing, setIsFinishing] = useState(false)
+
+  /**
+   * Handle finish button with confetti celebration
+   */
+  const handleFinish = () => {
+    setIsFinishing(true)
+    setShowConfetti(true)
+    
+    // Confetti will call onFinish after animation completes
+  }
+
+  /**
+   * Called when confetti animation completes
+   */
+  const handleConfettiComplete = () => {
+    setShowConfetti(false)
+    setIsFinishing(false)
+    if (onFinish) {
+      onFinish()
+    }
+  }
 
   return (
     <div 
@@ -266,18 +290,28 @@ export default function OnboardingScreen4({
 
             {/* Finish Button */}
             <button
-              onClick={onFinish}
+              onClick={handleFinish}
+              disabled={isFinishing}
               className="px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-200 hover:opacity-90 active:scale-95"
               style={{ 
-                backgroundColor: '#fa772c',
-                color: 'white'
+                backgroundColor: isFinishing ? '#e6a866' : '#fa772c',
+                color: 'white',
+                cursor: isFinishing ? 'not-allowed' : 'pointer'
               }}
             >
-              Finish
+              {isFinishing ? 'Celebrating...' : 'Finish'}
             </button>
           </div>
         </div>
       </div>
+
+      {/* Confetti Celebration Animation */}
+      <ConfettiAnimation
+        isActive={showConfetti}
+        onComplete={handleConfettiComplete}
+        duration={2000}
+        pieceCount={50}
+      />
     </div>
   )
 }
