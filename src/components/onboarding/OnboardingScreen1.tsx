@@ -61,18 +61,14 @@ export default function OnboardingScreen1({
             className="w-20 h-20 rounded-2xl flex items-center justify-center"
             style={{ backgroundColor: 'transparent' }}
           >
-            {/* Placeholder for joidu_drop_logo.svg */}
-            <div 
-              className="w-20 h-20 rounded-xl flex items-center justify-center text-xs font-medium"
+            <img 
+              src="/icons/joidu_drop_logo.svg" 
+              alt="Joidu Logo"
               style={{ 
-                backgroundColor: '#2847ef',
-                color: 'white'
+                width: '80px', 
+                height: '80px' 
               }}
-            >
-              JOIDU
-              <br />
-              LOGO
-            </div>
+            />
           </div>
         </div>
 
@@ -96,36 +92,19 @@ export default function OnboardingScreen1({
         <div className="w-full mb-8">
           <div 
             className="rounded-2xl p-6 shadow-sm relative"
-            style={{ backgroundColor: '#fefbf7' }}
+            style={{ 
+              backgroundColor: '#fefbf7',
+              border: '2px solid #e2e2e2'
+            }}
           >
             {/* Kai Icon */}
             <div className="flex items-start gap-3 mb-4">
-              <div 
-                className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0"
-                style={{ 
-                  backgroundColor: '#2847ef',
-                  color: 'white'
-                }}
-              >
-                {/* Placeholder for kai.svg */}
-                KAI
-              </div>
+              <img 
+                src="/icons/kai.svg" 
+                alt="Kai AI"
+                className="w-8 h-8 flex-shrink-0"
+              />
               <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <span 
-                    className="font-semibold text-sm"
-                    style={{ color: '#4c4c4c' }}
-                  >
-                    Kai
-                  </span>
-                  <div 
-                    className="w-4 h-4 rounded-full flex items-center justify-center text-xs"
-                    style={{ backgroundColor: '#2847ef' }}
-                  >
-                    {/* Placeholder for sparkle icon */}
-                    <span style={{ color: 'white' }}>✨</span>
-                  </div>
-                </div>
                 <p 
                   className="text-base leading-relaxed"
                   style={{ color: '#4c4c4c' }}
@@ -177,19 +156,17 @@ export default function OnboardingScreen1({
             {/* Smart Focus Card */}
             <div 
               className="rounded-xl p-4 shadow-sm"
-              style={{ backgroundColor: '#fefbf7' }}
+              style={{ 
+                backgroundColor: '#fefbf7',
+                border: '2px solid #e2e2e2'
+              }}
             >
               <div className="flex flex-col items-center text-center">
-                {/* Placeholder for focus_2.svg */}
-                <div 
-                  className="w-12 h-12 rounded-lg flex items-center justify-center text-xs font-medium mb-3"
-                  style={{ 
-                    backgroundColor: '#2847ef',
-                    color: 'white'
-                  }}
-                >
-                  FOCUS
-                </div>
+                <img 
+                  src="/icons/focus_2.svg" 
+                  alt="Focus"
+                  className="w-12 h-12 mb-3"
+                />
                 <h3 
                   className="font-semibold text-sm mb-2"
                   style={{ color: '#4c4c4c' }}
@@ -208,19 +185,17 @@ export default function OnboardingScreen1({
             {/* Brain-Friendly Tasks Card */}
             <div 
               className="rounded-xl p-4 shadow-sm"
-              style={{ backgroundColor: '#fefbf7' }}
+              style={{ 
+                backgroundColor: '#fefbf7',
+                border: '2px solid #e2e2e2'
+              }}
             >
               <div className="flex flex-col items-center text-center">
-                {/* Placeholder for tasks_3.svg */}
-                <div 
-                  className="w-12 h-12 rounded-lg flex items-center justify-center text-xs font-medium mb-3"
-                  style={{ 
-                    backgroundColor: '#2847ef',
-                    color: 'white'
-                  }}
-                >
-                  TASKS
-                </div>
+                <img 
+                  src="/icons/tasks_3.svg" 
+                  alt="Tasks"
+                  className="w-12 h-12 mb-3"
+                />
                 <h3 
                   className="font-semibold text-sm mb-2"
                   style={{ color: '#4c4c4c' }}
