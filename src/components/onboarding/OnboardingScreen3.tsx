@@ -165,8 +165,7 @@ export default function OnboardingScreen3({
                 style={{ 
                   backgroundColor: isSelected ? '#cae9ef' : 
                     option.id === 'experienced' ? '#fefbf7' : 'white',
-                  border: isSelected ? '2px solid #2847ef' : '2px solid #e2e2e2',
-                  focusRingColor: '#2847ef'
+                  border: isSelected ? '2px solid #2847ef' : '2px solid #e2e2e2'
                 }}
                 aria-pressed={isSelected}
                 aria-describedby={`${option.id}-description`}

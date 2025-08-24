@@ -167,8 +167,7 @@ export default function OnboardingScreen2({
                 `}
                 style={{ 
                   backgroundColor: isSelected ? '#cae9ef' : '#fefbf7',
-                  border: isSelected ? '2px solid #2847ef' : '2px solid transparent',
-                  focusRingColor: '#2847ef'
+                  border: isSelected ? '2px solid #2847ef' : '2px solid transparent'
                 }}
                 aria-pressed={isSelected}
                 aria-describedby={`${option.id}-description`}
