@@ -18,9 +18,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // Debug environment variable loading
-  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-  console.log('Clerk publishable key loaded:', publishableKey ? 'YES' : 'NO')
+  // Temporarily hardcode the key to test if that's the only issue
+  const publishableKey = 'pk_test_dGVhY2hpbmctdGVycmllci05NC5jbGVyay5hY2NvdW50cy5kZXYk'
+  console.log('Using hardcoded Clerk publishable key for testing')
   
   return (
     <ClerkProvider
@@ -28,12 +28,6 @@ export default function RootLayout({
     >
       <html lang="en">
         <body className={`${inter.className}`}>
-          {/* Debug info for development */}
-          {process.env.NODE_ENV === 'development' && (
-            <div style={{position: 'fixed', top: 0, left: 0, background: 'red', color: 'white', padding: '4px', zIndex: 9999, fontSize: '12px'}}>
-              Key: {publishableKey ? 'LOADED' : 'MISSING'}
-            </div>
-          )}
           {children}
         </body>
       </html>
