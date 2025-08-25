@@ -41,7 +41,10 @@ export default function SignInPage() {
                 main: "bg-transparent p-0 m-0",
                 headerTitle: "hidden",
                 headerSubtitle: "hidden",
-                formButtonPrimary: "bg-[#fa772c] hover:bg-[#e6692a] text-white !w-48 mx-auto block rounded-lg py-3 font-medium border-none shadow-lg flex items-center justify-center",
+                formButtonPrimary: "text-white font-medium rounded-lg py-3 flex items-center justify-center mx-auto block" + 
+                  " !w-48 !bg-[#fa772c] hover:!bg-[#e6692a]" +
+                  " !border-0 !border-none !outline-0 !outline-none" +
+                  " !shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)]",
                 formFieldInput: "border border-gray-200 focus:border-2 focus:border-[#2847ef] rounded-lg px-4 py-3 text-base w-full",
                 formFieldLabel: "text-gray-700 font-medium text-sm mb-2",
                 formFieldRow: "mb-4",
