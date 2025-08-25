@@ -18,12 +18,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Debug environment variable loading
+  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+  console.log('Clerk publishable key loaded:', publishableKey ? 'YES' : 'NO')
+  
   return (
     <ClerkProvider
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      publishableKey={publishableKey}
     >
       <html lang="en">
         <body className={`${inter.className}`}>
+          {/* Debug info for development */}
+          {process.env.NODE_ENV === 'development' && (
+            <div style={{position: 'fixed', top: 0, left: 0, background: 'red', color: 'white', padding: '4px', zIndex: 9999, fontSize: '12px'}}>
+              Key: {publishableKey ? 'LOADED' : 'MISSING'}
+            </div>
+          )}
           {children}
         </body>
       </html>
