@@ -23,12 +23,8 @@ export default function RootLayout({
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
     >
       <html lang="en">
-        <body className={`${inter.className}`} style={{ backgroundColor: 'var(--background)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-          <ThemeProvider>
-            <ConditionalLayout>
-              {children}
-            </ConditionalLayout>
-          </ThemeProvider>
+        <body className={`${inter.className}`}>
+          {children}
         </body>
       </html>
     </ClerkProvider>
