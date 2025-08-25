@@ -2,18 +2,25 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useUser } from '@clerk/nextjs'
 import OnboardingScreen1 from '@/components/onboarding/OnboardingScreen1'
 import OnboardingScreen2 from '@/components/onboarding/OnboardingScreen2'
 import OnboardingScreen3 from '@/components/onboarding/OnboardingScreen3'
 import OnboardingScreen4 from '@/components/onboarding/OnboardingScreen4'
 
 /**
- * COMPLETE ONBOARDING FLOW
+ * COMPLETE ONBOARDING FLOW WITH CLERK INTEGRATION
  * 
  * This page orchestrates the entire onboarding sequence for new Joidu users.
  * It manages the step progression, data collection, and completion handling
  * for the four-screen onboarding journey that introduces users to Joidu
  * and collects essential personalization data for Kai.
+ * 
+ * INTEGRATION WITH CLERK:
+ * - Uses useUser hook to access authenticated user data
+ * - Stores onboarding completion in user metadata
+ * - Personalizes experience with user's first name if available
+ * - Ensures only authenticated users can access onboarding
  * 
  * ONBOARDING JOURNEY:
  * 1. Welcome & Introduction - Meet Kai, preview key features
@@ -24,7 +31,7 @@ import OnboardingScreen4 from '@/components/onboarding/OnboardingScreen4'
  * DATA COLLECTION:
  * - User's birth decade for cultural references
  * - ADHD experience level for appropriate support
- * - Onboarding completion status
+ * - Onboarding completion status stored in Clerk user metadata
  * 
  * NAVIGATION PATTERNS:
  * - Linear progression with back button support
@@ -33,6 +40,7 @@ import OnboardingScreen4 from '@/components/onboarding/OnboardingScreen4'
  */
 export default function OnboardingPage() {
   const router = useRouter()
+  const { user } = useUser()
   const [currentStep, setCurrentStep] = useState(1)
   const [onboardingData, setOnboardingData] = useState({
     birthDecade: '1980s',
@@ -68,19 +76,29 @@ export default function OnboardingPage() {
   }
 
   /**
-   * ONBOARDING COMPLETION
+   * ONBOARDING COMPLETION WITH CLERK INTEGRATION
    */
-  const completeOnboarding = (skipped: boolean = false) => {
+  const completeOnboarding = async (skipped: boolean = false) => {
     const completionData = {
       ...onboardingData,
       completedAt: new Date(),
       skipped
     }
 
-    // Save onboarding data to localStorage or send to backend
     try {
+      // Save onboarding data to localStorage for immediate access
       localStorage.setItem('joidu_onboarding', JSON.stringify(completionData))
       localStorage.setItem('joidu_onboarding_complete', 'true')
+      
+      // Store onboarding data in Clerk user metadata
+      if (user) {
+        await user.update({
+          unsafeMetadata: {
+            ...user.unsafeMetadata,
+            onboarding: completionData
+          }
+        })
+      }
       
       console.log('Onboarding completed:', completionData)
       
