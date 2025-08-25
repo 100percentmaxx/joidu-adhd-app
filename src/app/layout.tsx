@@ -18,17 +18,26 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // Temporarily hardcode the key to test if that's the only issue
-  const publishableKey = 'pk_test_dGVhY2hpbmctdGVycmllci05NC5jbGVyay5hY2NvdW50cy5kZXYk'
-  console.log('Using hardcoded Clerk publishable key for testing')
+  // Use environment variable with fallback for debugging
+  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_dGVhY2hpbmctdGVycmllci05NC5jbGVyay5hY2NvdW50cy5kZXYk'
+  
+  if (!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
+    console.warn('⚠️ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY environment variable not found, using fallback')
+  } else {
+    console.log('✅ Using NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY from environment variables')
+  }
   
   return (
     <ClerkProvider
       publishableKey={publishableKey}
     >
       <html lang="en">
-        <body className={`${inter.className}`}>
-          {children}
+        <body className={`${inter.className}`} style={{ backgroundColor: 'var(--background)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <ThemeProvider>
+            <ConditionalLayout>
+              {children}
+            </ConditionalLayout>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
