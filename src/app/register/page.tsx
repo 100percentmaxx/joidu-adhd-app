@@ -23,8 +23,9 @@ export default function RegisterPage() {
       </div>
       
       {/* Single Form Container */}
-      <div className="bg-white rounded-t-3xl mx-6 px-6 py-8 min-h-96">
-        <div className="max-w-md mx-auto">
+      <div className="flex justify-center px-6">
+        <div className="bg-white rounded-t-3xl w-full max-w-md px-6 py-8 min-h-96">
+        <div>
           <h1 className="text-2xl font-bold text-gray-800 mb-2 text-center">
             Create Your Account
           </h1>
@@ -67,6 +68,7 @@ export default function RegisterPage() {
             redirectUrl="/onboarding"
             signInUrl="/sign-in"
           />
+        </div>
         </div>
       </div>
     </div>
