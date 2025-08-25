@@ -8,7 +8,7 @@ export default function HomePage() {
           Welcome to Joidu
         </h1>
         <p className="text-gray-600 mb-6">
-          ADHD-friendly task management
+          ADHD-friendly task management app
         </p>
         
         <div className="space-y-4">
