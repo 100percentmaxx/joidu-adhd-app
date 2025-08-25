@@ -36,20 +36,25 @@ export default function RegisterPage() {
             appearance={{
               elements: {
                 rootBox: "w-full",
-                card: "shadow-none border-none bg-transparent p-0",
+                card: "shadow-none border-none bg-transparent p-0 m-0",
+                cardBox: "shadow-none border-none bg-transparent p-0 m-0",
+                main: "bg-transparent p-0 m-0",
                 headerTitle: "hidden",
                 headerSubtitle: "hidden",
                 formButtonPrimary: "bg-[#fa772c] hover:bg-[#e6692a] text-white !w-48 mx-auto block rounded-lg py-3 font-medium",
                 formFieldInput: "border border-gray-200 focus:border-2 focus:border-[#2847ef] rounded-lg px-4 py-3 text-base w-full",
                 formFieldLabel: "text-gray-700 font-medium text-sm mb-2",
+                formFieldRow: "mb-4",
                 identityPreviewText: "text-gray-700",
                 identityPreviewEditButton: "text-[#2847ef]",
                 formResendCodeLink: "text-[#2847ef]",
                 footerActionLink: "text-[#2847ef] hover:underline",
-                socialButtonsBlockButton: "border border-gray-300 hover:bg-gray-50 rounded-lg",
+                socialButtonsBlockButton: "border border-gray-300 hover:bg-gray-50 rounded-lg mb-2",
                 otpCodeFieldInput: "border border-gray-200 focus:border-2 focus:border-[#2847ef] rounded-lg",
                 formFieldErrorText: "text-red-500 text-sm mt-1",
-                alertClerkError: "text-red-600 bg-red-50 border border-red-200 rounded-lg p-3 mb-4"
+                alertClerkError: "text-red-600 bg-red-50 border border-red-200 rounded-lg p-3 mb-4",
+                formContainer: "bg-transparent p-0 m-0 shadow-none border-none",
+                form: "bg-transparent p-0 m-0 shadow-none border-none"
               },
               layout: {
                 socialButtonsPlacement: "bottom",
