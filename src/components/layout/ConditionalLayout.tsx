@@ -34,6 +34,8 @@ export default function ConditionalLayout({ children }: ConditionalLayoutProps) 
   // Define routes that should NOT show the main app navigation
   const routesWithoutBottomNav = [
     '/onboarding',
+    '/register',
+    '/sign-in',
     '/welcome',
     '/welcome-demo', 
     '/maintenance',

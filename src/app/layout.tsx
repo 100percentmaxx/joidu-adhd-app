@@ -4,6 +4,7 @@ import './globals.css'
 import '../styles/theme.css'
 import ConditionalLayout from '@/components/layout/ConditionalLayout'
 import { ThemeProvider } from '@/contexts/ThemeContext'
+import { ClerkProvider } from '@clerk/nextjs'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,14 +19,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className}`} style={{ backgroundColor: 'var(--background)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <ThemeProvider>
-          <ConditionalLayout>
-            {children}
-          </ConditionalLayout>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${inter.className}`} style={{ backgroundColor: 'var(--background)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <ThemeProvider>
+            <ConditionalLayout>
+              {children}
+            </ConditionalLayout>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   )
 } 
