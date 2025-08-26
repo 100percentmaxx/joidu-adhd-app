@@ -325,7 +325,7 @@ export default function NotificationSystem({
  * export default function TasksScreen() {
  *   return (
  *     <div>
- *       {/* Screen content */}
+ *       {* Screen content *}
  *       <NotificationSystem 
  *         currentRoute="/tasks"
  *         userName="Sarah" 

@@ -571,10 +571,10 @@ function ConfettiAnimation({ achievementType }: { achievementType: string }) {
  *   
  *   return (
  *     <div>
- *       {/* Task list component */}
+ *       {* Task list component *}
  *       <TaskList onTaskComplete={handleTaskComplete} />
  *       
- *       {/* Celebration modal */}
+ *       {* Celebration modal *}
  *       <CelebrationModal
  *         isVisible={showCelebration}
  *         {...celebrationData}
