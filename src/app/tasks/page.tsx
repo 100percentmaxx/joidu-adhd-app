@@ -4,19 +4,24 @@ import React, { useState, useEffect, Suspense } from 'react'
 import { ArrowLeft, Plus, Calendar } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import LightningFAB from '@/components/ui/LightningFAB'
+import { useSupabaseData } from '@/hooks/useSupabaseData'
+import { useUser } from '@clerk/nextjs'
 
 type FilterType = 'all' | 'today' | 'week' | 'priority' | 'category'
 type Category = 'work' | 'health' | 'personal' | 'social' | 'creative' | 'finance'
 type Priority = 'low' | 'medium' | 'high'
 type ViewType = 'tasks' | 'schedule'
 
+// Updated to match Supabase Task structure
 interface Task {
   id: string
-  name: string
+  title: string // Changed from 'name' to 'title' to match Supabase schema
   category: Category
   priority: Priority
-  dueDate: Date
-  section: 'focus' | 'today' | 'tomorrow'
+  estimated_minutes: number | null
+  is_completed: boolean
+  created_at: string
+  due_date?: string | null
 }
 
 interface ScheduleEvent {
@@ -33,7 +38,16 @@ function TasksContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const currentDate = new Date()
-  const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>({})
+  const { user: clerkUser } = useUser()
+  
+  // Supabase data integration
+  const {
+    tasks,
+    tasksLoading,
+    tasksError,
+    actions
+  } = useSupabaseData()
+  
   const [activeFilter, setActiveFilter] = useState<FilterType>('today')
   const [activeView, setActiveView] = useState<ViewType>('tasks')
   const [userEvents, setUserEvents] = useState<ScheduleEvent[]>([])
@@ -53,65 +67,21 @@ function TasksContent() {
   })
   const [tasksCurrentMonth, setTasksCurrentMonth] = useState(new Date()) // Month shown in Tasks view
 
-  // Define task data with categories, priorities, and dates
-  const allTasks: Task[] = [
-    {
-      id: '1',
-      name: 'Reply to Naoya Oka email',
-      category: 'work',
-      priority: 'high',
-      dueDate: new Date(currentDate),
-      section: 'focus'
-    },
-    {
-      id: '2', 
-      name: 'Reply to emails',
-      category: 'work',
-      priority: 'medium',
-      dueDate: new Date(currentDate),
-      section: 'today'
-    },
-    {
-      id: '3',
-      name: 'Meditate 15 min.',
-      category: 'health', 
-      priority: 'medium',
-      dueDate: new Date(currentDate),
-      section: 'today'
-    },
-    {
-      id: '4',
-      name: 'Repair garden gate',
-      category: 'personal',
-      priority: 'low',
-      dueDate: new Date(currentDate),
-      section: 'today'
-    },
-    {
-      id: '5',
-      name: 'Buy bread',
-      category: 'personal',
-      priority: 'low', 
-      dueDate: new Date(currentDate),
-      section: 'today'
-    },
-    {
-      id: '6',
-      name: 'Print bank statements',
-      category: 'finance',
-      priority: 'medium',
-      dueDate: new Date(currentDate.getTime() + 24 * 60 * 60 * 1000), // Tomorrow
-      section: 'tomorrow'
-    },
-    {
-      id: '7',
-      name: 'Call John to confirm Thurs.',
-      category: 'social',
-      priority: 'high',
-      dueDate: new Date(currentDate.getTime() + 24 * 60 * 60 * 1000), // Tomorrow
-      section: 'tomorrow'
-    }
-  ]
+  // Transform Supabase tasks to match component structure
+  const transformSupabaseTasks = (supabaseTasks: any[]): Task[] => {
+    return supabaseTasks.map(task => ({
+      id: task.id,
+      title: task.title,
+      category: task.category as Category,
+      priority: task.priority as Priority,
+      estimated_minutes: task.estimated_minutes,
+      is_completed: task.is_completed,
+      created_at: task.created_at,
+      due_date: task.due_date
+    }))
+  }
+  
+  const allTasks = transformSupabaseTasks(tasks || [])
 
   // Sample schedule events data with current dates
   const getSampleEvents = (): ScheduleEvent[] => {
@@ -226,20 +196,11 @@ function TasksContent() {
     return [...sampleEvents, ...userEvents]
   }
   
-  // Load completed tasks, filter state, and events from localStorage
+  // Load filter state and events from localStorage
   useEffect(() => {
     // Only access localStorage on client side
     if (typeof window === 'undefined') return
     
-    const savedTasks = localStorage.getItem('joidu-completed-tasks')
-    if (savedTasks) {
-      try {
-        setCompletedTasks(JSON.parse(savedTasks))
-      } catch (error) {
-        console.error('Error loading completed tasks:', error)
-      }
-    }
-
     const savedFilter = localStorage.getItem('joidu-tasks-filter')
     if (savedFilter) {
       setActiveFilter(savedFilter as FilterType)
@@ -448,28 +409,42 @@ function TasksContent() {
 
     switch (activeFilter) {
       case 'today':
-        // Show tasks for selected date instead of always today
-        return allTasks.filter(task => 
-          task.dueDate.toDateString() === selectedDate.toDateString()
-        )
+        // Show tasks for selected date or tasks without due dates (default to today)
+        return allTasks.filter(task => {
+          if (!task.due_date) return true // Show tasks without due dates
+          const taskDate = new Date(task.due_date)
+          return taskDate.toDateString() === selectedDate.toDateString()
+        })
       case 'week':
-        return allTasks.filter(task => 
-          task.dueDate >= startOfWeek && task.dueDate <= endOfWeek
-        )
+        return allTasks.filter(task => {
+          if (!task.due_date) return true // Include tasks without due dates
+          const taskDate = new Date(task.due_date)
+          return taskDate >= startOfWeek && taskDate <= endOfWeek
+        })
       case 'priority':
         return allTasks
           .filter(task => task.priority === 'high')
-          .sort((a, b) => a.dueDate.getTime() - b.dueDate.getTime())
+          .sort((a, b) => {
+            const dateA = a.due_date ? new Date(a.due_date).getTime() : 0
+            const dateB = b.due_date ? new Date(b.due_date).getTime() : 0
+            return dateA - dateB
+          })
       case 'category':
         return allTasks.sort((a, b) => {
           if (a.category !== b.category) {
             return a.category.localeCompare(b.category)
           }
-          return a.dueDate.getTime() - b.dueDate.getTime()
+          const dateA = a.due_date ? new Date(a.due_date).getTime() : 0
+          const dateB = b.due_date ? new Date(b.due_date).getTime() : 0
+          return dateA - dateB
         })
       case 'all':
       default:
-        return allTasks.sort((a, b) => a.dueDate.getTime() - b.dueDate.getTime())
+        return allTasks.sort((a, b) => {
+          const dateA = a.due_date ? new Date(a.due_date).getTime() : 0
+          const dateB = b.due_date ? new Date(b.due_date).getTime() : 0
+          return dateA - dateB
+        })
     }
   }
 
@@ -488,9 +463,22 @@ function TasksContent() {
         return groups
       }, {} as Record<string, Task[]>)
     } else {
-      // Group by section (focus, today, tomorrow)
+      // Group by priority or time-based sections
       return tasks.reduce((groups, task) => {
-        const section = task.section
+        let section = 'today' // Default section
+        
+        if (task.priority === 'high') {
+          section = 'focus'
+        } else if (task.due_date) {
+          const taskDate = new Date(task.due_date)
+          const tomorrow = new Date()
+          tomorrow.setDate(tomorrow.getDate() + 1)
+          
+          if (taskDate.toDateString() === tomorrow.toDateString()) {
+            section = 'tomorrow'
+          }
+        }
+        
         if (!groups[section]) {
           groups[section] = []
         }
@@ -516,19 +504,19 @@ function TasksContent() {
           paddingRight: '12px'
         }}>
           <img src={categoryInfo.icon} alt={task.category} style={{ width: '30px', height: '30px' }} />
-          {renderCheckbox(task.name)}
+          {renderCheckbox(task)}
         </div>
         <div className="flex-1 flex items-center" style={{ 
           backgroundColor: 'var(--card-background)',
           paddingLeft: '16px'
         }}>
           <button 
-            onClick={() => handleTaskDetail(task.name)}
+            onClick={() => handleTaskDetail(task)}
             style={{ 
-              color: completedTasks[task.name] ? 'var(--text-disabled)' : 'var(--text-primary)', 
+              color: task.is_completed ? 'var(--text-disabled)' : 'var(--text-primary)', 
               fontSize: '17px', 
               fontWeight: 500,
-              textDecoration: completedTasks[task.name] ? 'line-through' : 'none',
+              textDecoration: task.is_completed ? 'line-through' : 'none',
               background: 'none',
               border: 'none',
               padding: 0,
@@ -536,13 +524,18 @@ function TasksContent() {
               textAlign: 'left'
             }}
           >
-            {task.name}
+            {task.title}
             {activeFilter === 'priority' && (
               <span className="ml-2 px-2 py-1 text-xs rounded-full" style={{
                 backgroundColor: task.priority === 'high' ? '#ff4444' : task.priority === 'medium' ? '#ffa500' : '#44ff44',
                 color: 'white'
               }}>
                 {task.priority.toUpperCase()}
+              </span>
+            )}
+            {task.estimated_minutes && (
+              <span className="ml-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
+                ~{task.estimated_minutes}min
               </span>
             )}
           </button>
@@ -562,14 +555,14 @@ function TasksContent() {
         </h3>
         {tasks.map(task => (
           <div key={task.id} style={{ backgroundColor: 'var(--card-background)', border: '2px solid var(--category-personal-dark)', borderRadius: '8px', padding: '8px 16px', display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
-            {renderCheckbox(task.name)}
+            {renderCheckbox(task)}
             <button 
-              onClick={() => handleTaskDetail(task.name)}
+              onClick={() => handleTaskDetail(task)}
               style={{ 
-                color: completedTasks[task.name] ? 'var(--text-disabled)' : 'var(--text-primary)', 
+                color: task.is_completed ? 'var(--text-disabled)' : 'var(--text-primary)', 
                 fontWeight: '500', 
                 marginLeft: '12px',
-                textDecoration: completedTasks[task.name] ? 'line-through' : 'none',
+                textDecoration: task.is_completed ? 'line-through' : 'none',
                 background: 'none',
                 border: 'none',
                 padding: 0,
@@ -577,7 +570,7 @@ function TasksContent() {
                 textAlign: 'left'
               }}
             >
-              {task.name}
+              {task.title}
             </button>
           </div>
         ))}
@@ -598,43 +591,35 @@ function TasksContent() {
     }
   }
   
-  const handleTaskToggle = (taskName: string) => {
-    const isCurrentlyCompleted = completedTasks[taskName]
-    
-    if (isCurrentlyCompleted) {
-      // Uncheck the task
-      const newCompletedTasks = { ...completedTasks }
-      delete newCompletedTasks[taskName]
-      setCompletedTasks(newCompletedTasks)
-      // Save to localStorage
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('joidu-completed-tasks', JSON.stringify(newCompletedTasks))
+  const handleTaskToggle = async (task: Task) => {
+    try {
+      if (task.is_completed) {
+        // Uncheck the task
+        await actions.toggleTaskComplete(task.id, false)
+      } else {
+        // Check the task
+        await actions.toggleTaskComplete(task.id, true)
+        // Navigate to celebration screen with task name
+        router.push(`/task-complete?task=${encodeURIComponent(task.title)}`)
       }
-    } else {
-      // Check the task
-      const newCompletedTasks = { ...completedTasks, [taskName]: true }
-      setCompletedTasks(newCompletedTasks)
-      // Save to localStorage
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('joidu-completed-tasks', JSON.stringify(newCompletedTasks))
-      }
-      // Navigate to celebration screen with task name
-      router.push(`/task-complete?task=${encodeURIComponent(taskName)}`)
+    } catch (error) {
+      console.error('Failed to toggle task:', error)
+      // Could add user feedback here
     }
   }
 
-  const handleTaskDetail = (taskName: string) => {
-    // Navigate to task detail screen
-    router.push(`/task-detail?task=${encodeURIComponent(taskName)}`)
+  const handleTaskDetail = (task: Task) => {
+    // Navigate to task detail screen with task ID
+    router.push(`/task-detail?taskId=${task.id}&task=${encodeURIComponent(task.title)}`)
   }
   
-  const renderCheckbox = (taskName: string, isCompleted?: boolean) => {
-    const completed = isCompleted || completedTasks[taskName]
+  const renderCheckbox = (task: Task) => {
+    const completed = task.is_completed
     
     if (completed) {
       return (
         <button 
-          onClick={() => handleTaskToggle(taskName)}
+          onClick={() => handleTaskToggle(task)}
           className="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 hover:opacity-80" 
           style={{ 
             backgroundColor: 'var(--checkbox-checked)',
@@ -661,7 +646,7 @@ function TasksContent() {
     
     return (
       <button 
-        onClick={() => handleTaskToggle(taskName)}
+        onClick={() => handleTaskToggle(task)}
         className="w-6 h-6 rounded-full transition-all duration-200 hover:bg-gray-50" 
         style={{ 
           backgroundColor: 'var(--input-background)',
@@ -1359,13 +1344,19 @@ function TasksContent() {
           {/* Dynamic Task Sections */}
           <div className="px-5 space-y-6">
             <div className="task-content-transition transition-all duration-300 ease-in-out">
-              {Object.entries(groupedTasks).length === 0 ? (
+              {tasksLoading ? (
                 <div className="text-center py-8">
                   <p style={{ color: 'var(--text-secondary)', fontSize: '16px' }}>
-                    No tasks found for the selected filter.
+                    Loading your tasks...
+                  </p>
+                </div>
+              ) : tasksError ? (
+                <div className="text-center py-8">
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '16px' }}>
+                    Error loading tasks: {tasksError}
                   </p>
                   <button
-                    onClick={() => setActiveFilter('today')}
+                    onClick={() => actions.refreshTasks()}
                     className="mt-2 px-4 py-2 rounded-lg transition-all duration-200"
                     style={{
                       backgroundColor: 'var(--primary-blue)',
@@ -1373,7 +1364,30 @@ function TasksContent() {
                       fontSize: '14px'
                     }}
                   >
-                    Show Today's Tasks
+                    Try Again
+                  </button>
+                </div>
+              ) : !clerkUser ? (
+                <div className="text-center py-8">
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '16px' }}>
+                    Please sign in to view your tasks.
+                  </p>
+                </div>
+              ) : Object.entries(groupedTasks).length === 0 ? (
+                <div className="text-center py-8">
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '16px' }}>
+                    No tasks found. Create your first task!
+                  </p>
+                  <button
+                    onClick={() => router.push('/add-task')}
+                    className="mt-2 px-4 py-2 rounded-lg transition-all duration-200"
+                    style={{
+                      backgroundColor: 'var(--primary-blue)',
+                      color: 'white',
+                      fontSize: '14px'
+                    }}
+                  >
+                    Add Your First Task
                   </button>
                 </div>
               ) : (
