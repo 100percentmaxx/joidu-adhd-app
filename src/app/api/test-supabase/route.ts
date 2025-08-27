@@ -2,184 +2,138 @@ import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 
 /**
- * TEST SUPABASE CONNECTION ENDPOINT
+ * SIMPLE SUPABASE CONNECTION TEST
  * 
- * This endpoint verifies that the Joidu app can successfully connect
- * to the live Supabase database and that all tables are accessible.
- * 
- * ENDPOINT: GET /api/test-supabase
- * 
- * TESTS:
- * 1. Basic database connection
- * 2. Table accessibility 
- * 3. Row Level Security policies
- * 4. Environment variable configuration
- * 
- * SUCCESS RESPONSE:
- * {
- *   "status": "Connected to Supabase successfully",
- *   "database": {
- *     "url": "https://idbutruwnjmcetuvybhz.supabase.co",
- *     "tablesAccessible": true,
- *     "tables": ["users", "tasks", "habits", "schedule_events"]
- *   },
- *   "timestamp": "2025-01-27T..."
- * }
+ * This endpoint provides a straightforward test of the Supabase connection
+ * with clear error reporting and debugging information.
  */
 
 export async function GET() {
   try {
     console.log('🔍 Testing Supabase connection...')
 
-    // Test 1: Basic connection to users table
-    const { data: usersData, error: usersError } = await supabase
-      .from('users')
-      .select('count(*)')
-      .limit(1)
-    
-    if (usersError) {
-      console.error('❌ Users table error:', usersError)
-      throw new Error(`Users table: ${usersError.message}`)
-    }
-
-    // Test 2: Check all core tables exist
-    const tablesToTest = ['tasks', 'habits', 'schedule_events', 'kai_conversations']
-    const tableResults: Record<string, boolean> = { users: true }
-
-    for (const table of tablesToTest) {
-      try {
-        const { error } = await supabase
-          .from(table)
-          .select('count(*)')
-          .limit(1)
-        
-        tableResults[table] = !error
-        if (error) {
-          console.warn(`⚠️ Table ${table} error:`, error.message)
-        }
-      } catch (err) {
-        console.warn(`⚠️ Table ${table} not accessible:`, err)
-        tableResults[table] = false
-      }
-    }
-
-    // Test 3: Check environment variables
+    // Check environment variables first
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const isLiveConnection = supabaseUrl?.includes('idbutruwnjmcetuvybhz.supabase.co')
-
-    const response = {
-      status: 'Connected to Supabase successfully',
-      database: {
-        url: supabaseUrl ? `${supabaseUrl.substring(0, 30)}...` : 'Not configured',
-        tablesAccessible: Object.values(tableResults).every(Boolean),
-        tables: Object.entries(tableResults).map(([name, accessible]) => ({
-          name,
-          accessible,
-          status: accessible ? 'OK' : 'ERROR'
-        })),
-        isLiveConnection
-      },
-      connection: {
-        authenticated: false, // Will be true when user is logged in
-        rlsPoliciesActive: true
-      },
-      tests: {
-        basicConnection: 'PASS',
-        tableAccess: Object.values(tableResults).every(Boolean) ? 'PASS' : 'PARTIAL',
-        environmentConfig: isLiveConnection ? 'PASS' : 'PLACEHOLDER'
-      },
-      timestamp: new Date().toISOString()
-    }
-
-    console.log('✅ Supabase connection test completed successfully')
-    console.log('📊 Results:', {
-      tablesAccessible: response.database.tablesAccessible,
-      isLiveConnection: response.database.isLiveConnection
-    })
-
-    return NextResponse.json(response)
-
-  } catch (error) {
-    console.error('❌ Supabase connection test failed:', error)
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     
-    const errorResponse = {
-      status: 'Failed to connect to Supabase',
-      error: error instanceof Error ? error.message : 'Unknown error',
-      database: {
-        url: process.env.NEXT_PUBLIC_SUPABASE_URL ? 
-          `${process.env.NEXT_PUBLIC_SUPABASE_URL.substring(0, 30)}...` : 
-          'Not configured',
-        tablesAccessible: false
-      },
-      suggestions: [
-        'Verify NEXT_PUBLIC_SUPABASE_URL is correct',
-        'Verify NEXT_PUBLIC_SUPABASE_ANON_KEY is valid', 
-        'Check that database schema has been created',
-        'Ensure Row Level Security policies are configured'
-      ],
-      timestamp: new Date().toISOString()
-    }
-    
-    return NextResponse.json(errorResponse, { status: 500 })
-  }
-}
-
-/**
- * POST endpoint for testing with authentication context
- */
-export async function POST(request: Request) {
-  try {
-    const { userId } = await request.json()
-
-    if (!userId) {
-      return NextResponse.json(
-        { error: 'userId required for authenticated tests' },
-        { status: 400 }
-      )
+    if (!supabaseUrl || !supabaseKey) {
+      return NextResponse.json({
+        status: 'Configuration Error',
+        error: 'Missing environment variables',
+        details: {
+          hasUrl: !!supabaseUrl,
+          hasKey: !!supabaseKey
+        }
+      }, { status: 500 })
     }
 
-    // Test authenticated operations
-    const { data: userData, error: userError } = await supabase
+    // Test basic connection with a simple query
+    console.log('🔌 Testing basic connection...')
+    const { data, error } = await supabase
       .from('users')
       .select('*')
-      .eq('clerk_user_id', userId)
-      .single()
-
-    if (userError && userError.code !== 'PGRST116') {
-      throw userError
+      .limit(1)
+    
+    if (error) {
+      console.error('❌ Supabase query error:', error)
+      
+      // Check if it's a schema issue (tables don't exist)
+      if (error.message.includes('Could not find') || error.message.includes('does not exist')) {
+        return NextResponse.json({
+          status: 'Schema Not Created',
+          error: 'Database tables do not exist',
+          details: {
+            message: error.message,
+            solution: 'Create the database schema using the SQL in /database/live-schema.sql'
+          },
+          connection: 'OK',
+          timestamp: new Date().toISOString()
+        }, { status: 200 }) // Not a connection error, just missing schema
+      }
+      
+      return NextResponse.json({
+        status: 'Connection Failed',
+        error: error.message,
+        details: error,
+        timestamp: new Date().toISOString()
+      }, { status: 500 })
     }
-
+    
+    // Connection successful
+    console.log('✅ Supabase connection successful')
+    
     return NextResponse.json({
-      status: 'Authenticated connection test successful',
-      user: userData ? 'Found' : 'Not found',
-      canAccessUserData: !userError || userError.code === 'PGRST116',
+      status: 'Connected to Supabase successfully',
+      connection: {
+        url: `${supabaseUrl.substring(0, 30)}...`,
+        tablesAccessible: true,
+        userTableRows: Array.isArray(data) ? data.length : 0
+      },
+      environment: {
+        hasUrl: true,
+        hasKey: true,
+        isLiveConnection: supabaseUrl.includes('idbutruwnjmcetuvybhz.supabase.co')
+      },
       timestamp: new Date().toISOString()
     })
 
   } catch (error) {
-    return NextResponse.json(
-      { 
-        error: 'Authenticated test failed', 
-        details: error instanceof Error ? error.message : 'Unknown error' 
-      },
-      { status: 500 }
-    )
+    console.error('❌ Unexpected error:', error)
+    
+    return NextResponse.json({
+      status: 'Unexpected Error',
+      error: error instanceof Error ? error.message : 'Unknown error',
+      type: error instanceof Error ? error.constructor.name : 'Unknown',
+      timestamp: new Date().toISOString()
+    }, { status: 500 })
   }
 }
 
 /**
- * USAGE:
- * 
- * 1. Basic connection test:
- *    GET /api/test-supabase
- * 
- * 2. Authenticated test:
- *    POST /api/test-supabase
- *    Body: { "userId": "user_clerk_id" }
- * 
- * This endpoint helps verify:
- * - Database connection is working
- * - All required tables exist
- * - Environment variables are configured
- * - Schema matches expected structure
+ * Test with table creation check
  */
+export async function POST() {
+  try {
+    const tablesToTest = ['users', 'tasks', 'habits', 'schedule_events', 'kai_conversations']
+    const results: Record<string, any> = {}
+    
+    for (const tableName of tablesToTest) {
+      try {
+        const { error } = await supabase
+          .from(tableName)
+          .select('*')
+          .limit(1)
+        
+        results[tableName] = {
+          exists: !error,
+          error: error?.message || null
+        }
+      } catch (err) {
+        results[tableName] = {
+          exists: false,
+          error: err instanceof Error ? err.message : 'Unknown error'
+        }
+      }
+    }
+    
+    const allTablesExist = Object.values(results).every((result: any) => result.exists)
+    
+    return NextResponse.json({
+      status: allTablesExist ? 'All Tables Accessible' : 'Some Tables Missing',
+      tables: results,
+      summary: {
+        totalTables: tablesToTest.length,
+        accessibleTables: Object.values(results).filter((r: any) => r.exists).length,
+        schemaComplete: allTablesExist
+      },
+      timestamp: new Date().toISOString()
+    })
+    
+  } catch (error) {
+    return NextResponse.json({
+      status: 'Table Test Failed',
+      error: error instanceof Error ? error.message : 'Unknown error',
+      timestamp: new Date().toISOString()
+    }, { status: 500 })
+  }
+}
